@@ -1,0 +1,386 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  /* Enhanced Radius System */
+  --radius-none: 0;
+  --radius-sm: calc(var(--radius) - 6px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-full: 9999px;
+
+  /* Enhanced Spacing System */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 2.5rem;
+  --spacing-3xl: 3rem;
+  --spacing-4xl: 4rem;
+  --spacing-5xl: 5rem;
+  --spacing-6xl: 6rem;
+
+  /* Typography Scale */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+  --font-size-6xl: 3.75rem;
+
+  /* Line Height Scale */
+  --line-height-none: 1;
+  --line-height-tight: 1.25;
+  --line-height-snug: 1.375;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.625;
+  --line-height-loose: 2;
+
+  /* Shadow System */
+  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+
+  /* Color System */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  
+  /* Brand Colors */
+  --color-brand-primary: var(--brand-primary);
+  --color-brand-secondary: var(--brand-secondary);
+  --color-brand-tertiary: var(--brand-tertiary);
+  
+  /* Chart Colors */
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  
+  /* Sidebar Colors */
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  /* Capimax Design System Configuration */
+  --radius: 0.5rem; /* 8px as per Design System */
+  
+  /* Capimax Design System - Light Mode */
+  --background: #FFFFFF;
+  --foreground: #1A1A1A;
+  
+  /* Card System */
+  --card: #FFFFFF;
+  --card-foreground: #1A1A1A;
+  
+  /* Popover System */
+  --popover: #FFFFFF;
+  --popover-foreground: #1A1A1A;
+  
+  /* Primary Brand Colors - Design System Primary Green */
+  --primary: #01DC82;
+  --primary-foreground: #00383E;
+  
+  /* Secondary Colors - Design System Light Gray */
+  --secondary: #F8FAFB;
+  --secondary-foreground: #00383E;
+  
+  /* Muted Colors */
+  --muted: #F8FAFB;
+  --muted-foreground: #4A5568;
+  
+  /* Accent Colors */
+  --accent: #F8FAFB;
+  --accent-foreground: #00383E;
+  
+  /* Status Colors from Design System */
+  --destructive: #FF5252;
+  --destructive-foreground: #FFFFFF;
+  --success: #01DC82;
+  --success-foreground: #00383E;
+  --warning: #FFD93D;
+  --warning-foreground: #1A1A1A;
+  --info: #2196F3;
+  --info-foreground: #FFFFFF;
+  
+  /* Border and Input */
+  --border: #E2E8F0;
+  --input: #E2E8F0;
+  --ring: #01DC82;
+  
+  /* Brand Colors from Design System */
+  --brand-primary: #00383E;    /* Primary Dark */
+  --brand-secondary: #01DC82;  /* Primary Green */
+  --brand-tertiary: #00C972;   /* Secondary Green */
+  
+  /* Enhanced Chart Colors using Design System palette */
+  --chart-1: #01DC82;  /* Primary Green */
+  --chart-2: #00C972;  /* Secondary Green */
+  --chart-3: #FFD93D;  /* Accent Yellow */
+  --chart-4: #00383E;  /* Primary Dark */
+  --chart-5: #2196F3;  /* Info Blue */
+  
+  /* Sidebar System */
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: #1A1A1A;
+  --sidebar-primary: #01DC82;
+  --sidebar-primary-foreground: #00383E;
+  --sidebar-accent: #F8FAFB;
+  --sidebar-accent-foreground: #00383E;
+  --sidebar-border: #E2E8F0;
+  --sidebar-ring: #01DC82;
+}
+
+.dark {
+  /* Capimax Design System - Dark Mode */
+  --background: #0D1117;
+  --foreground: #F7FAFC;
+  
+  /* Card System */
+  --card: #161B22;
+  --card-foreground: #F7FAFC;
+  
+  /* Popover System */
+  --popover: #161B22;
+  --popover-foreground: #F7FAFC;
+  
+  /* Primary Brand Colors - Design System Primary Green (same) */
+  --primary: #01DC82;
+  --primary-foreground: #00383E;
+  
+  /* Secondary Colors */
+  --secondary: #161B22;
+  --secondary-foreground: #CBD5E0;
+  
+  /* Muted Colors */
+  --muted: #21262D;
+  --muted-foreground: #A0AEC0;
+  
+  /* Accent Colors */
+  --accent: #21262D;
+  --accent-foreground: #CBD5E0;
+  
+  /* Status Colors from Design System (same for consistency) */
+  --destructive: #FF5252;
+  --destructive-foreground: #FFFFFF;
+  --success: #01DC82;
+  --success-foreground: #00383E;
+  --warning: #FFD93D;
+  --warning-foreground: #1A1A1A;
+  --info: #2196F3;
+  --info-foreground: #FFFFFF;
+  
+  /* Border and Input */
+  --border: #30363D;
+  --input: #484F58;
+  --ring: #01DC82;
+  
+  /* Brand Colors from Design System (same) */
+  --brand-primary: #00383E;    /* Primary Dark */
+  --brand-secondary: #01DC82;  /* Primary Green */
+  --brand-tertiary: #00C972;   /* Secondary Green */
+  
+  /* Enhanced Chart Colors using Design System palette (same) */
+  --chart-1: #01DC82;  /* Primary Green */
+  --chart-2: #00C972;  /* Secondary Green */
+  --chart-3: #FFD93D;  /* Accent Yellow */
+  --chart-4: #00383E;  /* Primary Dark */
+  --chart-5: #2196F3;  /* Info Blue */
+  
+  /* Sidebar System */
+  --sidebar: #161B22;
+  --sidebar-foreground: #F7FAFC;
+  --sidebar-primary: #01DC82;
+  --sidebar-primary-foreground: #00383E;
+  --sidebar-accent: #21262D;
+  --sidebar-accent-foreground: #CBD5E0;
+  --sidebar-border: #30363D;
+  --sidebar-ring: #01DC82;
+}
+
+@layer base {
+  /* Base Reset with Enhanced Focus States */
+  * {
+    @apply border-gray-200;
+  }
+  
+  *:focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+  
+  /* Enhanced Body Styling */
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  /* Enhanced Typography */
+  h1, .h1 {
+    @apply scroll-m-20 text-4xl font-bold tracking-tight lg:text-5xl;
+    line-height: var(--line-height-tight);
+  }
+  
+  h2, .h2 {
+    @apply scroll-m-20 text-3xl font-semibold tracking-tight;
+    line-height: var(--line-height-tight);
+  }
+  
+  h3, .h3 {
+    @apply scroll-m-20 text-2xl font-semibold tracking-tight;
+    line-height: var(--line-height-snug);
+  }
+  
+  h4, .h4 {
+    @apply scroll-m-20 text-xl font-semibold tracking-tight;
+    line-height: var(--line-height-snug);
+  }
+  
+  h5, .h5 {
+    @apply scroll-m-20 text-lg font-semibold tracking-tight;
+    line-height: var(--line-height-normal);
+  }
+  
+  h6, .h6 {
+    @apply scroll-m-20 text-base font-semibold tracking-tight;
+    line-height: var(--line-height-normal);
+  }
+  
+  p {
+    @apply leading-7 [&:not(:first-child)]:mt-6;
+  }
+  
+  .lead {
+    @apply text-xl text-muted-foreground;
+  }
+  
+  .large {
+    @apply text-lg font-semibold;
+  }
+  
+  .small {
+    @apply text-sm font-medium leading-none;
+  }
+  
+  .muted {
+    @apply text-sm text-muted-foreground;
+  }
+  
+  /* Enhanced Link Styling */
+  a {
+    @apply text-primary underline-offset-4 hover:underline focus-visible:underline;
+    transition: color 0.2s ease-in-out;
+  }
+  
+  /* Code Styling */
+  code {
+    @apply relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold;
+  }
+  
+  /* List Styling */
+  ul, ol {
+    @apply my-6 ml-6 [&>li]:mt-2;
+  }
+  
+  /* Blockquote Styling */
+  blockquote {
+    @apply mt-6 border-l-2 pl-6 italic;
+  }
+}
+
+/* Enhanced Utility Classes */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  
+  /* Professional Spacing Scale */
+  .space-xs { gap: var(--spacing-xs); }
+  .space-sm { gap: var(--spacing-sm); }
+  .space-md { gap: var(--spacing-md); }
+  .space-lg { gap: var(--spacing-lg); }
+  .space-xl { gap: var(--spacing-xl); }
+  .space-2xl { gap: var(--spacing-2xl); }
+  .space-3xl { gap: var(--spacing-3xl); }
+  .space-4xl { gap: var(--spacing-4xl); }
+  .space-5xl { gap: var(--spacing-5xl); }
+  .space-6xl { gap: var(--spacing-6xl); }
+  
+  /* Professional Shadow Utilities */
+  .shadow-xs { box-shadow: var(--shadow-xs); }
+  .shadow-sm { box-shadow: var(--shadow-sm); }
+  .shadow-md { box-shadow: var(--shadow-md); }
+  .shadow-lg { box-shadow: var(--shadow-lg); }
+  .shadow-xl { box-shadow: var(--shadow-xl); }
+  .shadow-2xl { box-shadow: var(--shadow-2xl); }
+  .shadow-inner { box-shadow: var(--shadow-inner); }
+  
+  /* Brand Color Utilities */
+  .bg-brand-primary { background-color: var(--brand-primary); }
+  .bg-brand-secondary { background-color: var(--brand-secondary); }
+  .bg-brand-tertiary { background-color: var(--brand-tertiary); }
+  
+  .text-brand-primary { color: var(--brand-primary); }
+  .text-brand-secondary { color: var(--brand-secondary); }
+  .text-brand-tertiary { color: var(--brand-tertiary); }
+  
+  .border-brand-primary { border-color: var(--brand-primary); }
+  .border-brand-secondary { border-color: var(--brand-secondary); }
+  .border-brand-tertiary { border-color: var(--brand-tertiary); }
+  
+  /* Enhanced Radius Utilities */
+  .rounded-xs { border-radius: var(--radius-sm); }
+  .rounded-sm { border-radius: var(--radius-sm); }
+  .rounded-md { border-radius: var(--radius-md); }
+  .rounded-lg { border-radius: var(--radius-lg); }
+  .rounded-xl { border-radius: var(--radius-xl); }
+  .rounded-2xl { border-radius: var(--radius-2xl); }
+  .rounded-3xl { border-radius: var(--radius-3xl); }
+}

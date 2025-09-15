@@ -1,0 +1,293 @@
+/**
+ * Global Styles for Capimax Group Design System
+ * Additional global styles beyond the main App.css
+ */
+
+/* Import the main design system styles */
+@import '../App.css';
+
+/* Additional global improvements */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Enhanced scrollbar styling for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: oklch(var(--muted-foreground) / 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(var(--muted-foreground) / 0.5);
+}
+
+/* Dark mode scrollbar */
+.dark ::-webkit-scrollbar-thumb {
+  background: oklch(var(--muted-foreground) / 0.4);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: oklch(var(--muted-foreground) / 0.6);
+}
+
+/* Professional selection styling */
+::selection {
+  background: oklch(var(--primary) / 0.2);
+  color: var(--foreground);
+}
+
+.dark ::selection {
+  background: oklch(var(--primary) / 0.3);
+}
+
+/* Enhanced focus-visible for better accessibility */
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Remove outline for mouse users */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Professional animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInFromLeft {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInFromRight {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Utility animation classes */
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-slide-in-left {
+  animation: slideInFromLeft 0.5s ease-out forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInFromRight 0.5s ease-out forwards;
+}
+
+.animate-pulse-subtle {
+  animation: pulse 2s infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    oklch(var(--muted-foreground) / 0.1) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Professional loading states */
+.loading-skeleton {
+  @apply bg-muted animate-pulse;
+  background: linear-gradient(
+    90deg,
+    oklch(var(--muted) / 0.5) 25%,
+    oklch(var(--muted) / 0.8) 50%,
+    oklch(var(--muted) / 0.5) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Enhanced card hover effects */
+.card-hover {
+  @apply transition-all duration-300;
+}
+
+.card-hover:hover {
+  @apply shadow-lg -translate-y-1;
+}
+
+/* Professional gradient backgrounds */
+.gradient-brand {
+  background: linear-gradient(
+    135deg,
+    var(--brand-primary) 0%,
+    var(--primary) 50%,
+    var(--brand-secondary) 100%
+  );
+}
+
+.gradient-subtle {
+  background: linear-gradient(
+    135deg,
+    oklch(var(--background)) 0%,
+    oklch(var(--muted)) 100%
+  );
+}
+
+/* Grid pattern for hero sections */
+.bg-grid-pattern {
+  background-image: 
+    linear-gradient(oklch(var(--border) / 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(var(--border) / 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Professional text gradients */
+.text-gradient-brand {
+  background: linear-gradient(135deg, var(--brand-primary), var(--primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Enhanced button interactions */
+.btn-press {
+  @apply active:scale-95 transition-transform duration-75;
+}
+
+/* Professional form styling enhancements */
+.form-group {
+  @apply space-y-2;
+}
+
+.form-label {
+  @apply text-sm font-medium text-foreground;
+}
+
+.form-error {
+  @apply text-sm text-destructive;
+}
+
+.form-help {
+  @apply text-sm text-muted-foreground;
+}
+
+/* Enhanced table styling */
+.table-hover tbody tr:hover {
+  @apply bg-muted/50;
+}
+
+.table-striped tbody tr:nth-child(even) {
+  @apply bg-muted/30;
+}
+
+/* Professional spacing utilities */
+.section-padding {
+  @apply py-12 sm:py-16 lg:py-20;
+}
+
+.container-padding {
+  @apply px-4 sm:px-6 lg:px-8;
+}
+
+/* Responsive hide/show utilities */
+.hidden-mobile {
+  @apply hidden sm:block;
+}
+
+.visible-mobile {
+  @apply block sm:hidden;
+}
+
+.hidden-tablet {
+  @apply hidden md:block;
+}
+
+.visible-tablet {
+  @apply block md:hidden;
+}
+
+.hidden-desktop {
+  @apply hidden lg:block;
+}
+
+.visible-desktop {
+  @apply block lg:hidden;
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  * {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  
+  a, a:visited {
+    text-decoration: underline;
+  }
+  
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+  
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+  
+  .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+    content: "";
+  }
+  
+  pre, blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+  
+  thead {
+    display: table-header-group;
+  }
+  
+  tr, img {
+    page-break-inside: avoid;
+  }
+  
+  img {
+    max-width: 100% !important;
+  }
+  
+  p, h2, h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  
+  h2, h3 {
+    page-break-after: avoid;
+  }
+}
