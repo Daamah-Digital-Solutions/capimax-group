@@ -5,22 +5,20 @@ import { Container } from '@/components/layout/Container'
 import { HStack } from '@/components/layout/Stack'
 import { useTheme } from '@/hooks/use-theme.jsx'
 import { motion, AnimatePresence } from 'framer-motion'
-import { 
-  Menu, 
-  X, 
-  Globe, 
-  Moon, 
+import {
+  Menu,
+  X,
+  Moon,
   Sun,
-  ChevronDown,
   Building2,
   TrendingUp,
   Users,
   FileText,
   Phone,
   Newspaper,
-  ArrowRight,
-  Zap
+  ArrowRight
 } from 'lucide-react'
+import capimaxLogo from '@/assets/capimax-group-logo.png'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -141,36 +139,16 @@ const Header = ({ language, toggleLanguage }) => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="flex items-center space-x-3"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="flex items-center"
           >
-            <Link to="/" className="flex items-center space-x-3 group">
-              <div className="relative">
-                <div className="w-10 h-10 bg-gradient-to-br from-primary to-success rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300">
-                  <Zap className="w-6 h-6 text-white" />
-                </div>
-                <motion.div
-                  className="absolute -top-1 -right-1 w-4 h-4 bg-warning rounded-full"
-                  animate={{
-                    scale: [1, 1.2, 1],
-                    opacity: [1, 0.8, 1]
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                />
-              </div>
-              <div className="hidden sm:block">
-                <div className="text-xl font-bold bg-gradient-to-r from-primary to-success bg-clip-text text-transparent">
-                  Capimax Group
-                </div>
-                <div className="text-xs text-muted-foreground">
-                  Global Investment Platform
-                </div>
-              </div>
+            <Link to="/" className="flex items-center group">
+              <img
+                src={capimaxLogo}
+                alt="Capimax Group"
+                className="h-10 sm:h-12 w-auto object-contain transition-all duration-300"
+              />
             </Link>
           </motion.div>
 
