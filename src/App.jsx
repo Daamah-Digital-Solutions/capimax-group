@@ -15,6 +15,7 @@ import Investors from './components/pages/Investors'
 import Contact from './components/pages/Contact'
 import News from './components/pages/News'
 import CompanyDetail from './components/pages/CompanyDetail'
+import CapimaxInvestment from './components/pages/CapimaxInvestment'
 
 // Language Context
 import { createContext, useContext } from 'react'
@@ -71,6 +72,7 @@ function AppContent() {
             <Route path="/" element={<Home language={language} />} />
             <Route path="/about" element={<About language={language} />} />
             <Route path="/companies" element={<Companies language={language} />} />
+            <Route path="/companies/capimax-investment" element={<CapimaxInvestment language={language} />} />
             <Route path="/company/:id" element={<CompanyDetail language={language} />} />
             <Route path="/sectors" element={<Sectors language={language} />} />
             <Route path="/partners" element={<Partners language={language} />} />

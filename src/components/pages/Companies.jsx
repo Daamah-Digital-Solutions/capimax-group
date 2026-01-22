@@ -10,13 +10,14 @@ import { VStack, HStack } from '@/components/layout/Stack'
 import { Section } from '@/components/layout/Section'
 import { motion } from 'framer-motion'
 import { FloatingElements } from '@/components/enhanced/FloatingElements'
-import { 
-  Building2, 
-  TrendingUp, 
-  Coins, 
-  Smartphone, 
-  Shield, 
-  Globe, 
+import { useTheme } from '@/hooks/use-theme'
+import {
+  Building2,
+  TrendingUp,
+  Coins,
+  Smartphone,
+  Shield,
+  Globe,
   Search,
   ArrowRight,
   MapPin,
@@ -27,9 +28,112 @@ import {
   X
 } from 'lucide-react'
 
+// Import SVG logos
+// Dark versions (for light mode)
+import capimaxInvestmentsUKDark from '@/assets/capimax logos svg/dark/capi max all versions logos_capi max investments uk dark.svg'
+import capimaxFinancialManagementUKDark from '@/assets/capimax logos svg/dark/capi max all versions logos_capi max financial management uk dark -11.svg'
+import hccInternationalDark from '@/assets/capimax logos svg/dark/capi max all versions logos_capi max investments dark .svg'
+import capimaxPreciousMetalsDark from '@/assets/capimax logos svg/dark/capi max all versions logos_capi max Investment in precious metals  uk dark  .svg'
+import capimaxHoldingDark from '@/assets/capimax logos svg/dark/capi max all versions logos_capi max holding  uk dark  .svg'
+import capimaxVirtualAssetsDark from '@/assets/capimax logos svg/dark/capi max all versions logos_capi max  Virtual Asset uk dark .svg'
+import cimFinancialGroupDark from '@/assets/capimax logos svg/dark/capi max all versions logos_capi max financial management uk dark -13.svg'
+import novaDigitalFinanceDark from '@/assets/capimax logos svg/dark/capi max all versions logos_capi max investments dark .svg'
+import capimaxFintechBlockchainDark from '@/assets/capimax logos svg/dark/capi max all versions logos_capi max  Fintech and Blockchain uk dark  copy.svg'
+import capimaxInvestmentsUSADark from '@/assets/capimax logos svg/dark/capi max all versions logos_capi max investments usa dark.svg'
+import capimaxGeneralTradingUSADark from '@/assets/capimax logos svg/dark/capi max all versions logos_capi max general trading usa dark.svg'
+import capimaxInvestmentsUAEDark from '@/assets/capimax logos svg/dark/capi max all versions logos_capi max investments uae dark.svg'
+
+// Light versions (for dark mode)
+import capimaxInvestmentsUKLight from '@/assets/capimax logos svg/light/capi max all versions logos_capi max investments uk light.svg'
+import capimaxFinancialManagementUKLight from '@/assets/capimax logos svg/light/capi max all versions logos_capi max financial management uk light  .svg'
+import hccInternationalLight from '@/assets/capimax logos svg/light/capi max all versions logos_capi max investments  light .svg'
+import capimaxPreciousMetalsLight from '@/assets/capimax logos svg/light/capi max all versions logos_capi max Investment in precious metals  uk light  .svg'
+import capimaxHoldingLight from '@/assets/capimax logos svg/light/capi max all versions logos_capi max holding  uk light   .svg'
+import capimaxVirtualAssetsLight from '@/assets/capimax logos svg/light/capi max all versions logos_capi max  Virtual Asset uk light .svg'
+import cimFinancialGroupLight from '@/assets/capimax logos svg/light/capi max all versions logos_capi max financial management uk light   .svg'
+import novaDigitalFinanceLight from '@/assets/capimax logos svg/light/capi max all versions logos_capi max investments  light .svg'
+import capimaxFintechBlockchainLight from '@/assets/capimax logos svg/light/capi max all versions logos_capi max  Fintech and Blockchain uk light  copy.svg'
+import capimaxDevelopmentLight from '@/assets/capimax logos svg/light/capi max all versions logos_capi max development uk light .svg'
+import capimaxInvestmentsUSALight from '@/assets/capimax logos svg/light/capi max all versions logos_capi max investments usa light.svg'
+import capimaxGeneralTradingUSALight from '@/assets/capimax logos svg/light/capi max all versions logos_capi max general trading usa light.svg'
+import capimaxInvestmentsUAELight from '@/assets/capimax logos svg/light/capi max all versions logos_capi max investments uae light.svg'
+
 const Companies = ({ language }) => {
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedCountry, setSelectedCountry] = useState('all')
+  const { isDark } = useTheme()
+
+  // Logo mapping function based on company ID and theme
+  const getCompanyLogo = (companyId) => {
+    const logoMap = {
+      'capimax-investments-uk': {
+        dark: capimaxInvestmentsUKDark,
+        light: capimaxInvestmentsUKLight
+      },
+      'capimax-financial-management': {
+        dark: capimaxFinancialManagementUKDark,
+        light: capimaxFinancialManagementUKLight
+      },
+      'hcc-international': {
+        dark: hccInternationalDark,
+        light: hccInternationalLight
+      },
+      'capimax-precious-metals': {
+        dark: capimaxPreciousMetalsDark,
+        light: capimaxPreciousMetalsLight
+      },
+      'capimax-holding': {
+        dark: capimaxHoldingDark,
+        light: capimaxHoldingLight
+      },
+      'capimax-virtual-assets': {
+        dark: capimaxVirtualAssetsDark,
+        light: capimaxVirtualAssetsLight
+      },
+      'cim-financial-group': {
+        dark: cimFinancialGroupDark,
+        light: cimFinancialGroupLight
+      },
+      'nova-digital-finance': {
+        dark: novaDigitalFinanceDark,
+        light: novaDigitalFinanceLight
+      },
+      'capimax-fintech-blockchain': {
+        dark: capimaxFintechBlockchainDark,
+        light: capimaxFintechBlockchainLight
+      },
+      'capimax-development-llp': {
+        dark: null, // No dark version available
+        light: capimaxDevelopmentLight
+      },
+      'capimax-investments-usa': {
+        dark: capimaxInvestmentsUSADark,
+        light: capimaxInvestmentsUSALight
+      },
+      'capimax-general-trading-usa': {
+        dark: capimaxGeneralTradingUSADark,
+        light: capimaxGeneralTradingUSALight
+      },
+      'capimax-investments-uae': {
+        dark: capimaxInvestmentsUAEDark,
+        light: capimaxInvestmentsUAELight
+      }
+    }
+
+    const companyLogos = logoMap[companyId]
+    if (companyLogos) {
+      // Try to get the theme-appropriate logo
+      const preferredLogo = isDark ? companyLogos.light : companyLogos.dark
+      if (preferredLogo) {
+        return preferredLogo
+      }
+      // Fallback to the other theme if preferred doesn't exist
+      return companyLogos.light || companyLogos.dark
+    }
+
+    // Fallback to null if no logo found
+    return null
+  }
 
   const translations = {
     en: {
@@ -534,27 +638,22 @@ const Companies = ({ language }) => {
                         <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary to-success transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
                         
                         <div className="relative">
-                        <CardHeader>
-                          <HStack gap="md" align="start" className="mb-4">
-                            <motion.div 
-                              className={`w-14 h-14 ${company.color} rounded-2xl flex items-center justify-center`}
-                              whileHover={{ rotate: 5, scale: 1.05 }}
-                              transition={{ duration: 0.3 }}
-                            >
-                              <company.icon className="h-7 w-7 text-white" />
-                            </motion.div>
-                            <div className="flex-1">
-                              <HStack gap="sm" align="center" className="mb-2">
-                                <span className="text-3xl">{company.countryFlag}</span>
-                                <Badge variant="secondary" className="px-2 py-1 bg-primary/10 text-primary border border-primary/20">
-                                  {company.country}
-                                </Badge>
-                              </HStack>
-                              <Badge variant="outline" className="text-xs text-muted-foreground">
-                                {company.sector}
-                              </Badge>
-                            </div>
-                          </HStack>
+                        <CardHeader className="pb-6">
+                          <motion.div
+                            className="w-48 h-48 mx-auto mb-6 flex items-center justify-center"
+                            whileHover={{ scale: 1.02 }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            {getCompanyLogo(company.id) ? (
+                              <img
+                                src={getCompanyLogo(company.id)}
+                                alt={`${company.name} logo`}
+                                className="w-full h-full object-contain"
+                              />
+                            ) : (
+                              <company.icon className="h-24 w-24 text-primary" />
+                            )}
+                          </motion.div>
                           <CardTitle className="text-lg line-clamp-2 hover:text-primary transition-colors duration-300">
                             {company.name}
                           </CardTitle>
@@ -652,7 +751,7 @@ const Companies = ({ language }) => {
                         
                         <div className="relative">
                         <CardHeader>
-                          <motion.div 
+                          <motion.div
                             className={`w-16 h-16 ${partner.color} rounded-2xl flex items-center justify-center mx-auto mb-4`}
                             whileHover={{ rotate: 5, scale: 1.1 }}
                             transition={{ duration: 0.3 }}

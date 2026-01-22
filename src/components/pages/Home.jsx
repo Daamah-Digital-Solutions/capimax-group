@@ -9,6 +9,29 @@ import { VStack, HStack } from '@/components/layout/Stack'
 import { Section, HeroSection, FeatureSection } from '@/components/layout/Section'
 import { HeroSection as BusinessHero, CompanyCard, SectorOverview, InvestmentHighlight } from '@/components/business'
 import { motion, useScroll, useTransform, useInView } from 'framer-motion'
+import { useTheme } from '@/hooks/use-theme'
+
+// Import company logos
+import capimaxInvestmentsUKDark from '@/assets/capimax logos svg/dark/capi max all versions logos_capi max investments uk dark.svg'
+import capimaxFinancialManagementUKDark from '@/assets/capimax logos svg/dark/capi max all versions logos_capi max financial management uk dark -11.svg'
+import hccInternationalDark from '@/assets/capimax logos svg/dark/capi max all versions logos_capi max investments dark .svg'
+import capimaxPreciousMetalsDark from '@/assets/capimax logos svg/dark/capi max all versions logos_capi max Investment in precious metals  uk dark  .svg'
+import capimaxHoldingDark from '@/assets/capimax logos svg/dark/capi max all versions logos_capi max holding  uk dark  .svg'
+import capimaxVirtualAssetsDark from '@/assets/capimax logos svg/dark/capi max all versions logos_capi max  Virtual Asset uk dark .svg'
+import capimaxInvestmentsUSADark from '@/assets/capimax logos svg/dark/capi max all versions logos_capi max investments usa dark.svg'
+import capimaxGeneralTradingUSADark from '@/assets/capimax logos svg/dark/capi max all versions logos_capi max general trading usa dark.svg'
+import capimaxInvestmentsUAEDark from '@/assets/capimax logos svg/dark/capi max all versions logos_capi max investments uae dark.svg'
+
+import capimaxInvestmentsUKLight from '@/assets/capimax logos svg/light/capi max all versions logos_capi max investments uk light.svg'
+import capimaxFinancialManagementUKLight from '@/assets/capimax logos svg/light/capi max all versions logos_capi max financial management uk light  .svg'
+import hccInternationalLight from '@/assets/capimax logos svg/light/capi max all versions logos_capi max investments  light .svg'
+import capimaxPreciousMetalsLight from '@/assets/capimax logos svg/light/capi max all versions logos_capi max Investment in precious metals  uk light  .svg'
+import capimaxHoldingLight from '@/assets/capimax logos svg/light/capi max all versions logos_capi max holding  uk light   .svg'
+import capimaxVirtualAssetsLight from '@/assets/capimax logos svg/light/capi max all versions logos_capi max  Virtual Asset uk light .svg'
+import capimaxDevelopmentLight from '@/assets/capimax logos svg/light/capi max all versions logos_capi max development uk light .svg'
+import capimaxInvestmentsUSALight from '@/assets/capimax logos svg/light/capi max all versions logos_capi max investments usa light.svg'
+import capimaxGeneralTradingUSALight from '@/assets/capimax logos svg/light/capi max all versions logos_capi max general trading usa light.svg'
+import capimaxInvestmentsUAELight from '@/assets/capimax logos svg/light/capi max all versions logos_capi max investments uae light.svg'
 import { 
   ArrowRight, 
   TrendingUp, 
@@ -27,12 +50,78 @@ import {
   Target,
   Zap,
   Eye,
-  Clock
+  Clock,
+  ExternalLink
 } from 'lucide-react'
 
 const Home = ({ language }) => {
   const [currentSlide, setCurrentSlide] = useState(0)
   const heroRef = useRef(null)
+  const { isDark } = useTheme()
+
+  // Company logos data for global presence slider
+  const companyLogos = [
+    {
+      name: "Capimax Investments UK",
+      country: "United Kingdom",
+      flag: "🇬🇧",
+      logo: isDark ? capimaxInvestmentsUKLight : capimaxInvestmentsUKDark,
+    },
+    {
+      name: "Capimax Financial Management UK",
+      country: "United Kingdom",
+      flag: "🇬🇧",
+      logo: isDark ? capimaxFinancialManagementUKLight : capimaxFinancialManagementUKDark,
+    },
+    {
+      name: "HCC International",
+      country: "United Kingdom",
+      flag: "🇬🇧",
+      logo: isDark ? hccInternationalLight : hccInternationalDark,
+    },
+    {
+      name: "Capimax Precious Metals",
+      country: "United Kingdom",
+      flag: "🇬🇧",
+      logo: isDark ? capimaxPreciousMetalsLight : capimaxPreciousMetalsDark,
+    },
+    {
+      name: "Capimax Holding",
+      country: "United Kingdom",
+      flag: "🇬🇧",
+      logo: isDark ? capimaxHoldingLight : capimaxHoldingDark,
+    },
+    {
+      name: "Capimax Virtual Assets",
+      country: "United Kingdom",
+      flag: "🇬🇧",
+      logo: isDark ? capimaxVirtualAssetsLight : capimaxVirtualAssetsDark,
+    },
+    {
+      name: "Capimax Development",
+      country: "United Kingdom",
+      flag: "🇬🇧",
+      logo: capimaxDevelopmentLight, // Only light version available
+    },
+    {
+      name: "Capimax Investments USA",
+      country: "United States",
+      flag: "🇺🇸",
+      logo: isDark ? capimaxInvestmentsUSALight : capimaxInvestmentsUSADark,
+    },
+    {
+      name: "Capimax General Trading USA",
+      country: "United States",
+      flag: "🇺🇸",
+      logo: isDark ? capimaxGeneralTradingUSALight : capimaxGeneralTradingUSADark,
+    },
+    {
+      name: "Capimax Investments UAE",
+      country: "United Arab Emirates",
+      flag: "🇦🇪",
+      logo: isDark ? capimaxInvestmentsUAELight : capimaxInvestmentsUAEDark,
+    }
+  ]
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"]
@@ -48,6 +137,9 @@ const Home = ({ language }) => {
       exploreGroup: 'Explore the Group',
       ourCompanies: 'Our Companies',
       forInvestors: 'For Investors',
+      globalPresence: 'Our Global Presence',
+      globalSubtitle: 'Operating across three continents with specialized companies in key financial markets worldwide.',
+      trustedBy: 'Trusted by investors worldwide',
       contactUs: 'Contact Us',
       watchVideo: 'Watch Video',
       trustedBy: 'Trusted by investors worldwide',
@@ -98,6 +190,9 @@ const Home = ({ language }) => {
       exploreGroup: 'استكشف المجموعة',
       ourCompanies: 'شركاتنا',
       forInvestors: 'للمستثمرين',
+      globalPresence: 'حضورنا العالمي',
+      globalSubtitle: 'نعمل عبر ثلاث قارات مع شركات متخصصة في الأسواق المالية الرئيسية حول العالم.',
+      trustedBy: 'موثوق به من قبل المستثمرين في جميع أنحاء العالم',
       contactUs: 'اتصل بنا',
       watchVideo: 'شاهد الفيديو',
       trustedBy: 'موثوق من قبل المستثمرين في جميع أنحاء العالم',
@@ -419,7 +514,7 @@ const Home = ({ language }) => {
   return (
     <div className="min-h-screen overflow-hidden">
       {/* Enhanced Hero Section */}
-      <motion.div 
+      <motion.div
         ref={heroRef}
         style={{ opacity: heroOpacity, scale: heroScale }}
         className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-primary/5 via-background to-success/5"
@@ -459,8 +554,8 @@ const Home = ({ language }) => {
               variants={itemVariants}
               className="flex flex-col sm:flex-row items-center justify-center gap-4"
             >
-              <Button 
-                size="xl" 
+              <Button
+                size="xl"
                 className="group bg-gradient-to-r from-primary to-success hover:from-primary/90 hover:to-success/90 text-white px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
                 asChild
               >
@@ -470,84 +565,190 @@ const Home = ({ language }) => {
                 </Link>
               </Button>
               
-              <Button 
-                size="xl" 
-                variant="outline" 
+              <Button
+                size="xl"
+                variant="outline"
                 className="group border-2 border-primary/20 hover:border-primary hover:bg-primary/5 px-8 py-4 rounded-xl transition-all duration-300"
                 asChild
               >
                 <Link to="/investors">
                   {t.forInvestors}
-                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
             </motion.div>
           </motion.div>
         </Container>
 
-        {/* Floating elements */}
+        {/* Subtle floating elements */}
         <motion.div
           variants={floatingVariants}
           initial="initial"
           animate="animate"
-          className="absolute top-1/4 left-10 w-12 h-12 bg-primary/20 rounded-lg rotate-45"
+          className="absolute top-1/4 right-10 w-2 h-2 bg-primary/30 rounded-full"
         />
         <motion.div
           variants={floatingVariants}
           initial="initial"
           animate="animate"
-          style={{ animationDelay: '2s' }}
-          className="absolute top-1/3 right-10 w-8 h-8 bg-success/30 rounded-full"
-        />
-        <motion.div
-          variants={floatingVariants}
-          initial="initial"
-          animate="animate"
-          style={{ animationDelay: '4s' }}
-          className="absolute bottom-1/4 right-1/4 w-6 h-6 bg-warning/40 rounded-full"
+          style={{ animationDelay: '3s' }}
+          className="absolute bottom-1/3 left-10 w-2 h-2 bg-primary/20 rounded-full"
         />
       </motion.div>
 
-      {/* Enhanced Stats Section */}
-      <Section spacing="xl" className="relative">
-        <div className="absolute inset-0 bg-gradient-to-r from-muted/50 to-muted/30" />
+      {/* Enhanced Global Presence Section */}
+      <Section spacing="2xl" className="relative bg-gradient-to-br from-primary/5 via-background to-success/5 dark:from-card/20 dark:via-background dark:to-card/10">
+        <div className="absolute inset-0 bg-grid-pattern opacity-[0.02] dark:opacity-[0.05]" />
+        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-gradient-to-br from-primary/8 to-success/8 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-gradient-to-br from-success/6 to-primary/6 rounded-full blur-3xl" />
+
         <Container size="xl" className="relative z-10">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={containerVariants}
+            className="text-center space-y-12"
+          >
+            {/* Header */}
+            <VStack gap="lg" align="center">
+              <motion.div variants={itemVariants} className="text-center space-y-6">
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-muted/50 rounded-full border border-border/20">
+                  <Globe className="w-4 h-4 text-primary" />
+                  <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
+                    Global Network
+                  </span>
+                </div>
+                <h2 className="text-3xl md:text-5xl font-bold text-foreground leading-tight">
+                  Our Global <span className="text-primary">Presence</span>
+                </h2>
+                <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed font-light">
+                  {t.globalSubtitle}
+                </p>
+              </motion.div>
+            </VStack>
+
+            {/* Animated Logo Slider */}
+            <motion.div variants={itemVariants} className="relative">
+              <div className="relative overflow-hidden">
+                {/* First slider row - moving right */}
+                <motion.div
+                  animate={{ x: ["0%", "-100%"] }}
+                  transition={{
+                    duration: 30,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                  className="flex space-x-8 mb-8"
+                >
+                  {[...companyLogos, ...companyLogos].map((company, index) => (
+                    <motion.div
+                      key={index}
+                      whileHover={{ scale: 1.1 }}
+                      className="flex-shrink-0 group relative"
+                    >
+                      <div
+                        className="w-32 h-32 rounded-xl border border-border/10 flex items-center justify-center p-4 group-hover:border-primary/20 group-hover:shadow-lg transition-all duration-500 backdrop-blur-sm"
+                        style={{ backgroundColor: isDark ? '#0e1319' : 'rgba(255, 255, 255, 0.95)' }}
+                      >
+                        <img
+                          src={company.logo}
+                          alt={company.name}
+                          className="w-full h-full object-contain"
+                        />
+                      </div>
+                      <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        <div className="bg-white dark:bg-card shadow-lg rounded-md px-3 py-2 border border-border/20">
+                          <p className="text-xs font-semibold text-foreground text-center whitespace-nowrap">
+                            {company.flag} {company.country}
+                          </p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </motion.div>
+
+                {/* Second slider row - moving left */}
+                <motion.div
+                  animate={{ x: ["-100%", "0%"] }}
+                  transition={{
+                    duration: 35,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                  className="flex space-x-8 mb-8"
+                >
+                  {[...companyLogos.slice().reverse(), ...companyLogos.slice().reverse()].map((company, index) => (
+                    <motion.div
+                      key={index}
+                      whileHover={{ scale: 1.1 }}
+                      className="flex-shrink-0 group relative"
+                    >
+                      <div
+                        className="w-32 h-32 rounded-xl border border-border/10 flex items-center justify-center p-4 group-hover:border-primary/20 group-hover:shadow-lg transition-all duration-500 backdrop-blur-sm"
+                        style={{ backgroundColor: isDark ? '#0e1319' : 'rgba(255, 255, 255, 0.95)' }}
+                      >
+                        <img
+                          src={company.logo}
+                          alt={company.name}
+                          className="w-full h-full object-contain"
+                        />
+                      </div>
+                      <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        <div className="bg-white dark:bg-card shadow-lg rounded-md px-3 py-2 border border-border/20">
+                          <p className="text-xs font-semibold text-foreground text-center whitespace-nowrap">
+                            {company.flag} {company.country}
+                          </p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </div>
+
+              {/* Gradient overlays for seamless effect */}
+              <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10" />
+              <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10" />
+            </motion.div>
+
+          </motion.div>
+        </Container>
+      </Section>
+
+      {/* Enhanced Stats Section */}
+      <Section spacing="xl" className="relative bg-gradient-to-br from-background via-muted/5 to-card/10">
+        <div className="absolute inset-0 bg-grid-pattern opacity-[0.02] dark:opacity-[0.05]" />
+        <Container size="xl">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={containerVariants}
           >
-            <Grid cols={4} gap="lg">
+            <Grid cols={4} gap="lg" className="max-w-5xl mx-auto">
               {stats.map((stat, index) => (
-                <motion.div 
-                  key={index}
-                  variants={itemVariants}
-                  whileHover={{ 
-                    scale: 1.05, 
-                    transition: { duration: 0.2 } 
-                  }}
-                  className="group"
-                >
-                  <Card className="text-center border-0 bg-card/50 backdrop-blur-sm hover:bg-card/80 hover:shadow-xl transition-all duration-300">
-                    <CardContent className="pt-6">
+                <motion.div key={index} variants={itemVariants} whileHover={{ y: -4 }} className="group">
+                  <Card className="text-center border-0 bg-card/50 dark:bg-card/20 backdrop-blur-sm hover:bg-card/80 dark:hover:bg-card/40 hover:shadow-lg dark:hover:shadow-primary/10 transition-all duration-300 group">
+                    <CardContent className="pt-6 pb-4">
                       <VStack gap="md" align="center">
-                        <motion.div 
-                          className={`p-4 rounded-2xl bg-gradient-to-br from-background to-muted/50 group-hover:from-primary/10 group-hover:to-success/10 transition-all duration-300`}
-                          whileHover={{ rotate: 5 }}
+                        <motion.div
+                          className="p-4 rounded-2xl bg-gradient-to-br from-primary/10 to-success/10 dark:from-primary/20 dark:to-success/20 group-hover:from-primary/20 group-hover:to-success/20 dark:group-hover:from-primary/30 dark:group-hover:to-success/30 transition-all duration-300"
+                          whileHover={{ scale: 1.05, rotate: 5 }}
                         >
-                          <stat.icon className={`h-8 w-8 ${stat.color} group-hover:scale-110 transition-transform duration-300`} />
+                          <stat.icon className="h-8 w-8 text-primary group-hover:text-success transition-colors duration-300" />
                         </motion.div>
-                        <motion.div 
-                          className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-success bg-clip-text text-transparent"
-                          initial={{ scale: 0.5 }}
-                          whileInView={{ scale: 1 }}
-                          transition={{ duration: 0.5, delay: index * 0.1 }}
-                        >
-                          {stat.number}
-                        </motion.div>
-                        <div className="text-muted-foreground font-medium">
-                          {stat.label}
+                        <div className="space-y-2">
+                          <motion.div
+                            className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary to-success bg-clip-text text-transparent"
+                            initial={{ scale: 0.5 }}
+                            whileInView={{ scale: 1 }}
+                            transition={{ duration: 0.6, delay: index * 0.1 }}
+                          >
+                            {stat.number}
+                          </motion.div>
+                          <div className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors duration-300">
+                            {stat.label}
+                          </div>
                         </div>
                       </VStack>
                     </CardContent>
@@ -650,11 +851,8 @@ const Home = ({ language }) => {
         </Container>
       </Section>
 
-      {/* Enhanced Why Choose Capimax Section */}
-      <Section spacing="xl" className="relative bg-gradient-to-br from-background via-muted/5 to-background dark:from-background dark:via-muted/10 dark:to-background">
-        <div className="absolute inset-0 bg-grid-pattern opacity-[0.02] dark:opacity-[0.08]" />
-        <div className="absolute top-20 left-20 w-72 h-72 bg-success/5 dark:bg-success/15 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-20 w-80 h-80 bg-primary/5 dark:bg-primary/15 rounded-full blur-3xl" />
+      {/* Professional Why Choose Section */}
+      <Section spacing="2xl" className="relative bg-background">
         
         <Container size="xl" className="relative z-10">
           <motion.div
@@ -664,94 +862,45 @@ const Home = ({ language }) => {
             variants={containerVariants}
             className="space-y-16"
           >
-            <VStack gap="md" align="center" className="text-center">
-              <motion.div variants={itemVariants}>
-                <Badge className="mb-4 bg-gradient-to-r from-primary/10 to-success/10 dark:from-primary/20 dark:to-success/20 text-primary border-primary/20 dark:border-primary/40">
-                  Why Choose Us
-                </Badge>
+            <VStack gap="lg" align="center" className="text-center mb-16">
+              <motion.div variants={itemVariants} className="space-y-4">
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-muted/50 rounded-full border border-border/20">
+                  <Award className="w-4 h-4 text-primary" />
+                  <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
+                    Excellence
+                  </span>
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+                  Why Choose <span className="text-primary">Capimax</span>
+                </h2>
+                <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed font-light">
+                  We combine innovation, security, and transparency to deliver exceptional investment experiences.
+                </p>
               </motion.div>
-              <motion.h2 variants={itemVariants} className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-primary via-foreground to-success bg-clip-text text-transparent">
-                {t.whyCapimax}
-              </motion.h2>
-              <motion.p variants={itemVariants} className="text-lg md:text-xl text-muted-foreground max-w-4xl leading-relaxed">
-                We combine innovation, security, and transparency to deliver exceptional investment experiences that drive sustainable growth across global markets.
-              </motion.p>
             </VStack>
 
-            <Grid cols={4} gap="xl">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {features.map((feature, index) => (
-                <motion.div 
-                  key={index} 
+                <motion.div
+                  key={index}
                   variants={itemVariants}
-                  whileHover={{ 
-                    y: -12,
-                    transition: { duration: 0.3 } 
-                  }}
-                  className="group"
+                  whileHover={{ y: -4 }}
+                  className="group text-center"
                 >
-                  <Card className="relative text-center border-0 bg-card/40 dark:bg-card/10 backdrop-blur-sm hover:bg-card/80 dark:hover:bg-card/30 hover:shadow-2xl dark:hover:shadow-primary/20 transition-all duration-500 group h-full overflow-hidden">
-                    {/* Animated border gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-primary via-success to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                      <div className="absolute inset-[1px] bg-card dark:bg-card/10 rounded-[calc(var(--radius)-1px)]" />
+                  <div className="relative p-6 rounded-lg border border-border/20 hover:border-primary/30 hover:shadow-lg transition-all duration-300" style={{ backgroundColor: '#0e1319' }}>
+                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-xl bg-primary/10 dark:bg-primary/20 mb-6 group-hover:bg-primary/20 dark:group-hover:bg-primary/30 transition-colors duration-300">
+                      <feature.icon className="w-8 h-8 text-primary" />
                     </div>
-                    
-                    {/* Content */}
-                    <div className="relative">
-                      <CardHeader className="pb-4 pt-8">
-                        <motion.div 
-                          className="flex justify-center mb-6"
-                          whileHover={{ scale: 1.15, rotate: 10 }}
-                          transition={{ duration: 0.3 }}
-                        >
-                          <div className="relative">
-                            <div className="p-5 rounded-2xl bg-gradient-to-br from-primary/10 via-background to-success/10 dark:from-primary/20 dark:via-card dark:to-success/20 group-hover:from-primary/20 group-hover:via-primary/5 group-hover:to-success/20 dark:group-hover:from-primary/30 dark:group-hover:to-success/30 transition-all duration-500">
-                              <feature.icon className={`h-10 w-10 ${feature.color} group-hover:scale-110 transition-all duration-300`} />
-                            </div>
-                            {/* Glowing effect */}
-                            <motion.div
-                              className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/20 to-success/20 blur-md opacity-0 group-hover:opacity-50 transition-opacity duration-500"
-                              animate={{
-                                scale: [1, 1.1, 1],
-                                opacity: [0, 0.3, 0]
-                              }}
-                              transition={{
-                                duration: 2,
-                                repeat: Infinity,
-                                ease: "easeInOut"
-                              }}
-                            />
-                          </div>
-                        </motion.div>
-                        
-                        <CardTitle className="text-xl font-bold mb-2 group-hover:text-primary transition-colors duration-300">
-                          {feature.title}
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent className="pb-8">
-                        <CardDescription className="text-muted-foreground group-hover:text-foreground leading-relaxed transition-colors duration-300">
-                          {feature.description}
-                        </CardDescription>
-                        
-                        {/* Progress indicator */}
-                        <motion.div 
-                          className="mt-4 h-1 bg-muted rounded-full overflow-hidden"
-                          initial={{ opacity: 0 }}
-                          whileInView={{ opacity: 1 }}
-                          transition={{ delay: index * 0.2 }}
-                        >
-                          <motion.div 
-                            className="h-full bg-gradient-to-r from-primary to-success rounded-full"
-                            initial={{ width: 0 }}
-                            whileInView={{ width: '100%' }}
-                            transition={{ duration: 1, delay: index * 0.2 + 0.5, ease: "easeOut" }}
-                          />
-                        </motion.div>
-                      </CardContent>
-                    </div>
-                  </Card>
+                    <h3 className="text-lg font-semibold text-foreground mb-3">
+                      {feature.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {feature.description}
+                    </p>
+                  </div>
                 </motion.div>
               ))}
-            </Grid>
+            </div>
           </motion.div>
         </Container>
       </Section>
@@ -1243,60 +1392,55 @@ const Home = ({ language }) => {
       </Section>
 
       {/* Enhanced CTA Section */}
-      <Section 
-        spacing="xl" 
-        className="relative bg-gradient-to-br from-primary via-primary to-success text-white overflow-hidden"
-      >
+      <Section spacing="2xl" className="relative bg-gradient-to-br from-primary via-primary/90 to-success overflow-hidden">
         <div className="absolute inset-0 bg-grid-pattern opacity-10" />
-        <div className="absolute -top-20 -right-20 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
-        <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-success/20 rounded-full blur-3xl" />
-        
+        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-white/5 rounded-full blur-3xl" />
+
         <Container size="xl" className="relative z-10">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={containerVariants}
+            className="text-center space-y-12 max-w-4xl mx-auto"
           >
-            <VStack gap="xl" align="center" className="text-center">
-              <motion.div variants={itemVariants}>
-                <VStack gap="md" align="center">
-                  <h2 className="text-3xl md:text-5xl font-bold text-white">
-                    {t.getStarted}
-                  </h2>
-                  <p className="text-xl md:text-2xl text-white/90 max-w-3xl leading-relaxed">
-                    {t.getStartedDesc}
-                  </p>
-                </VStack>
-              </motion.div>
-              
-              <motion.div 
-                variants={itemVariants}
-                className="flex flex-col sm:flex-row items-center justify-center gap-4"
+            <motion.div variants={itemVariants} className="space-y-8">
+              <h2 className="text-4xl md:text-6xl font-bold text-white leading-tight">
+                {t.getStarted}
+              </h2>
+              <p className="text-xl md:text-2xl text-white/90 leading-relaxed max-w-3xl mx-auto">
+                {t.getStartedDesc}
+              </p>
+            </motion.div>
+
+            <motion.div
+              variants={itemVariants}
+              className="flex flex-col sm:flex-row items-center justify-center gap-6"
+            >
+              <Button
+                size="xl"
+                variant="secondary"
+                className="group bg-white text-primary hover:bg-white/90 hover:shadow-2xl px-10 py-5 rounded-xl font-semibold text-lg transition-all duration-300"
+                asChild
               >
-                <Button 
-                  size="xl" 
-                  variant="secondary" 
-                  className="group bg-white text-primary hover:bg-white/90 px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
-                  asChild
-                >
-                  <Link to="/investors">
-                    {t.startInvesting}
-                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </Button>
-                <Button 
-                  size="xl" 
-                  variant="outline" 
-                  className="group border-2 border-white/30 text-white hover:border-white hover:bg-white/10 backdrop-blur-sm px-8 py-4 rounded-xl transition-all duration-300"
-                  asChild
-                >
-                  <Link to="/about">
-                    {t.learnMore}
-                  </Link>
-                </Button>
-              </motion.div>
-            </VStack>
+                <Link to="/investors">
+                  {t.startInvesting}
+                  <ArrowRight className="ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </Button>
+              <Button
+                size="xl"
+                variant="outline"
+                className="group border-2 border-white/30 text-white hover:border-white hover:bg-white/10 backdrop-blur-sm px-10 py-5 rounded-xl font-semibold text-lg transition-all duration-300"
+                asChild
+              >
+                <Link to="/about">
+                  {t.learnMore}
+                  <ExternalLink className="ml-3 h-5 w-5 group-hover:scale-110 transition-transform" />
+                </Link>
+              </Button>
+            </motion.div>
           </motion.div>
         </Container>
       </Section>
