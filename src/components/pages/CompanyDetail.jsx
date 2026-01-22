@@ -35,7 +35,6 @@ const CompanyDetail = ({ language }) => {
       partnerships: 'Partnerships & Affiliations',
       companyNumber: 'Company Number',
       incorporated: 'Incorporated',
-      director: 'Director',
       location: 'Location',
       sector: 'Sector',
       status: 'Status',
@@ -61,7 +60,6 @@ const CompanyDetail = ({ language }) => {
       partnerships: 'الشراكات والانتماءات',
       companyNumber: 'رقم الشركة',
       incorporated: 'تاريخ التأسيس',
-      director: 'المدير',
       location: 'الموقع',
       sector: 'القطاع',
       status: 'الحالة',
@@ -406,11 +404,6 @@ const CompanyDetail = ({ language }) => {
                   <div>
                     <div className="text-sm font-medium text-muted-foreground">{t.incorporated}</div>
                     <div className="text-sm">{company.incorporated}</div>
-                  </div>
-                  
-                  <div>
-                    <div className="text-sm font-medium text-muted-foreground">{t.director}</div>
-                    <div className="text-sm">{company.director}</div>
                   </div>
                   
                   <div>

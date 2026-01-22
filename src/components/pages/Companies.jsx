@@ -147,7 +147,6 @@ const Companies = ({ language }) => {
       viewDetails: 'View Details',
       learnMore: 'Learn More',
       incorporated: 'Incorporated',
-      director: 'Director',
       sector: 'Sector',
       location: 'Location',
       companyNumber: 'Company Number',
@@ -168,7 +167,6 @@ const Companies = ({ language }) => {
       viewDetails: 'عرض التفاصيل',
       learnMore: 'تعلم المزيد',
       incorporated: 'تاريخ التأسيس',
-      director: 'المدير',
       sector: 'القطاع',
       location: 'الموقع',
       companyNumber: 'رقم الشركة',
@@ -671,10 +669,6 @@ const Companies = ({ language }) => {
                             <HStack gap="sm" align="center">
                               <MapPin className="h-4 w-4 text-primary" />
                               <span>{company.location}</span>
-                            </HStack>
-                            <HStack gap="sm" align="center">
-                              <Users className="h-4 w-4 text-primary" />
-                              <span>{t.director}: {company.director}</span>
                             </HStack>
                           </VStack>
 

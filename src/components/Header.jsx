@@ -234,21 +234,6 @@ const Header = ({ language, toggleLanguage }) => {
               </Button>
             </motion.div>
 
-            {/* Language Toggle */}
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={toggleLanguage}
-                className="flex items-center space-x-2 px-3 h-9 rounded-full hover:bg-muted/80 transition-all duration-300"
-              >
-                <Globe className="h-4 w-4 text-success" />
-                <span className="text-sm font-medium hidden sm:inline">
-                  {t.language}
-                </span>
-              </Button>
-            </motion.div>
-
             {/* Get Started Button - Desktop */}
             <motion.div 
               className="hidden md:block"
