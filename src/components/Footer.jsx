@@ -3,22 +3,22 @@ import { Container } from '@/components/layout/Container'
 import { Grid } from '@/components/layout/Grid'
 import { VStack, HStack } from '@/components/layout/Stack'
 import { motion } from 'framer-motion'
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Linkedin, 
-  Twitter, 
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Linkedin,
+  Twitter,
   Facebook,
   Building2,
   TrendingUp,
   Shield,
   Globe,
   ArrowRight,
-  Zap,
   Instagram,
   Youtube
 } from 'lucide-react'
+import capimaxLogo from '@/assets/capimax-group-logo.png'
 
 const Footer = ({ language }) => {
   const translations = {
@@ -131,37 +131,19 @@ const Footer = ({ language }) => {
             <motion.div variants={itemVariants} className="lg:col-span-1">
               <VStack gap="lg" align="start">
                 {/* Logo */}
-                <motion.div 
-                  className="flex items-center space-x-3"
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <div className="relative">
-                    <div className="w-12 h-12 bg-gradient-to-br from-primary to-success rounded-xl flex items-center justify-center shadow-lg">
-                      <Zap className="w-7 h-7 text-white" />
-                    </div>
-                    <motion.div
-                      className="absolute -top-1 -right-1 w-4 h-4 bg-warning rounded-full"
-                      animate={{
-                        scale: [1, 1.2, 1],
-                        opacity: [1, 0.8, 1]
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                      }}
+                <Link to="/">
+                  <motion.div
+                    className="flex items-center"
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <img
+                      src={capimaxLogo}
+                      alt="Capimax Group"
+                      className="h-12 w-auto object-contain"
                     />
-                  </div>
-                  <div>
-                    <div className="text-xl font-bold bg-gradient-to-r from-primary to-success bg-clip-text text-transparent">
-                      Capimax Group
-                    </div>
-                    <div className="text-xs text-muted-foreground">
-                      Global Investment Platform
-                    </div>
-                  </div>
-                </motion.div>
+                  </motion.div>
+                </Link>
 
                 <p className="text-muted-foreground leading-relaxed">
                   {t.aboutText}
