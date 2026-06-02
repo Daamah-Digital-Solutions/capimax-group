@@ -16,6 +16,13 @@ import Contact from './components/pages/Contact'
 import News from './components/pages/News'
 import CompanyDetail from './components/pages/CompanyDetail'
 import CapimaxInvestment from './components/pages/CapimaxInvestment'
+import Platforms from './components/pages/Platforms'
+import PlatformDetail from './components/pages/PlatformDetail'
+import Currency from './components/pages/Currency'
+import Nova from './components/pages/Nova'
+import Team from './components/pages/Team'
+import Brochure from './components/pages/Brochure'
+import Legal from './components/pages/Legal'
 
 // Language Context
 import { createContext, useContext } from 'react'
@@ -67,13 +74,20 @@ function AppContent() {
           language={language} 
           toggleLanguage={toggleLanguage}
         />
-        <main>
+        <main className="pt-[68px]">
           <Routes>
             <Route path="/" element={<Home language={language} />} />
             <Route path="/about" element={<About language={language} />} />
             <Route path="/companies" element={<Companies language={language} />} />
             <Route path="/companies/capimax-investment" element={<CapimaxInvestment language={language} />} />
             <Route path="/company/:id" element={<CompanyDetail language={language} />} />
+            <Route path="/platforms" element={<Platforms language={language} />} />
+            <Route path="/platforms/:id" element={<PlatformDetail language={language} />} />
+            <Route path="/currency" element={<Currency language={language} />} />
+            <Route path="/nova" element={<Nova language={language} />} />
+            <Route path="/team" element={<Team language={language} />} />
+            <Route path="/brochure" element={<Brochure language={language} />} />
+            <Route path="/legal/:doc" element={<Legal language={language} />} />
             <Route path="/sectors" element={<Sectors language={language} />} />
             <Route path="/partners" element={<Partners language={language} />} />
             <Route path="/documents" element={<Documents language={language} />} />

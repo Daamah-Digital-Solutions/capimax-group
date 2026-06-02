@@ -1,31 +1,14 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import { Container } from '@/components/layout/Container'
-import { Grid } from '@/components/layout/Grid'
-import { VStack, HStack } from '@/components/layout/Stack'
-import { Section } from '@/components/layout/Section'
-import { motion } from 'framer-motion'
-import { 
-  Building2, 
-  Shield, 
-  TrendingUp, 
-  Award, 
-  ExternalLink,
-  CheckCircle,
-  Star,
-  Users,
-  Globe,
-  Handshake,
-  ArrowRight
-} from 'lucide-react'
-import { FloatingElements } from '@/components/enhanced/FloatingElements'
+import { Link } from 'react-router-dom'
+import { ArrowRight, ArrowUpRight } from 'lucide-react'
+import { PageHero, Band, Marker, Reveal, BTN } from '@/components/editorial'
 
 const Partners = ({ language }) => {
   const translations = {
     en: {
-      pageTitle: 'Our Partners',
-      pageSubtitle: 'Strategic partnerships that enhance our global investment ecosystem.',
+      heroEyebrow: 'Strategic Partnerships',
+      heroTitle: 'A network built on ',
+      heroAccent: 'trust.',
+      heroSubtitle: 'Strategic partnerships that enhance our global investment ecosystem.',
       strategicPartners: 'Strategic Partners',
       awards: 'Awards & Certifications',
       partnershipTypes: 'Partnership Types',
@@ -38,11 +21,37 @@ const Partners = ({ language }) => {
       partnerSince: 'Partner Since',
       sector: 'Sector',
       services: 'Services',
-      achievements: 'Key Achievements'
+      achievements: 'Key Achievements',
+      typesMarker: 'Partnership categories',
+      typesTitle: 'Diverse partners, ',
+      typesTitleAccent: 'shared standards.',
+      typesBody: 'Diverse partnerships across key sectors of our business.',
+      activePartners: 'Active Partners',
+      partnersMarker: 'Our network',
+      partnersTitle: 'Meet the partners ',
+      partnersTitleAccent: 'behind the group.',
+      partnersBody: 'Trusted partners who help us deliver exceptional value.',
+      moreAwards: 'more awards',
+      awardsMarker: 'Recognition & excellence',
+      awardsTitle: 'Recognition that ',
+      awardsTitleAccent: 'speaks for itself.',
+      awardsBody: 'Recognition and certifications from our trusted partners.',
+      awardedBy: 'Awarded by',
+      statsMarker: 'Partnership impact',
+      statsTitle: 'The strength of our ',
+      statsTitleAccent: 'collaborative ecosystem.',
+      ctaMarker: 'Begin a conversation',
+      ctaTitle: 'Become a ',
+      ctaTitleAccent: 'partner.',
+      ctaBody: 'Join our network of trusted partners and help us build the future of global investment.',
+      partnershipOpps: 'Partnership Opportunities',
+      contactUs: 'Contact Us',
     },
     ar: {
-      pageTitle: 'شركاؤنا',
-      pageSubtitle: 'شراكات استراتيجية تعزز نظامنا البيئي الاستثماري العالمي.',
+      heroEyebrow: 'شراكات استراتيجية',
+      heroTitle: 'شبكة مبنية على ',
+      heroAccent: 'الثقة.',
+      heroSubtitle: 'شراكات استراتيجية تعزز نظامنا البيئي الاستثماري العالمي.',
       strategicPartners: 'الشركاء الاستراتيجيون',
       awards: 'الجوائز والشهادات',
       partnershipTypes: 'أنواع الشراكات',
@@ -55,8 +64,32 @@ const Partners = ({ language }) => {
       partnerSince: 'شريك منذ',
       sector: 'القطاع',
       services: 'الخدمات',
-      achievements: 'الإنجازات الرئيسية'
-    }
+      achievements: 'الإنجازات الرئيسية',
+      typesMarker: 'فئات الشراكة',
+      typesTitle: 'شركاء متنوعون، ',
+      typesTitleAccent: 'معايير مشتركة.',
+      typesBody: 'شراكات متنوعة عبر القطاعات الرئيسية لأعمالنا.',
+      activePartners: 'شركاء نشطون',
+      partnersMarker: 'شبكتنا',
+      partnersTitle: 'تعرّف على الشركاء ',
+      partnersTitleAccent: 'وراء المجموعة.',
+      partnersBody: 'شركاء موثوقون يساعدوننا على تقديم قيمة استثنائية.',
+      moreAwards: 'جوائز أخرى',
+      awardsMarker: 'التقدير والتميز',
+      awardsTitle: 'تقدير ',
+      awardsTitleAccent: 'يتحدث عن نفسه.',
+      awardsBody: 'تقدير وشهادات من شركائنا الموثوقين.',
+      awardedBy: 'مُنحت من',
+      statsMarker: 'أثر الشراكة',
+      statsTitle: 'قوة منظومتنا ',
+      statsTitleAccent: 'التعاونية.',
+      ctaMarker: 'ابدأ محادثة',
+      ctaTitle: 'كن ',
+      ctaTitleAccent: 'شريكاً.',
+      ctaBody: 'انضم إلى شبكة شركائنا الموثوقين وساعدنا في بناء مستقبل الاستثمار العالمي.',
+      partnershipOpps: 'فرص الشراكة',
+      contactUs: 'تواصل معنا',
+    },
   }
 
   const t = translations[language]
@@ -65,691 +98,335 @@ const Partners = ({ language }) => {
     {
       id: 'tdh-developments',
       name: 'TDH Developments',
-      description: 'Strategic partnership in real estate development for new projects related to the group.',
+      description: language === 'ar'
+        ? 'شراكة استراتيجية في تطوير العقارات لمشاريع جديدة متعلقة بالمجموعة.'
+        : 'Strategic partnership in real estate development for new projects related to the group.',
       sector: t.realEstate,
       partnerSince: '2024',
-      icon: Building2,
-      color: 'bg-slate-500',
       services: ['Real Estate Development', 'Project Management', 'Construction'],
       achievements: ['REIT Leadership Award', 'Sustainable Development Projects'],
-      website: '#'
+      website: 'https://tdh-developments.com',
     },
     {
       id: 'elitegate-properties',
       name: 'EliteGate Properties',
-      description: 'Marketing partnership in hotel properties and sustainable real estate development.',
+      description: language === 'ar'
+        ? 'شراكة تسويقية في عقارات الفنادق والتطوير العقاري المستدام.'
+        : 'Marketing partnership in hotel properties and sustainable real estate development.',
       sector: t.realEstate,
       partnerSince: '2024',
-      icon: Building2,
-      color: 'bg-stone-500',
       services: ['Hotel Properties', 'Marketing', 'Sustainable Development'],
       achievements: ['Sustainable Real Estate Development Creativity Award', 'Global Investment Funds Leadership Award'],
-      website: '#'
+      website: '#',
     },
     {
       id: 'profit-max-investment',
       name: 'Profit Max Investment',
-      description: 'Administrative partnership in global investment management and fund operations.',
+      description: language === 'ar'
+        ? 'شراكة إدارية في إدارة الاستثمار العالمي وعمليات الصناديق.'
+        : 'Administrative partnership in global investment management and fund operations.',
       sector: t.financial,
       partnerSince: '2024',
-      icon: TrendingUp,
-      color: 'bg-rose-500',
       services: ['Investment Management', 'Fund Administration', 'Global Markets'],
       achievements: ['Global Investment Funds Leadership Award', 'Outstanding Strategic Partnerships Award'],
-      website: '#'
+      website: '#',
     },
     {
       id: 'cim-financial-group',
       name: 'CIM Financial Group',
-      description: 'Financial and accounting services, auditing, and documentation for developmental projects.',
+      description: language === 'ar'
+        ? 'الخدمات المالية والمحاسبية والتدقيق والتوثيق للمشاريع التنموية.'
+        : 'Financial and accounting services, auditing, and documentation for developmental projects.',
       sector: t.financial,
       partnerSince: '2024',
-      icon: Building2,
-      color: 'bg-indigo-500',
       services: ['Accounting Services', 'Auditing', 'Financial Documentation', 'Compliance'],
       achievements: [
         'Fractional Investment Excellence Award',
         'Certified Platform Security Seal',
         'Digital Wallet Security Compliance',
-        'Digital Custody & Compliance Certification'
+        'Digital Custody & Compliance Certification',
       ],
-      website: '#'
+      website: '#',
     },
     {
       id: 'assurax-insurance',
       name: 'Assurax Insurance',
-      description: 'Integrated insurance and risk assessment services within the investment ecosystem.',
+      description: language === 'ar'
+        ? 'خدمات تأمين وتقييم مخاطر متكاملة ضمن المنظومة الاستثمارية.'
+        : 'Integrated insurance and risk assessment services within the investment ecosystem.',
       sector: t.insurance,
       partnerSince: '2024',
-      icon: Shield,
-      color: 'bg-violet-500',
       services: ['Investment Insurance', 'Risk Assessment', 'Platform Security', 'Compliance'],
       achievements: ['Certified Platform Security Seal', 'Digital Custody & Compliance Certification'],
-      website: '#'
+      website: '#',
     },
     {
       id: 'nova-digital-finance',
       name: 'Nova Digital Finance',
-      description: 'Technical partner for digital banking services and comprehensive financial solutions.',
+      description: language === 'ar'
+        ? 'شريك تقني للخدمات المصرفية الرقمية والحلول المالية الشاملة.'
+        : 'Technical partner for digital banking services and comprehensive financial solutions.',
       sector: t.technology,
       partnerSince: '2024',
-      icon: TrendingUp,
-      color: 'bg-teal-500',
       services: ['Digital Banking', 'Financial Technology', 'Digital Wallets', 'Blockchain Solutions'],
       achievements: [
         'Blockchain Finance Excellence Certificate',
         'Crypto-Friendly Investment Platform Award',
-        'Nova Digital Wallet Integrity Seal'
+        'Nova Digital Wallet Integrity Seal',
       ],
-      website: '#'
+      website: '#',
     },
     {
       id: 'hcc-insurance',
       name: 'HCC Insurance',
-      description: 'Comprehensive investment insurance for assets and projects inside and outside the group.',
+      description: language === 'ar'
+        ? 'تأمين استثماري شامل للأصول والمشاريع داخل المجموعة وخارجها.'
+        : 'Comprehensive investment insurance for assets and projects inside and outside the group.',
       sector: t.insurance,
       partnerSince: '2024',
-      icon: Shield,
-      color: 'bg-red-600',
       services: ['Investment Insurance', 'Asset Protection', 'Cybersecurity', 'Risk Management'],
       achievements: [
         'CapiMax Cyber Resilience',
         'Certified Platform Security Seal',
         'Nova Verified Cyber Defense',
-        'Innovation in Investment-Linked Insurance'
+        'Innovation in Investment-Linked Insurance',
       ],
-      website: '#'
-    }
+      website: '#',
+    },
   ]
 
   const partnershipTypes = [
     {
       type: t.realEstate,
-      description: 'Partnerships in property development, construction, and real estate investment.',
-      icon: Building2,
-      color: 'bg-success',
-      partners: ['TDH Developments', 'EliteGate Properties']
+      description: language === 'ar'
+        ? 'شراكات في تطوير العقارات والبناء والاستثمار العقاري.'
+        : 'Partnerships in property development, construction, and real estate investment.',
+      partners: ['TDH Developments', 'EliteGate Properties'],
     },
     {
       type: t.insurance,
-      description: 'Risk management, asset protection, and comprehensive insurance solutions.',
-      icon: Shield,
-      color: 'bg-red-500',
-      partners: ['Assurax Insurance', 'HCC Insurance']
+      description: language === 'ar'
+        ? 'إدارة المخاطر وحماية الأصول وحلول التأمين الشاملة.'
+        : 'Risk management, asset protection, and comprehensive insurance solutions.',
+      partners: ['Assurax Insurance', 'HCC Insurance'],
     },
     {
       type: t.financial,
-      description: 'Financial services, accounting, auditing, and investment management.',
-      icon: TrendingUp,
-      color: 'bg-primary',
-      partners: ['CIM Financial Group', 'Profit Max Investment']
+      description: language === 'ar'
+        ? 'الخدمات المالية والمحاسبة والتدقيق وإدارة الاستثمار.'
+        : 'Financial services, accounting, auditing, and investment management.',
+      partners: ['CIM Financial Group', 'Profit Max Investment'],
     },
     {
       type: t.technology,
-      description: 'Digital banking, fintech solutions, and blockchain technology.',
-      icon: Users,
-      color: 'bg-brand-tertiary',
-      partners: ['Nova Digital Finance']
-    }
+      description: language === 'ar'
+        ? 'الخدمات المصرفية الرقمية وحلول التقنية المالية وتقنية البلوكشين.'
+        : 'Digital banking, fintech solutions, and blockchain technology.',
+      partners: ['Nova Digital Finance'],
+    },
   ]
 
-  const allAwards = partners.flatMap(partner => 
-    partner.achievements.map(achievement => ({
+  const allAwards = partners.flatMap((partner) =>
+    partner.achievements.map((achievement) => ({
       award: achievement,
       partner: partner.name,
-      sector: partner.sector
+      sector: partner.sector,
     }))
   )
 
-  // Enhanced animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.2
-      }
-    }
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut"
-      }
-    }
-  }
+  const stats = [
+    { number: '7', label: language === 'ar' ? 'شركاء استراتيجيون' : 'Strategic Partners' },
+    { number: '25+', label: language === 'ar' ? 'جوائز وشهادات' : 'Awards & Certifications' },
+    { number: '4', label: language === 'ar' ? 'تغطية القطاعات' : 'Sector Coverage' },
+    { number: '100%', label: language === 'ar' ? 'معدل الامتثال' : 'Compliance Rate' },
+  ]
 
   return (
-    <div className="min-h-screen overflow-hidden">
-      {/* Enhanced Hero Section */}
-      <Section spacing="xl" className="relative bg-gradient-to-br from-primary/10 via-background to-success/5 dark:from-primary/5 dark:via-background dark:to-success/10">
-        <div className="absolute inset-0 bg-grid-pattern opacity-[0.02] dark:opacity-[0.05]" />
-        <div className="absolute top-10 right-10 w-96 h-96 bg-primary/5 dark:bg-primary/15 rounded-full blur-3xl" />
-        <div className="absolute bottom-10 left-10 w-80 h-80 bg-success/5 dark:bg-success/15 rounded-full blur-3xl" />
-        
-        <Container size="xl" className="relative z-10">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={containerVariants}
-            className="text-center space-y-8"
-          >
-            <motion.div variants={itemVariants}>
-              <Badge className="mb-6 bg-gradient-to-r from-primary/10 to-success/10 dark:from-primary/20 dark:to-success/20 text-primary border-primary/20 dark:border-primary/40">
-                Strategic Partnerships
-              </Badge>
-            </motion.div>
-            
-            <motion.h1 
-              variants={itemVariants}
-              className="text-4xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-primary via-foreground to-success bg-clip-text text-transparent leading-tight"
-            >
-              {t.pageTitle}
-            </motion.h1>
-            
-            <motion.p 
-              variants={itemVariants}
-              className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed"
-            >
-              {t.pageSubtitle}
-            </motion.p>
-          </motion.div>
-        </Container>
-      </Section>
+    <div className="bg-cream text-ink">
+      <PageHero
+        eyebrow={t.heroEyebrow}
+        title={t.heroTitle}
+        accent={t.heroAccent}
+        subtitle={t.heroSubtitle}
+      />
 
-      {/* Enhanced Partnership Types */}
-      <Section spacing="xl" className="relative bg-gradient-to-br from-background via-muted/5 to-card/10 dark:from-background dark:via-muted/10 dark:to-card/20">
-        <div className="absolute inset-0 bg-grid-pattern opacity-[0.02] dark:opacity-[0.05]" />
-        <div className="absolute top-0 left-0 w-72 h-72 bg-success/5 dark:bg-success/15 rounded-full blur-3xl" />
-        
-        <Container size="xl" className="relative z-10">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={containerVariants}
-          >
-            <VStack gap="lg" align="center" className="text-center mb-16">
-              <motion.div variants={itemVariants}>
-                <Badge className="mb-4 bg-gradient-to-r from-primary/10 to-success/10 dark:from-primary/20 dark:to-success/20 text-primary border-primary/20 dark:border-primary/40">
-                  Partnership Categories
-                </Badge>
-              </motion.div>
-              <motion.h2 variants={itemVariants} className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-primary via-foreground to-success bg-clip-text text-transparent">
-                {t.partnershipTypes}
-              </motion.h2>
-              <motion.p variants={itemVariants} className="text-lg md:text-xl text-muted-foreground max-w-3xl leading-relaxed">
-                Diverse partnerships across key sectors of our business
-              </motion.p>
-            </VStack>
-            
-            <Grid cols={4} gap="lg">
-              {partnershipTypes.map((type, index) => (
-                <motion.div 
-                  key={index} 
-                  variants={itemVariants}
-                  whileHover={{ y: -8 }}
-                  className="group"
-                >
-                  <Card className="relative text-center border-0 bg-card/50 dark:bg-card/20 backdrop-blur-sm hover:bg-card/80 dark:hover:bg-card/40 hover:shadow-2xl dark:hover:shadow-primary/20 transition-all duration-500 group h-full overflow-hidden">
-                    {/* Animated border */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-primary via-success to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                      <div className="absolute inset-[1px] bg-card dark:bg-card/20 rounded-[calc(var(--radius)-1px)]" />
+      {/* ================================================ PARTNERSHIP TYPES */}
+      <Band tone="light">
+        <Reveal className="grid lg:grid-cols-2 gap-10 items-end">
+          <div>
+            <Marker num="01" label={t.typesMarker} />
+            <h2 className="font-display font-medium leading-[1.02]" style={{ fontSize: 'clamp(2.2rem,4.5vw,4rem)', letterSpacing: '-0.025em' }}>
+              {t.typesTitle}<span className="accent-em">{t.typesTitleAccent}</span>
+            </h2>
+          </div>
+          <p className="text-lg text-ink/70 leading-relaxed lg:pb-2">{t.typesBody}</p>
+        </Reveal>
+
+        <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-4 border-t border-l border-[color:var(--line-dark)]">
+          {partnershipTypes.map((type, i) => (
+            <Reveal key={i} delay={(i % 4) * 0.05}>
+              <div className="group flex flex-col h-full p-7 border-b border-r border-[color:var(--line-dark)] hover:bg-[rgba(47,173,111,0.05)] transition-colors">
+                <span className="font-display italic text-2xl text-primary leading-none">{String(i + 1).padStart(2, '0')}</span>
+                <h3 className="mt-4 font-display text-lg font-medium leading-snug group-hover:text-primary transition-colors">{type.type}</h3>
+                <p className="mt-3 text-sm text-ink/65 leading-relaxed flex-1">{type.description}</p>
+                <div className="mt-5 pt-4 border-t border-[color:var(--line-dark)]">
+                  <div className="mono-label text-primary mb-2" style={{ fontSize: '0.58rem' }}>{type.partners.length} {t.activePartners}</div>
+                  <div className="space-y-1">
+                    {type.partners.map((partner, idx) => (
+                      <div key={idx} className="text-sm text-ink/70">— {partner}</div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </Band>
+
+      {/* ================================================== STRATEGIC PARTNERS */}
+      <Band tone="dark">
+        <Reveal className="grid lg:grid-cols-2 gap-10 items-end">
+          <div>
+            <Marker num="02" label={t.partnersMarker} light />
+            <h2 className="font-display font-medium leading-[1.02] text-sand" style={{ fontSize: 'clamp(2.2rem,4.5vw,4rem)', letterSpacing: '-0.025em' }}>
+              {t.partnersTitle}<span className="accent-em">{t.partnersTitleAccent}</span>
+            </h2>
+          </div>
+          <p className="text-lg text-sand/70 leading-relaxed lg:pb-2">{t.partnersBody}</p>
+        </Reveal>
+
+        <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-3 border-t border-l border-[color:var(--line-sand)]">
+          {partners.map((partner, i) => {
+            const hasSite = partner.website && partner.website !== '#'
+            return (
+              <Reveal key={partner.id} delay={(i % 3) * 0.05}>
+                <div className="group flex flex-col h-full p-8 border-b border-r border-[color:var(--line-sand)] hover:bg-[rgba(47,173,111,0.05)] transition-colors relative">
+                  <span className="absolute top-0 left-0 h-px w-0 bg-primary group-hover:w-full transition-all duration-500" style={{ transitionTimingFunction: 'var(--ease-out)' }} />
+                  <div className="flex items-baseline justify-between gap-3">
+                    <span className="font-display italic text-2xl text-primary leading-none">{String(i + 1).padStart(2, '0')}</span>
+                    <span className="mono-label text-sand/35 shrink-0" style={{ fontSize: '0.58rem' }}>{partner.sector}</span>
+                  </div>
+                  <h3 className="mt-5 font-display text-xl font-medium leading-snug text-sand group-hover:text-primary transition-colors">{partner.name}</h3>
+                  <p className="mt-3 text-sm text-sand/60 leading-relaxed flex-1">{partner.description}</p>
+
+                  <div className="mt-6 pt-5 border-t border-[color:var(--line-sand)]">
+                    <div className="mono-label text-sand/45" style={{ fontSize: '0.58rem' }}>{t.partnerSince}</div>
+                    <div className="font-display text-lg mt-1 text-sand">{partner.partnerSince}</div>
+                  </div>
+
+                  <div className="mt-5">
+                    <div className="mono-label text-sand/45 mb-2" style={{ fontSize: '0.58rem' }}>{t.services}</div>
+                    <div className="flex flex-wrap gap-2">
+                      {partner.services.slice(0, 3).map((service, idx) => (
+                        <span key={idx} className="text-[0.7rem] px-2.5 py-1 border border-[color:var(--line-sand)] text-sand/75">
+                          {service}
+                        </span>
+                      ))}
+                      {partner.services.length > 3 && (
+                        <span className="text-[0.7rem] px-2.5 py-1 border border-[color:var(--line-sand)] text-sand/55">
+                          +{partner.services.length - 3}
+                        </span>
+                      )}
                     </div>
-                    
-                    {/* Progress indicator */}
-                    <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary to-success transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-                    
-                    <div className="relative">
-                      <CardHeader className="pb-6">
-                        <motion.div 
-                          className="flex justify-center mb-6"
-                          whileHover={{ scale: 1.1, rotate: 5 }}
-                          transition={{ duration: 0.3 }}
-                        >
-                          <div className="relative">
-                            <div className="w-16 h-16 bg-gradient-to-br from-primary/10 to-success/10 dark:from-primary/20 dark:to-success/20 rounded-2xl flex items-center justify-center group-hover:from-primary/20 group-hover:to-success/20 dark:group-hover:from-primary/30 dark:group-hover:to-success/30 transition-all duration-500">
-                              <type.icon className="h-8 w-8 text-primary group-hover:scale-110 transition-transform duration-300" />
-                            </div>
-                            {/* Glowing effect */}
-                            <motion.div
-                              className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/20 to-success/20 blur-md opacity-0 group-hover:opacity-50 transition-opacity duration-500"
-                              animate={{
-                                scale: [1, 1.1, 1],
-                                opacity: [0, 0.3, 0]
-                              }}
-                              transition={{
-                                duration: 2,
-                                repeat: Infinity,
-                                ease: "easeInOut"
-                              }}
-                            />
-                          </div>
-                        </motion.div>
-                        
-                        <CardTitle className="text-xl font-bold mb-3 group-hover:text-primary transition-colors duration-300">
-                          {type.type}
-                        </CardTitle>
-                      </CardHeader>
-                      
-                      <CardContent className="space-y-4">
-                        <CardDescription className="text-muted-foreground group-hover:text-foreground leading-relaxed transition-colors duration-300">
-                          {type.description}
-                        </CardDescription>
-                        <div className="text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300">
-                          <div className="font-medium mb-2 text-primary">{type.partners.length} Active Partners</div>
-                          <div className="space-y-1">
-                            {type.partners.map((partner, idx) => (
-                              <div key={idx} className="text-xs p-2 bg-muted/30 dark:bg-muted/10 rounded-lg flex items-center space-x-2">
-                                <Building2 className="h-3 w-3 text-primary" />
-                                <span>{partner}</span>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                        
-                        {/* Progress Bar */}
-                        <motion.div 
-                          className="mt-4 h-1 bg-muted rounded-full overflow-hidden"
-                          initial={{ opacity: 0 }}
-                          whileInView={{ opacity: 1 }}
-                          transition={{ delay: index * 0.2 }}
-                        >
-                          <motion.div 
-                            className="h-full bg-gradient-to-r from-primary to-success rounded-full"
-                            initial={{ width: 0 }}
-                            whileInView={{ width: '90%' }}
-                            transition={{ duration: 1, delay: index * 0.2 + 0.5, ease: "easeOut" }}
-                          />
-                        </motion.div>
-                      </CardContent>
+                  </div>
+
+                  <div className="mt-5">
+                    <div className="mono-label text-sand/45 mb-2" style={{ fontSize: '0.58rem' }}>{t.achievements}</div>
+                    <div className="space-y-1.5">
+                      {partner.achievements.slice(0, 2).map((achievement, idx) => (
+                        <div key={idx} className="text-sm text-sand/70">— {achievement}</div>
+                      ))}
+                      {partner.achievements.length > 2 && (
+                        <div className="text-xs text-sand/45">+{partner.achievements.length - 2} {t.moreAwards}</div>
+                      )}
                     </div>
-                  </Card>
-                </motion.div>
-              ))}
-            </Grid>
-          </motion.div>
-        </Container>
-      </Section>
+                  </div>
 
-      {/* Enhanced Strategic Partners */}
-      <Section spacing="xl" className="relative bg-gradient-to-br from-muted/10 via-card/5 to-background dark:from-muted/5 dark:to-card/10">
-        <div className="absolute inset-0 bg-grid-pattern opacity-[0.02] dark:opacity-[0.05]" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/5 dark:bg-primary/15 rounded-full blur-3xl" />
-        
-        <Container size="xl" className="relative z-10">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={containerVariants}
-          >
-            <VStack gap="lg" align="center" className="text-center mb-16">
-              <motion.div variants={itemVariants}>
-                <Badge className="mb-4 bg-gradient-to-r from-primary/10 to-success/10 dark:from-primary/20 dark:to-success/20 text-primary border-primary/20 dark:border-primary/40">
-                  Our Network
-                </Badge>
-              </motion.div>
-              <motion.h2 variants={itemVariants} className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-primary via-foreground to-success bg-clip-text text-transparent">
-                {t.strategicPartners}
-              </motion.h2>
-              <motion.p variants={itemVariants} className="text-lg md:text-xl text-muted-foreground max-w-3xl leading-relaxed">
-                Meet our trusted partners who help us deliver exceptional value
-              </motion.p>
-            </VStack>
-            
-            <Grid cols={3} gap="xl">
-              {partners.map((partner, index) => (
-                <motion.div 
-                  key={partner.id} 
-                  variants={itemVariants}
-                  whileHover={{ y: -8 }}
-                  className="group"
-                >
-                  <Card className="relative border-0 bg-card/50 dark:bg-card/20 backdrop-blur-sm hover:bg-card/80 dark:hover:bg-card/40 hover:shadow-2xl dark:hover:shadow-primary/20 transition-all duration-500 group h-full overflow-hidden">
-                    {/* Animated border */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-primary via-success to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                      <div className="absolute inset-[1px] bg-card dark:bg-card/20 rounded-[calc(var(--radius)-1px)]" />
-                    </div>
-                    
-                    {/* Progress indicator */}
-                    <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary to-success transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-                    
-                    <div className="relative">
-                      <CardHeader className="pb-6">
-                        <div className="flex items-start justify-between mb-6">
-                          <motion.div 
-                            className="flex justify-center"
-                            whileHover={{ scale: 1.1, rotate: 5 }}
-                            transition={{ duration: 0.3 }}
-                          >
-                            <div className="relative">
-                              <div className="w-14 h-14 bg-gradient-to-br from-primary/10 to-success/10 dark:from-primary/20 dark:to-success/20 rounded-2xl flex items-center justify-center group-hover:from-primary/20 group-hover:to-success/20 dark:group-hover:from-primary/30 dark:group-hover:to-success/30 transition-all duration-500">
-                                <partner.icon className="h-7 w-7 text-primary group-hover:scale-110 transition-transform duration-300" />
-                              </div>
-                              {/* Glowing effect */}
-                              <motion.div
-                                className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/20 to-success/20 blur-md opacity-0 group-hover:opacity-50 transition-opacity duration-500"
-                                animate={{
-                                  scale: [1, 1.1, 1],
-                                  opacity: [0, 0.3, 0]
-                                }}
-                                transition={{
-                                  duration: 2,
-                                  repeat: Infinity,
-                                  ease: "easeInOut"
-                                }}
-                              />
-                            </div>
-                          </motion.div>
-                          <Badge className="bg-muted/50 dark:bg-muted/30 hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors duration-300">
-                            {partner.sector}
-                          </Badge>
-                        </div>
-                        
-                        <CardTitle className="text-xl font-bold mb-3 group-hover:text-primary transition-colors duration-300">
-                          {partner.name}
-                        </CardTitle>
-                        <CardDescription className="text-muted-foreground group-hover:text-foreground leading-relaxed transition-colors duration-300">
-                          {partner.description}
-                        </CardDescription>
-                      </CardHeader>
-                      
-                      <CardContent className="space-y-6">
-                        <div className="text-center p-3 bg-muted/50 dark:bg-muted/20 rounded-lg group-hover:bg-primary/5 dark:group-hover:bg-primary/10 transition-all duration-300">
-                          <div className="text-sm font-medium text-muted-foreground mb-1">{t.partnerSince}</div>
-                          <div className="text-lg font-bold text-primary">{partner.partnerSince}</div>
-                        </div>
+                  {hasSite ? (
+                    <a href={partner.website} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex items-center gap-1 text-sm text-primary hover:gap-2 transition-all">
+                      {t.visitWebsite} <ArrowUpRight className="w-3.5 h-3.5" />
+                    </a>
+                  ) : (
+                    <Link to="/contact" className="mt-6 inline-flex items-center gap-1 text-sm text-primary hover:gap-2 transition-all">
+                      {t.learnMore} <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+                  )}
+                </div>
+              </Reveal>
+            )
+          })}
+        </div>
+      </Band>
 
-                        <div>
-                          <div className="font-medium text-muted-foreground mb-3 text-sm">{t.services}</div>
-                          <div className="flex flex-wrap gap-2">
-                            {partner.services.slice(0, 3).map((service, idx) => (
-                              <Badge key={idx} variant="secondary" className="text-xs bg-muted/50 dark:bg-muted/30 hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors duration-300">
-                                {service}
-                              </Badge>
-                            ))}
-                            {partner.services.length > 3 && (
-                              <Badge variant="secondary" className="text-xs bg-muted/50 dark:bg-muted/30">
-                                +{partner.services.length - 3}
-                              </Badge>
-                            )}
-                          </div>
-                        </div>
+      {/* ============================================ AWARDS & CERTIFICATIONS */}
+      <Band tone="light">
+        <Reveal className="grid lg:grid-cols-2 gap-10 items-end">
+          <div>
+            <Marker num="03" label={t.awardsMarker} />
+            <h2 className="font-display font-medium leading-[1.02]" style={{ fontSize: 'clamp(2.2rem,4.5vw,4rem)', letterSpacing: '-0.025em' }}>
+              {t.awardsTitle}<span className="accent-em">{t.awardsTitleAccent}</span>
+            </h2>
+          </div>
+          <p className="text-lg text-ink/70 leading-relaxed lg:pb-2">{t.awardsBody}</p>
+        </Reveal>
 
-                        <div>
-                          <div className="font-medium text-muted-foreground mb-3 text-sm">{t.achievements}</div>
-                          <div className="space-y-2">
-                            {partner.achievements.slice(0, 2).map((achievement, idx) => (
-                              <div key={idx} className="flex items-center space-x-2 text-sm p-2 bg-muted/30 dark:bg-muted/10 rounded-lg transition-colors duration-300">
-                                <Award className="h-4 w-4 text-warning flex-shrink-0" />
-                                <span className="text-muted-foreground group-hover:text-foreground transition-colors duration-300">{achievement}</span>
-                              </div>
-                            ))}
-                            {partner.achievements.length > 2 && (
-                              <div className="text-xs text-muted-foreground text-center p-2 bg-muted/20 dark:bg-muted/5 rounded-lg">
-                                +{partner.achievements.length - 2} more awards
-                              </div>
-                            )}
-                          </div>
-                        </div>
+        <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-3 border-t border-l border-[color:var(--line-dark)]">
+          {allAwards.slice(0, 12).map((item, i) => (
+            <Reveal key={i} delay={(i % 3) * 0.04}>
+              <div className="group flex flex-col h-full p-7 border-b border-r border-[color:var(--line-dark)] hover:bg-[rgba(47,173,111,0.05)] transition-colors">
+                <span className="font-display italic text-2xl text-primary leading-none">{String(i + 1).padStart(2, '0')}</span>
+                <h3 className="mt-4 font-display text-base font-medium leading-snug group-hover:text-primary transition-colors flex-1">{item.award}</h3>
+                <div className="mt-4 pt-3 border-t border-[color:var(--line-dark)]">
+                  <div className="text-sm text-ink/65">{t.awardedBy} {item.partner}</div>
+                  <div className="mono-label text-ink/40 mt-1" style={{ fontSize: '0.55rem' }}>{item.sector}</div>
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </Band>
 
-                        {/* Progress Bar */}
-                        <motion.div 
-                          className="mt-4 h-1 bg-muted rounded-full overflow-hidden"
-                          initial={{ opacity: 0 }}
-                          whileInView={{ opacity: 1 }}
-                          transition={{ delay: index * 0.1 }}
-                        >
-                          <motion.div 
-                            className="h-full bg-gradient-to-r from-primary to-success rounded-full"
-                            initial={{ width: 0 }}
-                            whileInView={{ width: '95%' }}
-                            transition={{ duration: 1, delay: index * 0.1 + 0.5, ease: "easeOut" }}
-                          />
-                        </motion.div>
+      {/* =================================================== PARTNERSHIP STATS */}
+      <Band tone="darker">
+        <Reveal>
+          <Marker num="04" label={t.statsMarker} light />
+          <h2 className="font-display font-medium leading-[1.02] text-sand max-w-3xl" style={{ fontSize: 'clamp(2.2rem,4.5vw,4rem)', letterSpacing: '-0.025em' }}>
+            {t.statsTitle}<span className="accent-em">{t.statsTitleAccent}</span>
+          </h2>
+        </Reveal>
 
-                        <div className="pt-4 border-t border-gray-200/50">
-                          <Button variant="outline" size="sm" className="w-full hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-300 group/btn">
-                            {t.learnMore}
-                            <ExternalLink className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
-                          </Button>
-                        </div>
-                      </CardContent>
-                    </div>
-                  </Card>
-                </motion.div>
-              ))}
-            </Grid>
-          </motion.div>
-        </Container>
-      </Section>
+        <div className="mt-16 grid grid-cols-2 lg:grid-cols-4 border-t border-l border-[color:var(--line-sand)]">
+          {stats.map((stat, i) => (
+            <Reveal key={i} delay={(i % 4) * 0.05}>
+              <div className="p-8 border-b border-r border-[color:var(--line-sand)] h-full">
+                <div className="font-display font-medium text-sand" style={{ fontSize: 'clamp(2.2rem,4vw,3.4rem)', lineHeight: 1 }}>{stat.number}</div>
+                <div className="mono-label text-sand/50 mt-3" style={{ fontSize: '0.6rem' }}>{stat.label}</div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </Band>
 
-      {/* Enhanced Awards & Certifications */}
-      <Section spacing="xl" className="relative bg-gradient-to-br from-background via-muted/5 to-card/10 dark:from-background dark:via-muted/10 dark:to-card/20">
-        <div className="absolute inset-0 bg-grid-pattern opacity-[0.02] dark:opacity-[0.05]" />
-        <div className="absolute top-0 left-0 w-72 h-72 bg-success/5 dark:bg-success/15 rounded-full blur-3xl" />
-        
-        <Container size="xl" className="relative z-10">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={containerVariants}
-          >
-            <VStack gap="lg" align="center" className="text-center mb-16">
-              <motion.div variants={itemVariants}>
-                <Badge className="mb-4 bg-gradient-to-r from-warning/10 to-success/10 dark:from-warning/20 dark:to-success/20 text-warning border-warning/20 dark:border-warning/40">
-                  Recognition & Excellence
-                </Badge>
-              </motion.div>
-              <motion.h2 variants={itemVariants} className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-warning via-primary to-success bg-clip-text text-transparent">
-                {t.awards}
-              </motion.h2>
-              <motion.p variants={itemVariants} className="text-lg md:text-xl text-muted-foreground max-w-3xl leading-relaxed">
-                Recognition and certifications from our trusted partners
-              </motion.p>
-            </VStack>
-            
-            <Grid cols={3} gap="lg">
-              {allAwards.slice(0, 12).map((item, index) => (
-                <motion.div 
-                  key={index} 
-                  variants={itemVariants}
-                  whileHover={{ y: -4 }}
-                  className="group"
-                >
-                  <Card className="relative border-0 bg-card/40 dark:bg-card/10 backdrop-blur-sm hover:bg-card/80 dark:hover:bg-card/30 hover:shadow-xl dark:hover:shadow-warning/10 transition-all duration-500 group h-full overflow-hidden">
-                    {/* Animated border */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-warning via-primary to-success opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                      <div className="absolute inset-[1px] bg-card dark:bg-card/10 rounded-[calc(var(--radius)-1px)]" />
-                    </div>
-                    
-                    <div className="relative">
-                      <CardHeader className="pb-4">
-                        <div className="flex items-start space-x-3">
-                          <motion.div 
-                            className="p-3 bg-gradient-to-br from-warning/10 to-warning/20 dark:from-warning/20 dark:to-warning/30 rounded-xl group-hover:from-warning/20 group-hover:to-warning/30 dark:group-hover:from-warning/30 dark:group-hover:to-warning/40 transition-all duration-500"
-                            whileHover={{ scale: 1.1, rotate: 10 }}
-                            transition={{ duration: 0.3 }}
-                          >
-                            <Award className="h-5 w-5 text-warning group-hover:scale-110 transition-transform duration-300" />
-                          </motion.div>
-                          <div className="flex-1">
-                            <CardTitle className="text-sm font-bold group-hover:text-primary transition-colors duration-300 line-clamp-2">
-                              {item.award}
-                            </CardTitle>
-                            <CardDescription className="text-xs mt-1 group-hover:text-foreground transition-colors duration-300">
-                              Awarded by {item.partner}
-                            </CardDescription>
-                          </div>
-                        </div>
-                      </CardHeader>
-                      <CardContent className="pt-0">
-                        <Badge className="text-xs bg-muted/50 dark:bg-muted/30 hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors duration-300">
-                          {item.sector}
-                        </Badge>
-                        
-                        {/* Progress indicator */}
-                        <motion.div 
-                          className="mt-3 h-1 bg-muted rounded-full overflow-hidden"
-                          initial={{ opacity: 0 }}
-                          whileInView={{ opacity: 1 }}
-                          transition={{ delay: index * 0.1 }}
-                        >
-                          <motion.div 
-                            className="h-full bg-gradient-to-r from-warning to-success rounded-full"
-                            initial={{ width: 0 }}
-                            whileInView={{ width: '80%' }}
-                            transition={{ duration: 1, delay: index * 0.1 + 0.3, ease: "easeOut" }}
-                          />
-                        </motion.div>
-                      </CardContent>
-                    </div>
-                  </Card>
-                </motion.div>
-              ))}
-            </Grid>
-          </motion.div>
-        </Container>
-      </Section>
-
-      {/* Enhanced Partnership Stats */}
-      <Section spacing="xl" className="relative bg-gradient-to-br from-muted/10 via-card/5 to-background dark:from-muted/5 dark:to-card/10">
-        <div className="absolute inset-0 bg-grid-pattern opacity-[0.02] dark:opacity-[0.05]" />
-        <div className="absolute top-1/2 left-1/4 w-80 h-80 bg-success/5 dark:bg-success/15 rounded-full blur-3xl" />
-        
-        <Container size="xl" className="relative z-10">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={containerVariants}
-            className="space-y-16"
-          >
-            <VStack gap="md" align="center" className="text-center">
-              <motion.div variants={itemVariants}>
-                <Badge className="mb-4 bg-gradient-to-r from-primary/10 to-success/10 dark:from-primary/20 dark:to-success/20 text-primary border-primary/20 dark:border-primary/40">
-                  Partnership Impact
-                </Badge>
-              </motion.div>
-              <motion.h2 variants={itemVariants} className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-primary via-foreground to-success bg-clip-text text-transparent">
-                Partnership Impact
-              </motion.h2>
-              <motion.p variants={itemVariants} className="text-lg md:text-xl text-muted-foreground max-w-3xl leading-relaxed">
-                The strength of our collaborative ecosystem
-              </motion.p>
-            </VStack>
-
-            <Grid cols={4} gap="lg">
-              {[
-                { number: '7', label: 'Strategic Partners', icon: Handshake, color: 'text-primary' },
-                { number: '25+', label: 'Awards & Certifications', icon: Award, color: 'text-warning' },
-                { number: '4', label: 'Sector Coverage', icon: Globe, color: 'text-info' },
-                { number: '100%', label: 'Compliance Rate', icon: CheckCircle, color: 'text-success' }
-              ].map((stat, index) => (
-                <motion.div 
-                  key={index} 
-                  variants={itemVariants}
-                  whileHover={{ y: -8 }}
-                  className="group"
-                >
-                  <Card className="relative text-center border-0 bg-card/50 dark:bg-card/20 backdrop-blur-sm hover:bg-card/80 dark:hover:bg-card/40 hover:shadow-2xl dark:hover:shadow-primary/10 transition-all duration-500 overflow-hidden group h-full">
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-success/5 dark:from-primary/10 dark:to-success/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    
-                    <CardContent className="relative pt-8 pb-6">
-                      <VStack gap="lg" align="center">
-                        <motion.div 
-                          className="p-4 rounded-2xl bg-gradient-to-br from-primary/10 to-success/10 dark:from-primary/20 dark:to-success/20 group-hover:from-primary/20 group-hover:to-success/20 dark:group-hover:from-primary/30 dark:group-hover:to-success/30 transition-all duration-300"
-                          whileHover={{ scale: 1.1, rotate: 5 }}
-                        >
-                          <stat.icon className={`h-8 w-8 ${stat.color} group-hover:scale-110 transition-transform duration-300`} />
-                        </motion.div>
-                        
-                        <motion.div 
-                          className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-success bg-clip-text text-transparent"
-                          initial={{ scale: 0.5 }}
-                          whileInView={{ scale: 1 }}
-                          transition={{ duration: 0.6, delay: index * 0.1 }}
-                        >
-                          {stat.number}
-                        </motion.div>
-                        
-                        <div className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors duration-300">
-                          {stat.label}
-                        </div>
-                      </VStack>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </Grid>
-          </motion.div>
-        </Container>
-      </Section>
-
-      {/* Enhanced CTA Section */}
-      <Section 
-        spacing="xl" 
-        className="relative bg-gradient-to-br from-primary via-primary to-success text-white"
-      >
-        <div className="absolute inset-0 bg-grid-pattern opacity-[0.1]" />
-        
-        <Container size="xl" className="relative z-10">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={containerVariants}
-          >
-            <VStack gap="xl" align="center" className="text-center">
-              <motion.div variants={itemVariants}>
-                <VStack gap="md" align="center">
-                  <h2 className="text-3xl md:text-5xl font-bold text-white">
-                    Become a Partner
-                  </h2>
-                  <p className="text-xl md:text-2xl text-white/90 max-w-3xl leading-relaxed">
-                    Join our network of trusted partners and help us build the future of global investment.
-                  </p>
-                </VStack>
-              </motion.div>
-              
-              <motion.div 
-                variants={itemVariants}
-                className="flex flex-col sm:flex-row items-center justify-center gap-4"
-              >
-                <Button 
-                  size="xl" 
-                  variant="secondary" 
-                  className="group bg-white text-primary hover:bg-white/90 px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
-                >
-                  Partnership Opportunities
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
-                <Button 
-                  size="xl" 
-                  variant="outline" 
-                  className="group border-2 border-white/30 text-white hover:border-white hover:bg-white/10 backdrop-blur-sm px-8 py-4 rounded-xl transition-all duration-300"
-                >
-                  Contact Us
-                  <ExternalLink className="ml-2 h-5 w-5" />
-                </Button>
-              </motion.div>
-            </VStack>
-          </motion.div>
-        </Container>
-
-        <FloatingElements />
-      </Section>
+      {/* ============================================================= CTA */}
+      <Band tone="pitch" className="relative overflow-hidden">
+        <div className="absolute bottom-0 left-1/3 w-[40rem] h-[40rem]" style={{ background: 'radial-gradient(circle, rgba(47,173,111,0.09), transparent 60%)' }} />
+        <Reveal className="relative max-w-3xl">
+          <Marker num="05" label={t.ctaMarker} light />
+          <h2 className="font-display font-medium leading-[0.98] text-sand" style={{ fontSize: 'clamp(2.6rem,7vw,6rem)', letterSpacing: '-0.03em' }}>
+            {t.ctaTitle}<span className="accent-em">{t.ctaTitleAccent}</span>
+          </h2>
+          <p className="mt-7 text-lg text-sand/70 leading-relaxed">{t.ctaBody}</p>
+          <div className="mt-10 flex flex-col sm:flex-row gap-3">
+            <Link to="/contact" className={`group ${BTN.sand}`}>
+              {t.partnershipOpps}
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
+            <Link to="/contact" className={BTN.ghostLight}>{t.contactUs}</Link>
+          </div>
+        </Reveal>
+      </Band>
     </div>
   )
 }
 
 export default Partners
-

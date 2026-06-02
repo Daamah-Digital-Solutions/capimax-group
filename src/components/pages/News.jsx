@@ -1,33 +1,19 @@
 import { useState } from 'react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Container } from '@/components/layout/Container'
-import { Grid } from '@/components/layout/Grid'
-import { VStack, HStack } from '@/components/layout/Stack'
-import { PageHeader, FloatingElements } from '@/components/enhanced/PageHeader'
-import { AnimatedSection, itemVariants, gridVariants, cardHoverVariants } from '@/components/enhanced/AnimatedSection'
-import { motion } from 'framer-motion'
-import { 
-  Calendar, 
-  Search, 
-  ArrowRight, 
+import {
+  Calendar,
+  Search,
+  ArrowRight,
   Clock,
   User,
-  Tag,
   TrendingUp,
   Building2,
   Globe,
   Award,
-  Filter,
   X,
-  Zap,
-  Eye,
   Star,
-  BookOpen,
-  FileText
+  FileText,
 } from 'lucide-react'
+import { PageHero, Band, Marker, Reveal, BTN } from '@/components/editorial'
 
 const News = ({ language }) => {
   const [searchTerm, setSearchTerm] = useState('')
@@ -35,7 +21,9 @@ const News = ({ language }) => {
 
   const translations = {
     en: {
-      pageTitle: 'News & Updates',
+      pageTitle: 'News & ',
+      pageTitleAccent: 'updates.',
+      pageEyebrow: 'News & Media',
       pageSubtitle: 'Stay informed with the latest news, announcements, and developments from Capimax Group.',
       searchPlaceholder: 'Search news...',
       allCategories: 'All Categories',
@@ -49,11 +37,28 @@ const News = ({ language }) => {
       category: 'Category',
       noResults: 'No news articles found matching your search criteria.',
       clearFilters: 'Clear Filters',
-      latestNews: 'Latest News',
-      featuredNews: 'Featured News'
+      latestNews: 'Latest ',
+      latestNewsAccent: 'news.',
+      featuredNews: 'Featured ',
+      featuredNewsAccent: 'news.',
+      featuredMarker: 'Featured news',
+      latestMarker: 'Latest news',
+      filterMarker: 'Browse the archive',
+      featuredBody: "Highlighted stories and major announcements from Capimax Group's expanding global operations.",
+      latestBody: 'Stay updated with the latest developments, partnerships, and achievements from across our global operations.',
+      newsletterMarker: 'Stay informed',
+      newsletterTitle: 'Stay ',
+      newsletterAccent: 'informed.',
+      newsletterDesc: 'Subscribe to our newsletter for the latest updates on investments, partnerships, and company developments delivered directly to your inbox.',
+      subscribe: 'Subscribe',
+      articles: 'Articles',
+      article: 'Article',
+      featuredLabel: 'Featured',
     },
     ar: {
-      pageTitle: 'الأخبار والتحديثات',
+      pageTitle: 'الأخبار ',
+      pageTitleAccent: 'والتحديثات.',
+      pageEyebrow: 'الأخبار والإعلام',
       pageSubtitle: 'ابق على اطلاع بآخر الأخبار والإعلانات والتطورات من مجموعة كابيماكس.',
       searchPlaceholder: 'البحث في الأخبار...',
       allCategories: 'جميع الفئات',
@@ -67,8 +72,23 @@ const News = ({ language }) => {
       category: 'الفئة',
       noResults: 'لم يتم العثور على مقالات إخبارية تطابق معايير البحث الخاصة بك.',
       clearFilters: 'مسح المرشحات',
-      latestNews: 'آخر الأخبار',
-      featuredNews: 'الأخبار المميزة'
+      latestNews: 'آخر ',
+      latestNewsAccent: 'الأخبار.',
+      featuredNews: 'الأخبار ',
+      featuredNewsAccent: 'المميزة.',
+      featuredMarker: 'الأخبار المميزة',
+      latestMarker: 'آخر الأخبار',
+      filterMarker: 'تصفح الأرشيف',
+      featuredBody: 'قصص بارزة وإعلانات رئيسية من عمليات مجموعة كابيماكس العالمية المتنامية.',
+      latestBody: 'ابق على اطلاع بآخر التطورات والشراكات والإنجازات عبر عملياتنا العالمية.',
+      newsletterMarker: 'ابق على اطلاع',
+      newsletterTitle: 'ابق على ',
+      newsletterAccent: 'اطلاع.',
+      newsletterDesc: 'اشترك في نشرتنا الإخبارية لتصلك آخر التحديثات حول الاستثمارات والشراكات وتطورات الشركة مباشرة إلى بريدك.',
+      subscribe: 'اشترك',
+      articles: 'مقالات',
+      article: 'مقال',
+      featuredLabel: 'مميز',
     }
   }
 
@@ -81,7 +101,7 @@ const News = ({ language }) => {
       excerpt: 'The company reveals ambitious plans to extend operations across emerging markets, targeting significant growth in digital asset management and real estate investment.',
       content: 'Capimax Group today announced its strategic expansion into key Asian and African markets, marking a significant milestone in the company\'s global growth strategy...',
       category: 'company',
-      author: 'Ibrahim Gad',
+      author: 'Capimax Group',
       publishDate: '2024-12-01',
       readTime: 5,
       featured: true,
@@ -193,9 +213,9 @@ const News = ({ language }) => {
     const matchesSearch = article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          article.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          article.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
-    
+
     const matchesCategory = selectedCategory === 'all' || article.category === selectedCategory
-    
+
     return matchesSearch && matchesCategory
   })
 
@@ -212,429 +232,217 @@ const News = ({ language }) => {
     }
   }
 
-  const getCategoryColor = (category) => {
-    switch (category) {
-      case 'company': return 'bg-primary'
-      case 'investment': return 'bg-success'
-      case 'partnership': return 'bg-brand-tertiary'
-      case 'awards': return 'bg-warning'
-      default: return 'bg-gray-500'
-    }
+  const categoryLabel = (category) => categories.find(c => c.value === category)?.label
+
+  const hasFilters = searchTerm || selectedCategory !== 'all'
+  const clearFilters = () => {
+    setSearchTerm('')
+    setSelectedCategory('all')
   }
 
   return (
-    <div className="min-h-screen">
-      {/* Enhanced Page Header */}
-      <PageHeader
+    <div className="bg-cream text-ink">
+      <PageHero
+        eyebrow={t.pageEyebrow}
         title={t.pageTitle}
+        accent={t.pageTitleAccent}
         subtitle={t.pageSubtitle}
-        description="Stay ahead with the latest developments, strategic announcements, and industry insights from Capimax Group."
-        badge="News & Media"
-        variant="gradient"
-        size="lg"
       />
 
-      {/* Enhanced Search and Filters */}
-      <AnimatedSection spacing="md" background="muted">
-        <Container size="xl">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={gridVariants}
-            className="space-y-6"
-          >
-            <motion.div 
-              variants={itemVariants}
-              className="flex flex-col lg:flex-row gap-6 items-start lg:items-center justify-between"
-            >
-              <div className="relative flex-1 max-w-lg">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                <Input
-                  placeholder={t.searchPlaceholder}
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-12 h-12 bg-card/50 backdrop-blur-sm border-primary/20 focus:border-primary text-base rounded-xl"
-                />
-              </div>
-              
-              <HStack gap="md" align="center">
-                <div className="flex items-center gap-3">
-                  <Filter className="h-4 w-4 text-muted-foreground" />
-                  <span className="text-sm font-medium text-muted-foreground">{t.category}</span>
-                </div>
-                <motion.select
-                  whileHover={{ scale: 1.02 }}
-                  value={selectedCategory}
-                  onChange={(e) => setSelectedCategory(e.target.value)}
-                  className="px-4 py-3 border border-primary/20 rounded-xl bg-card/50 backdrop-blur-sm focus:border-primary focus:outline-none transition-all duration-300"
-                >
-                  {categories.map(category => (
-                    <option key={category.value} value={category.value}>
-                      {category.label}
-                    </option>
-                  ))}
-                </motion.select>
-                
-                {(searchTerm || selectedCategory !== 'all') && (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.8 }}
-                  >
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => {
-                        setSearchTerm('')
-                        setSelectedCategory('all')
-                      }}
-                      className="group h-12 px-4 border-destructive/20 hover:border-destructive hover:bg-destructive/5 rounded-xl"
-                    >
-                      <X className="w-4 h-4 mr-2 group-hover:rotate-90 transition-transform duration-300" />
-                      {t.clearFilters}
-                    </Button>
-                  </motion.div>
-                )}
-              </HStack>
-            </motion.div>
-            
-            <motion.div variants={itemVariants} className="flex flex-wrap gap-2">
-              <Badge variant="secondary" className="px-3 py-1 bg-primary/10 text-primary border border-primary/20">
-                Total: {filteredArticles.length} {filteredArticles.length === 1 ? 'Article' : 'Articles'}
-              </Badge>
-              {featuredArticles.length > 0 && (
-                <Badge variant="outline" className="px-3 py-1">
-                  <Star className="w-3 h-3 mr-1" />
-                  {featuredArticles.length} Featured
-                </Badge>
-              )}
-              <Badge variant="outline" className="px-3 py-1">
-                <BookOpen className="w-3 h-3 mr-1" />
-                {regularArticles.length} Latest
-              </Badge>
-            </motion.div>
-          </motion.div>
-        </Container>
-      </AnimatedSection>
+      {/* ===================================================== FILTERS */}
+      <Band tone="paper">
+        <Reveal>
+          <Marker num="01" label={t.filterMarker} light />
+        </Reveal>
 
-      {/* Enhanced Featured News */}
+        <Reveal className="flex flex-col md:flex-row gap-4 md:items-center md:justify-between">
+          <div className="relative flex-1 max-w-md">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-ink/40" />
+            <input
+              type="text"
+              placeholder={t.searchPlaceholder}
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full bg-transparent border border-[color:var(--line-dark)] pl-11 pr-4 py-3 text-ink placeholder:text-ink/40 focus:border-primary outline-none transition-colors"
+            />
+          </div>
+          <div className="flex items-center gap-3">
+            <select
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+              className="bg-transparent border border-[color:var(--line-dark)] px-4 py-3 text-ink focus:border-primary outline-none transition-colors"
+            >
+              {categories.map(category => (
+                <option key={category.value} value={category.value}>{category.label}</option>
+              ))}
+            </select>
+            {hasFilters && (
+              <button onClick={clearFilters} className={BTN.ghostDark}>
+                <X className="w-4 h-4" />
+                {t.clearFilters}
+              </button>
+            )}
+          </div>
+        </Reveal>
+
+        <Reveal className="mt-8 flex flex-wrap gap-6 mono-label text-ink/45" delay={0.05}>
+          <span style={{ fontSize: '0.62rem' }}>
+            {filteredArticles.length} {filteredArticles.length === 1 ? t.article : t.articles}
+          </span>
+          {featuredArticles.length > 0 && (
+            <span style={{ fontSize: '0.62rem' }} className="inline-flex items-center gap-1.5 text-primary">
+              <Star className="w-3 h-3" /> {featuredArticles.length} {t.featuredLabel}
+            </span>
+          )}
+        </Reveal>
+      </Band>
+
+      {/* ===================================================== FEATURED */}
       {featuredArticles.length > 0 && (
-        <AnimatedSection spacing="xl">
-          <Container size="xl">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={gridVariants}
-              className="space-y-16"
-            >
-              <VStack gap="md" align="center" className="text-center">
-                <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary to-success bg-clip-text text-transparent">
-                  {t.featuredNews}
-                </motion.h2>
-                <motion.p variants={itemVariants} className="text-xl text-muted-foreground max-w-3xl">
-                  Highlighted stories and major announcements from Capimax Group's expanding global operations.
-                </motion.p>
-              </VStack>
+        <Band tone="light">
+          <Reveal className="grid lg:grid-cols-2 gap-10 items-end">
+            <div>
+              <Marker num="02" label={t.featuredMarker} light />
+              <h2 className="font-display font-medium leading-[1.04]" style={{ fontSize: 'clamp(2.2rem,4.5vw,4rem)', letterSpacing: '-0.025em' }}>
+                {t.featuredNews}<span className="accent-em">{t.featuredNewsAccent}</span>
+              </h2>
+            </div>
+            <p className="text-lg text-ink/70 leading-relaxed lg:pb-2">{t.featuredBody}</p>
+          </Reveal>
 
-              <Grid cols={2} gap="lg">
-                {featuredArticles.map((article, index) => {
-                  const CategoryIcon = getCategoryIcon(article.category)
-                  return (
-                    <motion.div key={article.id} variants={itemVariants}>
-                      <motion.div
-                        initial="rest"
-                        whileHover="hover"
-                        variants={cardHoverVariants}
-                      >
-                        <Card className="h-full border-0 bg-gradient-to-br from-card to-card/80 overflow-hidden">
-                          <div className="aspect-video bg-gradient-to-br from-muted to-muted/50 relative overflow-hidden">
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-                            <motion.div 
-                              className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full"
-                              initial={{ scale: 0 }}
-                              whileInView={{ scale: 1 }}
-                              transition={{ duration: 0.3, delay: index * 0.1 }}
-                            >
-                              <HStack gap="sm" align="center">
-                                <Star className="w-3 h-3 text-warning" />
-                                <span className="text-xs font-medium text-primary">Featured</span>
-                              </HStack>
-                            </motion.div>
-                          </div>
-                          <CardHeader>
-                            <HStack gap="md" align="start" className="mb-4">
-                              <motion.div 
-                                className={`p-3 ${getCategoryColor(article.category)} rounded-xl`}
-                                whileHover={{ rotate: 5, scale: 1.1 }}
-                                transition={{ duration: 0.3 }}
-                              >
-                                <CategoryIcon className="h-5 w-5 text-white" />
-                              </motion.div>
-                              <div className="flex-1">
-                                <Badge variant="secondary" className="mb-2 px-2 py-1 text-xs bg-primary/10 text-primary border border-primary/20">
-                                  {categories.find(c => c.value === article.category)?.label}
-                                </Badge>
-                                <HStack gap="sm" align="center" className="text-xs text-muted-foreground">
-                                  <Calendar className="h-3 w-3" />
-                                  <span>{new Date(article.publishDate).toLocaleDateString()}</span>
-                                </HStack>
-                              </div>
-                            </HStack>
-                            <CardTitle className="text-xl line-clamp-2 hover:text-primary transition-colors duration-300">
-                              {article.title}
-                            </CardTitle>
-                            <CardDescription className="line-clamp-3 leading-relaxed">
-                              {article.excerpt}
-                            </CardDescription>
-                          </CardHeader>
-                          <CardContent className="space-y-4">
-                            <HStack gap="md" align="center" className="text-sm text-muted-foreground">
-                              <HStack gap="sm" align="center">
-                                <Clock className="h-4 w-4 text-primary" />
-                                <span>{article.readTime} {t.readTime}</span>
-                              </HStack>
-                              <HStack gap="sm" align="center">
-                                <User className="h-4 w-4 text-primary" />
-                                <span className="line-clamp-1">{article.author}</span>
-                              </HStack>
-                            </HStack>
-                            
-                            <div className="flex flex-wrap gap-2">
-                              {article.tags.slice(0, 3).map((tag, idx) => (
-                                <Badge key={idx} variant="outline" className="text-xs hover:bg-primary/5 transition-colors">
-                                  {tag}
-                                </Badge>
-                              ))}
-                            </div>
+          <div className="mt-16 grid md:grid-cols-2 border-t border-l border-[color:var(--line-dark)]">
+            {featuredArticles.map((article, index) => {
+              const CategoryIcon = getCategoryIcon(article.category)
+              return (
+                <Reveal key={article.id} delay={(index % 2) * 0.05}>
+                  <article className="group flex flex-col h-full p-8 border-b border-r border-[color:var(--line-dark)] hover:bg-[rgba(47,173,111,0.05)] transition-colors relative">
+                    <span className="absolute top-0 left-0 h-px w-0 bg-primary group-hover:w-full transition-all duration-500" />
+                    <div className="flex items-center justify-between">
+                      <span className="inline-flex items-center gap-2">
+                        <CategoryIcon className="w-5 h-5 text-primary" />
+                        <span className="mono-label text-ink/45" style={{ fontSize: '0.6rem' }}>{categoryLabel(article.category)}</span>
+                      </span>
+                      <span className="inline-flex items-center gap-1.5 mono-label text-primary" style={{ fontSize: '0.6rem' }}>
+                        <Star className="w-3 h-3" /> {t.featuredLabel}
+                      </span>
+                    </div>
 
-                            <Button 
-                              variant="outline" 
-                              size="sm" 
-                              className="w-full group border-primary/20 hover:border-primary hover:bg-primary/5 transition-all duration-300"
-                            >
-                              {t.readMore}
-                              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                            </Button>
-                          </CardContent>
-                        </Card>
-                      </motion.div>
-                    </motion.div>
-                  )
-                })}
-              </Grid>
-            </motion.div>
-          </Container>
-        </AnimatedSection>
+                    <h3 className="mt-6 font-display text-2xl font-medium leading-snug text-ink group-hover:text-primary transition-colors">{article.title}</h3>
+                    <p className="mt-4 text-ink/65 leading-relaxed flex-1">{article.excerpt}</p>
+
+                    <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-ink/55">
+                      <span className="inline-flex items-center gap-1.5"><Calendar className="w-3.5 h-3.5 text-primary" />{new Date(article.publishDate).toLocaleDateString()}</span>
+                      <span className="inline-flex items-center gap-1.5"><Clock className="w-3.5 h-3.5 text-primary" />{article.readTime} {t.readTime}</span>
+                      <span className="inline-flex items-center gap-1.5"><User className="w-3.5 h-3.5 text-primary" />{article.author}</span>
+                    </div>
+
+                    <div className="mt-5 flex flex-wrap gap-2">
+                      {article.tags.slice(0, 3).map((tag, idx) => (
+                        <span key={idx} className="mono-label text-ink/45 border border-[color:var(--line-dark)] px-2.5 py-1" style={{ fontSize: '0.58rem' }}>{tag}</span>
+                      ))}
+                    </div>
+
+                    <button className="group/btn mt-7 inline-flex items-center gap-2 text-sm font-medium text-primary self-start">
+                      {t.readMore}
+                      <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                    </button>
+                  </article>
+                </Reveal>
+              )
+            })}
+          </div>
+        </Band>
       )}
 
-      {/* Enhanced Latest News */}
+      {/* ===================================================== LATEST */}
       {regularArticles.length > 0 && (
-        <AnimatedSection spacing="xl" background="muted">
-          <Container size="xl">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={gridVariants}
-              className="space-y-16"
-            >
-              <VStack gap="md" align="center" className="text-center">
-                <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold">
-                  {t.latestNews}
-                </motion.h2>
-                <motion.p variants={itemVariants} className="text-xl text-muted-foreground max-w-3xl">
-                  Stay updated with the latest developments, partnerships, and achievements from across our global operations.
-                </motion.p>
-              </VStack>
+        <Band tone="dark">
+          <Reveal className="grid lg:grid-cols-2 gap-10 items-end">
+            <div>
+              <Marker num="03" label={t.latestMarker} />
+              <h2 className="font-display font-medium leading-[1.04] text-sand" style={{ fontSize: 'clamp(2.2rem,4.5vw,4rem)', letterSpacing: '-0.025em' }}>
+                {t.latestNews}<span className="accent-em">{t.latestNewsAccent}</span>
+              </h2>
+            </div>
+            <p className="text-lg text-sand/70 leading-relaxed lg:pb-2">{t.latestBody}</p>
+          </Reveal>
 
-              <Grid cols={3} gap="lg">
-                {regularArticles.map((article, index) => {
-                  const CategoryIcon = getCategoryIcon(article.category)
-                  return (
-                    <motion.div key={article.id} variants={itemVariants}>
-                      <motion.div
-                        initial="rest"
-                        whileHover="hover"
-                        variants={cardHoverVariants}
-                      >
-                        <Card className="h-full border-0 bg-gradient-to-br from-background to-card/50">
-                          <div className="aspect-video bg-gradient-to-br from-muted to-muted/50 rounded-t-lg relative overflow-hidden">
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
-                          </div>
-                          <CardHeader>
-                            <HStack gap="md" align="start" className="mb-4">
-                              <motion.div 
-                                className={`p-2 ${getCategoryColor(article.category)} rounded-xl`}
-                                whileHover={{ rotate: 5, scale: 1.1 }}
-                                transition={{ duration: 0.3 }}
-                              >
-                                <CategoryIcon className="h-4 w-4 text-white" />
-                              </motion.div>
-                              <div className="flex-1">
-                                <Badge variant="secondary" className="mb-2 px-2 py-1 text-xs">
-                                  {categories.find(c => c.value === article.category)?.label}
-                                </Badge>
-                                <HStack gap="sm" align="center" className="text-xs text-muted-foreground">
-                                  <Calendar className="h-3 w-3" />
-                                  <span>{new Date(article.publishDate).toLocaleDateString()}</span>
-                                </HStack>
-                              </div>
-                            </HStack>
-                            <CardTitle className="text-lg line-clamp-2 hover:text-primary transition-colors duration-300">
-                              {article.title}
-                            </CardTitle>
-                            <CardDescription className="line-clamp-3 leading-relaxed">
-                              {article.excerpt}
-                            </CardDescription>
-                          </CardHeader>
-                          <CardContent className="space-y-4">
-                            <HStack gap="md" align="center" className="text-sm text-muted-foreground">
-                              <HStack gap="sm" align="center">
-                                <Clock className="h-4 w-4 text-primary" />
-                                <span>{article.readTime} {t.readTime}</span>
-                              </HStack>
-                              <HStack gap="sm" align="center">
-                                <User className="h-4 w-4 text-primary" />
-                                <span className="line-clamp-1 text-xs">{article.author}</span>
-                              </HStack>
-                            </HStack>
-                            
-                            <div className="flex flex-wrap gap-1">
-                              {article.tags.slice(0, 2).map((tag, idx) => (
-                                <Badge key={idx} variant="outline" className="text-xs hover:bg-primary/5 transition-colors">
-                                  {tag}
-                                </Badge>
-                              ))}
-                              {article.tags.length > 2 && (
-                                <Badge variant="outline" className="text-xs bg-muted/50">
-                                  +{article.tags.length - 2}
-                                </Badge>
-                              )}
-                            </div>
+          <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-3 border-t border-l border-[color:var(--line-sand)]">
+            {regularArticles.map((article, index) => {
+              const CategoryIcon = getCategoryIcon(article.category)
+              return (
+                <Reveal key={article.id} delay={(index % 3) * 0.05}>
+                  <article className="group flex flex-col h-full p-7 border-b border-r border-[color:var(--line-sand)] hover:bg-[rgba(47,173,111,0.05)] transition-colors">
+                    <div className="flex items-center justify-between">
+                      <CategoryIcon className="w-5 h-5 text-primary" />
+                      <span className="mono-label text-sand/40" style={{ fontSize: '0.6rem' }}>{categoryLabel(article.category)}</span>
+                    </div>
 
-                            <Button 
-                              variant="outline" 
-                              size="sm" 
-                              className="w-full group border-primary/20 hover:border-primary hover:bg-primary/5 transition-all duration-300"
-                            >
-                              {t.readMore}
-                              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                            </Button>
-                          </CardContent>
-                        </Card>
-                      </motion.div>
-                    </motion.div>
-                  )
-                })}
-              </Grid>
-            </motion.div>
-          </Container>
-        </AnimatedSection>
+                    <h3 className="mt-5 font-display text-lg font-medium leading-snug text-sand group-hover:text-primary transition-colors">{article.title}</h3>
+                    <p className="mt-3 text-sm text-sand/60 leading-relaxed flex-1">{article.excerpt}</p>
+
+                    <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-sand/55">
+                      <span className="inline-flex items-center gap-1.5"><Calendar className="w-3 h-3 text-primary" />{new Date(article.publishDate).toLocaleDateString()}</span>
+                      <span className="inline-flex items-center gap-1.5"><Clock className="w-3 h-3 text-primary" />{article.readTime} {t.readTime}</span>
+                    </div>
+
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {article.tags.slice(0, 2).map((tag, idx) => (
+                        <span key={idx} className="mono-label text-sand/45 border border-[color:var(--line-sand)] px-2.5 py-1" style={{ fontSize: '0.56rem' }}>{tag}</span>
+                      ))}
+                    </div>
+
+                    <button className="group/btn mt-6 inline-flex items-center gap-2 text-sm font-medium text-primary self-start">
+                      {t.readMore}
+                      <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                    </button>
+                  </article>
+                </Reveal>
+              )
+            })}
+          </div>
+        </Band>
       )}
 
-      {/* Enhanced No Results */}
+      {/* ===================================================== NO RESULTS */}
       {filteredArticles.length === 0 && (
-        <AnimatedSection spacing="xl">
-          <Container size="xl">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={gridVariants}
-              className="text-center max-w-lg mx-auto"
-            >
-              <motion.div variants={itemVariants} className="space-y-6">
-                <motion.div
-                  animate={{ 
-                    y: [-10, 10, -10],
-                    rotate: [-5, 5, -5] 
-                  }}
-                  transition={{ 
-                    duration: 4, 
-                    repeat: Infinity, 
-                    ease: "easeInOut" 
-                  }}
-                  className="w-24 h-24 bg-gradient-to-br from-primary/20 to-success/20 rounded-2xl flex items-center justify-center mx-auto"
-                >
-                  <FileText className="h-12 w-12 text-muted-foreground" />
-                </motion.div>
-                <div className="space-y-4">
-                  <h3 className="text-2xl font-bold text-muted-foreground">{t.noResults}</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    Try adjusting your search terms or explore different categories to find the news you're looking for.
-                  </p>
-                </div>
-                <Button
-                  size="lg"
-                  onClick={() => {
-                    setSearchTerm('')
-                    setSelectedCategory('all')
-                  }}
-                  className="group bg-gradient-to-r from-primary to-success hover:from-primary/90 hover:to-success/90 text-white px-8 py-3 rounded-xl"
-                >
-                  <X className="w-4 h-4 mr-2 group-hover:rotate-90 transition-transform duration-300" />
-                  {t.clearFilters}
-                </Button>
-              </motion.div>
-            </motion.div>
-          </Container>
-        </AnimatedSection>
+        <Band tone="light">
+          <Reveal className="text-center py-20 border border-[color:var(--line-dark)]">
+            <FileText className="w-14 h-14 text-ink/25 mx-auto" />
+            <h3 className="mt-6 font-display text-2xl font-medium text-ink">{t.noResults}</h3>
+            <p className="mt-3 text-ink/60 max-w-md mx-auto">Try adjusting your search terms or explore different categories.</p>
+            <button onClick={clearFilters} className={`group mt-8 ${BTN.forest}`}>
+              <X className="w-4 h-4" />
+              {t.clearFilters}
+            </button>
+          </Reveal>
+        </Band>
       )}
-      {/* Enhanced Newsletter CTA */}
-      <AnimatedSection 
-        spacing="xl" 
-        className="bg-gradient-to-br from-primary via-primary to-success text-white"
-        hasPattern
-      >
-        <Container size="xl">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={gridVariants}
-          >
-            <VStack gap="xl" align="center" className="text-center">
-              <motion.div variants={itemVariants}>
-                <VStack gap="md" align="center">
-                  <h2 className="text-3xl md:text-5xl font-bold text-white">
-                    Stay Informed
-                  </h2>
-                  <p className="text-xl md:text-2xl text-white/90 max-w-3xl leading-relaxed">
-                    Subscribe to our newsletter for the latest updates on investments, partnerships, and company developments delivered directly to your inbox.
-                  </p>
-                </VStack>
-              </motion.div>
-              
-              <motion.div 
-                variants={itemVariants}
-                className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-lg"
-              >
-                <div className="relative flex-1">
-                  <Input
-                    placeholder="Enter your email address"
-                    className="h-12 px-4 bg-white/10 border-white/20 text-white placeholder:text-white/70 backdrop-blur-sm rounded-xl"
-                  />
-                </div>
-                <Button 
-                  size="xl" 
-                  variant="secondary" 
-                  className="group bg-white text-primary hover:bg-white/90 px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 shrink-0"
-                >
-                  Subscribe
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </motion.div>
-            </VStack>
-          </motion.div>
-        </Container>
 
-        <FloatingElements />
-      </AnimatedSection>
+      {/* ===================================================== NEWSLETTER */}
+      <Band tone="pitch" className="relative overflow-hidden">
+        <div className="absolute bottom-0 left-1/3 w-[40rem] h-[40rem] pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(47,173,111,0.09), transparent 60%)' }} />
+        <Reveal className="relative max-w-2xl">
+          <Marker num="04" label={t.newsletterMarker} />
+          <h2 className="font-display font-medium leading-[1.02] text-sand" style={{ fontSize: 'clamp(2.4rem,5vw,4.5rem)', letterSpacing: '-0.03em' }}>
+            {t.newsletterTitle}<span className="accent-em">{t.newsletterAccent}</span>
+          </h2>
+          <p className="mt-6 text-lg text-sand/70 leading-relaxed">{t.newsletterDesc}</p>
+          <div className="mt-10 flex flex-col sm:flex-row gap-3 max-w-lg">
+            <input
+              type="email"
+              placeholder="Enter your email address"
+              className="flex-1 bg-transparent border border-[color:var(--line-sand)] px-4 py-3 text-sand placeholder:text-sand/40 focus:border-primary outline-none transition-colors"
+            />
+            <button className={`group ${BTN.sand}`}>
+              {t.subscribe}
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </button>
+          </div>
+        </Reveal>
+      </Band>
     </div>
   )
 }
 
 export default News
-

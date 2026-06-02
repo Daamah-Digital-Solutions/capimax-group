@@ -1,899 +1,293 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Container } from '@/components/layout/Container'
-import { Grid } from '@/components/layout/Grid'
-import { VStack, HStack } from '@/components/layout/Stack'
-import { Section } from '@/components/layout/Section'
-import { motion } from 'framer-motion'
-import { FloatingElements } from '@/components/enhanced/FloatingElements'
-import { useTheme } from '@/hooks/use-theme'
-import {
-  Building2,
-  TrendingUp,
-  Coins,
-  Smartphone,
-  Shield,
-  Globe,
-  Search,
-  ArrowRight,
-  MapPin,
-  Calendar,
-  Users,
-  ExternalLink,
-  Filter,
-  X
-} from 'lucide-react'
+import { ArrowRight, Search, X, Building2, TrendingUp, Shield } from 'lucide-react'
+import { companyRegistry, companyIds } from '@/data/companies'
+import { companyContent } from '@/data/content'
+import { getCompanyLogo } from '@/data/logos'
+import { PageHero, Band, Marker, Heading, Reveal, BTN } from '@/components/editorial'
 
-// Import SVG logos
-// Dark versions (for light mode)
-import capimaxInvestmentsUKDark from '@/assets/capimax logos svg/dark/capi max all versions logos_capi max investments uk dark.svg'
-import capimaxFinancialManagementUKDark from '@/assets/capimax logos svg/dark/capi max all versions logos_capi max financial management uk dark -11.svg'
-import hccInternationalDark from '@/assets/capimax logos svg/dark/capi max all versions logos_capi max investments dark .svg'
-import capimaxPreciousMetalsDark from '@/assets/capimax logos svg/dark/capi max all versions logos_capi max Investment in precious metals  uk dark  .svg'
-import capimaxHoldingDark from '@/assets/capimax logos svg/dark/capi max all versions logos_capi max holding  uk dark  .svg'
-import capimaxVirtualAssetsDark from '@/assets/capimax logos svg/dark/capi max all versions logos_capi max  Virtual Asset uk dark .svg'
-import cimFinancialGroupDark from '@/assets/capimax logos svg/dark/capi max all versions logos_capi max financial management uk dark -13.svg'
-import novaDigitalFinanceDark from '@/assets/capimax logos svg/dark/capi max all versions logos_capi max investments dark .svg'
-import capimaxFintechBlockchainDark from '@/assets/capimax logos svg/dark/capi max all versions logos_capi max  Fintech and Blockchain uk dark  copy.svg'
-import capimaxInvestmentsUSADark from '@/assets/capimax logos svg/dark/capi max all versions logos_capi max investments usa dark.svg'
-import capimaxGeneralTradingUSADark from '@/assets/capimax logos svg/dark/capi max all versions logos_capi max general trading usa dark.svg'
-import capimaxInvestmentsUAEDark from '@/assets/capimax logos svg/dark/capi max all versions logos_capi max investments uae dark.svg'
-
-// Light versions (for dark mode)
-import capimaxInvestmentsUKLight from '@/assets/capimax logos svg/light/capi max all versions logos_capi max investments uk light.svg'
-import capimaxFinancialManagementUKLight from '@/assets/capimax logos svg/light/capi max all versions logos_capi max financial management uk light  .svg'
-import hccInternationalLight from '@/assets/capimax logos svg/light/capi max all versions logos_capi max investments  light .svg'
-import capimaxPreciousMetalsLight from '@/assets/capimax logos svg/light/capi max all versions logos_capi max Investment in precious metals  uk light  .svg'
-import capimaxHoldingLight from '@/assets/capimax logos svg/light/capi max all versions logos_capi max holding  uk light   .svg'
-import capimaxVirtualAssetsLight from '@/assets/capimax logos svg/light/capi max all versions logos_capi max  Virtual Asset uk light .svg'
-import cimFinancialGroupLight from '@/assets/capimax logos svg/light/capi max all versions logos_capi max financial management uk light   .svg'
-import novaDigitalFinanceLight from '@/assets/capimax logos svg/light/capi max all versions logos_capi max investments  light .svg'
-import capimaxFintechBlockchainLight from '@/assets/capimax logos svg/light/capi max all versions logos_capi max  Fintech and Blockchain uk light  copy.svg'
-import capimaxDevelopmentLight from '@/assets/capimax logos svg/light/capi max all versions logos_capi max development uk light .svg'
-import capimaxInvestmentsUSALight from '@/assets/capimax logos svg/light/capi max all versions logos_capi max investments usa light.svg'
-import capimaxGeneralTradingUSALight from '@/assets/capimax logos svg/light/capi max all versions logos_capi max general trading usa light.svg'
-import capimaxInvestmentsUAELight from '@/assets/capimax logos svg/light/capi max all versions logos_capi max investments uae light.svg'
+const companyName = (id, language) =>
+  companyContent[id]?.[language]?.name || companyRegistry[id]?.legalName || id
 
 const Companies = ({ language }) => {
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedCountry, setSelectedCountry] = useState('all')
-  const { isDark } = useTheme()
-
-  // Logo mapping function based on company ID and theme
-  const getCompanyLogo = (companyId) => {
-    const logoMap = {
-      'capimax-investments-uk': {
-        dark: capimaxInvestmentsUKDark,
-        light: capimaxInvestmentsUKLight
-      },
-      'capimax-financial-management': {
-        dark: capimaxFinancialManagementUKDark,
-        light: capimaxFinancialManagementUKLight
-      },
-      'hcc-international': {
-        dark: hccInternationalDark,
-        light: hccInternationalLight
-      },
-      'capimax-precious-metals': {
-        dark: capimaxPreciousMetalsDark,
-        light: capimaxPreciousMetalsLight
-      },
-      'capimax-holding': {
-        dark: capimaxHoldingDark,
-        light: capimaxHoldingLight
-      },
-      'capimax-virtual-assets': {
-        dark: capimaxVirtualAssetsDark,
-        light: capimaxVirtualAssetsLight
-      },
-      'cim-financial-group': {
-        dark: cimFinancialGroupDark,
-        light: cimFinancialGroupLight
-      },
-      'nova-digital-finance': {
-        dark: novaDigitalFinanceDark,
-        light: novaDigitalFinanceLight
-      },
-      'capimax-fintech-blockchain': {
-        dark: capimaxFintechBlockchainDark,
-        light: capimaxFintechBlockchainLight
-      },
-      'capimax-development-llp': {
-        dark: null, // No dark version available
-        light: capimaxDevelopmentLight
-      },
-      'capimax-investments-usa': {
-        dark: capimaxInvestmentsUSADark,
-        light: capimaxInvestmentsUSALight
-      },
-      'capimax-general-trading-usa': {
-        dark: capimaxGeneralTradingUSADark,
-        light: capimaxGeneralTradingUSALight
-      },
-      'capimax-investments-uae': {
-        dark: capimaxInvestmentsUAEDark,
-        light: capimaxInvestmentsUAELight
-      }
-    }
-
-    const companyLogos = logoMap[companyId]
-    if (companyLogos) {
-      // Try to get the theme-appropriate logo
-      const preferredLogo = isDark ? companyLogos.light : companyLogos.dark
-      if (preferredLogo) {
-        return preferredLogo
-      }
-      // Fallback to the other theme if preferred doesn't exist
-      return companyLogos.light || companyLogos.dark
-    }
-
-    // Fallback to null if no logo found
-    return null
-  }
 
   const translations = {
     en: {
-      pageTitle: 'Our Companies',
-      pageSubtitle: 'Discover our portfolio of specialized companies across various sectors and countries.',
-      searchPlaceholder: 'Search companies...',
-      allCountries: 'All Countries',
-      uk: 'United Kingdom',
-      usa: 'United States',
-      uae: 'United Arab Emirates',
-      viewDetails: 'View Details',
-      learnMore: 'Learn More',
-      incorporated: 'Incorporated',
-      sector: 'Sector',
-      location: 'Location',
-      companyNumber: 'Company Number',
-      subsidiaries: 'Direct Subsidiaries',
-      partnerships: 'Strategic Partnerships',
-      filterBy: 'Filter by Country',
-      noResults: 'No companies found matching your search criteria.',
-      clearFilters: 'Clear Filters'
+      heroEyebrow: 'The Group · UK · USA · UAE',
+      heroTitle: 'Specialized companies, ',
+      heroAccent: 'one umbrella.',
+      heroSubtitle:
+        'A portfolio of regulated entities, each with a defined role in the Capimax ecosystem — across investment, finance, and technology.',
+      searchPlaceholder: 'Search companies, sectors…',
+      allCountries: 'All',
+      uk: 'UK',
+      usa: 'USA',
+      uae: 'UAE',
+      companiesMarker: 'The Companies',
+      companiesTitle: 'Thirteen entities, ',
+      companiesAccent: 'one mandate.',
+      noResults: 'No companies match your search.',
+      clearFilters: 'Clear filters',
+      filterBy: 'Filter',
+      partnersMarker: 'Strategic Partnerships',
+      partnersTitle: 'Partners who extend ',
+      partnersAccent: 'our reach.',
+      partnersBody:
+        'Strategic collaborations that enhance our offering and expand our footprint across markets.',
+      learnMore: 'Learn more',
+      ctaMarker: 'Begin a conversation',
+      ctaTitle: 'Ready to partner ',
+      ctaAccent: 'with us?',
+      ctaBody: 'Explore the group, our platforms, and the assets you can own.',
+      contactCta: 'Contact us',
+      investorsCta: 'For Investors',
+      results: 'companies',
     },
     ar: {
-      pageTitle: 'شركاتنا',
-      pageSubtitle: 'اكتشف محفظة شركاتنا المتخصصة عبر قطاعات ودول مختلفة.',
-      searchPlaceholder: 'البحث في الشركات...',
-      allCountries: 'جميع الدول',
+      heroEyebrow: 'المجموعة · المملكة المتحدة · الولايات المتحدة · الإمارات',
+      heroTitle: 'شركات متخصصة، ',
+      heroAccent: 'مظلة واحدة.',
+      heroSubtitle:
+        'محفظة من الكيانات المرخّصة، لكل منها دور محدّد في منظومة كابي ماكس — عبر الاستثمار والمال والتقنية.',
+      searchPlaceholder: 'ابحث في الشركات والقطاعات…',
+      allCountries: 'الكل',
       uk: 'المملكة المتحدة',
       usa: 'الولايات المتحدة',
-      uae: 'دولة الإمارات العربية المتحدة',
-      viewDetails: 'عرض التفاصيل',
-      learnMore: 'تعلم المزيد',
-      incorporated: 'تاريخ التأسيس',
-      sector: 'القطاع',
-      location: 'الموقع',
-      companyNumber: 'رقم الشركة',
-      subsidiaries: 'الشركات التابعة المباشرة',
-      partnerships: 'الشراكات الاستراتيجية',
-      filterBy: 'تصفية حسب الدولة',
-      noResults: 'لم يتم العثور على شركات تطابق معايير البحث الخاصة بك.',
-      clearFilters: 'مسح المرشحات'
-    }
+      uae: 'الإمارات',
+      companiesMarker: 'الشركات',
+      companiesTitle: 'ثلاثة عشر كيانًا، ',
+      companiesAccent: 'مهمة واحدة.',
+      noResults: 'لا توجد شركات تطابق بحثك.',
+      clearFilters: 'مسح التصفية',
+      filterBy: 'تصفية',
+      partnersMarker: 'الشراكات الاستراتيجية',
+      partnersTitle: 'شركاء يوسّعون ',
+      partnersAccent: 'حضورنا.',
+      partnersBody:
+        'تعاونات استراتيجية تعزّز خدماتنا وتوسّع حضورنا عبر الأسواق.',
+      learnMore: 'اعرف المزيد',
+      ctaMarker: 'ابدأ محادثة',
+      ctaTitle: 'هل أنت مستعد للشراكة ',
+      ctaAccent: 'معنا؟',
+      ctaBody: 'استكشف المجموعة ومنصّاتنا والأصول التي يمكنك تملّكها.',
+      contactCta: 'تواصل معنا',
+      investorsCta: 'للمستثمرين',
+      results: 'شركة',
+    },
   }
 
   const t = translations[language]
 
-  const companies = [
-    {
-      id: 'capimax-investments-uk',
-      name: 'Capimax Investments Limited',
-      country: 'UK',
-      countryFlag: '🇬🇧',
-      description: 'Digital investment platform for fractional ownership in real estate, precious metals, and global markets.',
-      sector: 'Investment Management',
-      icon: TrendingUp,
-      color: 'bg-primary',
-      companyNumber: '16099034',
-      incorporated: '25th November 2024',
-      director: 'Ibrahim Gad',
-      location: 'London, UK',
-      type: 'subsidiary',
-      activities: ['Investment Management', 'Fund Management', 'Unit Trusts']
-    },
-    {
-      id: 'capimax-financial-management',
-      name: 'Capimax Financial Management LTD',
-      country: 'UK',
-      countryFlag: '🇬🇧',
-      description: 'Financial services holding company providing comprehensive financial management solutions.',
-      sector: 'Financial Services',
-      icon: Building2,
-      color: 'bg-success',
-      companyNumber: '16099090',
-      incorporated: '25th November 2024',
-      director: 'Ibrahim Gad',
-      location: 'London, UK',
-      type: 'subsidiary',
-      activities: ['Financial Management', 'Risk Evaluation', 'Financial Markets Administration']
-    },
-    {
-      id: 'hcc-international',
-      name: 'HCC International Company Limited',
-      country: 'UK',
-      countryFlag: '🇬🇧',
-      description: 'Comprehensive insurance services including life insurance, non-life insurance, and reinsurance.',
-      sector: 'Insurance',
-      icon: Shield,
-      color: 'bg-red-500',
-      companyNumber: '16113542',
-      incorporated: '2nd December 2024',
-      director: 'Ibrahim Gad',
-      location: 'London, UK',
-      type: 'subsidiary',
-      activities: ['Life Insurance', 'Non-life Insurance', 'Reinsurance']
-    },
-    {
-      id: 'capimax-precious-metals',
-      name: 'Capimax For Investments In Precious Metals And Minerals Limited',
-      country: 'UK',
-      countryFlag: '🇬🇧',
-      description: 'Specialized investment company focusing on precious metals, gold, silver, and mineral investments.',
-      sector: 'Precious Metals',
-      icon: Coins,
-      color: 'bg-warning',
-      companyNumber: '16115521',
-      incorporated: '3rd December 2024',
-      director: 'Ibrahim Gad',
-      location: 'London, UK',
-      type: 'subsidiary',
-      activities: ['Precious Metals Production', 'Wholesale of Metals', 'Metal Ores Trading']
-    },
-    {
-      id: 'capimax-holding',
-      name: 'Capimax Holding Limited',
-      country: 'UK',
-      countryFlag: '🇬🇧',
-      description: 'Parent holding company managing all group companies and overseeing corporate governance.',
-      sector: 'Holding Company',
-      icon: Building2,
-      color: 'bg-brand-tertiary',
-      companyNumber: '16250665',
-      incorporated: '13th February 2025',
-      director: 'Ibrahim Gad',
-      location: 'London, UK',
-      type: 'subsidiary',
-      activities: ['Financial Services Holding', 'Venture Capital', 'Financial Leasing']
-    },
-    {
-      id: 'capimax-virtual-assets',
-      name: 'Capi Max Virtual Assets LTD',
-      country: 'UK',
-      countryFlag: '🇬🇧',
-      description: 'Licensed digital asset company managing cryptocurrencies, digital wallets, and virtual asset portfolios.',
-      sector: 'Digital Assets',
-      icon: Coins,
-      color: 'bg-warning',
-      companyNumber: '16465707',
-      incorporated: '21st May 2025',
-      director: 'Ibrahim Gad',
-      location: 'London, UK',
-      type: 'subsidiary',
-      activities: ['Digital Asset Management', 'Fund Management', 'Financial Markets Administration']
-    },
-    {
-      id: 'cim-financial-group',
-      name: 'CIM Financial Group Limited',
-      country: 'UK',
-      countryFlag: '🇬🇧',
-      description: 'Financial and accounting services, auditing, and documentation for developmental projects.',
-      sector: 'Financial Services',
-      icon: Building2,
-      color: 'bg-indigo-500',
-      companyNumber: '16465715',
-      incorporated: '21st May 2025',
-      director: 'Ibrahim Gad',
-      location: 'London, UK',
-      type: 'subsidiary',
-      activities: ['Financial Services', 'Risk Evaluation', 'Accounting and Auditing']
-    },
-    {
-      id: 'nova-digital-finance',
-      name: 'Nova Digital Finance LTD',
-      country: 'UK',
-      countryFlag: '🇬🇧',
-      description: 'Technical partner for digital banking services and comprehensive financial solutions.',
-      sector: 'Digital Banking',
-      icon: Smartphone,
-      color: 'bg-teal-500',
-      companyNumber: '16483755',
-      incorporated: '29th May 2025',
-      director: 'Ibrahim Gad',
-      location: 'London, UK',
-      type: 'subsidiary',
-      activities: ['Financial Intermediation', 'Credit Granting', 'Digital Banking']
-    },
-    {
-      id: 'capimax-fintech-blockchain',
-      name: 'Capimax Fintech, Blockchain Limited',
-      country: 'UK',
-      countryFlag: '🇬🇧',
-      description: 'Innovation arm developing solutions in digital payments, smart contracts, and asset tokenization.',
-      sector: 'Fintech & Blockchain',
-      icon: Smartphone,
-      color: 'bg-cyan-500',
-      companyNumber: '16538119',
-      incorporated: '24th June 2025',
-      director: 'Ibrahim Gad',
-      location: 'London, UK',
-      type: 'subsidiary',
-      activities: ['Information Technology Services', 'Financial Services', 'Fund Management']
-    },
-    {
-      id: 'capimax-development-llp',
-      name: 'Capimax Development LLP',
-      country: 'UK',
-      countryFlag: '🇬🇧',
-      description: 'Specialized real estate development company focusing on innovative residential and commercial projects.',
-      sector: 'Real Estate Development',
-      icon: Building2,
-      color: 'bg-emerald-500',
-      companyNumber: 'OC454650',
-      incorporated: '26th November 2024',
-      director: 'Ibrahim Gad, Sayed Ibrahim',
-      location: 'London, UK',
-      type: 'subsidiary',
-      activities: ['Real Estate Development', 'Construction', 'Property Management']
-    },
-    {
-      id: 'capimax-investments-usa',
-      name: 'CAPIMAX INVESTMENTS LLC',
-      country: 'USA',
-      countryFlag: '🇺🇸',
-      description: 'US operations for investment management and fund administration.',
-      sector: 'Investment Management',
-      icon: TrendingUp,
-      color: 'bg-brand-primary',
-      companyNumber: '2024-001559635',
-      incorporated: '24th November 2024',
-      director: 'Ibrahim Gad',
-      location: 'Wyoming, USA',
-      type: 'subsidiary',
-      activities: ['Investment Management', 'Fund Administration', 'Asset Management']
-    },
-    {
-      id: 'capimax-general-trading-usa',
-      name: 'CAPIMAX FOR GENERAL TRADING LLC',
-      country: 'USA',
-      countryFlag: '🇺🇸',
-      description: 'Diversified trading company providing supply, distribution, import, and export services.',
-      sector: 'General Trading',
-      icon: Globe,
-      color: 'bg-gray-600',
-      companyNumber: '7469500',
-      incorporated: '21st November 2024',
-      director: 'Ibrahim Gad',
-      location: 'New York, USA',
-      type: 'subsidiary',
-      activities: ['General Trading', 'Import/Export', 'Supply Chain Management']
-    },
-    {
-      id: 'capimax-investments-uae',
-      name: 'CAPI MAX INVESTMENTS - L.L.C',
-      country: 'UAE',
-      countryFlag: '🇦🇪',
-      description: 'UAE operations covering agricultural, real estate, commercial, and technology investments.',
-      sector: 'Investment Management',
-      icon: TrendingUp,
-      color: 'bg-amber-600',
-      companyNumber: 'CN-5639305',
-      incorporated: '29th November 2024',
-      director: 'Ibrahim Gad, Mohammed Bin Ibrahim A Alduhmush',
-      location: 'Abu Dhabi, UAE',
-      type: 'subsidiary',
-      activities: ['Agricultural Investment', 'Real Estate Investment', 'Technology Investment']
-    }
-  ]
-
   const partnerships = [
     {
       id: 'tdh-developments',
-      name: 'TDH Developments',
-      description: 'Strategic partnership in real estate development for new projects.',
-      sector: 'Real Estate Development',
+      en: { name: 'TDH Developments', sector: 'Real Estate Development', description: 'Strategic partnership in real estate development for new projects.' },
+      ar: { name: 'تي دي إتش للتطوير', sector: 'التطوير العقاري', description: 'شراكة استراتيجية في التطوير العقاري للمشاريع الجديدة.' },
       icon: Building2,
-      color: 'bg-slate-500',
-      type: 'partnership'
     },
     {
       id: 'elitegate-properties',
-      name: 'EliteGate Properties',
-      description: 'Marketing partnership in hotel properties and sustainable development.',
-      sector: 'Real Estate',
+      en: { name: 'EliteGate Properties', sector: 'Real Estate', description: 'Marketing partnership in hotel properties and sustainable development.' },
+      ar: { name: 'إيليت جيت العقارية', sector: 'العقارات', description: 'شراكة تسويقية في العقارات الفندقية والتطوير المستدام.' },
       icon: Building2,
-      color: 'bg-stone-500',
-      type: 'partnership'
     },
     {
       id: 'profit-max-investment',
-      name: 'Profit Max Investment',
-      description: 'Administrative partnership in global investment management.',
-      sector: 'Investment Management',
+      en: { name: 'Profit Max Investment', sector: 'Investment Management', description: 'Administrative partnership in global investment management.' },
+      ar: { name: 'بروفيت ماكس للاستثمار', sector: 'إدارة الاستثمار', description: 'شراكة إدارية في إدارة الاستثمارات العالمية.' },
       icon: TrendingUp,
-      color: 'bg-rose-500',
-      type: 'partnership'
     },
     {
       id: 'assurax-insurance',
-      name: 'Assurax Insurance',
-      description: 'Integrated insurance and risk assessment services.',
-      sector: 'Insurance',
+      en: { name: 'Assurax Insurance', sector: 'Insurance', description: 'Integrated insurance and risk assessment services.' },
+      ar: { name: 'أشوراكس للتأمين', sector: 'التأمين', description: 'خدمات تأمين وتقييم مخاطر متكاملة.' },
       icon: Shield,
-      color: 'bg-violet-500',
-      type: 'partnership'
-    }
+    },
   ]
 
-  const allCompanies = [...companies, ...partnerships]
-
-  const filteredCompanies = allCompanies.filter(company => {
-    const matchesSearch = company.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         company.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         company.sector.toLowerCase().includes(searchTerm.toLowerCase())
-    
-    const matchesCountry = selectedCountry === 'all' || 
-                          company.country === selectedCountry ||
-                          company.type === 'partnership'
-    
+  // Filter the canonical company registry.
+  const filteredIds = companyIds.filter((id) => {
+    const meta = companyRegistry[id]
+    const name = companyName(id, language)
+    const legal = meta.legalName || ''
+    const term = searchTerm.toLowerCase()
+    const matchesSearch =
+      name.toLowerCase().includes(term) ||
+      legal.toLowerCase().includes(term) ||
+      (meta.sector || '').toLowerCase().includes(term)
+    const matchesCountry = selectedCountry === 'all' || meta.country === selectedCountry
     return matchesSearch && matchesCountry
   })
 
-  const subsidiaries = filteredCompanies.filter(c => c.type === 'subsidiary')
-  const partnershipsList = filteredCompanies.filter(c => c.type === 'partnership')
-
-  // Enhanced animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.2
-      }
-    }
+  const hasFilters = searchTerm || selectedCountry !== 'all'
+  const clearFilters = () => {
+    setSearchTerm('')
+    setSelectedCountry('all')
   }
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut"
-      }
-    }
-  }
+  const countryOptions = [
+    { value: 'all', label: t.allCountries },
+    { value: 'UK', label: t.uk },
+    { value: 'USA', label: t.usa },
+    { value: 'UAE', label: t.uae },
+  ]
 
   return (
-    <div className="min-h-screen overflow-hidden">
-      {/* Enhanced Hero Section */}
-      <Section spacing="xl" className="relative bg-gradient-to-br from-primary/10 via-background to-success/5 dark:from-primary/5 dark:via-background dark:to-success/10">
-        <div className="absolute inset-0 bg-grid-pattern opacity-[0.02] dark:opacity-[0.05]" />
-        <div className="absolute top-10 right-10 w-96 h-96 bg-primary/5 dark:bg-primary/15 rounded-full blur-3xl" />
-        <div className="absolute bottom-10 left-10 w-80 h-80 bg-success/5 dark:bg-success/15 rounded-full blur-3xl" />
-        
-        <Container size="xl" className="relative z-10">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={containerVariants}
-            className="text-center space-y-8"
-          >
-            <motion.div variants={itemVariants}>
-              <Badge className="mb-6 bg-gradient-to-r from-primary/10 to-success/10 dark:from-primary/20 dark:to-success/20 text-primary border-primary/20 dark:border-primary/40">
-                Our Portfolio
-              </Badge>
-            </motion.div>
-            
-            <motion.h1 
-              variants={itemVariants}
-              className="text-4xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-primary via-foreground to-success bg-clip-text text-transparent leading-tight"
+    <div className="bg-cream text-ink">
+      <PageHero
+        eyebrow={t.heroEyebrow}
+        title={t.heroTitle}
+        accent={t.heroAccent}
+        subtitle={t.heroSubtitle}
+      />
+
+      {/* ===================================================== THE COMPANIES */}
+      <Band tone="darker">
+        <Reveal className="grid lg:grid-cols-2 gap-10 items-end">
+          <div>
+            <Marker num="01" label={t.companiesMarker} light />
+            <Heading lead={t.companiesTitle} accent={t.companiesAccent} light />
+          </div>
+
+          {/* Search + filter — minimal, sharp */}
+          <div className="flex flex-col sm:flex-row gap-3 lg:justify-end lg:pb-2">
+            <div className="relative flex-1 sm:max-w-xs">
+              <Search className="absolute top-1/2 -translate-y-1/2 left-3 w-4 h-4 text-sand/40" />
+              <input
+                type="text"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                placeholder={t.searchPlaceholder}
+                className="w-full bg-transparent border border-[color:var(--line-sand)] text-sand placeholder:text-sand/40 pl-9 pr-3 py-3 text-sm focus:outline-none focus:border-primary transition-colors"
+              />
+            </div>
+            <select
+              value={selectedCountry}
+              onChange={(e) => setSelectedCountry(e.target.value)}
+              aria-label={t.filterBy}
+              className="bg-transparent border border-[color:var(--line-sand)] text-sand py-3 px-3 text-sm focus:outline-none focus:border-primary transition-colors [&>option]:text-ink"
             >
-              {t.pageTitle}
-            </motion.h1>
-            
-            <motion.p 
-              variants={itemVariants}
-              className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed"
-            >
-              {t.pageSubtitle}
-            </motion.p>
-            
-            <motion.p 
-              variants={itemVariants}
-              className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed"
-            >
-              Explore our comprehensive portfolio of specialized companies operating across multiple sectors and international markets.
-            </motion.p>
-          </motion.div>
-        </Container>
-      </Section>
-
-      {/* Enhanced Search and Filters */}
-      <Section spacing="md" className="relative bg-gradient-to-br from-muted/10 via-card/5 to-background dark:from-muted/5 dark:to-card/10">
-        <div className="absolute inset-0 bg-grid-pattern opacity-[0.01] dark:opacity-[0.03]" />
-        
-        <Container size="xl" className="relative z-10">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={containerVariants}
-          >
-            <Card className="border-0 bg-card/50 dark:bg-card/20 backdrop-blur-sm shadow-xl">
-              <CardContent className="p-6 space-y-6">
-                <motion.div 
-                  variants={itemVariants}
-                  className="flex flex-col lg:flex-row gap-6 items-start lg:items-center justify-between"
-                >
-                  <div className="relative flex-1 max-w-lg">
-                    <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                    <Input
-                      placeholder={t.searchPlaceholder}
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                      className="pl-12 h-12 border-0 bg-muted/30 dark:bg-muted/20 focus:bg-background transition-colors duration-300 rounded-xl"
-                    />
-                  </div>
-                  
-                  <HStack gap="md" align="center">
-                    <div className="flex items-center gap-3">
-                      <Filter className="h-4 w-4 text-primary" />
-                      <span className="text-sm font-medium text-muted-foreground">{t.filterBy}</span>
-                    </div>
-                    <select
-                      value={selectedCountry}
-                      onChange={(e) => setSelectedCountry(e.target.value)}
-                      className="px-4 py-3 border-0 bg-muted/30 dark:bg-muted/20 rounded-lg focus:bg-background transition-colors duration-300"
-                    >
-                      <option value="all">{t.allCountries}</option>
-                      <option value="UK">{t.uk}</option>
-                      <option value="USA">{t.usa}</option>
-                      <option value="UAE">{t.uae}</option>
-                    </select>
-                    
-                    {(searchTerm || selectedCountry !== 'all') && (
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => {
-                          setSearchTerm('')
-                          setSelectedCountry('all')
-                        }}
-                        className="group hover:bg-primary/10 hover:border-primary hover:text-primary transition-all duration-300"
-                      >
-                        <X className="w-4 h-4 mr-2 group-hover:rotate-90 transition-transform duration-300" />
-                        {t.clearFilters}
-                      </Button>
-                    )}
-                  </HStack>
-                </motion.div>
-                
-                <motion.div variants={itemVariants} className="flex flex-wrap gap-2">
-                  <Badge className="px-3 py-1 bg-gradient-to-r from-primary/10 to-success/10 dark:from-primary/20 dark:to-success/20 text-primary border-primary/20 dark:border-primary/40">
-                    Total: {filteredCompanies.length} {filteredCompanies.length === 1 ? 'Company' : 'Companies'}
-                  </Badge>
-                  {subsidiaries.length > 0 && (
-                    <Badge variant="secondary" className="px-3 py-1 bg-muted/50 dark:bg-muted/30">
-                      {subsidiaries.length} Subsidiaries
-                    </Badge>
-                  )}
-                  {partnershipsList.length > 0 && (
-                    <Badge variant="secondary" className="px-3 py-1 bg-muted/50 dark:bg-muted/30">
-                      {partnershipsList.length} Partnerships
-                    </Badge>
-                  )}
-                </motion.div>
-              </CardContent>
-            </Card>
-          </motion.div>
-        </Container>
-      </Section>
-
-      {/* Enhanced Direct Subsidiaries */}
-      {subsidiaries.length > 0 && (
-        <Section spacing="xl" className="relative bg-gradient-to-br from-background via-muted/5 to-card/10 dark:from-background dark:via-muted/10 dark:to-card/20">
-          <div className="absolute inset-0 bg-grid-pattern opacity-[0.02] dark:opacity-[0.05]" />
-          <div className="absolute top-0 left-0 w-72 h-72 bg-success/5 dark:bg-success/15 rounded-full blur-3xl" />
-          <Container size="xl" className="relative z-10">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={containerVariants}
-              className="space-y-16"
-            >
-              <VStack gap="md" align="center" className="text-center">
-                <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary to-success bg-clip-text text-transparent">
-                  {t.subsidiaries}
-                </motion.h2>
-                <motion.p variants={itemVariants} className="text-xl text-muted-foreground max-w-3xl">
-                  Fully owned companies operating under the Capimax Group umbrella, each specializing in their respective sectors.
-                </motion.p>
-              </VStack>
-
-              <Grid cols={3} gap="lg">
-                {subsidiaries.map((company, index) => (
-                  <motion.div key={company.id} variants={itemVariants}>
-                    <motion.div
-                      whileHover={{ y: -8 }}
-                      className="group"
-                    >
-                      <Card className="relative h-full border-0 bg-card/50 dark:bg-card/20 backdrop-blur-sm hover:bg-card/80 dark:hover:bg-card/40 hover:shadow-2xl dark:hover:shadow-primary/20 transition-all duration-500 group overflow-hidden">
-                        {/* Animated border */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-primary via-success to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                          <div className="absolute inset-[1px] bg-card dark:bg-card/20 rounded-[calc(var(--radius)-1px)]" />
-                        </div>
-                        
-                        {/* Progress indicator */}
-                        <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary to-success transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-                        
-                        <div className="relative">
-                        <CardHeader className="pb-6">
-                          <motion.div
-                            className="w-48 h-48 mx-auto mb-6 flex items-center justify-center"
-                            whileHover={{ scale: 1.02 }}
-                            transition={{ duration: 0.3 }}
-                          >
-                            {getCompanyLogo(company.id) ? (
-                              <img
-                                src={getCompanyLogo(company.id)}
-                                alt={`${company.name} logo`}
-                                className="w-full h-full object-contain"
-                              />
-                            ) : (
-                              <company.icon className="h-24 w-24 text-primary" />
-                            )}
-                          </motion.div>
-                          <CardTitle className="text-lg line-clamp-2 hover:text-primary transition-colors duration-300">
-                            {company.name}
-                          </CardTitle>
-                        </CardHeader>
-                        <CardContent className="space-y-4">
-                          <CardDescription className="line-clamp-3 leading-relaxed">
-                            {company.description}
-                          </CardDescription>
-                          
-                          <VStack gap="sm" className="text-sm text-muted-foreground">
-                            <HStack gap="sm" align="center">
-                              <Calendar className="h-4 w-4 text-primary" />
-                              <span>{t.incorporated}: {company.incorporated}</span>
-                            </HStack>
-                            <HStack gap="sm" align="center">
-                              <MapPin className="h-4 w-4 text-primary" />
-                              <span>{company.location}</span>
-                            </HStack>
-                          </VStack>
-
-                          <div className="flex flex-wrap gap-1">
-                            {company.activities?.slice(0, 2).map((activity, idx) => (
-                              <Badge key={idx} variant="outline" className="text-xs hover:bg-primary/5 transition-colors">
-                                {activity}
-                              </Badge>
-                            ))}
-                            {company.activities?.length > 2 && (
-                              <Badge variant="outline" className="text-xs bg-muted/50">
-                                +{company.activities.length - 2} more
-                              </Badge>
-                            )}
-                          </div>
-
-                          <Button 
-                            variant="outline" 
-                            size="sm" 
-                            className="w-full group border-primary/20 hover:border-primary hover:bg-primary/5 transition-all duration-300" 
-                            asChild
-                          >
-                            <Link to={`/company/${company.id}`}>
-                              {t.viewDetails}
-                              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                            </Link>
-                          </Button>
-                        </CardContent>
-                        </div>
-                      </Card>
-                    </motion.div>
-                  </motion.div>
-                ))}
-              </Grid>
-            </motion.div>
-          </Container>
-        </Section>
-      )}
-
-      {/* Enhanced Strategic Partnerships */}
-      {partnershipsList.length > 0 && (
-        <Section spacing="xl" className="relative bg-gradient-to-br from-muted/10 via-card/5 to-background dark:from-muted/5 dark:to-card/10">
-          <div className="absolute inset-0 bg-grid-pattern opacity-[0.02] dark:opacity-[0.05]" />
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/5 dark:bg-primary/15 rounded-full blur-3xl" />
-          <Container size="xl" className="relative z-10">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={containerVariants}
-              className="space-y-16"
-            >
-              <VStack gap="md" align="center" className="text-center">
-                <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-success to-primary bg-clip-text text-transparent">
-                  {t.partnerships}
-                </motion.h2>
-                <motion.p variants={itemVariants} className="text-xl text-muted-foreground max-w-3xl">
-                  Strategic partnerships and collaborations that enhance our service offerings and expand our global reach.
-                </motion.p>
-              </VStack>
-
-              <Grid cols={4} gap="lg">
-                {partnershipsList.map((partner, index) => (
-                  <motion.div key={partner.id} variants={itemVariants}>
-                    <motion.div
-                      whileHover={{ y: -8 }}
-                      className="group"
-                    >
-                      <Card className="relative h-full border-0 bg-card/40 dark:bg-card/10 backdrop-blur-sm hover:bg-card/80 dark:hover:bg-card/30 hover:shadow-2xl dark:hover:shadow-success/20 transition-all duration-500 group text-center overflow-hidden">
-                        {/* Animated border */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-success via-primary to-success opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                          <div className="absolute inset-[1px] bg-card dark:bg-card/10 rounded-[calc(var(--radius)-1px)]" />
-                        </div>
-                        
-                        <div className="relative">
-                        <CardHeader>
-                          <motion.div
-                            className={`w-16 h-16 ${partner.color} rounded-2xl flex items-center justify-center mx-auto mb-4`}
-                            whileHover={{ rotate: 5, scale: 1.1 }}
-                            transition={{ duration: 0.3 }}
-                          >
-                            <partner.icon className="h-8 w-8 text-white" />
-                          </motion.div>
-                          <CardTitle className="text-lg line-clamp-2 hover:text-primary transition-colors duration-300">
-                            {partner.name}
-                          </CardTitle>
-                          <Badge variant="secondary" className="px-2 py-1 text-xs bg-success/10 text-success border border-success/20">
-                            {partner.sector}
-                          </Badge>
-                        </CardHeader>
-                        <CardContent className="space-y-4">
-                          <CardDescription className="line-clamp-4 leading-relaxed">
-                            {partner.description}
-                          </CardDescription>
-                          <Button 
-                            variant="outline" 
-                            size="sm" 
-                            className="w-full group border-success/20 hover:border-success hover:bg-success/5 transition-all duration-300"
-                          >
-                            {t.learnMore}
-                            <ExternalLink className="ml-2 h-4 w-4 group-hover:scale-110 transition-transform" />
-                          </Button>
-                        </CardContent>
-                        </div>
-                      </Card>
-                    </motion.div>
-                  </motion.div>
-                ))}
-              </Grid>
-            </motion.div>
-          </Container>
-        </Section>
-      )}
-
-      {/* Enhanced No Results */}
-      {filteredCompanies.length === 0 && (
-        <Section spacing="xl" className="relative bg-gradient-to-br from-background via-muted/5 to-card/10 dark:from-background dark:via-muted/10 dark:to-card/20">
-          <div className="absolute inset-0 bg-grid-pattern opacity-[0.02] dark:opacity-[0.05]" />
-          <div className="absolute top-0 left-0 w-72 h-72 bg-success/5 dark:bg-success/15 rounded-full blur-3xl" />
-          <Container size="xl" className="relative z-10">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={containerVariants}
-              className="text-center max-w-lg mx-auto"
-            >
-              <motion.div variants={itemVariants} className="space-y-6">
-                <motion.div
-                  animate={{ 
-                    y: [-10, 10, -10],
-                    rotate: [-5, 5, -5] 
-                  }}
-                  transition={{ 
-                    duration: 4, 
-                    repeat: Infinity, 
-                    ease: "easeInOut" 
-                  }}
-                  className="w-24 h-24 bg-gradient-to-br from-primary/20 to-success/20 rounded-2xl flex items-center justify-center mx-auto"
-                >
-                  <Building2 className="h-12 w-12 text-muted-foreground" />
-                </motion.div>
-                <div className="space-y-4">
-                  <h3 className="text-2xl font-bold text-muted-foreground">{t.noResults}</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    Try adjusting your search terms or filters to find the companies you're looking for.
-                  </p>
-                </div>
-                <Button
-                  size="lg"
-                  onClick={() => {
-                    setSearchTerm('')
-                    setSelectedCountry('all')
-                  }}
-                  className="group bg-gradient-to-r from-primary to-success hover:from-primary/90 hover:to-success/90 text-white px-8 py-3 rounded-xl"
-                >
-                  <X className="w-4 h-4 mr-2 group-hover:rotate-90 transition-transform duration-300" />
-                  {t.clearFilters}
-                </Button>
-              </motion.div>
-            </motion.div>
-          </Container>
-        </Section>
-      )}
-      {/* Enhanced CTA Section */}
-      <Section 
-        spacing="xl" 
-        className="relative bg-gradient-to-br from-primary via-primary to-success text-white"
-      >
-        <div className="absolute inset-0 bg-grid-pattern opacity-[0.1]" />
-        
-        <Container size="xl" className="relative z-10">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={containerVariants}
-          >
-            <VStack gap="xl" align="center" className="text-center">
-              <motion.div variants={itemVariants}>
-                <VStack gap="md" align="center">
-                  <h2 className="text-3xl md:text-5xl font-bold text-white">
-                    Ready to Partner With Us?
-                  </h2>
-                  <p className="text-xl md:text-2xl text-white/90 max-w-3xl leading-relaxed">
-                    Join our network of successful companies and strategic partnerships. Together, we build the future of global investment.
-                  </p>
-                </VStack>
-              </motion.div>
-              
-              <motion.div 
-                variants={itemVariants}
-                className="flex flex-col sm:flex-row items-center justify-center gap-4"
+              {countryOptions.map((o) => (
+                <option key={o.value} value={o.value}>{o.label}</option>
+              ))}
+            </select>
+            {hasFilters && (
+              <button
+                type="button"
+                onClick={clearFilters}
+                className="inline-flex items-center justify-center gap-2 border border-[color:var(--line-sand-mid)] text-sand hover:bg-sand hover:text-forest-pitch px-4 py-3 text-sm transition-colors"
               >
-                <Button 
-                  size="xl" 
-                  variant="secondary" 
-                  className="group bg-white text-primary hover:bg-white/90 px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
-                  asChild
-                >
-                  <Link to="/contact">
-                    Contact Us
-                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </Button>
-                <Button 
-                  size="xl" 
-                  variant="outline" 
-                  className="group border-2 border-white/30 text-white hover:border-white hover:bg-white/10 backdrop-blur-sm px-8 py-4 rounded-xl transition-all duration-300"
-                  asChild
-                >
-                  <Link to="/investors">
-                    Explore Opportunities
-                  </Link>
-                </Button>
-              </motion.div>
-            </VStack>
-          </motion.div>
-        </Container>
+                <X className="w-4 h-4" />
+                {t.clearFilters}
+              </button>
+            )}
+          </div>
+        </Reveal>
 
-        <FloatingElements />
-      </Section>
+        {filteredIds.length > 0 ? (
+          <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-3 border-t border-l border-[color:var(--line-sand)]">
+            {filteredIds.map((id, i) => {
+              const meta = companyRegistry[id]
+              const Icon = meta.icon
+              const logo = getCompanyLogo(id, 'dark') // dark band -> light logo asset
+              const name = companyName(id, language)
+              return (
+                <Reveal key={id} delay={(i % 3) * 0.05}>
+                  <Link
+                    to={`/company/${id}`}
+                    className="group block p-8 border-b border-r border-[color:var(--line-sand)] hover:bg-[rgba(47,173,111,0.05)] transition-colors h-full relative"
+                  >
+                    <span className="absolute top-0 left-0 h-px w-0 bg-primary group-hover:w-full transition-all duration-500" style={{ transitionTimingFunction: 'var(--ease-out)' }} />
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="h-16 flex items-center">
+                        {logo ? (
+                          <img src={logo} alt={name} className="h-14 w-auto max-w-[230px] object-contain object-left" />
+                        ) : (
+                          <Icon className="w-10 h-10 text-primary" />
+                        )}
+                      </div>
+                      <span className="mono-label text-sand/35 shrink-0" style={{ fontSize: '0.6rem' }}>/ {String(i + 1).padStart(2, '0')}</span>
+                    </div>
+                    <h3 className={`mt-6 font-display text-xl font-medium leading-snug group-hover:text-primary transition-colors ${logo ? 'sr-only' : ''}`}>{name}</h3>
+                    <p className={`text-sm text-sand/55 ${logo ? 'mt-3' : 'mt-2'}`}>{meta.sector}</p>
+                    <div className="mt-5 inline-flex items-center gap-1 text-sm text-primary opacity-0 group-hover:opacity-100 group-hover:gap-2 transition-all">
+                      {meta.countryFlag} <ArrowRight className="w-3.5 h-3.5" />
+                    </div>
+                  </Link>
+                </Reveal>
+              )
+            })}
+          </div>
+        ) : (
+          <Reveal className="mt-16 border-t border-[color:var(--line-sand)] py-20 text-center">
+            <p className="font-display text-2xl text-sand/70">{t.noResults}</p>
+            <button
+              type="button"
+              onClick={clearFilters}
+              className="mt-6 inline-flex items-center justify-center gap-2 border border-[color:var(--line-sand-mid)] text-sand hover:bg-sand hover:text-forest-pitch px-6 py-3 text-sm transition-colors"
+            >
+              <X className="w-4 h-4" />
+              {t.clearFilters}
+            </button>
+          </Reveal>
+        )}
+      </Band>
+
+      {/* ==================================================== PARTNERSHIPS */}
+      <Band tone="light">
+        <Reveal className="grid lg:grid-cols-2 gap-10 items-end">
+          <div>
+            <Marker num="02" label={t.partnersMarker} />
+            <Heading lead={t.partnersTitle} accent={t.partnersAccent} />
+          </div>
+          <p className="text-lg text-ink/70 leading-relaxed lg:pb-2">{t.partnersBody}</p>
+        </Reveal>
+
+        <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-4 border-t border-l border-[color:var(--line-dark)]">
+          {partnerships.map((partner, i) => {
+            const p = partner[language]
+            const Icon = partner.icon
+            return (
+              <Reveal key={partner.id} delay={(i % 4) * 0.05}>
+                <Link
+                  to="/partners"
+                  className="group flex flex-col h-full p-8 border-b border-r border-[color:var(--line-dark)] hover:bg-[rgba(47,173,111,0.04)] transition-colors relative"
+                >
+                  <span className="absolute top-0 left-0 h-px w-0 bg-primary group-hover:w-full transition-all duration-500" style={{ transitionTimingFunction: 'var(--ease-out)' }} />
+                  <Icon className="w-9 h-9 text-primary" />
+                  <h3 className="mt-5 font-display text-lg font-medium leading-snug group-hover:text-primary transition-colors">{p.name}</h3>
+                  <p className="mono-label text-ink/45 mt-2" style={{ fontSize: '0.6rem' }}>{p.sector}</p>
+                  <p className="mt-3 text-sm text-ink/65 leading-relaxed flex-1">{p.description}</p>
+                  <span className="mt-5 inline-flex items-center gap-1 text-sm text-primary group-hover:gap-2 transition-all">
+                    {t.learnMore} <ArrowRight className="w-3.5 h-3.5" />
+                  </span>
+                </Link>
+              </Reveal>
+            )
+          })}
+        </div>
+      </Band>
+
+      {/* ============================================================= CTA */}
+      <Band tone="pitch" className="relative overflow-hidden">
+        <div className="absolute bottom-0 left-1/3 w-[40rem] h-[40rem]" style={{ background: 'radial-gradient(circle, rgba(47,173,111,0.09), transparent 60%)' }} />
+        <Reveal className="relative max-w-3xl">
+          <Marker num="03" label={t.ctaMarker} light />
+          <Heading lead={t.ctaTitle} accent={t.ctaAccent} light size="clamp(2.4rem,5.5vw,4.5rem)" />
+          <p className="mt-7 text-lg text-sand/70 leading-relaxed">{t.ctaBody}</p>
+          <div className="mt-10 flex flex-col sm:flex-row gap-3">
+            <Link to="/contact" className={`group ${BTN.sand}`}>
+              {t.contactCta}
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
+            <Link to="/investors" className={BTN.ghostLight}>{t.investorsCta}</Link>
+          </div>
+        </Reveal>
+      </Band>
     </div>
   )
 }
 
 export default Companies
-

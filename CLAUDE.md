@@ -20,9 +20,10 @@ pnpm preview   # Preview production build
 ### Tech Stack
 - React 19 + React Router v7
 - Vite + Tailwind CSS v4
-- shadcn/ui + Radix UI primitives
+- shadcn/ui (style: `new-york`, JSX not TSX) + Radix UI primitives
 - Framer Motion for animations
 - pnpm package manager
+- Plain JavaScript/JSX — no TypeScript. Forms use `react-hook-form` + `zod`; toasts via `sonner`
 
 ### Key Patterns
 
@@ -31,6 +32,12 @@ pnpm preview   # Preview production build
 - Use `useLanguage()` hook to access language state
 - RTL mode automatically sets `dir="rtl"` on document root
 - All page components receive `language` prop for content switching
+- The language toggle UI button was removed; `language` currently defaults to `'en'`
+
+**Bilingual Content Pattern** (important — there is no i18n library):
+- Each component defines its copy inline as `const translations = { en: {...}, ar: {...} }`, then reads `translations[language]` (often aliased `const t = translations[language]`)
+- There is no central locale or data file — Arabic strings live next to the English ones inside each component
+- When adding or editing copy, update **both** the `en` and `ar` keys in that component's `translations` object
 
 **Theme System** (`src/hooks/use-theme.jsx`):
 - `ThemeProvider` wraps app with `defaultTheme="light"` and `storageKey="capimax-theme"`
@@ -51,7 +58,12 @@ pnpm preview   # Preview production build
 
 ### Design System Requirements
 
-**Brand Colors** (defined in `src/index.css`):
+**CSS files** (Tailwind v4 uses `@theme`, not a JS config):
+- `src/index.css` is the stylesheet actually imported (`src/main.jsx`); its `@theme` block defines the brand color tokens, semantic colors, and chart palette
+- `src/App.css` defines the `@custom-variant dark` and radius/spacing tokens but is **not imported anywhere** — treat it as orphaned. `components.json` still points at it, so confirm where a token lives before editing
+- There is no `tailwind.config` file
+
+**Brand Colors** (in `src/index.css` `@theme`):
 - Primary: `#01DC82` (eco-green)
 - Primary Dark: `#00383E`
 - Secondary Green: `#00C972`
@@ -60,6 +72,7 @@ pnpm preview   # Preview production build
 ```jsx
 className="bg-card/50 dark:bg-card/20 text-foreground"
 ```
+- Theme-specific **logos are intentionally inverted**: components select `isDark ? <light-variant> : <dark-variant>` (the "dark" asset is the dark-on-light version used in light mode). Match this convention when wiring new logos.
 
 **Card Pattern** (standard for all cards):
 ```jsx
@@ -102,3 +115,12 @@ Routes defined in `src/App.jsx`:
 
 - `cn()` from `@/lib/utils` - Combines clsx + tailwind-merge for className merging
 - Design tokens available in `@/lib/design-tokens` for programmatic access
+
+### Project-Specific Subagents
+
+`.claude/agents/` defines three domain subagents (Sonnet) for this project:
+- `design-system-architect` — design tokens, component libraries, dual-theme/accessibility work
+- `frontend-implementation-specialist` — bilingual/RTL feature implementation
+- `business-requirements-analyzer` — gap analysis against the docs in `business-docs/`
+
+Reference material lives in `business-docs/`, `DESIGN_SYSTEM.md`, and `UPDATED_DESIGN_SYSTEM.md`.

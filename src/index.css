@@ -1,18 +1,57 @@
 @import "tailwindcss";
 
+/* Make `dark:` utilities respond to the `.dark` CLASS (toggled by ThemeProvider),
+   not the OS media query. Without this, the theme toggle does nothing for dark: utilities. */
+@custom-variant dark (&:is(.dark *));
+
 @theme {
+  /* Typography — editorial holding-company identity:
+     Fraunces serif display (with gold/green italic accent words),
+     JetBrains Mono for eyebrows/labels, Inter for body. */
+  --font-sans: "Inter", "IBM Plex Sans Arabic", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Playfair Display", "Inter", ui-serif, Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* ===== Brand palette: teal #0a2928 + green #2fad6f + white =====
+     A unified scale built from the two brand colours. The "forest" tokens are the
+     dark teal surfaces; "sand" is the off-white text used on them; "cream/paper"
+     are the light surfaces; "ink" is text on light. The green accent reuses
+     --color-primary (#2fad6f). All flip cohesively under .dark below. */
+  --color-forest: #0a2928;          /* brand dark teal — dark sections */
+  --color-forest-mid: #114540;      /* lifted teal */
+  --color-forest-deep: #0a2421;     /* deeper */
+  --color-forest-darker: #071d1b;   /* deeper still — the Group section */
+  --color-forest-pitch: #051512;    /* near-black teal — hero / CTA */
+
+  --color-sand: #eaf2ee;            /* cool off-white — primary text on dark */
+  --color-sand-light: #ffffff;      /* hover */
+
+  --color-cream: #f5f8f6;           /* light section background (subtle teal-tinted white) */
+  --color-paper: #eef3f0;           /* alternate light background */
+  --color-ink: #0a2928;             /* text on light = brand teal */
+
+  --line-dark: rgba(10, 41, 40, 0.18);
+  --line-mid: rgba(10, 41, 40, 0.12);
+  --line-soft: rgba(10, 41, 40, 0.07);
+  --line-sand: rgba(234, 242, 238, 0.14);
+  --line-sand-mid: rgba(234, 242, 238, 0.24);
+
+  /* Signature easings */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
   /* Capimax Design System - Color Tokens */
   /* Primary Colors from Design System */
-  --color-primary-dark: #00383E;
-  --color-primary-green: #01DC82;
-  --color-secondary-green: #00C972;
+  --color-primary-dark: #0a2928;
+  --color-primary-green: #2fad6f;
+  --color-secondary-green: #26935c;
   --color-accent-yellow: #FFD93D;
   
   /* Semantic Colors */
-  --color-success: #01DC82;
-  --color-success-foreground: #00383E;
+  --color-success: #2fad6f;
+  --color-success-foreground: #0a2928;
   --color-warning: #FFD93D;
-  --color-warning-foreground: #1A1A1A;
+  --color-warning-foreground: #0a2928;
   --color-error: #FF5252;
   --color-error-foreground: #FFFFFF;
   --color-info: #2196F3;
@@ -20,58 +59,58 @@
   
   /* Light Mode Colors */
   --color-background: #FFFFFF;
-  --color-foreground: #1A1A1A;
+  --color-foreground: #0a2928;
   --color-card: #FFFFFF;
-  --color-card-foreground: #1A1A1A;
+  --color-card-foreground: #0a2928;
   --color-popover: #FFFFFF;
-  --color-popover-foreground: #1A1A1A;
+  --color-popover-foreground: #0a2928;
   
   /* Primary uses Design System Primary Green */
-  --color-primary: #01DC82;
-  --color-primary-foreground: #00383E;
+  --color-primary: #2fad6f;
+  --color-primary-foreground: #0a2928;
   
   /* Secondary uses Design System Primary Dark */
-  --color-secondary: #F8FAFB;
-  --color-secondary-foreground: #00383E;
+  --color-secondary: #eef3f0;
+  --color-secondary-foreground: #0a2928;
   
   /* Muted colors */
-  --color-muted: #F8FAFB;
-  --color-muted-foreground: #4A5568;
+  --color-muted: #eef3f0;
+  --color-muted-foreground: #4b5e5a;
   
   /* Accent colors */
-  --color-accent: #F8FAFB;
-  --color-accent-foreground: #00383E;
+  --color-accent: #eef3f0;
+  --color-accent-foreground: #0a2928;
   
   /* Destructive uses Design System Error */
   --color-destructive: #FF5252;
   --color-destructive-foreground: #FFFFFF;
   
   /* Border and Input */
-  --color-border: #E2E8F0;
-  --color-input: #E2E8F0;
-  --color-ring: #01DC82;
+  --color-border: #dce8e3;
+  --color-input: #dce8e3;
+  --color-ring: #2fad6f;
   
   /* Brand Colors matching Design System */
-  --color-brand-primary: #00383E;
-  --color-brand-secondary: #01DC82;
-  --color-brand-tertiary: #00C972;
+  --color-brand-primary: #0a2928;
+  --color-brand-secondary: #2fad6f;
+  --color-brand-tertiary: #26935c;
   
   /* Chart Colors using Design System palette */
-  --color-chart-1: #01DC82;
-  --color-chart-2: #00C972;
+  --color-chart-1: #2fad6f;
+  --color-chart-2: #26935c;
   --color-chart-3: #FFD93D;
-  --color-chart-4: #00383E;
+  --color-chart-4: #0a2928;
   --color-chart-5: #2196F3;
   
   /* Sidebar Colors */
   --color-sidebar: #FFFFFF;
-  --color-sidebar-foreground: #1A1A1A;
-  --color-sidebar-primary: #01DC82;
-  --color-sidebar-primary-foreground: #00383E;
-  --color-sidebar-accent: #F8FAFB;
-  --color-sidebar-accent-foreground: #00383E;
-  --color-sidebar-border: #E2E8F0;
-  --color-sidebar-ring: #01DC82;
+  --color-sidebar-foreground: #0a2928;
+  --color-sidebar-primary: #2fad6f;
+  --color-sidebar-primary-foreground: #0a2928;
+  --color-sidebar-accent: #eef3f0;
+  --color-sidebar-accent-foreground: #0a2928;
+  --color-sidebar-border: #dce8e3;
+  --color-sidebar-ring: #2fad6f;
   
   /* Radius System from Design System */
   --radius-none: 0;
@@ -89,42 +128,57 @@
 }
 
 .dark {
+  /* Editorial palette in dark mode: every section deepens so the whole page
+     responds to the toggle. Light sections -> deep surfaces (cream/paper),
+     forest sections -> near-black teal, all keeping cream text + green accent. */
+  --color-cream: #0a2421;
+  --color-paper: #08201d;
+  --color-ink: #eaf2ee;
+  --color-forest: #0c302c;
+  --color-forest-mid: #114540;
+  --color-forest-deep: #0a2723;
+  --color-forest-darker: #08211e;
+  --color-forest-pitch: #051613;
+  --line-dark: rgba(234, 242, 238, 0.16);
+  --line-mid: rgba(234, 242, 238, 0.10);
+  --line-soft: rgba(234, 242, 238, 0.06);
+
   /* Capimax Design System - Dark Mode Colors */
   /* Primary Colors remain the same as they're brand colors */
-  --color-primary-dark: #00383E;
-  --color-primary-green: #01DC82;
-  --color-secondary-green: #00C972;
+  --color-primary-dark: #0a2928;
+  --color-primary-green: #2fad6f;
+  --color-secondary-green: #26935c;
   --color-accent-yellow: #FFD93D;
-  
+
   /* Dark Mode Backgrounds from Design System */
-  --color-background: #0D1117;
-  --color-foreground: #F7FAFC;
-  --color-card: #161B22;
-  --color-card-foreground: #F7FAFC;
-  --color-popover: #161B22;
-  --color-popover-foreground: #F7FAFC;
+  --color-background: #06201d;
+  --color-foreground: #eaf2ee;
+  --color-card: #0a2924;
+  --color-card-foreground: #eaf2ee;
+  --color-popover: #0a2924;
+  --color-popover-foreground: #eaf2ee;
   
   /* Primary uses Design System Primary Green (same) */
-  --color-primary: #01DC82;
-  --color-primary-foreground: #00383E;
+  --color-primary: #2fad6f;
+  --color-primary-foreground: #0a2928;
   
   /* Secondary in dark mode */
-  --color-secondary: #161B22;
-  --color-secondary-foreground: #CBD5E0;
+  --color-secondary: #0a2924;
+  --color-secondary-foreground: #cfe0d9;
   
   /* Muted colors in dark mode */
-  --color-muted: #21262D;
-  --color-muted-foreground: #A0AEC0;
+  --color-muted: #102f2b;
+  --color-muted-foreground: #8aa39c;
   
   /* Accent colors in dark mode */
-  --color-accent: #21262D;
-  --color-accent-foreground: #CBD5E0;
+  --color-accent: #102f2b;
+  --color-accent-foreground: #cfe0d9;
   
   /* Semantic Colors (same as light mode for consistency) */
-  --color-success: #01DC82;
-  --color-success-foreground: #00383E;
+  --color-success: #2fad6f;
+  --color-success-foreground: #0a2928;
   --color-warning: #FFD93D;
-  --color-warning-foreground: #1A1A1A;
+  --color-warning-foreground: #0a2928;
   --color-destructive: #FF5252;
   --color-destructive-foreground: #FFFFFF;
   --color-info: #2196F3;
@@ -133,31 +187,31 @@
   --color-error-foreground: #FFFFFF;
   
   /* Border and Input in dark mode */
-  --color-border: #30363D;
-  --color-input: #484F58;
-  --color-ring: #01DC82;
+  --color-border: #1c413b;
+  --color-input: #244a44;
+  --color-ring: #2fad6f;
   
   /* Brand Colors remain the same */
-  --color-brand-primary: #00383E;
-  --color-brand-secondary: #01DC82;
-  --color-brand-tertiary: #00C972;
+  --color-brand-primary: #0a2928;
+  --color-brand-secondary: #2fad6f;
+  --color-brand-tertiary: #26935c;
   
   /* Chart Colors remain the same for consistency */
-  --color-chart-1: #01DC82;
-  --color-chart-2: #00C972;
+  --color-chart-1: #2fad6f;
+  --color-chart-2: #26935c;
   --color-chart-3: #FFD93D;
-  --color-chart-4: #00383E;
+  --color-chart-4: #0a2928;
   --color-chart-5: #2196F3;
   
   /* Sidebar Colors in dark mode */
-  --color-sidebar: #161B22;
-  --color-sidebar-foreground: #F7FAFC;
-  --color-sidebar-primary: #01DC82;
-  --color-sidebar-primary-foreground: #00383E;
-  --color-sidebar-accent: #21262D;
-  --color-sidebar-accent-foreground: #CBD5E0;
-  --color-sidebar-border: #30363D;
-  --color-sidebar-ring: #01DC82;
+  --color-sidebar: #0a2924;
+  --color-sidebar-foreground: #eaf2ee;
+  --color-sidebar-primary: #2fad6f;
+  --color-sidebar-primary-foreground: #0a2928;
+  --color-sidebar-accent: #102f2b;
+  --color-sidebar-accent-foreground: #cfe0d9;
+  --color-sidebar-border: #1c413b;
+  --color-sidebar-ring: #2fad6f;
 }
 
 @layer base {
@@ -168,9 +222,66 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
     font-feature-settings: "rlig" 1, "calt" 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Display headings use the serif for an upscale, corporate-editorial feel.
+     RTL (Arabic) falls back to the sans stack since the serif has no Arabic. */
+  h1, h2, h3, .font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+  [dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3, [dir="rtl"] .font-display {
+    font-family: var(--font-sans);
+    letter-spacing: normal;
+  }
+
+  /* Mono uppercase eyebrow/label (the editorial "marker" style). */
+  .eyebrow,
+  .mono-label {
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.7rem;
+    font-weight: 500;
+  }
+  [dir="rtl"] .eyebrow,
+  [dir="rtl"] .mono-label {
+    font-family: var(--font-sans);
+    letter-spacing: 0.04em;
+    font-weight: 600;
+  }
+
+  /* Italic accent words inside serif headings (the signature motif). */
+  .accent-em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--color-primary);
+  }
+  [dir="rtl"] .accent-em {
+    font-style: normal;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Infinite logo marquee (pauses on hover). */
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .marquee-track {
+    animation: marquee 38s linear infinite;
+  }
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+  [dir="rtl"] .marquee-track {
+    animation-direction: reverse;
   }
 
   /* Grid pattern background */

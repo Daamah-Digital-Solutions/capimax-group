@@ -1,25 +1,20 @@
-import { useParams } from 'react-router-dom'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import { 
-  Building2, 
-  MapPin, 
-  Calendar, 
-  Users, 
-  ExternalLink,
+import { useParams, Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
+import {
+  Building2,
+  MapPin,
   ArrowLeft,
+  ArrowRight,
   Phone,
   Mail,
   Globe,
-  FileText,
-  Award,
-  TrendingUp,
-  Shield,
-  Coins,
-  Smartphone
+  ArrowUpRight,
 } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { Container } from '@/components/layout/Container'
+import { companyRegistry } from '@/data/companies'
+import { companyContent } from '@/data/content'
+import { getCompanyLogo } from '@/data/logos'
+import { Band, Marker, Heading, Eyebrow, Reveal, BTN, EASE } from '@/components/editorial'
 
 const CompanyDetail = ({ language }) => {
   const { id } = useParams()
@@ -27,455 +22,300 @@ const CompanyDetail = ({ language }) => {
   const translations = {
     en: {
       backToCompanies: 'Back to Companies',
-      companyOverview: 'Company Overview',
-      keyInformation: 'Key Information',
-      businessActivities: 'Business Activities',
-      contactInformation: 'Contact Information',
-      documents: 'Documents & Certifications',
-      partnerships: 'Partnerships & Affiliations',
+      overviewMarker: 'Company Overview',
+      roleMarker: 'Role in the Group',
+      servicesMarker: 'Services & Activities',
+      activitiesMarker: 'Business Activities',
+      keyInfoMarker: 'Key Information',
+      contactMarker: 'Contact',
+      relatedMarker: 'Related Links',
       companyNumber: 'Company Number',
       incorporated: 'Incorporated',
       location: 'Location',
       sector: 'Sector',
       status: 'Status',
       active: 'Active',
-      website: 'Website',
-      email: 'Email',
-      phone: 'Phone',
-      address: 'Address',
-      viewDocument: 'View Document',
-      downloadCertificate: 'Download Certificate',
       notFound: 'Company Not Found',
       notFoundDesc: 'The company you are looking for does not exist or has been moved.',
       subsidiaryOf: 'Subsidiary of',
-      parentCompany: 'Parent Company'
+      exploreGroup: 'Explore the Group',
+      visitPlatforms: 'Our Platforms',
+      forInvestors: 'For Investors',
+      overviewTitle: 'A focused entity ',
+      overviewAccent: 'within the group.',
+      roleTitle: 'Its mandate ',
+      roleAccent: 'in the ecosystem.',
+      whatWeDo: 'What we do',
+      activitiesTitle: 'Registered ',
+      activitiesAccent: 'activities.',
     },
     ar: {
       backToCompanies: 'العودة إلى الشركات',
-      companyOverview: 'نظرة عامة على الشركة',
-      keyInformation: 'المعلومات الرئيسية',
-      businessActivities: 'الأنشطة التجارية',
-      contactInformation: 'معلومات الاتصال',
-      documents: 'الوثائق والشهادات',
-      partnerships: 'الشراكات والانتماءات',
+      overviewMarker: 'نظرة عامة على الشركة',
+      roleMarker: 'الدور داخل المجموعة',
+      servicesMarker: 'الخدمات والأنشطة',
+      activitiesMarker: 'الأنشطة التجارية',
+      keyInfoMarker: 'المعلومات الرئيسية',
+      contactMarker: 'التواصل',
+      relatedMarker: 'روابط ذات صلة',
       companyNumber: 'رقم الشركة',
       incorporated: 'تاريخ التأسيس',
       location: 'الموقع',
       sector: 'القطاع',
       status: 'الحالة',
       active: 'نشط',
-      website: 'الموقع الإلكتروني',
-      email: 'البريد الإلكتروني',
-      phone: 'الهاتف',
-      address: 'العنوان',
-      viewDocument: 'عرض الوثيقة',
-      downloadCertificate: 'تحميل الشهادة',
       notFound: 'الشركة غير موجودة',
       notFoundDesc: 'الشركة التي تبحث عنها غير موجودة أو تم نقلها.',
       subsidiaryOf: 'شركة تابعة لـ',
-      parentCompany: 'الشركة الأم'
-    }
+      exploreGroup: 'استكشف المجموعة',
+      visitPlatforms: 'منصاتنا',
+      forInvestors: 'للمستثمرين',
+      overviewTitle: 'كيان متخصص ',
+      overviewAccent: 'ضمن المجموعة.',
+      roleTitle: 'دورها ',
+      roleAccent: 'في المنظومة.',
+      whatWeDo: 'ما نقوم به',
+      activitiesTitle: 'الأنشطة ',
+      activitiesAccent: 'المسجّلة.',
+    },
   }
 
   const t = translations[language]
+  const meta = companyRegistry[id]
+  const copy = companyContent[id]?.[language]
 
-  // Company data - in a real app, this would come from an API
-  const companies = {
-    'capimax-investments-uk': {
-      id: 'capimax-investments-uk',
-      name: 'Capimax Investments Limited',
-      description: 'Digital investment platform for fractional ownership in real estate, precious metals, and global markets. Providing innovative investment solutions with comprehensive risk management and transparent reporting.',
-      sector: 'Investment Management',
-      icon: TrendingUp,
-      color: 'bg-primary',
-      companyNumber: '16099034',
-      incorporated: '25th November 2024',
-      director: 'Ibrahim Gad',
-      location: 'London, United Kingdom',
-      country: 'UK',
-      countryFlag: '🇬🇧',
-      status: 'Active',
-      parentCompany: 'Capimax Holding Limited',
-      website: 'https://investments.capimaxgroup.com',
-      email: 'investments@capimaxgroup.com',
-      phone: '+44 20 7946 0958',
-      address: '128 City Road, London, EC1V 2NX, United Kingdom',
-      activities: [
-        'Investment Management',
-        'Fund Management', 
-        'Unit Trusts',
-        'Portfolio Management',
-        'Risk Assessment',
-        'Financial Advisory'
-      ],
-      documents: [
-        {
-          title: 'Certificate of Incorporation',
-          type: 'Legal Document',
-          date: '2024-11-25',
-          verified: true
-        },
-        {
-          title: 'Fractional Investment Excellence Award',
-          type: 'Award Certificate',
-          date: '2024-12-01',
-          verified: true
-        }
-      ],
-      partnerships: [
-        'CIM Financial Group',
-        'Assurax Insurance',
-        'Nova Digital Finance'
-      ]
-    },
-    'capimax-development-llp': {
-      id: 'capimax-development-llp',
-      name: 'Capimax Development LLP',
-      description: 'Specialized real estate development company focusing on innovative residential and commercial projects. Leading sustainable development initiatives with cutting-edge design and construction methodologies.',
-      sector: 'Real Estate Development',
-      icon: Building2,
-      color: 'bg-success',
-      companyNumber: 'OC454650',
-      incorporated: '26th November 2024',
-      director: 'Ibrahim Gad, Sayed Ibrahim',
-      location: 'London, United Kingdom',
-      country: 'UK',
-      countryFlag: '🇬🇧',
-      status: 'Active',
-      parentCompany: 'Capimax Holding Limited',
-      website: 'https://development.capimaxgroup.com',
-      email: 'development@capimaxgroup.com',
-      phone: '+44 20 7946 0958',
-      address: '128 City Road, London, EC1V 2NX, United Kingdom',
-      activities: [
-        'Real Estate Development',
-        'Construction Management',
-        'Property Investment',
-        'Project Management',
-        'Sustainable Building',
-        'Urban Planning'
-      ],
-      documents: [
-        {
-          title: 'LLP Certificate of Incorporation',
-          type: 'Legal Document',
-          date: '2024-11-26',
-          verified: true
-        }
-      ],
-      partnerships: [
-        'TDH Developments',
-        'EliteGate Properties'
-      ]
-    },
-    'capimax-virtual-assets': {
-      id: 'capimax-virtual-assets',
-      name: 'Capi Max Virtual Assets LTD',
-      description: 'Licensed digital asset company managing cryptocurrencies, digital wallets, and virtual asset portfolios. Providing secure and compliant digital asset management services with advanced blockchain technology.',
-      sector: 'Digital Assets',
-      icon: Coins,
-      color: 'bg-warning',
-      companyNumber: '16465707',
-      incorporated: '21st May 2025',
-      director: 'Ibrahim Gad',
-      location: 'London, United Kingdom',
-      country: 'UK',
-      countryFlag: '🇬🇧',
-      status: 'Active',
-      parentCompany: 'Capimax Holding Limited',
-      website: 'https://virtualassets.capimaxgroup.com',
-      email: 'virtualassets@capimaxgroup.com',
-      phone: '+44 20 7946 0958',
-      address: '128 City Road, London, EC1V 2NX, United Kingdom',
-      activities: [
-        'Digital Asset Management',
-        'Cryptocurrency Trading',
-        'Digital Wallet Services',
-        'Blockchain Technology',
-        'Fund Management',
-        'Financial Markets Administration'
-      ],
-      documents: [
-        {
-          title: 'Certificate of Incorporation',
-          type: 'Legal Document',
-          date: '2025-05-21',
-          verified: true
-        },
-        {
-          title: 'Crypto-Friendly Investment Platform Award',
-          type: 'Award Certificate',
-          date: '2024-12-01',
-          verified: true
-        }
-      ],
-      partnerships: [
-        'Nova Digital Finance',
-        'CIM Financial Group'
-      ]
-    }
-  }
-
-  const company = companies[id]
-
-  if (!company) {
+  if (!meta) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <Building2 className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
-          <h1 className="text-2xl font-bold mb-2">{t.notFound}</h1>
-          <p className="text-muted-foreground mb-6">{t.notFoundDesc}</p>
-          <Button asChild>
-            <Link to="/companies">
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              {t.backToCompanies}
-            </Link>
-          </Button>
+      <div className="min-h-screen flex items-center justify-center bg-cream text-ink px-6">
+        <div className="text-center max-w-md">
+          <Building2 className="h-14 w-14 text-primary mx-auto mb-6" />
+          <h1 className="font-display font-medium text-3xl mb-3">{t.notFound}</h1>
+          <p className="text-ink/65 mb-8 leading-relaxed">{t.notFoundDesc}</p>
+          <Link to="/companies" className={`group ${BTN.forest}`}>
+            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+            {t.backToCompanies}
+          </Link>
         </div>
       </div>
     )
   }
 
+  const name = copy?.name || meta.legalName
+  const description = copy?.description || ''
+  const role = copy?.role
+  const services = copy?.services || []
+  const Icon = meta.icon || Building2
+  const logo = getCompanyLogo(id, 'dark') // hero is dark -> light logo asset
+
+  const keyInfo = [
+    [t.companyNumber, meta.companyNumber],
+    [t.incorporated, meta.incorporated],
+    [t.location, meta.location],
+    [t.sector, meta.sector],
+  ]
+
   return (
-    <div className="min-h-screen">
-      {/* Header */}
-      <section className="py-12 bg-gradient-to-br from-primary/10 via-background to-secondary/10">
-        <div className="container mx-auto px-4">
-          <div className="mb-6">
-            <Button variant="ghost" asChild>
-              <Link to="/companies">
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                {t.backToCompanies}
-              </Link>
-            </Button>
-          </div>
-          
-          <div className="flex flex-col lg:flex-row items-start gap-8">
-            <div className={`w-16 h-16 ${company.color} rounded-xl flex items-center justify-center flex-shrink-0`}>
-              <company.icon className="h-8 w-8 text-white" />
-            </div>
-            
-            <div className="flex-1">
-              <div className="flex items-center space-x-4 mb-4">
-                <span className="text-3xl">{company.countryFlag}</span>
-                <Badge variant="secondary">{company.sector}</Badge>
-                <Badge className="bg-success/10 text-success">{t.active}</Badge>
-              </div>
-              
-              <h1 className="text-3xl md:text-4xl font-bold mb-4">{company.name}</h1>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                {company.description}
-              </p>
-              
-              {company.parentCompany && (
-                <div className="mt-4">
-                  <span className="text-sm text-muted-foreground">{t.subsidiaryOf}: </span>
-                  <span className="text-sm font-medium">{company.parentCompany}</span>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      </section>
+    <div className="bg-cream text-ink">
+      {/* ============================================================ HERO */}
+      <section className="relative bg-forest-pitch text-sand pt-32 lg:pt-40 pb-20 lg:pb-28 overflow-hidden">
+        <div className="absolute inset-0 bg-grid-pattern opacity-[0.05]" />
+        <div className="absolute -top-20 right-0 w-[34rem] h-[34rem]" style={{ background: 'radial-gradient(circle, rgba(47,173,111,0.12), transparent 60%)' }} />
+        <Container size="xl" className="relative z-10">
+          <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: EASE }}>
+            <Link
+              to="/companies"
+              className="group inline-flex items-center gap-2 mono-label text-sand/55 hover:text-sand transition-colors"
+            >
+              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+              {t.backToCompanies}
+            </Link>
 
-      {/* Content */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Main Content */}
-            <div className="lg:col-span-2 space-y-8">
-              {/* Company Overview */}
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center space-x-2">
-                    <Building2 className="h-5 w-5" />
-                    <span>{t.companyOverview}</span>
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {company.description}
+            <div className="mt-10 grid lg:grid-cols-[1.4fr_1fr] gap-10 lg:gap-16 items-center">
+              <div>
+                <Eyebrow light>
+                  <span>{meta.countryFlag} {meta.sector}</span>
+                </Eyebrow>
+                <h1 className="mt-6 font-display font-medium leading-[1.04] text-balance" style={{ fontSize: 'clamp(2.4rem,5.5vw,4.8rem)', letterSpacing: '-0.03em' }}>
+                  {name}
+                </h1>
+                <p className="mt-5 mono-label text-sand/45" style={{ fontSize: '0.62rem' }}>{meta.legalName}</p>
+                {meta.parentCompany && (
+                  <p className="mt-6 text-sm text-sand/60">
+                    <span className="text-sand/40">{t.subsidiaryOf}: </span>
+                    {meta.parentCompany}
                   </p>
-                </CardContent>
-              </Card>
+                )}
+              </div>
 
-              {/* Business Activities */}
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center space-x-2">
-                    <TrendingUp className="h-5 w-5" />
-                    <span>{t.businessActivities}</span>
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    {company.activities.map((activity, index) => (
-                      <div key={index} className="flex items-center space-x-2 p-3 bg-muted/50 rounded-lg">
-                        <div className="w-2 h-2 bg-primary rounded-full"></div>
-                        <span className="text-sm">{activity}</span>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Documents */}
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center space-x-2">
-                    <FileText className="h-5 w-5" />
-                    <span>{t.documents}</span>
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    {company.documents.map((doc, index) => (
-                      <div key={index} className="flex items-center justify-between p-4 border rounded-lg">
-                        <div className="flex items-center space-x-3">
-                          <div className="p-2 bg-primary/10 rounded-lg">
-                            {doc.type === 'Award Certificate' ? (
-                              <Award className="h-4 w-4 text-primary" />
-                            ) : (
-                              <FileText className="h-4 w-4 text-primary" />
-                            )}
-                          </div>
-                          <div>
-                            <div className="font-medium">{doc.title}</div>
-                            <div className="text-sm text-muted-foreground">
-                              {doc.type} • {new Date(doc.date).toLocaleDateString()}
-                            </div>
-                          </div>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          {doc.verified && (
-                            <Badge variant="outline" className="text-success border-success">
-                              Verified
-                            </Badge>
-                          )}
-                          <Button variant="outline" size="sm">
-                            {t.viewDocument}
-                            <ExternalLink className="ml-2 h-4 w-4" />
-                          </Button>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Partnerships */}
-              {company.partnerships && company.partnerships.length > 0 && (
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center space-x-2">
-                      <Users className="h-5 w-5" />
-                      <span>{t.partnerships}</span>
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {company.partnerships.map((partner, index) => (
-                        <div key={index} className="flex items-center space-x-3 p-3 bg-muted/50 rounded-lg">
-                          <div className="p-2 bg-primary/10 rounded-lg">
-                            <Building2 className="h-4 w-4 text-primary" />
-                          </div>
-                          <span className="font-medium">{partner}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              )}
+              {/* Big logo plate */}
+              <div className="flex items-center justify-center lg:justify-end">
+                <div className="w-full max-w-sm aspect-[4/3] border border-[color:var(--line-sand)] flex items-center justify-center p-10">
+                  {logo ? (
+                    <img src={logo} alt={name} className="max-h-full max-w-full object-contain" />
+                  ) : (
+                    <Icon className="w-24 h-24 text-primary" />
+                  )}
+                </div>
+              </div>
             </div>
-
-            {/* Sidebar */}
-            <div className="space-y-6">
-              {/* Key Information */}
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg">{t.keyInformation}</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div>
-                    <div className="text-sm font-medium text-muted-foreground">{t.companyNumber}</div>
-                    <div className="font-mono text-sm">{company.companyNumber}</div>
-                  </div>
-                  
-                  <div>
-                    <div className="text-sm font-medium text-muted-foreground">{t.incorporated}</div>
-                    <div className="text-sm">{company.incorporated}</div>
-                  </div>
-                  
-                  <div>
-                    <div className="text-sm font-medium text-muted-foreground">{t.location}</div>
-                    <div className="text-sm">{company.location}</div>
-                  </div>
-                  
-                  <div>
-                    <div className="text-sm font-medium text-muted-foreground">{t.sector}</div>
-                    <div className="text-sm">{company.sector}</div>
-                  </div>
-                  
-                  <div>
-                    <div className="text-sm font-medium text-muted-foreground">{t.status}</div>
-                    <Badge className="bg-success/10 text-success">{t.active}</Badge>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Contact Information */}
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg">{t.contactInformation}</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="flex items-center space-x-3">
-                    <Globe className="h-4 w-4 text-primary" />
-                    <a 
-                      href={company.website}
-                      className="text-sm text-primary hover:underline"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {t.website}
-                    </a>
-                  </div>
-                  
-                  <div className="flex items-center space-x-3">
-                    <Mail className="h-4 w-4 text-primary" />
-                    <a 
-                      href={`mailto:${company.email}`}
-                      className="text-sm text-muted-foreground hover:text-primary"
-                    >
-                      {company.email}
-                    </a>
-                  </div>
-                  
-                  <div className="flex items-center space-x-3">
-                    <Phone className="h-4 w-4 text-primary" />
-                    <a 
-                      href={`tel:${company.phone}`}
-                      className="text-sm text-muted-foreground hover:text-primary"
-                    >
-                      {company.phone}
-                    </a>
-                  </div>
-                  
-                  <div className="flex items-start space-x-3">
-                    <MapPin className="h-4 w-4 text-primary mt-0.5" />
-                    <div className="text-sm text-muted-foreground">
-                      {company.address}
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </div>
+          </motion.div>
+        </Container>
       </section>
+
+      {/* ======================================================== OVERVIEW */}
+      {description && (
+        <Band tone="light">
+          <div className="grid lg:grid-cols-[1fr_1.5fr] gap-14 lg:gap-24">
+            <Reveal className="lg:sticky lg:top-28 self-start">
+              <Marker num="01" label={t.overviewMarker} />
+              <Heading lead={t.overviewTitle} accent={t.overviewAccent} size="clamp(2rem,3.6vw,3.2rem)" />
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p className="text-xl leading-[1.55] text-ink/85">
+                <span className="font-display italic text-primary float-left mr-3 leading-[0.8]" style={{ fontSize: '4.5rem' }}>
+                  {language === 'ar' ? '«' : name.charAt(0)}
+                </span>
+                {description}
+              </p>
+            </Reveal>
+          </div>
+        </Band>
+      )}
+
+      {/* ============================================================ ROLE */}
+      {role && (
+        <Band tone="darker">
+          <div className="grid lg:grid-cols-[1fr_1.5fr] gap-14 lg:gap-24">
+            <Reveal className="lg:sticky lg:top-28 self-start">
+              <Marker num="02" label={t.roleMarker} light />
+              <Heading lead={t.roleTitle} accent={t.roleAccent} light size="clamp(2rem,3.6vw,3.2rem)" />
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p className="text-xl leading-[1.6] text-sand/80">{role}</p>
+              <div className="mt-10 border-l-2 border-accent pl-6 py-1">
+                <p className="font-display italic text-2xl text-sand/85 leading-snug">{copy?.tagline}</p>
+              </div>
+            </Reveal>
+          </div>
+        </Band>
+      )}
+
+      {/* ======================================================== SERVICES */}
+      {services.length > 0 && (
+        <Band tone="light">
+          <Reveal>
+            <Marker num="03" label={t.servicesMarker} />
+            <Heading lead={t.whatWeDo} size="clamp(2rem,4vw,3.4rem)" />
+          </Reveal>
+          <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 border-t border-l border-[color:var(--line-dark)]">
+            {services.map((service, i) => (
+              <Reveal key={i} delay={(i % 3) * 0.05}>
+                <div className="group flex items-start gap-4 p-8 border-b border-r border-[color:var(--line-dark)] hover:bg-[rgba(47,173,111,0.04)] transition-colors h-full">
+                  <span className="font-display italic text-2xl text-primary leading-none">{String(i + 1).padStart(2, '0')}</span>
+                  <span className="font-display text-lg font-medium leading-snug">{service}</span>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </Band>
+      )}
+
+      {/* ===================================================== ACTIVITIES */}
+      <Band tone="paper">
+        <Reveal>
+          <Marker num="04" label={t.activitiesMarker} />
+          <Heading lead={t.activitiesTitle} accent={t.activitiesAccent} size="clamp(2rem,4vw,3.4rem)" />
+        </Reveal>
+        <div className="mt-12 border-t border-[color:var(--line-dark)]">
+          {meta.activities.map((activity, i) => (
+            <Reveal key={i}>
+              <div className="group grid grid-cols-[48px_1fr] md:grid-cols-[80px_1fr_48px] gap-5 items-center py-6 border-b border-[color:var(--line-dark)] hover:px-3 transition-all duration-500" style={{ transitionTimingFunction: 'var(--ease-out)' }}>
+                <span className="font-display italic text-2xl text-primary">0{i + 1}.</span>
+                <h3 className="font-display text-xl md:text-2xl font-medium">{activity}</h3>
+                <ArrowRight className="hidden md:block w-5 h-5 text-ink/30 group-hover:text-primary group-hover:translate-x-2 transition-all justify-self-end" />
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </Band>
+
+      {/* ============================================== KEY INFO + CONTACT */}
+      <Band tone="dark">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
+          {/* Key Information */}
+          <Reveal>
+            <Marker num="05" label={t.keyInfoMarker} light />
+            <div className="grid sm:grid-cols-2 gap-y-8 gap-x-10">
+              {keyInfo.map(([label, value], i) => (
+                <div key={i}>
+                  <div className="mono-label text-sand/45" style={{ fontSize: '0.62rem' }}>{label}</div>
+                  <div className="font-display text-lg mt-1 text-sand">{value}</div>
+                </div>
+              ))}
+              <div>
+                <div className="mono-label text-sand/45" style={{ fontSize: '0.62rem' }}>{t.status}</div>
+                <div className="font-display text-lg mt-1 text-primary">{t.active}</div>
+              </div>
+            </div>
+          </Reveal>
+
+          {/* Contact */}
+          <Reveal delay={0.1}>
+            <Marker num="06" label={t.contactMarker} light />
+            <div className="space-y-5">
+              <a href={meta.website} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-4 text-sand/80 hover:text-sand transition-colors">
+                <Globe className="w-5 h-5 text-primary shrink-0" />
+                <span className="text-sm">capimaxgroup.com</span>
+                <ArrowUpRight className="w-4 h-4 text-sand/40 group-hover:text-primary ml-auto transition-colors" />
+              </a>
+              <a href={`mailto:${meta.email}`} className="flex items-center gap-4 text-sand/80 hover:text-sand transition-colors">
+                <Mail className="w-5 h-5 text-primary shrink-0" />
+                <span className="text-sm">{meta.email}</span>
+              </a>
+              <a href={`tel:${meta.phone.replace(/\s/g, '')}`} className="flex items-center gap-4 text-sand/80 hover:text-sand transition-colors">
+                <Phone className="w-5 h-5 text-primary shrink-0" />
+                <span className="text-sm">{meta.phone}</span>
+              </a>
+              <div className="flex items-start gap-4 text-sand/80">
+                <MapPin className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                <span className="text-sm">{meta.location}</span>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </Band>
+
+      {/* ==================================================== RELATED LINKS */}
+      <Band tone="pitch" className="relative overflow-hidden">
+        <div className="absolute bottom-0 left-1/3 w-[40rem] h-[40rem]" style={{ background: 'radial-gradient(circle, rgba(47,173,111,0.09), transparent 60%)' }} />
+        <Reveal className="relative">
+          <Marker num="07" label={t.relatedMarker} light />
+          <div className="grid sm:grid-cols-3 border-t border-l border-[color:var(--line-sand)]">
+            {[
+              { to: '/companies', label: t.exploreGroup },
+              { to: '/platforms', label: t.visitPlatforms },
+              { to: '/investors', label: t.forInvestors },
+            ].map((link, i) => (
+              <Link
+                key={i}
+                to={link.to}
+                className="group flex items-center justify-between gap-4 p-8 border-b border-r border-[color:var(--line-sand)] hover:bg-[rgba(47,173,111,0.05)] transition-colors"
+              >
+                <span className="font-display text-lg font-medium group-hover:text-primary transition-colors">{link.label}</span>
+                <ArrowRight className="w-5 h-5 text-sand/40 group-hover:text-primary group-hover:translate-x-1 transition-all" />
+              </Link>
+            ))}
+          </div>
+          <div className="mt-10">
+            <Link to="/companies" className={`group ${BTN.ghostLight}`}>
+              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+              {t.backToCompanies}
+            </Link>
+          </div>
+        </Reveal>
+      </Band>
     </div>
   )
 }
 
 export default CompanyDetail
-

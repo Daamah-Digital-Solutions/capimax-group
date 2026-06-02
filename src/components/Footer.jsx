@@ -1,344 +1,149 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Container } from '@/components/layout/Container'
-import { Grid } from '@/components/layout/Grid'
-import { VStack, HStack } from '@/components/layout/Stack'
-import { motion } from 'framer-motion'
-import {
-  Mail,
-  Phone,
-  MapPin,
-  Linkedin,
-  Twitter,
-  Facebook,
-  Building2,
-  TrendingUp,
-  Shield,
-  Globe,
-  ArrowRight,
-  Instagram,
-  Youtube
-} from 'lucide-react'
+import { Linkedin, Twitter, Facebook, ArrowUpRight, ArrowRight } from 'lucide-react'
 import capimaxLogo from '@/assets/capimax-group-logo.png'
 
 const Footer = ({ language }) => {
-  const translations = {
+  const [email, setEmail] = useState('')
+  const isAr = language === 'ar'
+
+  const t = {
     en: {
-      about: 'About Capimax',
-      aboutText: 'Leading global investment platform offering fractional ownership, real estate, precious metals, digital assets, and fintech solutions.',
-      quickLinks: 'Quick Links',
-      companies: 'Our Companies',
-      sectors: 'Sectors', 
-      partners: 'Partners',
-      investors: 'For Investors',
-      contact: 'Contact Info',
-      email: 'info@capimaxgroup.com',
-      phone: '+44 20 7946 0958',
-      address: '128 City Road, London, EC1V 2NX, UK',
-      followUs: 'Follow Us',
-      allRights: '© 2024 Capimax Group. All rights reserved.',
+      ctaEyebrow: 'Begin a conversation',
+      ctaTitle: ['Let’s build something ', 'that lasts.'],
+      ctaBtn: 'Get in touch',
+      about: 'A diversified holding group turning real-world assets into transparent, fractional ownership across the UK, USA, and UAE.',
+      navTitle: 'Navigate',
+      exploreTitle: 'Explore',
+      contactTitle: 'Get in touch',
+      nav: [['Home', '/'], ['About', '/about'], ['Companies', '/companies'], ['Platforms', '/platforms'], ['Ownership', '/investors'], ['Contact', '/contact']],
+      explore: [['Sectors', '/sectors'], ['Documents', '/documents'], ['Team', '/team'], ['Brochure', '/brochure'], ['News', '/news'], ['Partners', '/partners']],
+      address: 'Riyadh / London — UK · USA · UAE',
+      rights: '© 2026 Capimax Group · All rights reserved.',
       privacy: 'Privacy Policy',
-      terms: 'Terms of Service',
-      cookies: 'Cookie Policy',
-      newsletter: 'Newsletter',
-      newsletterText: 'Stay updated with our latest investment opportunities and insights.',
-      subscribe: 'Subscribe',
-      emailPlaceholder: 'Enter your email',
-      getStarted: 'Get Started Today'
+      terms: 'Terms of Use',
+      tagline: 'WE BUILD ENDURING OWNERSHIP',
     },
     ar: {
-      about: 'حول كابيماكس',
-      aboutText: 'منصة استثمارية عالمية رائدة تقدم الملكية الجزئية والعقارات والمعادن الثمينة والأصول الرقمية وحلول التكنولوجيا المالية.',
-      quickLinks: 'روابط سريعة',
-      companies: 'شركاتنا',
-      sectors: 'القطاعات',
-      partners: 'الشركاء',
-      investors: 'للمستثمرين',
-      contact: 'معلومات الاتصال',
-      email: 'info@capimaxgroup.com',
-      phone: '+44 20 7946 0958',
-      address: '128 City Road, London, EC1V 2NX, UK',
-      followUs: 'تابعنا',
-      allRights: '© 2024 مجموعة كابيماكس. جميع الحقوق محفوظة.',
+      ctaEyebrow: 'ابدأ محادثة',
+      ctaTitle: ['لنبنِ شيئًا ', 'يدوم.'],
+      ctaBtn: 'تواصل معنا',
+      about: 'مجموعة قابضة متنوّعة تحوّل الأصول الحقيقية إلى ملكية جزئية شفافة عبر المملكة المتحدة والولايات المتحدة والإمارات.',
+      navTitle: 'تصفّح',
+      exploreTitle: 'استكشف',
+      contactTitle: 'تواصل',
+      nav: [['الرئيسية', '/'], ['من نحن', '/about'], ['الشركات', '/companies'], ['المنصات', '/platforms'], ['التملّك', '/investors'], ['تواصل', '/contact']],
+      explore: [['القطاعات', '/sectors'], ['المستندات', '/documents'], ['الفريق', '/team'], ['البروشور', '/brochure'], ['الأخبار', '/news'], ['الشركاء', '/partners']],
+      address: 'الرياض / لندن — UK · USA · UAE',
+      rights: '© 2026 مجموعة كابي ماكس · جميع الحقوق محفوظة.',
       privacy: 'سياسة الخصوصية',
-      terms: 'شروط الخدمة',
-      cookies: 'سياسة ملفات تعريف الارتباط',
-      newsletter: 'النشرة الإخبارية',
-      newsletterText: 'ابق على اطلاع بأحدث الفرص الاستثمارية والرؤى لدينا.',
-      subscribe: 'اشترك',
-      emailPlaceholder: 'أدخل بريدك الإلكتروني',
-      getStarted: 'ابدأ اليوم'
-    }
-  }
+      terms: 'شروط الاستخدام',
+      tagline: 'نبني تملّكًا يدوم',
+    },
+  }[language]
 
-  const t = translations[language]
-
-  const quickLinks = [
-    { name: t.companies, path: '/companies', icon: Building2 },
-    { name: t.sectors, path: '/sectors', icon: TrendingUp },
-    { name: t.partners, path: '/partners', icon: Shield },
-    { name: t.investors, path: '/investors', icon: Globe }
+  const socials = [
+    { Icon: Linkedin, url: 'https://www.linkedin.com/company/capimax-group' },
+    { Icon: Twitter, url: 'https://x.com/capimaxgroup' },
+    { Icon: Facebook, url: 'https://www.facebook.com/capimaxgroup' },
   ]
 
-  const socialLinks = [
-    { name: 'LinkedIn', icon: Linkedin, url: '#', color: 'text-blue-600' },
-    { name: 'Twitter', icon: Twitter, url: '#', color: 'text-blue-400' },
-    { name: 'Facebook', icon: Facebook, url: '#', color: 'text-blue-700' },
-    { name: 'Instagram', icon: Instagram, url: '#', color: 'text-pink-600' },
-    { name: 'YouTube', icon: Youtube, url: '#', color: 'text-red-600' }
-  ]
-
-  const legalLinks = [
-    { name: t.privacy, path: '/privacy' },
-    { name: t.terms, path: '/terms' },
-    { name: t.cookies, path: '/cookies' }
-  ]
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2
-      }
-    }
+  const onSubscribe = (e) => {
+    e.preventDefault()
+    window.location.href = `mailto:info@capimaxgroup.com?subject=${encodeURIComponent('Newsletter')}&body=${encodeURIComponent('Subscribe: ' + email)}`
   }
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut"
-      }
-    }
-  }
+  const colHead = 'mono-label text-primary mb-6'
+  const linkCls = 'block py-1.5 text-sand/65 hover:text-sand hover:pl-1 transition-all duration-300'
 
   return (
-    <footer className="bg-gradient-to-br from-card via-card to-muted/30 border-t border-gray-200/50">
-      {/* Main Footer Content */}
-      <Container size="xl" className="px-4 py-16">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={containerVariants}
-        >
-          <Grid cols={4} gap="xl" className="mb-12">
-            {/* Company Info */}
-            <motion.div variants={itemVariants} className="lg:col-span-1">
-              <VStack gap="lg" align="start">
-                {/* Logo */}
-                <Link to="/">
-                  <motion.div
-                    className="flex items-center"
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <img
-                      src={capimaxLogo}
-                      alt="Capimax Group"
-                      className="h-12 w-auto object-contain"
-                    />
-                  </motion.div>
-                </Link>
+    <footer className="bg-forest text-sand relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-[36rem] h-[36rem]" style={{ background: 'radial-gradient(circle, rgba(47,173,111,0.07), transparent 60%)' }} />
 
-                <p className="text-muted-foreground leading-relaxed">
-                  {t.aboutText}
-                </p>
+      {/* CTA strip */}
+      <div className="relative max-w-[1480px] mx-auto px-6 lg:px-12 py-16 lg:py-20 border-b border-[color:var(--line-sand)] grid lg:grid-cols-[1.5fr_1fr] gap-8 items-center">
+        <div>
+          <span className="eyebrow inline-flex items-center gap-3 text-sand/55">
+            <span className="h-px w-8 bg-primary" />
+            {t.ctaEyebrow}
+          </span>
+          <h2 className="mt-4 font-display font-medium leading-tight" style={{ fontSize: 'clamp(1.9rem,4vw,3.4rem)', letterSpacing: '-0.02em' }}>
+            {t.ctaTitle[0]}<span className="accent-em">{t.ctaTitle[1]}</span>
+          </h2>
+        </div>
+        <div className="lg:justify-self-end">
+          <Link to="/contact" className="group inline-flex items-center gap-2 bg-sand text-forest-pitch font-semibold px-7 py-4 hover:bg-[color:var(--color-sand-light)] transition-colors">
+            {t.ctaBtn}
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </Link>
+        </div>
+      </div>
 
-                {/* Social Links */}
-                <div>
-                  <h4 className="font-semibold mb-4">{t.followUs}</h4>
-                  <HStack gap="sm">
-                    {socialLinks.map((social, index) => (
-                      <motion.a
-                        key={social.name}
-                        href={social.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`w-10 h-10 bg-muted/50 hover:bg-primary/10 rounded-xl flex items-center justify-center transition-all duration-300 group`}
-                        whileHover={{ scale: 1.1, y: -2 }}
-                        whileTap={{ scale: 0.95 }}
-                        initial={{ opacity: 0, scale: 0 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.3, delay: index * 0.1 }}
-                      >
-                        <social.icon className={`w-5 h-5 text-muted-foreground group-hover:${social.color} transition-colors duration-300`} />
-                      </motion.a>
-                    ))}
-                  </HStack>
-                </div>
-              </VStack>
-            </motion.div>
+      {/* Main */}
+      <div className="relative max-w-[1480px] mx-auto px-6 lg:px-12 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[2.2fr_1fr_1fr_1.4fr] gap-12">
+        {/* Brand */}
+        <div>
+          <Link to="/">
+            <img src={capimaxLogo} alt="Capimax Group" className="h-9 w-auto" style={{ filter: 'brightness(0) invert(1)' }} />
+          </Link>
+          <p className="mt-6 text-sm text-sand/55 leading-relaxed max-w-sm">{t.about}</p>
+          <div className="mt-6 flex gap-3">
+            {socials.map(({ Icon, url }, i) => (
+              <a key={i} href={url} target="_blank" rel="noopener noreferrer"
+                className="w-10 h-10 border border-[color:var(--line-sand-mid)] flex items-center justify-center text-sand/70 hover:bg-sand hover:text-forest-pitch hover:-translate-y-0.5 transition-all">
+                <Icon className="w-4 h-4" />
+              </a>
+            ))}
+          </div>
+          {/* Newsletter */}
+          <form onSubmit={onSubscribe} className="mt-7 flex max-w-sm border border-[color:var(--line-sand-mid)]">
+            <input
+              type="email" required value={email} onChange={(e) => setEmail(e.target.value)}
+              placeholder={isAr ? 'بريدك الإلكتروني' : 'Your email'}
+              className="flex-1 bg-transparent px-4 py-3 text-sm text-sand placeholder:text-sand/40 focus:outline-none"
+            />
+            <button type="submit" className="px-4 bg-sand text-forest-pitch hover:bg-[color:var(--color-sand-light)] transition-colors" aria-label="Subscribe">
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </form>
+        </div>
 
-            {/* Quick Links */}
-            <motion.div variants={itemVariants}>
-              <VStack gap="lg" align="start">
-                <h4 className="font-semibold text-lg">{t.quickLinks}</h4>
-                <VStack gap="sm" align="start">
-                  {quickLinks.map((link, index) => (
-                    <motion.div
-                      key={link.path}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.3, delay: index * 0.1 }}
-                    >
-                      <Link
-                        to={link.path}
-                        className="flex items-center space-x-2 text-muted-foreground hover:text-primary transition-all duration-300 group"
-                      >
-                        <link.icon className="w-4 h-4 group-hover:text-primary transition-colors" />
-                        <span className="group-hover:translate-x-1 transition-transform duration-300">
-                          {link.name}
-                        </span>
-                        <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-all duration-300" />
-                      </Link>
-                    </motion.div>
-                  ))}
-                </VStack>
-              </VStack>
-            </motion.div>
+        {/* Navigate */}
+        <div>
+          <h4 className={colHead}>{t.navTitle}</h4>
+          {t.nav.map(([name, path]) => (
+            <Link key={path} to={path} className={linkCls}>{name}</Link>
+          ))}
+        </div>
 
-            {/* Contact Info */}
-            <motion.div variants={itemVariants}>
-              <VStack gap="lg" align="start">
-                <h4 className="font-semibold text-lg">{t.contact}</h4>
-                <VStack gap="md" align="start">
-                  <motion.div 
-                    className="flex items-start space-x-3 text-muted-foreground group cursor-pointer"
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <Mail className="w-5 h-5 mt-0.5 text-primary group-hover:scale-110 transition-transform" />
-                    <div>
-                      <div className="font-medium group-hover:text-primary transition-colors">Email</div>
-                      <a href={`mailto:${t.email}`} className="text-sm hover:text-primary transition-colors">
-                        {t.email}
-                      </a>
-                    </div>
-                  </motion.div>
+        {/* Explore */}
+        <div>
+          <h4 className={colHead}>{t.exploreTitle}</h4>
+          {t.explore.map(([name, path]) => (
+            <Link key={path} to={path} className={linkCls}>{name}</Link>
+          ))}
+        </div>
 
-                  <motion.div 
-                    className="flex items-start space-x-3 text-muted-foreground group cursor-pointer"
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <Phone className="w-5 h-5 mt-0.5 text-success group-hover:scale-110 transition-transform" />
-                    <div>
-                      <div className="font-medium group-hover:text-success transition-colors">Phone</div>
-                      <a href={`tel:${t.phone}`} className="text-sm hover:text-success transition-colors">
-                        {t.phone}
-                      </a>
-                    </div>
-                  </motion.div>
+        {/* Contact */}
+        <div>
+          <h4 className={colHead}>{t.contactTitle}</h4>
+          <a href="mailto:info@capimaxgroup.com" className={linkCls}>info@capimaxgroup.com</a>
+          <a href="tel:+442079460958" className={linkCls}>+44 20 7946 0958</a>
+          <p className="py-1.5 text-sand/65 text-sm">{t.address}</p>
+        </div>
+      </div>
 
-                  <motion.div 
-                    className="flex items-start space-x-3 text-muted-foreground group"
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <MapPin className="w-5 h-5 mt-0.5 text-warning group-hover:scale-110 transition-transform" />
-                    <div>
-                      <div className="font-medium group-hover:text-warning transition-colors">Address</div>
-                      <div className="text-sm">{t.address}</div>
-                    </div>
-                  </motion.div>
-                </VStack>
-              </VStack>
-            </motion.div>
-
-            {/* Newsletter */}
-            <motion.div variants={itemVariants}>
-              <VStack gap="lg" align="start">
-                <h4 className="font-semibold text-lg">{t.newsletter}</h4>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  {t.newsletterText}
-                </p>
-                
-                <div className="w-full space-y-3">
-                  <div className="flex gap-2">
-                    <input
-                      type="email"
-                      placeholder={t.emailPlaceholder}
-                      className="flex-1 px-4 py-2 bg-background border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300"
-                    />
-                    <motion.button
-                      className="px-6 py-2 bg-gradient-to-r from-primary to-success text-white rounded-lg text-sm font-medium hover:shadow-lg transition-all duration-300 group"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      {t.subscribe}
-                      <ArrowRight className="ml-2 w-3 h-3 inline group-hover:translate-x-1 transition-transform" />
-                    </motion.button>
-                  </div>
-                  
-                  <motion.div
-                    className="pt-4"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <Link 
-                      to="/investors"
-                      className="inline-flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-primary/10 to-success/10 border border-primary/20 rounded-xl text-primary hover:bg-gradient-to-r hover:from-primary/20 hover:to-success/20 transition-all duration-300 group"
-                    >
-                      <span className="font-medium">{t.getStarted}</span>
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </Link>
-                  </motion.div>
-                </div>
-              </VStack>
-            </motion.div>
-          </Grid>
-
-          {/* Bottom Bar */}
-          <motion.div 
-            variants={itemVariants}
-            className="pt-8 border-t border-gray-200/50"
-          >
-            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-              <motion.div 
-                className="text-sm text-muted-foreground"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.8 }}
-              >
-                {t.allRights}
-              </motion.div>
-              
-              <motion.div 
-                className="flex items-center space-x-6"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 1 }}
-              >
-                {legalLinks.map((link, index) => (
-                  <motion.div
-                    key={link.path}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: 1 + (index * 0.1) }}
-                  >
-                    <Link
-                      to={link.path}
-                      className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300"
-                    >
-                      {link.name}
-                    </Link>
-                  </motion.div>
-                ))}
-              </motion.div>
-            </div>
-          </motion.div>
-        </motion.div>
-      </Container>
-
-      {/* Background Elements */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-[0.02] pointer-events-none" />
-      <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-0 right-1/4 w-80 h-80 bg-success/5 rounded-full blur-3xl pointer-events-none" />
+      {/* Bottom bar */}
+      <div className="relative border-t border-[color:var(--line-sand)]">
+        <div className="max-w-[1480px] mx-auto px-6 lg:px-12 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="mono-label text-sand/45" style={{ fontSize: '0.62rem' }}>{t.rights}</p>
+          <div className="flex items-center gap-6">
+            <Link to="/legal/privacy" className="mono-label text-sand/45 hover:text-sand transition-colors" style={{ fontSize: '0.62rem' }}>{t.privacy}</Link>
+            <Link to="/legal/terms" className="mono-label text-sand/45 hover:text-sand transition-colors" style={{ fontSize: '0.62rem' }}>{t.terms}</Link>
+            <span className="mono-label text-primary hidden md:inline" style={{ fontSize: '0.62rem' }}>{t.tagline}</span>
+          </div>
+        </div>
+      </div>
     </footer>
   )
 }
