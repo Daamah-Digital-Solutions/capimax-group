@@ -13,9 +13,9 @@
 // null => the platform has no public site yet; callers hide the "Visit" CTA.
 // ---------------------------------------------------------------------------
 export const PLATFORM_URLS = {
-  rt: 'https://capimaxrt.com',
-  propShare: 'https://capimaxpropshare.shop',
-  brx: null, // pending
+  rt: 'https://capimaxrt.tech',
+  brx: 'https://www.capimaxbrx.com',
+  propShare: 'https://capimaxpropshare.com',
   asset: null, // pending
 }
 
