@@ -12,13 +12,16 @@ const Footer = ({ language }) => {
       ctaEyebrow: 'Begin a conversation',
       ctaTitle: ['Let’s build something ', 'that lasts.'],
       ctaBtn: 'Get in touch',
-      about: 'A diversified holding group turning real-world assets into transparent, fractional ownership across the UK, USA, and UAE.',
+      about: 'A Delaware-registered holding company turning real-world real estate into transparent, fractional, and verifiable ownership across the USA and UK.',
       navTitle: 'Navigate',
       exploreTitle: 'Explore',
       contactTitle: 'Get in touch',
       nav: [['Home', '/'], ['About', '/about'], ['Companies', '/companies'], ['Platforms', '/platforms'], ['Ownership', '/investors'], ['Contact', '/contact']],
       explore: [['Sectors', '/sectors'], ['Documents', '/documents'], ['Team', '/team'], ['Brochure', '/brochure'], ['News', '/news'], ['Partners', '/partners']],
-      address: 'Riyadh / London — UK · USA · UAE',
+      offices: [
+        { region: 'United States', address: 'United States — address pending', phone: 'USA — phone pending' },
+        { region: 'United Kingdom', address: 'United Kingdom — address pending', phone: 'UK — phone pending' },
+      ],
       rights: '© 2026 Capimax Group · All rights reserved.',
       privacy: 'Privacy Policy',
       terms: 'Terms of Use',
@@ -28,13 +31,16 @@ const Footer = ({ language }) => {
       ctaEyebrow: 'ابدأ محادثة',
       ctaTitle: ['لنبنِ شيئًا ', 'يدوم.'],
       ctaBtn: 'تواصل معنا',
-      about: 'مجموعة قابضة متنوّعة تحوّل الأصول الحقيقية إلى ملكية جزئية شفافة عبر المملكة المتحدة والولايات المتحدة والإمارات.',
+      about: 'شركة قابضة مسجّلة في ولاية ديلاوير الأمريكية، تحوّل العقارات الواقعية إلى ملكية شفافة وجزئية وقابلة للتحقّق عبر الولايات المتحدة والمملكة المتحدة.',
       navTitle: 'تصفّح',
       exploreTitle: 'استكشف',
       contactTitle: 'تواصل',
       nav: [['الرئيسية', '/'], ['من نحن', '/about'], ['الشركات', '/companies'], ['المنصات', '/platforms'], ['التملّك', '/investors'], ['تواصل', '/contact']],
       explore: [['القطاعات', '/sectors'], ['المستندات', '/documents'], ['الفريق', '/team'], ['البروشور', '/brochure'], ['الأخبار', '/news'], ['الشركاء', '/partners']],
-      address: 'الرياض / لندن — UK · USA · UAE',
+      offices: [
+        { region: 'الولايات المتحدة', address: 'الولايات المتحدة — العنوان قيد الإضافة', phone: 'الولايات المتحدة — الهاتف قيد الإضافة' },
+        { region: 'المملكة المتحدة', address: 'المملكة المتحدة — العنوان قيد الإضافة', phone: 'المملكة المتحدة — الهاتف قيد الإضافة' },
+      ],
       rights: '© 2026 مجموعة كابي ماكس · جميع الحقوق محفوظة.',
       privacy: 'سياسة الخصوصية',
       terms: 'شروط الاستخدام',
@@ -128,8 +134,15 @@ const Footer = ({ language }) => {
         <div>
           <h4 className={colHead}>{t.contactTitle}</h4>
           <a href="mailto:info@capimaxgroup.com" className={linkCls}>info@capimaxgroup.com</a>
-          <a href="tel:+442079460958" className={linkCls}>+44 20 7946 0958</a>
-          <p className="py-1.5 text-sand/65 text-sm">{t.address}</p>
+          <div className="mt-4 space-y-4">
+            {t.offices.map((office) => (
+              <div key={office.region}>
+                <p className="mono-label text-sand/80 text-xs mb-1">{office.region}</p>
+                <p className="text-sand/55 text-sm leading-relaxed">{office.address}</p>
+                <p className="text-sand/55 text-sm leading-relaxed">{office.phone}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 

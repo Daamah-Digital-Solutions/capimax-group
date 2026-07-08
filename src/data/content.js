@@ -1,281 +1,225 @@
 // Shared bilingual content for Capimax Group entities.
-// Source: client "Final Client Edits" content document (file 1).
-// Each entity exposes { en, ar } sub-objects; components read entity[language].
+// V2 identity (client "Final Client Edits/V2"): a Delaware-registered holding
+// company for a global real-estate-technology ecosystem — real estate technology,
+// fractional ownership, asset tokenization, blockchain, and digital real-estate
+// solutions across the USA & UK.
 //
-// NOTE on convention: the project normally keeps UI strings inline per component.
-// This module is intentionally centralized because the SAME entity copy (companies,
-// platforms, currency, Nova) is reused across the Home page, Company detail pages,
-// dedicated platform pages, the Sectors page, and the Investors page. Keeping a
-// single source of truth avoids the copy drifting between pages.
+// Each entity exposes { en, ar } sub-objects; components read entity[language].
+// Centralized because the SAME copy (companies, platforms, currency, Nova) is
+// reused across Home, Company detail, platform pages, Sectors, and Ownership.
 
 // ---------------------------------------------------------------------------
-// Real external platform URLs (used to wire "Visit platform" CTAs so links work).
+// External platform URLs (used to wire "Visit platform" CTAs so links work).
+// null => the platform has no public site yet; callers hide the "Visit" CTA.
 // ---------------------------------------------------------------------------
 export const PLATFORM_URLS = {
-  realEstateTokenization: 'https://capimaxrt.com',
-  tokenizationStore: 'https://capimaxtokenization.store',
+  rt: 'https://capimaxrt.com',
   propShare: 'https://capimaxpropshare.shop',
-  investmentsPlatform: 'https://capimaxinvestment.com',
+  brx: null, // pending
+  asset: null, // pending
 }
 
 // ---------------------------------------------------------------------------
-// Companies — keyed by the ids already used in Companies.jsx / CompanyDetail.jsx
+// Companies — keyed by the ids in companies.js / Companies.jsx / CompanyDetail.jsx
 // ---------------------------------------------------------------------------
 export const companyContent = {
-  'capimax-holding': {
+  'capimax-group-holding': {
     en: {
-      name: 'Capimax Holding',
-      tagline: 'The parent company of the Capimax ecosystem',
+      name: 'Capimax Group Holding',
+      tagline: 'A Delaware holding company for a global real-estate-technology ecosystem',
       description:
-        'Capimax Holding is the parent company of an integrated group of investment, financial, and technology-focused entities operating across multiple jurisdictions, including the United Kingdom, the United States, and the United Arab Emirates.',
-      role: 'The holding company is responsible for group strategy, governance, asset structuring, capital allocation, and risk management, ensuring sustainable growth, operational alignment, and regulatory compliance across all subsidiaries and platforms.',
-      services: ['Group Strategy', 'Governance', 'Asset Structuring', 'Capital Allocation', 'Risk Management'],
+        'Capimax Group Holding is a holding company registered in the State of Delaware, USA. It owns a group of licensed and registered companies and specialized platforms across the United States and the United Kingdom, focused on real estate technology, fractional ownership, asset tokenization, blockchain, and digital solutions connected to the real estate sector on a global level.',
+      role:
+        'The holding company sets group strategy, governance, and compliance, and unifies the operational and technical vision across every subsidiary and platform — building one verifiable, global ecosystem.',
+      services: ['Group Strategy', 'Governance', 'Ownership Structuring', 'Risk & Compliance', 'Ecosystem Oversight'],
     },
     ar: {
-      name: 'كابي ماكس القابضة',
-      tagline: 'الكيان الأم لمنظومة كابي ماكس',
+      name: 'كابي ماكس جروب القابضة',
+      tagline: 'شركة قابضة في ديلاوير لمنظومة عالمية لتكنولوجيا العقارات',
       description:
-        'كابي ماكس القابضة هي الكيان الأم لمجموعة متكاملة من الشركات والمنصات الاستثمارية والمالية والتقنية، تعمل عبر عدة ولايات قضائية وتشمل المملكة المتحدة، الولايات المتحدة، والإمارات العربية المتحدة.',
-      role: 'تتولى الشركة وضع الاستراتيجية العامة، الحوكمة، إدارة الأصول، وهيكلة الاستثمارات، وتوحيد الرؤية التشغيلية والتقنية لجميع الشركات التابعة، بما يضمن النمو المستدام، وإدارة المخاطر، والامتثال التنظيمي.',
-      services: ['الاستراتيجية العامة', 'الحوكمة', 'هيكلة الأصول', 'تخصيص رأس المال', 'إدارة المخاطر'],
+        'كابي ماكس جروب القابضة هي شركة قابضة مسجّلة في ولاية ديلاوير بالولايات المتحدة الأمريكية، تمتلك مجموعة من الشركات المسجلة والمرخّصة بالولايات المتحدة والمملكة المتحدة والمنصات المتخصصة في تكنولوجيا العقارات، والملكية الجزئية، وترميز الأصول، والبلوكشين، والحلول الرقمية المرتبطة بالقطاع العقاري على المستوى العالمي.',
+      role:
+        'تتولى الشركة القابضة وضع استراتيجية المجموعة والحوكمة والامتثال، وتوحيد الرؤية التشغيلية والتقنية عبر جميع الشركات التابعة والمنصات — لبناء منظومة عالمية واحدة قابلة للتحقق.',
+      services: ['استراتيجية المجموعة', 'الحوكمة', 'هيكلة الملكية', 'المخاطر والامتثال', 'الإشراف على المنظومة'],
     },
   },
-  'capimax-investments-uk': {
+  'real-estate-technologies': {
     en: {
-      name: 'Capimax Investments UK',
-      tagline: 'Professional investment management in the UK market',
+      name: 'Capimax Real Estate Technologies',
+      tagline: 'Next-generation technology for global real estate',
       description:
-        'Capimax Investments UK is a professional investment company focused on identifying, structuring, and managing investment opportunities within the UK market.',
-      role: 'The company specializes in real estate, private investments, and income-generating projects, utilizing structured investment vehicles such as SPVs and partnership models, while adhering to UK legal and regulatory frameworks.',
-      services: ['Real Estate', 'Private Investments', 'Income-generating Projects', 'SPV Structuring', 'Partnership Models'],
+        'Capimax Real Estate Technologies builds the digital infrastructure of the group’s real estate ecosystem — platforms and tools that connect developers, owners, investors, brokers, and liquidity providers within one system.',
+      role:
+        'It develops the real estate marketplaces and digital property infrastructure that make ownership accessible, transparent, and verifiable across borders.',
+      services: ['Real Estate Technology', 'Digital Property Infrastructure', 'Real Estate Marketplaces', 'Multi-party Platforms'],
     },
     ar: {
-      name: 'كابي ماكس للاستثمارات – المملكة المتحدة',
-      tagline: 'إدارة استثمارية احترافية في السوق البريطاني',
+      name: 'كابي ماكس لتكنولوجيا العقارات',
+      tagline: 'جيل جديد من التكنولوجيا العقارية العالمية',
       description:
-        'شركة استثمارية متخصصة في إدارة الفرص الاستثمارية داخل السوق البريطاني، مع تركيز على العقارات، الشركات الناشئة، والمشاريع ذات التدفقات النقدية المستقرة.',
-      role: 'تعمل الشركة وفق نماذج استثمار احترافية تشمل الملكية الجزئية، الشراكات الاستثمارية، وهياكل الـSPV، مع الالتزام بالمعايير القانونية والتنظيمية في المملكة المتحدة.',
-      services: ['العقارات', 'الاستثمارات الخاصة', 'المشاريع المدرة للدخل', 'هياكل الـSPV', 'الشراكات الاستثمارية'],
+        'تبني كابي ماكس لتكنولوجيا العقارات البنية الرقمية لمنظومة المجموعة العقارية — منصات وأدوات تربط المطوّرين والملاك والمستثمرين والوسطاء ومزوّدي السيولة داخل نظام واحد.',
+      role:
+        'تطوّر أسواق العقارات الرقمية والبنية التحتية للملكية الرقمية بما يجعل التملّك متاحًا وشفافًا وقابلًا للتحقق عبر الحدود.',
+      services: ['تكنولوجيا العقارات', 'البنية التحتية للملكية الرقمية', 'أسواق العقارات الرقمية', 'المنصات متعددة الأطراف'],
     },
   },
-  'capimax-investments-usa': {
+  'asset-structure': {
     en: {
-      name: 'Capimax Investments USA',
-      tagline: 'Flexible investment structuring under U.S. jurisdictions',
+      name: 'Capimax Asset Structure',
+      tagline: 'Legal structuring for real-world assets',
       description:
-        'Capimax Investments USA operates as an investment entity structured under U.S. jurisdictions, focusing on private investments, real estate projects, and high-growth opportunities.',
-      role: 'The company provides flexible investment structuring through SPVs and private placement models, serving international investors while maintaining compliance with applicable U.S. regulations.',
-      services: ['Private Investments', 'Real Estate Projects', 'High-growth Opportunities', 'SPV Structuring', 'Private Placement'],
+        'Capimax Asset Structure designs the legal and ownership frameworks behind every asset in the ecosystem, placing each project into an independent, verifiable SPV.',
+      role:
+        'It ensures every digital asset is linked to a documented real-world asset — with a dedicated SPV, clear ownership records, and audit-ready structures.',
+      services: ['SPV Structuring', 'Asset-Backed Frameworks', 'Ownership Records', 'Legal Structuring'],
     },
     ar: {
-      name: 'كابي ماكس للاستثمارات – الولايات المتحدة',
-      tagline: 'هيكلة استثمارية مرنة وفق الأطر الأمريكية',
+      name: 'كابي ماكس لهيكلة الأصول',
+      tagline: 'الهيكلة القانونية للأصول الحقيقية',
       description:
-        'كيان استثماري أمريكي يركز على هيكلة وإدارة الاستثمارات وفق نماذج قانونية مرنة، تشمل الـSPV، والاستثمار الخاص، والمشاريع عالية النمو.',
-      role: 'تخدم الشركة المستثمرين الدوليين وتدير فرصًا استثمارية في العقارات، التكنولوجيا، والأصول البديلة، مع الالتزام بأطر الامتثال المعتمدة.',
-      services: ['الاستثمار الخاص', 'المشاريع العقارية', 'الفرص عالية النمو', 'هياكل الـSPV', 'الطرح الخاص'],
+        'تصمّم كابي ماكس لهيكلة الأصول الأطر القانونية وأطر الملكية خلف كل أصل داخل المنظومة، وتضع كل مشروع في شركة SPV مستقلة قابلة للتحقق.',
+      role:
+        'تضمن أن يكون كل أصل رقمي مرتبطًا بأصل حقيقي موثّق — مع شركة SPV مخصّصة وسجلات ملكية واضحة وهياكل جاهزة للتدقيق.',
+      services: ['هيكلة SPV', 'أطر مدعومة بالأصول', 'سجلات الملكية', 'الهيكلة القانونية'],
     },
   },
-  'capimax-investments-uae': {
+  'digital-assets': {
     en: {
-      name: 'Capimax Investments UAE',
-      tagline: 'Diversified investment across the UAE and the wider region',
+      name: 'Capimax Digital Assets',
+      tagline: 'Asset tokenization on the blockchain',
       description:
-        'Capimax Investments UAE manages diversified investment opportunities across the Emirates, spanning agricultural, real estate, and technology investments, serving regional and international investors.',
-      role: 'Operating from Abu Dhabi, the company anchors the group’s presence in the GCC, structuring and managing investments within UAE regulatory frameworks.',
-      services: ['Agricultural Investment', 'Real Estate Investment', 'Technology Investment', 'Regional Structuring'],
+        'Capimax Digital Assets tokenizes real-world real estate into secure, transferable digital shares, registered on the blockchain and governed by smart contracts.',
+      role:
+        'Operating from Wyoming, it anchors the group’s tokenization and digital-asset activity within one of the most advanced legal and regulatory frameworks for digital assets.',
+      services: ['Asset Tokenization', 'Digital Asset Management', 'Blockchain Registration', 'Smart-Contract Assets'],
     },
     ar: {
-      name: 'كابي ماكس للاستثمارات – الإمارات',
-      tagline: 'استثمار متنوع في الإمارات والمنطقة',
+      name: 'كابي ماكس للأصول الرقمية',
+      tagline: 'ترميز الأصول عبر البلوكشين',
       description:
-        'تدير كابي ماكس للاستثمارات في الإمارات فرصًا استثمارية متنوعة تشمل الاستثمار الزراعي والعقاري والتقني، وتخدم المستثمرين الإقليميين والدوليين.',
-      role: 'تعمل الشركة من أبوظبي لترسيخ حضور المجموعة في دول الخليج، مع هيكلة وإدارة الاستثمارات وفق الأطر التنظيمية الإماراتية.',
-      services: ['الاستثمار الزراعي', 'الاستثمار العقاري', 'الاستثمار التقني', 'الهيكلة الإقليمية'],
+        'ترمّز كابي ماكس للأصول الرقمية العقارات الحقيقية إلى حصص رقمية آمنة وقابلة للتحويل، مسجّلة على البلوكشين ومحكومة بالعقود الذكية.',
+      role:
+        'تعمل من ولاية وايومنغ لترسيخ نشاط الترميز والأصول الرقمية للمجموعة ضمن واحد من أكثر الأطر القانونية والتنظيمية تطوّرًا في مجال الأصول الرقمية.',
+      services: ['ترميز الأصول', 'إدارة الأصول الرقمية', 'التسجيل على البلوكشين', 'أصول العقود الذكية'],
     },
   },
-  'capimax-virtual-assets': {
+  'fractional-ownership': {
     en: {
-      name: 'Capimax Virtual Assets UK',
-      tagline: 'Real-world utility for virtual assets',
+      name: 'Capimax Fractional Ownership',
+      tagline: 'Own a share of real assets, globally',
       description:
-        'Capimax Virtual Assets UK is dedicated to the management, integration, and operational use of virtual assets and digital currencies within a real investment ecosystem.',
-      role: 'The company focuses on digital asset utilization, crypto-based payment solutions, and secure integration of virtual assets into investment platforms rather than speculative trading activities.',
-      services: ['Digital Asset Management', 'Crypto Payment Solutions', 'Platform Integration', 'Digital Settlement'],
+        'Capimax Fractional Ownership makes high-value real estate accessible by dividing it into affordable, transferable shares with clear ownership and periodic reporting.',
+      role:
+        'It runs the group’s two ownership models — a traditional-digital model via Capimax PropShare, and a tokenization model via the digital-asset platforms and blockchain.',
+      services: ['Fractional Ownership', 'Ownership Management', 'Investor Onboarding', 'Secondary Transfers'],
     },
     ar: {
-      name: 'كابي ماكس للأصول الافتراضية – المملكة المتحدة',
-      tagline: 'استخدام عملي حقيقي للأصول الافتراضية',
+      name: 'كابي ماكس للملكية الجزئية',
+      tagline: 'تملّك حصة من أصول حقيقية عالميًا',
       description:
-        'شركة متخصصة في الأصول الافتراضية والعملات الرقمية، تعمل على تطوير نماذج استخدام عملية للأصول المشفرة داخل منظومة استثمارية حقيقية.',
-      role: 'تشمل أنشطتها إدارة الأصول الرقمية، تكامل العملات المشفرة مع المنصات الاستثمارية، وتطوير حلول دفع وتسوية رقمية.',
-      services: ['إدارة الأصول الرقمية', 'حلول الدفع المشفّر', 'تكامل المنصات', 'التسوية الرقمية'],
+        'تجعل كابي ماكس للملكية الجزئية العقارات عالية القيمة متاحة عبر تقسيمها إلى حصص ميسورة وقابلة للتحويل بملكية واضحة وتقارير دورية.',
+      role:
+        'تدير نموذجَي التملّك في المجموعة — نموذج رقمي تقليدي عبر منصة كابي ماكس بروب شير، ونموذج ترميز عبر منصات الأصول الرقمية والبلوكشين.',
+      services: ['الملكية الجزئية', 'إدارة الملكية', 'انضمام المستثمرين', 'التحويلات الثانوية'],
     },
   },
-  'capimax-fintech-blockchain': {
+  'real-estate-uk': {
     en: {
-      name: 'Capimax Blockchain & FinTech UK',
-      tagline: 'The technology arm of the group',
+      name: 'Capimax Real Estate',
+      tagline: 'Sourcing and structuring UK real estate',
       description:
-        'Capimax Blockchain & FinTech is the group’s technology arm, specializing in blockchain infrastructure, smart contracts, asset tokenization systems, and financial technology solutions.',
-      role: 'The company develops secure, scalable, and compliant systems that support digital investments, tokenized assets, and financial integrations across the Capimax ecosystem.',
-      services: ['Blockchain Infrastructure', 'Smart Contracts', 'Tokenization Systems', 'Digital Wallets', 'FinTech Solutions'],
+        'Capimax Real Estate sources and prepares real estate opportunities in the United Kingdom, bringing verified assets into the group’s ownership and tokenization pipeline.',
+      role:
+        'It connects on-the-ground real estate expertise with the group’s digital platforms and SPV structures.',
+      services: ['Real Estate Sourcing', 'Asset Onboarding', 'Property Structuring', 'Market Operations'],
     },
     ar: {
-      name: 'كابي ماكس للبلوكشين والتقنيات المالية',
-      tagline: 'الذراع التقني للمجموعة',
+      name: 'كابي ماكس العقارية',
+      tagline: 'توفير وهيكلة العقارات في المملكة المتحدة',
       description:
-        'ذراع تقني متخصص في تطوير حلول البلوكشين والتقنيات المالية، يشمل العقود الذكية، أنظمة الترميز، المحافظ الرقمية، والبنية التحتية للتكامل المالي.',
-      role: 'تقدم الشركة حلولًا تقنية موجهة للأسواق الاستثمارية والتنظيمية، مع تركيز على الأمان، القابلية للتوسع، والامتثال.',
-      services: ['البنية التحتية للبلوكشين', 'العقود الذكية', 'أنظمة الترميز', 'المحافظ الرقمية', 'حلول التقنية المالية'],
+        'توفّر كابي ماكس العقارية وتجهّز الفرص العقارية في المملكة المتحدة، وتُدخل أصولًا موثّقة إلى مسار التملّك والترميز في المجموعة.',
+      role:
+        'تربط الخبرة العقارية الميدانية بمنصات المجموعة الرقمية وهياكل الـSPV.',
+      services: ['توفير العقارات', 'إدخال الأصول', 'هيكلة العقارات', 'العمليات السوقية'],
     },
   },
-  'capimax-financial-management': {
+  'technologies-uk': {
     en: {
-      name: 'Capimax Financial Management',
-      tagline: 'Financial planning, reporting, and investment analysis',
+      name: 'Capimax Technologies UK',
+      tagline: 'The engineering arm of the ecosystem',
       description:
-        'Capimax Financial Management provides professional financial planning, reporting, and investment analysis services.',
-      role: 'Its core activities include financial modeling, cash flow management, performance reporting, and risk assessment, supporting informed decision-making for both the group and its investors.',
-      services: ['Financial Modeling', 'Cash Flow Management', 'Performance Reporting', 'Risk Assessment'],
+        'Capimax Technologies UK builds the blockchain infrastructure, smart contracts, and tokenization systems that power the group’s platforms.',
+      role:
+        'It delivers secure, scalable, and audited technology — from smart-contract development to multi-level verification systems.',
+      services: ['Blockchain Infrastructure', 'Smart Contracts', 'Tokenization Systems', 'Security & Audit'],
     },
     ar: {
-      name: 'كابي ماكس للإدارة المالية',
-      tagline: 'التخطيط المالي والتقارير وتحليل الاستثمار',
+      name: 'كابي ماكس للتقنيات – المملكة المتحدة',
+      tagline: 'الذراع الهندسي للمنظومة',
       description:
-        'شركة متخصصة في الإدارة المالية، التخطيط المالي، إعداد النماذج الاستثمارية، وتحليل المخاطر.',
-      role: 'تخدم الشركات التابعة والمستثمرين من خلال إعداد التقارير، إدارة التدفقات النقدية، ودعم اتخاذ القرار الاستثماري المبني على البيانات.',
-      services: ['النمذجة المالية', 'إدارة التدفقات النقدية', 'تقارير الأداء', 'تقييم المخاطر'],
-    },
-  },
-  'capimax-precious-metals': {
-    en: {
-      name: 'Capimax FPR – Investment in Precious Metals',
-      tagline: 'Tangible assets for value preservation',
-      description:
-        'Capimax FPR specializes in investments in precious metals such as gold and silver, offering structured exposure to tangible assets as a hedge against market volatility.',
-      role: 'The company operates under transparent valuation and management frameworks, positioning precious metals as long-term value preservation instruments.',
-      services: ['Gold Investment', 'Silver Investment', 'Physical Ownership', 'Transparent Valuation'],
-    },
-    ar: {
-      name: 'كابي ماكس للاستثمار في المعادن الثمينة',
-      tagline: 'أصول ملموسة لحفظ القيمة',
-      description:
-        'كيان استثماري يركز على الذهب، الفضة، والمعادن الثمينة كأصول تحوط وحفظ قيمة.',
-      role: 'تعتمد الشركة نماذج استثمار منظمة تجمع بين التملك الفعلي، الإدارة الاحترافية، والشفافية في التسعير والعوائد.',
-      services: ['الاستثمار في الذهب', 'الاستثمار في الفضة', 'التملك الفعلي', 'التقييم الشفّاف'],
-    },
-  },
-  'capimax-general-trading-usa': {
-    en: {
-      name: 'Capimax General Trading',
-      tagline: 'Diversifying revenue across commercial sectors',
-      description:
-        'Capimax General Trading operates across multiple commercial sectors, facilitating the trade of goods, materials, and services that support the group’s broader investment activities.',
-      role: 'The company contributes to diversification of revenue streams and operational support within the Capimax Group.',
-      services: ['Goods Trading', 'Materials Supply', 'Commercial Services', 'Import / Export'],
-    },
-    ar: {
-      name: 'كابي ماكس للتجارة العامة',
-      tagline: 'تنويع مصادر الدخل عبر قطاعات متعددة',
-      description:
-        'شركة تجارة عامة تعمل في قطاعات متعددة تشمل السلع، المواد، والخدمات التجارية، مع دعم الأنشطة الاستثمارية للمجموعة.',
-      role: 'تسهم في تنويع مصادر الدخل وتعزيز التكامل التشغيلي داخل المجموعة.',
-      services: ['تجارة السلع', 'توريد المواد', 'الخدمات التجارية', 'الاستيراد والتصدير'],
-    },
-  },
-  'capimax-development-llp': {
-    en: {
-      name: 'Capimax Development',
-      tagline: 'The real estate development arm of the group',
-      description:
-        'Capimax Development is the real estate development arm of the group, responsible for project development, construction oversight, and asset preparation.',
-      role: 'The company transforms real estate opportunities into structured, investment-ready assets suitable for direct investment or tokenization.',
-      services: ['Project Development', 'Construction Oversight', 'Asset Preparation', 'Property Management'],
-    },
-    ar: {
-      name: 'كابي ماكس للتطوير',
-      tagline: 'ذراع التطوير العقاري للمجموعة',
-      description:
-        'ذراع التطوير العقاري للمجموعة، مسؤولة عن تطوير المشاريع، إدارة البناء، والإشراف على الأصول العقارية قبل طرحها للاستثمار أو الترميز.',
-      role: 'تعمل الشركة على تحويل الفرص العقارية إلى أصول استثمارية منظمة وجاهزة للاستثمار المباشر أو الترميز.',
-      services: ['تطوير المشاريع', 'الإشراف على البناء', 'تجهيز الأصول', 'إدارة العقارات'],
-    },
-  },
-  'hcc-international': {
-    en: {
-      name: 'HCC International',
-      tagline: 'Insurance and risk protection for the ecosystem',
-      description:
-        'HCC International provides insurance and risk-protection services across the Capimax ecosystem, including life, non-life, and reinsurance lines.',
-      role: 'The company underpins the group with cyber-insurance and risk coverage that protect investors, platforms, and digital assets.',
-      services: ['Life Insurance', 'Non-life Insurance', 'Reinsurance', 'Cyber Insurance'],
-    },
-    ar: {
-      name: 'إتش سي سي إنترناشيونال',
-      tagline: 'التأمين وحماية المخاطر للمنظومة',
-      description:
-        'تقدم إتش سي سي إنترناشيونال خدمات التأمين وحماية المخاطر عبر منظومة كابي ماكس، وتشمل التأمين على الحياة والتأمين العام وإعادة التأمين.',
-      role: 'تدعم الشركة المجموعة بتغطية تأمينية وتأمين سيبراني يحمي المستثمرين والمنصات والأصول الرقمية.',
-      services: ['التأمين على الحياة', 'التأمين العام', 'إعادة التأمين', 'التأمين السيبراني'],
-    },
-  },
-  'cim-financial-group': {
-    en: {
-      name: 'CIM Financial Group',
-      tagline: 'Financial services and advisory',
-      description:
-        'CIM Financial Group delivers financial services, risk evaluation, and accounting and auditing support across the group.',
-      role: 'The company strengthens financial governance and advisory functions within the Capimax ecosystem.',
-      services: ['Financial Services', 'Risk Evaluation', 'Accounting & Auditing', 'Advisory'],
-    },
-    ar: {
-      name: 'مجموعة سي آي إم المالية',
-      tagline: 'الخدمات المالية والاستشارات',
-      description:
-        'تقدم مجموعة سي آي إم المالية خدمات مالية وتقييم المخاطر ودعم المحاسبة والتدقيق عبر المجموعة.',
-      role: 'تعزز الشركة الحوكمة المالية والوظائف الاستشارية داخل منظومة كابي ماكس.',
-      services: ['الخدمات المالية', 'تقييم المخاطر', 'المحاسبة والتدقيق', 'الاستشارات'],
+        'تبني كابي ماكس للتقنيات البنية التحتية للبلوكشين والعقود الذكية وأنظمة الترميز التي تشغّل منصات المجموعة.',
+      role:
+        'تقدّم تقنية آمنة وقابلة للتوسّع ومدقّقة — من تطوير العقود الذكية إلى أنظمة التحقق متعددة المستويات.',
+      services: ['البنية التحتية للبلوكشين', 'العقود الذكية', 'أنظمة الترميز', 'الأمان والتدقيق'],
     },
   },
   'nova-digital-finance': {
     en: {
       name: 'Nova Digital Finance',
-      tagline: 'Digital finance connected to real investments',
+      tagline: 'Digital finance connected to real assets',
       description:
-        'Nova Digital Finance is a digital finance platform offering innovative funding solutions connected to digital assets and cryptocurrencies.',
-      role: 'The platform bridges digital finance with real-world investment applications, providing structured financing tools that support sustainable investment activities within the Capimax ecosystem.',
-      services: ['Digital Financing', 'Credit Granting', 'Financial Intermediation', 'Digital Banking'],
+        'Nova Digital Finance provides funding and liquidity solutions connected to the group’s real, tokenized assets across the United States and the United Kingdom.',
+      role:
+        'It bridges digital finance with real-world ownership, supplying structured liquidity to the ecosystem rather than speculative products.',
+      services: ['Digital Financing', 'Liquidity Provision', 'Financial Intermediation', 'Digital Banking'],
     },
     ar: {
       name: 'نوفا للتمويل الرقمي',
-      tagline: 'تمويل رقمي مرتبط باستثمارات حقيقية',
+      tagline: 'تمويل رقمي مرتبط بأصول حقيقية',
       description:
-        'منصة تمويل رقمي تقدم حلول تمويل مبتكرة مرتبطة بالأصول الرقمية والعملات المشفرة، مع التركيز على الاستخدام الاستثماري العملي بدلاً من المضاربة.',
-      role: 'تعمل كنقطة ربط بين التمويل الرقمي ومنصات الاستثمار التابعة للمجموعة، وتوفر أدوات تمويل منظمة تدعم الأنشطة الاستثمارية المستدامة.',
-      services: ['التمويل الرقمي', 'منح الائتمان', 'الوساطة المالية', 'الخدمات المصرفية الرقمية'],
+        'تقدّم نوفا للتمويل الرقمي حلول التمويل والسيولة المرتبطة بأصول المجموعة الحقيقية والمرمّزة عبر الولايات المتحدة والمملكة المتحدة.',
+      role:
+        'تربط التمويل الرقمي بالملكية الحقيقية، وتوفّر سيولة منظّمة للمنظومة بدلًا من المنتجات المضاربية.',
+      services: ['التمويل الرقمي', 'توفير السيولة', 'الوساطة المالية', 'الخدمات المصرفية الرقمية'],
     },
   },
 }
 
 // ---------------------------------------------------------------------------
-// Platforms
+// Platforms (V2): Capimax BRX, Capimax RT, Capimax PropShare, Capimax Asset.
+// Nova Digital Finance has its own /nova page (company entry above).
 // ---------------------------------------------------------------------------
 export const platformContent = [
   {
-    id: 'real-estate-tokenization',
-    externalUrl: PLATFORM_URLS.realEstateTokenization,
+    id: 'brx',
+    externalUrl: PLATFORM_URLS.brx,
     en: {
-      name: 'Capimax Real Estate Tokenization',
-      short: 'Tokenize real estate via legally structured SPVs.',
+      name: 'Capimax BRX',
+      short: 'The multi-party real estate exchange.',
       description:
-        'Capimax Real Estate Tokenization is a specialized platform enabling the tokenization of real estate assets through legally structured SPVs. The platform allows fractional ownership, transparent reporting, and controlled exit mechanisms via secondary markets or liquidity providers, leveraging blockchain technology for efficiency and traceability.',
+        'Capimax BRX is the flagship platform that brings developers, owners, investors, brokers, and liquidity providers into one connected marketplace — a new generation of global real estate technology that unifies discovery, ownership, and exchange.',
     },
     ar: {
-      name: 'منصة كابي ماكس لترميز العقارات',
-      short: 'ترميز الأصول العقارية عبر هياكل SPV قانونية.',
+      name: 'كابي ماكس BRX',
+      short: 'منصة التبادل العقاري متعددة الأطراف.',
       description:
-        'منصة متخصصة في ترميز الأصول العقارية عبر نماذج قانونية قائمة على الـSPV، تتيح للمستثمرين التملك الجزئي والتداول المنظم من خلال السوق الثانوي أو مزودي السيولة. تعتمد المنصة على البلوكشين لتعزيز الشفافية، التوثيق، وكفاءة العمليات.',
+        'كابي ماكس BRX هي المنصة الرئيسية التي تجمع المطوّرين والملاك والمستثمرين والوسطاء ومزوّدي السيولة في سوق واحد مترابط — جيل جديد من التكنولوجيا العقارية العالمية يوحّد الاكتشاف والتملّك والتبادل.',
+    },
+  },
+  {
+    id: 'rt',
+    externalUrl: PLATFORM_URLS.rt,
+    en: {
+      name: 'Capimax RT',
+      short: 'Tokenize real estate via legally structured SPVs.',
+      description:
+        'Capimax RT is the group’s real estate tokenization platform. It converts real estate assets into transferable digital shares through legally structured SPVs, with transparent reporting and controlled exit via secondary markets or liquidity providers — secured on the blockchain.',
+    },
+    ar: {
+      name: 'كابي ماكس RT',
+      short: 'ترميز العقارات عبر هياكل SPV قانونية.',
+      description:
+        'كابي ماكس RT هي منصة المجموعة لترميز العقارات. تحوّل الأصول العقارية إلى حصص رقمية قابلة للتحويل عبر هياكل SPV قانونية، مع تقارير شفافة وتخارج منظّم عبر السوق الثانوي أو مزوّدي السيولة — ومؤمّنة على البلوكشين.',
     },
   },
   {
@@ -285,77 +229,61 @@ export const platformContent = [
       name: 'Capimax PropShare',
       short: 'Digital fractional real estate (non-blockchain).',
       description:
-        'Capimax PropShare is a digital fractional real estate investment platform that operates without blockchain technology. It enables investors to participate in carefully selected properties through structured ownership models, centralized management, and periodic performance reporting, focusing on stability and long-term value.',
+        'Capimax PropShare is the group’s digital fractional real estate platform that operates without blockchain. It lets investors participate in carefully selected properties through structured ownership, centralized management, and periodic performance reporting — focused on stability and long-term value.',
     },
     ar: {
       name: 'كابي ماكس بروب شير',
       short: 'استثمار عقاري جزئي رقمي (بدون بلوكشين).',
       description:
-        'منصة استثمار عقاري جزئي رقمية (غير قائمة على البلوكشين)، تتيح للمستثمرين المشاركة في عقارات مختارة عبر نموذج ملكية واضح، تقارير دورية، وإدارة مركزية. تركز على سهولة الاستخدام، الامتثال، والاستثمار طويل الأجل.',
+        'منصة المجموعة للملكية العقارية الجزئية الرقمية (غير قائمة على البلوكشين)، تتيح المشاركة في عقارات مختارة عبر نموذج ملكية واضح، تقارير دورية، وإدارة مركزية. تركّز على الاستقرار والقيمة طويلة الأجل.',
     },
   },
   {
-    id: 'capimax-one',
-    externalUrl: PLATFORM_URLS.investmentsPlatform,
+    id: 'asset',
+    externalUrl: PLATFORM_URLS.asset,
     en: {
-      name: 'Capimax One',
-      short: 'The unified gateway to the Capimax ecosystem.',
+      name: 'Capimax Asset',
+      short: 'Structured access to real, tokenized assets.',
       description:
-        'Capimax One is an integrated digital gateway that unifies the group’s investment platforms and services within a single interface. It provides investors with portfolio management tools, reporting, access to opportunities, and account control across the Capimax ecosystem.',
+        'Capimax Asset gives investors structured access to the group’s real, asset-backed opportunities — each linked to a documented property and an independent SPV, within one compliant operational framework.',
     },
     ar: {
-      name: 'كابي ماكس ون',
-      short: 'البوابة الموحدة لمنظومة كابي ماكس.',
+      name: 'كابي ماكس أسِت',
+      short: 'وصول منظّم إلى أصول حقيقية ومرمّزة.',
       description:
-        'منصة موحدة تجمع مختلف خدمات واستثمارات كابي ماكس في واجهة واحدة، تشمل المحافظ، التقارير، الفرص الاستثمارية، وإدارة الحسابات. تمثل نقطة الدخول الرئيسية لمنظومة كابي ماكس الرقمية.',
-    },
-  },
-  {
-    id: 'investments-platform',
-    externalUrl: PLATFORM_URLS.investmentsPlatform,
-    en: {
-      name: 'Capimax Investments Platform',
-      short: 'Multi-asset access in one operational framework.',
-      description:
-        'Capimax Investments Platform provides access to a diversified range of investment opportunities, including real estate, precious metals, private projects, and digital assets, within a unified operational and regulatory framework.',
-    },
-    ar: {
-      name: 'منصة كابي ماكس للاستثمارات',
-      short: 'وصول متعدد الأصول ضمن إطار واحد.',
-      description:
-        'منصة استثمار متعددة الأصول تتيح الوصول إلى العقارات، المعادن، المشاريع، والأصول الرقمية، ضمن إطار تشغيلي وتنظيمي موحد.',
+        'تمنح كابي ماكس أسِت المستثمرين وصولًا منظّمًا إلى فرص المجموعة الحقيقية المدعومة بالأصول — كل منها مرتبط بعقار موثّق وشركة SPV مستقلة، ضمن إطار تشغيلي متوافق.',
     },
   },
 ]
 
 // ---------------------------------------------------------------------------
-// Digital currency — Pronova
+// Digital currency — Pronova (the group contributes to the Pronova project)
 // ---------------------------------------------------------------------------
 export const currencyContent = {
   id: 'pronova',
-  externalUrl: 'https://capimaxinvestment.com',
+  externalUrl: null,
   en: {
-    name: 'Pronova Crypto',
-    short: 'A utility currency powering the Capimax ecosystem.',
+    name: 'Pronova',
+    short: 'A utility currency within the Capimax ecosystem.',
     description:
-      'Pronova is a utility-focused digital currency developed to support the Capimax ecosystem. It is designed for operational use cases such as payments, fee reductions, internal settlements, and investment facilitation across platforms, rather than speculative trading.',
+      'Pronova is a utility-focused digital currency. Capimax Group contributes to the Pronova Cryptocurrency project as part of its digital-asset ecosystem — Pronova is designed for operational use cases such as payments, fee reductions, and internal settlement across the group’s licensed platforms, rather than speculative trading.',
     highlights: [
-      'Accepted as a payment method across licensed Capimax platforms',
-      'Asset-backed utility tied to real investment activity',
+      'Capimax Group is a contributor to the Pronova Cryptocurrency project',
+      'Utility tied to real investment activity across licensed platforms',
       'Designed for payments, fee reductions, and internal settlement',
-      'Safe exit through conversion into income-generating assets',
+      'Connected to the group’s tokenized, asset-backed ecosystem',
     ],
   },
   ar: {
-    name: 'عملة Pronova الرقمية',
-    short: 'عملة خدمية تشغّل منظومة كابي ماكس.',
+    name: 'Pronova',
+    short: 'عملة خدمية داخل منظومة كابي ماكس.',
     description:
-      'عملة رقمية خدمية تم تطويرها لدعم منظومة كابي ماكس، وتُستخدم في الدفع، التخفيضات، تسوية الرسوم، وتعزيز كفاءة الاستثمار داخل المنصات. تمثل أداة تشغيلية مرتبطة بأنشطة استثمار حقيقية أكثر من كونها أداة مضاربة.',
+      'Pronova عملة رقمية خدمية. تساهم مجموعة كابي ماكس في مشروع عملة Pronova كجزء من منظومتها للأصول الرقمية — وهي مصمّمة لحالات استخدام تشغيلية مثل الدفع وتخفيض الرسوم والتسوية الداخلية عبر منصات المجموعة المرخّصة، وليست أداة مضاربة.',
     highlights: [
-      'معتمدة كوسيلة دفع عبر منصات كابي ماكس المرخصة',
-      'فائدة مدعومة بأصول ومرتبطة بنشاط استثماري حقيقي',
-      'مصممة للدفع وتخفيض الرسوم والتسوية الداخلية',
-      'تخارج آمن عبر التحويل إلى أصول مدرة للدخل',
+      'مجموعة كابي ماكس مساهِمة في مشروع عملة Pronova',
+      'فائدة مرتبطة بنشاط استثماري حقيقي عبر منصات مرخّصة',
+      'مصمّمة للدفع وتخفيض الرسوم والتسوية الداخلية',
+      'مرتبطة بمنظومة المجموعة المرمّزة والمدعومة بالأصول',
     ],
   },
 }

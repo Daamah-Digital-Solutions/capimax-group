@@ -10,6 +10,7 @@ import {
 import { PageHero, Band, Marker, Reveal, BTN } from '@/components/editorial'
 
 const Contact = ({ language }) => {
+  const isAr = language === 'ar'
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -24,7 +25,7 @@ const Contact = ({ language }) => {
       pageTitle: 'Contact ',
       pageTitleAccent: 'us.',
       pageEyebrow: 'Get in touch',
-      pageSubtitle: 'Get in touch with our team for investment opportunities, partnerships, or general inquiries.',
+      pageSubtitle: 'Get in touch with our team about fractional ownership, asset tokenization, our platforms, partnerships, or general inquiries.',
       getInTouch: 'Get in Touch',
       contactForm: 'Contact Form',
       contactFormAccent: 'a message.',
@@ -39,40 +40,43 @@ const Contact = ({ language }) => {
       message: 'Message',
       inquiryType: 'Inquiry Type',
       general: 'General Inquiry',
-      investment: 'Investment Opportunity',
-      partnership: 'Partnership',
-      support: 'Support',
+      fractional: 'Fractional Ownership',
+      tokenization: 'Asset Tokenization',
+      platforms: 'Platforms / Capimax BRX',
+      partnership: 'Partnerships',
+      media: 'Media & Press',
       sendMessage: 'Send Message',
       required: 'Required',
       optional: 'Optional',
       headquarters: 'Headquarters',
-      operations: 'Operations',
+      operations: 'Registered Office',
       weekdays: 'Monday - Friday',
       weekends: 'Saturday - Sunday',
       closed: 'Closed',
       responseTime: 'Response Time',
       responseTimeDesc: 'We typically respond within 24 hours during business days.',
-      emergencyContact: 'Emergency Contact',
-      emergencyDesc: 'For urgent matters, please call our emergency hotline.',
+      emergencyContact: 'Direct Line',
+      emergencyDesc: 'For time-sensitive partnership or platform matters, reach our team directly.',
       newsletter: 'Newsletter',
       newsletterAccent: 'informed.',
       newsletterLead: 'Stay ',
-      newsletterDesc: 'Subscribe to receive updates on investment opportunities and company news.',
+      newsletterDesc: 'Subscribe to receive updates on our platforms, tokenization launches, and company news.',
       formMarker: 'Send a message',
       infoMarker: 'Direct contacts',
       officesMarker: 'Where we are',
       newsletterMarker: 'Newsletter',
-      visitOffices: 'Visit us at our global offices.',
+      visitOffices: 'Reach us at our offices in the United States and United Kingdom.',
       subscribe: 'Subscribe',
       emailLabel: 'Email',
       phoneLabel: 'Phone',
       websiteLabel: 'Website',
+      subjectPlaceholder: 'Fractional ownership inquiry',
     },
     ar: {
       pageTitle: 'اتصل ',
       pageTitleAccent: 'بنا.',
       pageEyebrow: 'تواصل معنا',
-      pageSubtitle: 'تواصل مع فريقنا للحصول على الفرص الاستثمارية أو الشراكات أو الاستفسارات العامة.',
+      pageSubtitle: 'تواصل مع فريقنا بشأن الملكية الجزئية أو ترميز الأصول أو منصاتنا أو الشراكات أو الاستفسارات العامة.',
       getInTouch: 'تواصل معنا',
       contactForm: 'نموذج الاتصال',
       contactFormAccent: 'رسالة.',
@@ -87,79 +91,72 @@ const Contact = ({ language }) => {
       message: 'الرسالة',
       inquiryType: 'نوع الاستفسار',
       general: 'استفسار عام',
-      investment: 'فرصة استثمارية',
-      partnership: 'شراكة',
-      support: 'الدعم',
+      fractional: 'الملكية الجزئية',
+      tokenization: 'ترميز الأصول',
+      platforms: 'المنصات / كابيماكس BRX',
+      partnership: 'الشراكات',
+      media: 'الإعلام والصحافة',
       sendMessage: 'إرسال الرسالة',
       required: 'مطلوب',
       optional: 'اختياري',
       headquarters: 'المقر الرئيسي',
-      operations: 'العمليات',
+      operations: 'المكتب المسجّل',
       weekdays: 'الاثنين - الجمعة',
       weekends: 'السبت - الأحد',
       closed: 'مغلق',
       responseTime: 'وقت الاستجابة',
       responseTimeDesc: 'نحن عادة نرد خلال 24 ساعة خلال أيام العمل.',
-      emergencyContact: 'الاتصال الطارئ',
-      emergencyDesc: 'للأمور العاجلة، يرجى الاتصال بخط الطوارئ الخاص بنا.',
+      emergencyContact: 'خط مباشر',
+      emergencyDesc: 'للأمور العاجلة المتعلقة بالشراكات أو المنصات، تواصل مع فريقنا مباشرة.',
       newsletter: 'النشرة الإخبارية',
       newsletterAccent: 'على اطلاع.',
       newsletterLead: 'ابق ',
-      newsletterDesc: 'اشترك لتلقي التحديثات حول الفرص الاستثمارية وأخبار الشركة.',
+      newsletterDesc: 'اشترك لتلقي التحديثات حول منصاتنا وإطلاقات الترميز وأخبار الشركة.',
       formMarker: 'أرسل رسالة',
       infoMarker: 'جهات اتصال مباشرة',
       officesMarker: 'أين نحن',
       newsletterMarker: 'النشرة الإخبارية',
-      visitOffices: 'قم بزيارتنا في مكاتبنا حول العالم.',
+      visitOffices: 'تواصل معنا في مكتبينا بالولايات المتحدة والمملكة المتحدة.',
       subscribe: 'اشترك',
       emailLabel: 'البريد الإلكتروني',
       phoneLabel: 'الهاتف',
       websiteLabel: 'الموقع الإلكتروني',
+      subjectPlaceholder: 'استفسار عن الملكية الجزئية',
     }
   }
 
   const t = translations[language]
 
+  // NOTE: Office address & phone are placeholders pending final client data.
+  const addressTBD = isAr ? 'العنوان — يُحدَّد لاحقًا' : 'Address — to be confirmed'
+  const phoneTBD = isAr ? 'الهاتف — يُحدَّد لاحقًا' : 'Phone — to be confirmed'
+
   const offices = [
     {
-      id: 'london',
-      city: 'London',
-      country: 'United Kingdom',
-      flag: '🇬🇧',
-      type: t.headquarters,
-      address: '128 City Road, London, EC1V 2NX',
-      phone: '+44 20 7946 0958',
-      email: 'london@capimaxgroup.com',
-      hours: {
-        weekdays: '9:00 AM - 6:00 PM GMT',
-        weekends: t.closed
-      }
-    },
-    {
-      id: 'newyork',
-      city: 'New York',
-      country: 'United States',
+      id: 'usa',
+      city: isAr ? 'الولايات المتحدة' : 'United States',
+      country: isAr ? 'ديلاوير' : 'Delaware',
       flag: '🇺🇸',
-      type: t.operations,
-      address: '1 World Trade Center, New York, NY 10007',
-      phone: '+1 (212) 555-0123',
-      email: 'newyork@capimaxgroup.com',
+      type: t.headquarters,
+      address: addressTBD,
+      phone: phoneTBD,
+      email: 'usa@capimaxgroup.com',
       hours: {
         weekdays: '9:00 AM - 6:00 PM EST',
         weekends: t.closed
       }
     },
     {
-      id: 'abudhabi',
-      city: 'Abu Dhabi',
-      country: 'United Arab Emirates',
-      flag: '🇦🇪',
+      id: 'uk',
+      city: isAr ? 'المملكة المتحدة' : 'United Kingdom',
+      country: isAr ? 'لندن' : 'London',
+      flag: '🇬🇧',
       type: t.operations,
-      address: 'Al Maryah Island, Abu Dhabi Global Market',
-      phone: '+971 2 555 0123',
-      email: 'abudhabi@capimaxgroup.com',
+      address: addressTBD,
+      phone: phoneTBD,
+      email: 'uk@capimaxgroup.com',
       hours: {
-        weekdays: '9:00 AM - 6:00 PM GST',
+        weekdays: '9:00 AM - 6:00 PM GMT',
         weekends: t.closed
       }
     }
@@ -167,9 +164,11 @@ const Contact = ({ language }) => {
 
   const inquiryTypes = [
     { value: 'general', label: t.general },
-    { value: 'investment', label: t.investment },
+    { value: 'fractional', label: t.fractional },
+    { value: 'tokenization', label: t.tokenization },
+    { value: 'platforms', label: t.platforms },
     { value: 'partnership', label: t.partnership },
-    { value: 'support', label: t.support }
+    { value: 'media', label: t.media }
   ]
 
   const handleInputChange = (e) => {
@@ -271,7 +270,7 @@ const Contact = ({ language }) => {
                   value={formData.subject}
                   onChange={handleInputChange}
                   required
-                  placeholder="Investment Inquiry"
+                  placeholder={t.subjectPlaceholder}
                   className={inputClass}
                 />
               </div>
@@ -315,9 +314,7 @@ const Contact = ({ language }) => {
                   <h3 className="font-display text-lg font-medium text-ink">{t.emergencyContact}</h3>
                 </div>
                 <p className="mt-3 text-sm text-ink/60 leading-relaxed">{t.emergencyDesc}</p>
-                <a href="tel:+442079460958" className="mt-3 inline-block text-primary font-medium hover:underline">
-                  +44 20 7946 0958
-                </a>
+                <span className="mt-3 inline-block text-ink/50 italic text-sm">{phoneTBD}</span>
               </div>
 
               <a href="mailto:info@capimaxgroup.com" className="group flex items-center gap-4 p-7 border-b border-r border-[color:var(--line-dark)] hover:bg-[rgba(47,173,111,0.05)] transition-colors">
@@ -328,13 +325,13 @@ const Contact = ({ language }) => {
                 </span>
               </a>
 
-              <a href="tel:+442079460958" className="group flex items-center gap-4 p-7 border-b border-r border-[color:var(--line-dark)] hover:bg-[rgba(47,173,111,0.05)] transition-colors">
+              <div className="flex items-center gap-4 p-7 border-b border-r border-[color:var(--line-dark)]">
                 <Phone className="w-5 h-5 text-primary" />
                 <span>
                   <span className="mono-label text-ink/45 block" style={{ fontSize: '0.6rem' }}>{t.phoneLabel}</span>
-                  <span className="text-ink/80 group-hover:text-primary transition-colors">+44 20 7946 0958</span>
+                  <span className="text-ink/50 italic">{phoneTBD}</span>
                 </span>
-              </a>
+              </div>
 
               <a href="https://capimaxgroup.com" className="group flex items-center gap-4 p-7 border-b border-r border-[color:var(--line-dark)] hover:bg-[rgba(47,173,111,0.05)] transition-colors">
                 <Globe className="w-5 h-5 text-primary" />
@@ -360,9 +357,9 @@ const Contact = ({ language }) => {
           <p className="text-lg text-sand/70 leading-relaxed lg:pb-2">{t.visitOffices}</p>
         </Reveal>
 
-        <div className="mt-16 grid md:grid-cols-3 border-t border-l border-[color:var(--line-sand)]">
+        <div className="mt-16 grid md:grid-cols-2 border-t border-l border-[color:var(--line-sand)]">
           {offices.map((office, i) => (
-            <Reveal key={office.id} delay={(i % 3) * 0.05}>
+            <Reveal key={office.id} delay={(i % 2) * 0.05}>
               <div className="group flex flex-col h-full p-8 border-b border-r border-[color:var(--line-sand)] hover:bg-[rgba(47,173,111,0.05)] transition-colors">
                 <div className="flex items-center justify-between">
                   <span className="text-3xl">{office.flag}</span>
@@ -377,7 +374,9 @@ const Contact = ({ language }) => {
                   </div>
                   <div className="flex items-center gap-3">
                     <Phone className="w-4 h-4 text-primary shrink-0" />
-                    <a href={`tel:${office.phone}`} className="text-sand/65 hover:text-primary transition-colors">{office.phone}</a>
+                    {office.phoneHref
+                      ? <a href={`tel:${office.phoneHref}`} className="text-sand/65 hover:text-primary transition-colors">{office.phone}</a>
+                      : <span className="text-sand/50 italic">{office.phone}</span>}
                   </div>
                   <div className="flex items-center gap-3">
                     <Mail className="w-4 h-4 text-primary shrink-0" />

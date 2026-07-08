@@ -10,7 +10,7 @@ const Platforms = ({ language }) => {
       title: 'Our ',
       accent: 'platforms.',
       description:
-        'Explore the digital platforms powering the Capimax ecosystem — from real estate tokenization to a unified investment gateway, all built for transparency, compliance, and real-world utility.',
+        'Explore the digital platforms powering the Capimax ecosystem — from real estate tokenization to a multi-party real estate exchange, all built for transparency, verifiability, and real-world utility.',
       platformsMarker: 'The platforms',
       platformsTitle: ['Digital infrastructure, ', 'one ecosystem.'],
       learnMore: 'Learn more',
@@ -26,7 +26,7 @@ const Platforms = ({ language }) => {
       title: 'منصّاتنا',
       accent: '',
       description:
-        'استكشف المنصات الرقمية التي تشغّل منظومة كابي ماكس — من ترميز العقارات إلى البوابة الاستثمارية الموحدة، جميعها مبنية على الشفافية والامتثال والاستخدام العملي الحقيقي.',
+        'استكشف المنصات الرقمية التي تشغّل منظومة كابي ماكس — من ترميز العقارات إلى منصة التبادل العقاري متعددة الأطراف، جميعها مبنية على الشفافية وقابلية التحقق والاستخدام العملي الحقيقي.',
       platformsMarker: 'المنصات',
       platformsTitle: ['بنية رقمية، ', 'منظومة واحدة.'],
       learnMore: 'اعرف المزيد',

@@ -1,55 +1,46 @@
 import { CheckCircle2, ArrowRight, ArrowUpRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { currencyContent, platformContent, PLATFORM_URLS } from '@/data/content'
+import { currencyContent, platformContent } from '@/data/content'
 import { PageHero, Band, Marker, Heading, Reveal, BTN } from '@/components/editorial'
 
 const Currency = ({ language }) => {
   const translations = {
     en: {
-      eyebrow: 'Digital Asset',
+      eyebrow: 'Utility Currency',
       highlightsMarker: 'Why Pronova',
       highlightsTitle: ['Built for ', 'real utility.'],
-      highlightsSubtitle: 'A utility currency built for real operational use across the ecosystem.',
+      highlightsSubtitle: 'A utility currency Capimax Group contributes to — designed for real operational use, not speculation.',
       usageMarker: 'Where Pronova is used',
       usageTitle: ['Across the ', 'Capimax platforms.'],
-      usageSubtitle: 'Pronova powers payments, settlements, and access across the Capimax platforms.',
+      usageSubtitle: 'Pronova is designed for payments, fee reductions, and internal settlement across the group’s licensed platforms.',
       visitPlatform: 'Visit',
       explorePlatform: 'Explore platform',
-      externalTitle: 'Live platforms',
-      ctaMarker: 'Put Pronova to work',
-      ctaTitle: ['Own a share of ', 'real assets.'],
-      ctaSubtitle: 'Start investing across the Capimax ecosystem or explore the platforms Pronova connects.',
-      startInvesting: 'Start Investing',
+      ctaMarker: 'A contributor project',
+      ctaTitle: ['Utility across ', 'licensed platforms.'],
+      ctaSubtitle: 'Capimax Group contributes to the Pronova Cryptocurrency project as part of its digital-asset ecosystem. Explore the platforms Pronova connects.',
       viewPlatforms: 'View Platforms',
+      exploreNova: 'Explore Nova',
     },
     ar: {
-      eyebrow: 'أصل رقمي',
+      eyebrow: 'عملة خدمية',
       highlightsMarker: 'لماذا Pronova',
       highlightsTitle: ['مصممة لـ', 'استخدام حقيقي.'],
-      highlightsSubtitle: 'عملة خدمية مصممة للاستخدام التشغيلي الحقيقي عبر المنظومة.',
+      highlightsSubtitle: 'عملة خدمية تساهم فيها مجموعة كابي ماكس — مصمّمة للاستخدام التشغيلي الحقيقي وليست أداة مضاربة.',
       usageMarker: 'أين تُستخدم Pronova',
       usageTitle: ['عبر ', 'منصات كابي ماكس.'],
-      usageSubtitle: 'تشغّل Pronova عمليات الدفع والتسوية والوصول عبر منصات كابي ماكس.',
+      usageSubtitle: 'صُمّمت Pronova للدفع وتخفيض الرسوم والتسوية الداخلية عبر منصات المجموعة المرخّصة.',
       visitPlatform: 'زيارة',
       explorePlatform: 'استكشاف المنصة',
-      externalTitle: 'المنصات المباشرة',
-      ctaMarker: 'استثمر مع Pronova',
-      ctaTitle: ['تملّك حصة من ', 'أصول حقيقية.'],
-      ctaSubtitle: 'ابدأ الاستثمار عبر منظومة كابي ماكس أو استكشف المنصات التي تربطها Pronova.',
-      startInvesting: 'ابدأ الاستثمار',
+      ctaMarker: 'مشروع مساهَمة',
+      ctaTitle: ['فائدة عبر ', 'منصات مرخّصة.'],
+      ctaSubtitle: 'تساهم مجموعة كابي ماكس في مشروع عملة Pronova كجزء من منظومتها للأصول الرقمية. استكشف المنصات التي تربطها Pronova.',
       viewPlatforms: 'عرض المنصات',
+      exploreNova: 'استكشاف نوفا',
     },
   }
 
   const t = translations[language]
   const c = currencyContent[language]
-
-  const externalLinks = [
-    { label: 'capimaxrt.com', url: PLATFORM_URLS.realEstateTokenization },
-    { label: 'capimaxtokenization.store', url: PLATFORM_URLS.tokenizationStore },
-    { label: 'capimaxpropshare.shop', url: PLATFORM_URLS.propShare },
-    { label: 'capimaxinvestment.com', url: PLATFORM_URLS.investmentsPlatform },
-  ]
 
   return (
     <div className="bg-cream text-ink">
@@ -112,18 +103,6 @@ const Currency = ({ language }) => {
             )
           })}
         </div>
-
-        <Reveal className="mt-14">
-          <div className="mono-label text-sand/45 mb-5">{t.externalTitle}</div>
-          <div className="flex flex-wrap gap-3">
-            {externalLinks.map((link) => (
-              <a key={link.url} href={link.url} target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-2 px-5 py-3 text-sm border border-[color:var(--line-sand-mid)] text-sand hover:bg-sand hover:text-forest-pitch transition-colors">
-                {link.label}
-                <ArrowUpRight className="w-3.5 h-3.5" />
-              </a>
-            ))}
-          </div>
-        </Reveal>
       </Band>
 
       {/* =========================================================== CTA */}
@@ -135,11 +114,11 @@ const Currency = ({ language }) => {
             <Heading lead={t.ctaTitle[0]} accent={t.ctaTitle[1]} light size="clamp(2.6rem,6vw,5rem)" />
             <p className="mt-7 text-lg text-sand/70 leading-relaxed">{t.ctaSubtitle}</p>
             <div className="mt-10 flex flex-col sm:flex-row gap-3">
-              <Link to="/investors" className={`group ${BTN.sand}`}>
-                {t.startInvesting}
+              <Link to="/platforms" className={`group ${BTN.sand}`}>
+                {t.viewPlatforms}
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
-              <Link to="/platforms" className={BTN.ghostLight}>{t.viewPlatforms}</Link>
+              <Link to="/nova" className={BTN.ghostLight}>{t.exploreNova}</Link>
             </div>
           </Reveal>
         </div>

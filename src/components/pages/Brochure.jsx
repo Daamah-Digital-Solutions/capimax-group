@@ -9,7 +9,7 @@ const Brochure = ({ language }) => {
       title: 'Company ',
       accent: 'brochures.',
       description:
-        'Download our official brochures to explore Capimax Group, our investment philosophy, and the companies across our portfolio.',
+        'Download our official brochures to explore Capimax Group Holding, our real-estate technology ecosystem, and the licensed platforms across the group.',
       brochuresMarker: 'Downloads',
       brochuresTitle: ['Official ', 'documents.'],
       download: 'Download',
@@ -21,9 +21,9 @@ const Brochure = ({ language }) => {
         'Explore our full library of reports, certificates, and corporate documents.',
       browseAll: 'Browse all documents',
       brochures: [
-        { title: 'Capimax Group Profile', description: 'A complete overview of Capimax Group, our vision, leadership, and the sectors we invest in.', fileUrl: '/brochures/capimax-group-profile.pdf', fileSize: 'PDF · 4.2 MB' },
-        { title: 'Pronova Overview', description: 'An introduction to Pronova, our digital finance and asset tokenization initiative within the group.', fileUrl: '/brochures/pronova-overview.pdf', fileSize: 'PDF · 2.8 MB' },
-        { title: 'Investment Opportunities', description: 'A detailed look at current fractional ownership and portfolio opportunities for investors.', fileUrl: '/brochures/capimax-investment-opportunities.pdf', fileSize: 'PDF · 3.5 MB' },
+        { title: 'Capimax Group Profile', description: 'A complete overview of Capimax Group Holding, our vision, and the real-estate technology, fractional ownership, and tokenization ecosystem.', fileUrl: '/brochures/capimax-group-profile.pdf', fileSize: 'PDF · 4.2 MB' },
+        { title: 'Pronova Overview', description: 'An introduction to Nova Digital Finance and the Pronova utility currency powering transactions across the ecosystem.', fileUrl: '/brochures/pronova-overview.pdf', fileSize: 'PDF · 2.8 MB' },
+        { title: 'Fractional Ownership & Tokenization', description: 'A detailed look at how our licensed platforms make real-estate ownership fractional, verifiable, and backed by an independent SPV.', fileUrl: '/brochures/capimax-investment-opportunities.pdf', fileSize: 'PDF · 3.5 MB' },
       ],
     },
     ar: {
@@ -31,7 +31,7 @@ const Brochure = ({ language }) => {
       title: 'بروشورات ',
       accent: 'الشركة.',
       description:
-        'قم بتنزيل بروشوراتنا الرسمية لاستكشاف مجموعة كابيماكس وفلسفتنا الاستثمارية والشركات عبر محفظتنا.',
+        'قم بتنزيل بروشوراتنا الرسمية لاستكشاف مجموعة كابيماكس القابضة ومنظومتنا لتقنية العقارات والمنصات المرخّصة عبر المجموعة.',
       brochuresMarker: 'التنزيلات',
       brochuresTitle: ['المستندات ', 'الرسمية.'],
       download: 'تنزيل',
@@ -43,9 +43,9 @@ const Brochure = ({ language }) => {
         'استكشف مكتبتنا الكاملة من التقارير والشهادات والمستندات المؤسسية.',
       browseAll: 'تصفح كل المستندات',
       brochures: [
-        { title: 'ملف مجموعة كابيماكس', description: 'نظرة شاملة على مجموعة كابيماكس ورؤيتنا وقيادتنا والقطاعات التي نستثمر فيها.', fileUrl: '/brochures/capimax-group-profile.pdf', fileSize: 'PDF · 4.2 ميجابايت' },
-        { title: 'نظرة عامة على برونوفا', description: 'مقدمة عن برونوفا، مبادرتنا في التمويل الرقمي وترميز الأصول ضمن المجموعة.', fileUrl: '/brochures/pronova-overview.pdf', fileSize: 'PDF · 2.8 ميجابايت' },
-        { title: 'الفرص الاستثمارية', description: 'نظرة تفصيلية على فرص الملكية الجزئية والمحفظة الحالية للمستثمرين.', fileUrl: '/brochures/capimax-investment-opportunities.pdf', fileSize: 'PDF · 3.5 ميجابايت' },
+        { title: 'ملف مجموعة كابيماكس', description: 'نظرة شاملة على مجموعة كابيماكس القابضة ورؤيتنا ومنظومة تقنية العقارات والملكية الجزئية وترميز الأصول.', fileUrl: '/brochures/capimax-group-profile.pdf', fileSize: 'PDF · 4.2 ميجابايت' },
+        { title: 'نظرة عامة على برونوفا', description: 'مقدمة عن نوفا للتمويل الرقمي وعملة برونوفا النفعية التي تشغّل المعاملات عبر المنظومة.', fileUrl: '/brochures/pronova-overview.pdf', fileSize: 'PDF · 2.8 ميجابايت' },
+        { title: 'الملكية الجزئية والترميز', description: 'نظرة تفصيلية على كيفية جعل منصاتنا المرخّصة ملكية العقارات جزئية وقابلة للتحقق ومضمونة عبر كيان مستقل.', fileUrl: '/brochures/capimax-investment-opportunities.pdf', fileSize: 'PDF · 3.5 ميجابايت' },
       ],
     },
   }

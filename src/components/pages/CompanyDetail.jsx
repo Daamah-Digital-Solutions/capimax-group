@@ -112,7 +112,7 @@ const CompanyDetail = ({ language }) => {
     [t.incorporated, meta.incorporated],
     [t.location, meta.location],
     [t.sector, meta.sector],
-  ]
+  ].filter(([, value]) => value)
 
   return (
     <div className="bg-cream text-ink">
@@ -272,10 +272,12 @@ const CompanyDetail = ({ language }) => {
                 <Mail className="w-5 h-5 text-primary shrink-0" />
                 <span className="text-sm">{meta.email}</span>
               </a>
-              <a href={`tel:${meta.phone.replace(/\s/g, '')}`} className="flex items-center gap-4 text-sand/80 hover:text-sand transition-colors">
-                <Phone className="w-5 h-5 text-primary shrink-0" />
-                <span className="text-sm">{meta.phone}</span>
-              </a>
+              {meta.phone && (
+                <a href={`tel:${meta.phone.replace(/\s/g, '')}`} className="flex items-center gap-4 text-sand/80 hover:text-sand transition-colors">
+                  <Phone className="w-5 h-5 text-primary shrink-0" />
+                  <span className="text-sm">{meta.phone}</span>
+                </a>
+              )}
               <div className="flex items-start gap-4 text-sand/80">
                 <MapPin className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                 <span className="text-sm">{meta.location}</span>

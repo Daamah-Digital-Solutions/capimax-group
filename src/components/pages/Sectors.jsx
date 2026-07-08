@@ -1,58 +1,54 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, TrendingUp } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { PageHero, Band, Marker, Reveal, BTN } from '@/components/editorial'
 
 const Sectors = ({ language }) => {
   const translations = {
     en: {
-      heroEyebrow: 'Our Investment Portfolio',
-      heroTitle: 'Diversified across ',
-      heroAccent: 'real economies.',
-      heroSubtitle: 'Diversified investment opportunities across multiple industries and markets.',
+      heroEyebrow: 'What we build',
+      heroTitle: 'The pillars of ',
+      heroAccent: 'the ecosystem.',
+      heroSubtitle: 'The technology, ownership models, and infrastructure that power a global, verifiable real-estate ecosystem.',
       viewCompanies: 'View Companies',
-      keyFeatures: 'Key Features',
-      marketSize: 'Market Size',
-      growth: 'Growth Potential',
-      companies: 'Our Companies',
+      keyFeatures: 'Capabilities',
+      companies: 'Delivered by',
       sectorsMarker: 'The sectors',
-      sectorsTitle: 'Eight pillars, ',
-      sectorsTitleAccent: 'one strategy.',
-      statsMarker: 'Portfolio performance',
-      statsTitle: 'Sector ',
-      statsTitleAccent: 'performance.',
-      statsBody: 'Our diversified portfolio across high-growth sectors delivers consistent returns and sustainable growth opportunities.',
+      sectorsTitle: 'Seven pillars, ',
+      sectorsTitleAccent: 'one ecosystem.',
+      statsMarker: 'By structure',
+      statsTitle: 'One connected ',
+      statsTitleAccent: 'ecosystem.',
+      statsBody: 'Real estate technology, fractional ownership, tokenization, and blockchain — working as a single, verifiable system across the USA and the UK.',
       ctaMarker: 'Begin a conversation',
-      ctaTitle: 'Ready to diversify ',
-      ctaTitleAccent: 'your portfolio?',
-      ctaBody: 'Explore investment opportunities across our carefully selected high-growth sectors with professional management and proven returns.',
-      startInvesting: 'Start Investing',
+      ctaTitle: 'Ready to own ',
+      ctaTitleAccent: 'a share?',
+      ctaBody: 'Explore how the group turns real-world real estate into transparent, verifiable, fractional ownership.',
+      startInvesting: 'Explore Ownership',
       viewAll: 'View All Companies',
-      moreCompanies: 'more companies',
+      moreCompanies: 'more',
     },
     ar: {
-      heroEyebrow: 'محفظتنا الاستثمارية',
-      heroTitle: 'تنويع عبر ',
-      heroAccent: 'اقتصادات حقيقية.',
-      heroSubtitle: 'فرص استثمارية متنوعة عبر صناعات وأسواق متعددة.',
+      heroEyebrow: 'ما نبنيه',
+      heroTitle: 'ركائز ',
+      heroAccent: 'المنظومة.',
+      heroSubtitle: 'التكنولوجيا ونماذج الملكية والبنية التحتية التي تشغّل منظومة عقارية عالمية قابلة للتحقق.',
       viewCompanies: 'عرض الشركات',
-      keyFeatures: 'الميزات الرئيسية',
-      marketSize: 'حجم السوق',
-      growth: 'إمكانات النمو',
-      companies: 'شركاتنا',
+      keyFeatures: 'القدرات',
+      companies: 'تنفّذها',
       sectorsMarker: 'القطاعات',
-      sectorsTitle: 'ثمانية ركائز، ',
-      sectorsTitleAccent: 'استراتيجية واحدة.',
-      statsMarker: 'أداء المحفظة',
-      statsTitle: 'أداء ',
-      statsTitleAccent: 'القطاعات.',
-      statsBody: 'تحقق محفظتنا المتنوعة عبر قطاعات عالية النمو عوائد ثابتة وفرص نمو مستدامة.',
+      sectorsTitle: 'سبع ركائز، ',
+      sectorsTitleAccent: 'منظومة واحدة.',
+      statsMarker: 'حسب الهيكل',
+      statsTitle: 'منظومة واحدة ',
+      statsTitleAccent: 'مترابطة.',
+      statsBody: 'تكنولوجيا العقارات، والملكية الجزئية، والترميز، والبلوكشين — تعمل كنظام واحد قابل للتحقق عبر الولايات المتحدة والمملكة المتحدة.',
       ctaMarker: 'ابدأ محادثة',
-      ctaTitle: 'هل أنت مستعد لتنويع ',
-      ctaTitleAccent: 'محفظتك؟',
-      ctaBody: 'استكشف الفرص الاستثمارية عبر قطاعاتنا المختارة بعناية عالية النمو بإدارة احترافية وعوائد مثبتة.',
-      startInvesting: 'ابدأ الاستثمار',
+      ctaTitle: 'مستعد لتملّك ',
+      ctaTitleAccent: 'حصة؟',
+      ctaBody: 'اكتشف كيف تحوّل المجموعة العقارات الحقيقية إلى ملكية جزئية شفافة وقابلة للتحقق.',
+      startInvesting: 'اكتشف التملّك',
       viewAll: 'عرض كل الشركات',
-      moreCompanies: 'شركة أخرى',
+      moreCompanies: 'أخرى',
     },
   }
 
@@ -60,155 +56,89 @@ const Sectors = ({ language }) => {
 
   const sectors = [
     {
-      id: 'investment-management',
-      title: language === 'ar' ? 'إدارة الاستثمار' : 'Investment Management',
+      id: 'real-estate-technology',
+      title: language === 'ar' ? 'تكنولوجيا العقارات' : 'Real Estate Technology',
       description: language === 'ar'
-        ? 'حلول استثمارية شاملة تشمل الملكية الجزئية وإدارة الصناديق وتنويع المحافظ.'
-        : 'Comprehensive investment solutions including fractional ownership, fund management, and portfolio diversification.',
-      marketSize: '$100+ Trillion',
-      growth: '8-12% annually',
+        ? 'منصات وأدوات رقمية تربط كل المشاركين في سلسلة القيمة العقارية — المطوّرين والملاك والمستثمرين والوسطاء ومزوّدي السيولة.'
+        : 'Digital platforms and tools connecting every participant in the real estate value chain — developers, owners, investors, brokers, and liquidity providers.',
       features: language === 'ar'
-        ? ['الملكية الجزئية', 'إدارة المحافظ', 'تقييم المخاطر', 'الأسواق العالمية']
-        : ['Fractional Ownership', 'Portfolio Management', 'Risk Assessment', 'Global Markets'],
-      companies: ['Capimax Investments UK', 'Capimax Investments USA', 'Capimax Investments UAE'],
+        ? ['منصات عقارية تقنية', 'أنظمة متعددة الأطراف', 'الانضمام الرقمي', 'البيانات والتقارير']
+        : ['PropTech Platforms', 'Multi-party Systems', 'Digital Onboarding', 'Data & Reporting'],
+      companies: ['Capimax Real Estate Technologies', 'Capimax Technologies UK'],
     },
     {
-      id: 'real-estate',
-      title: language === 'ar' ? 'تطوير العقارات' : 'Real Estate Development',
+      id: 'fractional-ownership',
+      title: language === 'ar' ? 'الملكية الجزئية' : 'Fractional Ownership',
       description: language === 'ar'
-        ? 'مشاريع عقارية مبتكرة تشمل التطوير السكني والتجاري والضيافة.'
-        : 'Innovative real estate projects including residential, commercial, and hospitality developments.',
-      marketSize: '$4+ Trillion',
-      growth: '6-10% annually',
+        ? 'تقسيم العقارات عالية القيمة إلى حصص ميسورة وقابلة للتحويل — بملكية واضحة وتقارير دورية، عبر نموذجين: رقمي ومرمّز.'
+        : 'High-value real estate divided into affordable, transferable shares — with clear ownership, periodic reporting, and two models: digital and tokenized.',
       features: language === 'ar'
-        ? ['التطوير السكني', 'العقارات التجارية', 'مشاريع الفنادق', 'البناء المستدام']
-        : ['Residential Development', 'Commercial Properties', 'Hotel Projects', 'Sustainable Building'],
-      companies: ['Capimax Development LLP', 'TDH Developments', 'EliteGate Properties'],
-    },
-    {
-      id: 'precious-metals',
-      title: language === 'ar' ? 'المعادن الثمينة والمعادن' : 'Precious Metals & Minerals',
-      description: language === 'ar'
-        ? 'الاستثمار في الذهب والفضة والمعادن الثمينة عبر الملكية الجزئية والتداول.'
-        : 'Investment in gold, silver, and precious metals through fractional ownership and trading.',
-      marketSize: '$500+ Billion',
-      growth: '5-8% annually',
-      features: language === 'ar'
-        ? ['الاستثمار في الذهب', 'تداول الفضة', 'تخزين المعادن الثمينة', 'تحليل السوق']
-        : ['Gold Investment', 'Silver Trading', 'Precious Metals Storage', 'Market Analysis'],
-      companies: ['Capimax Precious Metals Limited'],
-    },
-    {
-      id: 'fintech-blockchain',
-      title: language === 'ar' ? 'التقنية المالية والبلوكشين' : 'Fintech & Blockchain',
-      description: language === 'ar'
-        ? 'حلول تقنية مالية متطورة تشمل البلوكشين والعقود الذكية والمدفوعات الرقمية.'
-        : 'Cutting-edge financial technology solutions including blockchain, smart contracts, and digital payments.',
-      marketSize: '$300+ Billion',
-      growth: '15-25% annually',
-      features: language === 'ar'
-        ? ['تقنية البلوكشين', 'العقود الذكية', 'المدفوعات الرقمية', 'ترميز الأصول']
-        : ['Blockchain Technology', 'Smart Contracts', 'Digital Payments', 'Asset Tokenization'],
-      companies: ['Capimax Fintech Blockchain', 'Nova Digital Finance'],
-    },
-    {
-      id: 'digital-assets',
-      title: language === 'ar' ? 'الأصول الرقمية والعملات' : 'Digital Assets & Crypto',
-      description: language === 'ar'
-        ? 'إدارة الأصول الرقمية وتداول العملات المشفرة وخدمات محافظ الأصول الافتراضية.'
-        : 'Digital asset management, cryptocurrency trading, and virtual asset portfolio services.',
-      marketSize: '$2+ Trillion',
-      growth: '20-40% annually',
-      features: language === 'ar'
-        ? ['تداول العملات المشفرة', 'المحافظ الرقمية', 'إدارة الأصول', 'الامتثال']
-        : ['Cryptocurrency Trading', 'Digital Wallets', 'Asset Management', 'Compliance'],
-      companies: ['Capimax Virtual Assets', 'Nova Digital Finance'],
-    },
-    {
-      id: 'insurance',
-      title: language === 'ar' ? 'التأمين وإدارة المخاطر' : 'Insurance & Risk Management',
-      description: language === 'ar'
-        ? 'حلول تأمينية شاملة تشمل تأمين الحياة وغير الحياة والتأمين المرتبط بالاستثمار.'
-        : 'Comprehensive insurance solutions including life, non-life, and investment-linked insurance.',
-      marketSize: '$6+ Trillion',
-      growth: '4-7% annually',
-      features: language === 'ar'
-        ? ['تأمين الحياة', 'تأمين الاستثمار', 'تقييم المخاطر', 'إعادة التأمين']
-        : ['Life Insurance', 'Investment Insurance', 'Risk Assessment', 'Reinsurance'],
-      companies: ['HCC International', 'Assurax Insurance'],
-    },
-    {
-      id: 'financial-services',
-      title: language === 'ar' ? 'الخدمات المالية' : 'Financial Services',
-      description: language === 'ar'
-        ? 'الخدمات المصرفية والإدارة المالية والمحاسبة والتدقيق للأفراد والمؤسسات.'
-        : 'Banking, financial management, accounting, and auditing services for individuals and institutions.',
-      marketSize: '$25+ Trillion',
-      growth: '5-9% annually',
-      features: language === 'ar'
-        ? ['الإدارة المالية', 'خدمات المحاسبة', 'التدقيق والامتثال', 'الحلول المصرفية']
-        : ['Financial Management', 'Accounting Services', 'Audit & Compliance', 'Banking Solutions'],
-      companies: ['Capimax Financial Management', 'CIM Financial Group'],
-    },
-    {
-      id: 'general-trading',
-      title: language === 'ar' ? 'التجارة العامة' : 'General Trading',
-      description: language === 'ar'
-        ? 'عمليات تجارية دولية تشمل الاستيراد والتصدير وسلسلة التوريد وخدمات التوزيع.'
-        : 'International trading operations including import, export, supply chain, and distribution services.',
-      marketSize: '$20+ Trillion',
-      growth: '3-6% annually',
-      features: language === 'ar'
-        ? ['الاستيراد/التصدير', 'سلسلة التوريد', 'التوزيع', 'الشبكات العالمية']
-        : ['Import/Export', 'Supply Chain', 'Distribution', 'Global Networks'],
-      companies: ['Capimax General Trading USA'],
+        ? ['حصص جزئية', 'حد أدنى منخفض', 'ملكية واضحة', 'تحويلات ثانوية']
+        : ['Fractional Shares', 'Low Minimums', 'Clear Ownership', 'Secondary Transfers'],
+      companies: ['Capimax Fractional Ownership', 'Capimax PropShare'],
     },
     {
       id: 'asset-tokenization',
       title: language === 'ar' ? 'ترميز الأصول' : 'Asset Tokenization',
       description: language === 'ar'
-        ? 'تحويل الأصول الواقعية مثل العقارات إلى حصص رقمية جزئية مؤمّنة على البلوكشين عبر هياكل SPV قانونية.'
-        : 'Converting real-world assets such as real estate into fractional digital shares secured on the blockchain through legally structured SPVs.',
-      marketSize: '$16+ Trillion (by 2030)',
-      growth: '40%+ annually',
+        ? 'تحويل العقارات الحقيقية إلى حصص رقمية جزئية مؤمّنة على البلوكشين عبر هياكل SPV قانونية مستقلة.'
+        : 'Converting real-world real estate into fractional digital shares secured on the blockchain through legally structured, independent SPVs.',
       features: language === 'ar'
-        ? ['ترميز العقارات', 'هياكل SPV', 'سوق ثانوي', 'شفافية البلوكشين']
-        : ['Real Estate Tokenization', 'SPV Structuring', 'Secondary Markets', 'Blockchain Transparency'],
-      companies: ['Capimax Real Estate Tokenization', 'Capimax Fintech Blockchain'],
+        ? ['ترميز العقارات', 'هياكل SPV مستقلة', 'عقود ذكية', 'أسواق ثانوية']
+        : ['Real Estate Tokenization', 'Independent SPVs', 'Smart Contracts', 'Secondary Markets'],
+      companies: ['Capimax Digital Assets', 'Capimax RT'],
     },
     {
-      id: 'fractional-investment',
-      title: language === 'ar' ? 'الاستثمار الجزئي' : 'Fractional Investment',
+      id: 'blockchain-solutions',
+      title: language === 'ar' ? 'حلول البلوكشين' : 'Blockchain Solutions',
       description: language === 'ar'
-        ? 'تمكين المستثمرين من تملّك حصص في أصول عالية القيمة بمبالغ في المتناول، مع إدارة مركزية وتقارير دورية.'
-        : 'Enabling investors to own shares of high-value assets at accessible amounts, with centralized management and periodic reporting.',
-      marketSize: '$5+ Trillion',
-      growth: '12-18% annually',
+        ? 'بنية تحتية للبلوكشين آمنة ومدقّقة وعقود ذكية تجعل سجلات الملكية شفافة وغير قابلة للتلاعب وقابلة للتحقق.'
+        : 'Secure, audited blockchain infrastructure and smart contracts that make ownership records transparent, tamper-proof, and verifiable.',
       features: language === 'ar'
-        ? ['ملكية جزئية', 'حد أدنى منخفض', 'تنويع المحفظة', 'دخل ثابت']
-        : ['Fractional Ownership', 'Low Minimums', 'Portfolio Diversification', 'Income Streams'],
-      companies: ['Capimax PropShare', 'Capimax Investments UK'],
+        ? ['بنية تحتية للبلوكشين', 'عقود ذكية', 'تدقيق أمني', 'سجلات قابلة للتحقق']
+        : ['Blockchain Infrastructure', 'Smart Contracts', 'Security Audits', 'Verifiable Records'],
+      companies: ['Capimax Technologies UK', 'Capimax Digital Assets'],
     },
     {
-      id: 'investment-platforms',
-      title: language === 'ar' ? 'منصات الاستثمار' : 'Investment Platforms',
+      id: 'virtual-assets',
+      title: language === 'ar' ? 'الأصول الافتراضية' : 'Virtual Assets',
       description: language === 'ar'
-        ? 'منصات رقمية متعددة الأصول توحّد الفرص الاستثمارية والمحافظ والتقارير في واجهة واحدة.'
-        : 'Multi-asset digital platforms that unify investment opportunities, portfolios, and reporting within a single interface.',
-      marketSize: '$1+ Trillion',
-      growth: '20-30% annually',
+        ? 'إدارة الأصول الافتراضية واستخدامها التشغيلي داخل منظومة حقيقية مدعومة بالأصول — مرتبطة بالتمويل عبر نوفا للتمويل الرقمي.'
+        : 'Management and operational use of virtual assets within a real, asset-backed ecosystem — connected to financing through Nova Digital Finance.',
       features: language === 'ar'
-        ? ['وصول متعدد الأصول', 'إدارة المحافظ', 'تقارير لحظية', 'منظومة موحّدة']
-        : ['Multi-asset Access', 'Portfolio Management', 'Real-time Reporting', 'Unified Ecosystem'],
-      companies: ['Capimax One', 'Capimax Investments Platform'],
+        ? ['إدارة الأصول الرقمية', 'فائدة مدعومة بالأصول', 'التسوية الرقمية', 'الامتثال']
+        : ['Digital Asset Management', 'Asset-backed Utility', 'Digital Settlement', 'Compliance'],
+      companies: ['Capimax Digital Assets', 'Nova Digital Finance'],
+    },
+    {
+      id: 'digital-property-infrastructure',
+      title: language === 'ar' ? 'البنية التحتية للملكية الرقمية' : 'Digital Property Infrastructure',
+      description: language === 'ar'
+        ? 'البنية القانونية والتقنية خلف الملكية — هياكل SPV وسجلات الملكية والتقييم والتحقق والتأمين لكل أصل.'
+        : 'The legal and technical rails behind ownership — SPV structures, ownership records, valuation, verification, and insurance for every asset.',
+      features: language === 'ar'
+        ? ['هياكل SPV', 'سجلات الملكية', 'التقييم والتحقق', 'التأمين']
+        : ['SPV Structures', 'Ownership Records', 'Valuation & Verification', 'Insurance'],
+      companies: ['Capimax Asset Structure', 'Capimax Real Estate Technologies'],
+    },
+    {
+      id: 'real-estate-marketplaces',
+      title: language === 'ar' ? 'أسواق العقارات الرقمية' : 'Real Estate Marketplaces',
+      description: language === 'ar'
+        ? 'أسواق متعددة الأطراف يكتشف فيها المطوّرون والملاك والمستثمرون والوسطاء ومزوّدو السيولة العقارات ويتملّكونها ويتبادلونها.'
+        : 'Multi-party marketplaces where developers, owners, investors, brokers, and liquidity providers discover, own, and exchange real estate.',
+      features: language === 'ar'
+        ? ['سوق متعدد الأطراف', 'الاكتشاف والإدراج', 'التملّك والتبادل', 'السيولة']
+        : ['Multi-party Marketplace', 'Discovery & Listing', 'Ownership & Exchange', 'Liquidity'],
+      companies: ['Capimax BRX', 'Capimax Real Estate'],
     },
   ]
 
   const stats = [
-    { number: '8', label: language === 'ar' ? 'قطاعات نشطة' : 'Active Sectors' },
-    { number: '$35T+', label: language === 'ar' ? 'حجم السوق المجمّع' : 'Combined Market Size' },
-    { number: '13', label: language === 'ar' ? 'شركات المحفظة' : 'Portfolio Companies' },
-    { number: '15%', label: language === 'ar' ? 'متوسط النمو' : 'Average Growth' },
+    { number: '7', label: language === 'ar' ? 'قطاعات محورية' : 'Focus Sectors' },
+    { number: '8', label: language === 'ar' ? 'شركات المجموعة' : 'Group Companies' },
+    { number: '5', label: language === 'ar' ? 'منصات' : 'Platforms' },
+    { number: 'USA · UK', label: language === 'ar' ? 'الولايات القضائية' : 'Jurisdictions' },
   ]
 
   return (
@@ -234,27 +164,11 @@ const Sectors = ({ language }) => {
             <Reveal key={sector.id} delay={(i % 3) * 0.05}>
               <div className="group flex flex-col h-full p-8 border-b border-r border-[color:var(--line-dark)] hover:bg-[rgba(47,173,111,0.05)] transition-colors relative">
                 <span className="absolute top-0 left-0 h-px w-0 bg-primary group-hover:w-full transition-all duration-500" style={{ transitionTimingFunction: 'var(--ease-out)' }} />
-                <div className="flex items-baseline justify-between gap-3">
-                  <span className="font-display italic text-2xl text-primary leading-none">{String(i + 1).padStart(2, '0')}</span>
-                  <span className="mono-label text-ink/35" style={{ fontSize: '0.6rem' }}>{sector.growth}</span>
-                </div>
+                <span className="font-display italic text-2xl text-primary leading-none">{String(i + 1).padStart(2, '0')}</span>
                 <h3 className="mt-5 font-display text-xl font-medium leading-snug group-hover:text-primary transition-colors">{sector.title}</h3>
                 <p className="mt-3 text-sm text-ink/65 leading-relaxed flex-1">{sector.description}</p>
 
-                <div className="mt-6 pt-5 border-t border-[color:var(--line-dark)] grid grid-cols-2 gap-4">
-                  <div>
-                    <div className="mono-label text-ink/45" style={{ fontSize: '0.58rem' }}>{t.marketSize}</div>
-                    <div className="font-display text-base mt-1">{sector.marketSize}</div>
-                  </div>
-                  <div>
-                    <div className="mono-label text-ink/45" style={{ fontSize: '0.58rem' }}>{t.growth}</div>
-                    <div className="font-display text-base mt-1 text-primary flex items-center gap-1">
-                      <TrendingUp className="w-3.5 h-3.5" />{sector.growth}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-5">
+                <div className="mt-6 pt-5 border-t border-[color:var(--line-dark)]">
                   <div className="mono-label text-ink/45 mb-2" style={{ fontSize: '0.58rem' }}>{t.keyFeatures}</div>
                   <div className="flex flex-wrap gap-2">
                     {sector.features.map((feature, idx) => (
@@ -302,7 +216,7 @@ const Sectors = ({ language }) => {
           {stats.map((stat, i) => (
             <Reveal key={i} delay={(i % 4) * 0.05}>
               <div className="p-8 border-b border-r border-[color:var(--line-sand)] h-full">
-                <div className="font-display font-medium text-sand" style={{ fontSize: 'clamp(2.2rem,4vw,3.4rem)', lineHeight: 1 }}>{stat.number}</div>
+                <div className="font-display font-medium text-sand" style={{ fontSize: 'clamp(2rem,3.6vw,3.2rem)', lineHeight: 1 }}>{stat.number}</div>
                 <div className="mono-label text-sand/50 mt-3" style={{ fontSize: '0.6rem' }}>{stat.label}</div>
               </div>
             </Reveal>

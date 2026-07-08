@@ -6,209 +6,172 @@ import { PageHero, Band, Marker, Heading, Reveal, BTN } from '@/components/edito
 const Investors = ({ language }) => {
   const translations = {
     en: {
-      pageEyebrow: 'For Investors · Fractional ownership',
+      pageEyebrow: 'Fractional Ownership · SPV-backed',
       pageTitle: 'Own a share of ',
       pageAccent: 'real assets.',
-      pageSubtitle: 'Discover investment opportunities across our diversified portfolio of companies and sectors.',
-      startInvesting: 'Start Investing',
-      contactAdvisor: 'Contact Advisor',
-      learnMore: 'Learn More',
+      pageSubtitle: 'Capimax makes real-world real estate ownable in transparent, verifiable, fractional shares — through two models, each backed by independent SPVs.',
+      explorePlatforms: 'Explore Platforms',
+      talkToTeam: 'Talk to the team',
       explore: 'Explore',
       visit: 'Visit',
-      performance: 'Performance Highlights',
-      perfLead: 'Numbers that build ',
-      perfAccent: 'trust.',
-      investmentOptions: 'Investment Options',
-      optionsLead: 'Choose how you ',
-      optionsAccent: 'own.',
-      optionsSubtitle: 'Choose from our diverse range of investment opportunities.',
-      fractionalOwnership: 'Fractional Ownership',
-      fractionalDesc: 'Own fractions of high-value assets including real estate, precious metals, and digital assets.',
-      realEstate: 'Real Estate Investment',
-      realEstateDesc: 'Invest in residential, commercial, and hospitality development projects.',
-      preciousMetals: 'Precious Metals',
-      preciousMetalsDesc: 'Diversify with gold, silver, and other precious metals through our secure platform.',
-      digitalAssets: 'Digital Assets',
-      digitalAssetsDesc: 'Access cryptocurrency and digital asset investment opportunities.',
-      diversification: 'Diversification',
-      diversificationDesc: 'Spread risk across multiple sectors and asset classes.',
-      transparency: 'Full Transparency',
-      transparencyDesc: 'Real-time reporting and complete visibility into your investments.',
-      security: 'Bank-Level Security',
-      securityDesc: 'Comprehensive insurance and security measures protect your investments.',
-      globalReach: 'Global Opportunities',
-      globalReachDesc: 'Access international markets and investment opportunities.',
-      whyInvest: 'Why Invest with Capimax?',
-      whyLead: 'The advantages of ',
-      whyAccent: 'ownership.',
-      whySubtitle: 'The advantages of investing with Capimax Group.',
-      minInvestment: 'Minimum Investment',
-      expectedReturn: 'Expected Return',
-      riskLevel: 'Risk Level',
-      low: 'Low',
-      medium: 'Medium',
-      high: 'High',
-      investors: 'Active Investors',
-      aum: 'Assets Under Management',
-      avgReturn: 'Average Annual Return',
-      satisfaction: 'Investor Satisfaction',
-      howItWorks: 'How It Works',
-      howLead: 'From sign-up to ',
-      howAccent: 'returns.',
-      howSubtitle: 'Simple steps to start your investment journey.',
-      step1: 'Create Account',
-      step1Desc: 'Sign up and complete our simple verification process.',
-      step2: 'Choose Investments',
-      step2Desc: 'Browse and select from our curated investment opportunities.',
-      step3: 'Invest & Monitor',
-      step3Desc: 'Make your investment and track performance in real-time.',
-      step4: 'Earn Returns',
-      step4Desc: 'Receive regular returns and reinvest or withdraw as needed.',
+
+      conceptMarker: 'The concept',
+      conceptLead: 'What fractional ',
+      conceptAccent: 'ownership is.',
+      conceptBody: 'Fractional ownership divides a high-value property into affordable, transferable shares. Instead of buying a whole asset, you own a documented share of it — with clear records, periodic reporting, and a path to exit. Technology makes the entire lifecycle accessible, transparent, and global.',
+      pillar1: 'Accessible', pillar1Desc: 'High-value real estate, owned in affordable shares.',
+      pillar2: 'Transferable', pillar2Desc: 'Shares can be transferred or exited through the platforms.',
+      pillar3: 'Documented', pillar3Desc: 'Every share is backed by documented, verifiable ownership.',
+      pillar4: 'Global', pillar4Desc: 'Own across borders through licensed, regulated platforms.',
+
+      modelsMarker: 'Two models',
+      modelsLead: 'Two ways to ',
+      modelsAccent: 'own.',
+      modelsSubtitle: 'The group delivers fractional ownership through two complementary models.',
+      model1Title: 'Traditional-digital model',
+      model1Platform: 'via Capimax PropShare',
+      model1Desc: 'Structured, non-blockchain ownership of carefully selected properties — with centralized management, clear ownership, and periodic performance reporting.',
+      model1Points: ['Structured ownership', 'Centralized management', 'Periodic reporting', 'Long-term stability'],
+      model2Title: 'Tokenization model',
+      model2Platform: 'via Capimax RT & Digital Assets',
+      model2Desc: 'Real estate tokenized into transferable digital shares on the blockchain through legally structured SPVs — with transparent records and controlled exit via secondary markets or liquidity providers.',
+      model2Points: ['Blockchain-secured', 'Independent SPVs', 'Transferable shares', 'Secondary-market exit'],
+
+      partiesMarker: 'One ecosystem',
+      partiesLead: 'A model that connects ',
+      partiesAccent: 'everyone.',
+      partiesSubtitle: 'Capimax brings every side of real estate into one connected ecosystem — and defines how they work together.',
+      party1: 'Real Estate Developer', party1Desc: 'Brings projects and inventory into the ecosystem.',
+      party2: 'Property Owner', party2Desc: 'Unlocks liquidity from real, held assets.',
+      party3: 'Investor', party3Desc: 'Owns fractional, documented shares.',
+      party4: 'Broker', party4Desc: 'Connects supply and demand across the marketplace.',
+      party5: 'Liquidity Provider', party5Desc: 'Enables exit and secondary-market liquidity.',
+
+      protectMarker: 'Protected & verifiable',
+      protectLead: 'Every asset, ',
+      protectAccent: 'accounted for.',
+      protectSubtitle: 'Ownership is only as strong as the structure behind it. Ours is built to be verified at every level.',
+      protect1: 'Independent SPV', protect1Desc: 'Every project sits in its own independent, verifiable SPV.',
+      protect2: 'Verification & documentation', protect2Desc: 'Ownership and asset documents are verified and documented globally.',
+      protect3: 'Independent valuation', protect3Desc: 'Assets are valued through independent valuation partners.',
+      protect4: 'Insurance', protect4Desc: 'Assets and operations are covered by specialized insurance (HCC, AssurX).',
+      protect5: 'Verifiable records', protect5Desc: 'Every digital asset is linked to a documented, real-world asset.',
+      protect6: 'Oversight & compliance', protect6Desc: 'Document custody, verification, and compliance via CIM Financial Group.',
+
       ecosystem: 'The Capimax Ecosystem',
-      ecoLead: 'An integrated ',
-      ecoAccent: 'network.',
-      ecosystemSubtitle: 'An integrated network of investment platforms, a utility currency, and digital finance.',
-      platformsLabel: 'Investment Platforms',
+      ecoLead: 'The platforms behind ',
+      ecoAccent: 'ownership.',
+      ecosystemSubtitle: 'Licensed platforms, a utility currency, and digital finance — the infrastructure that makes ownership work.',
+      platformsLabel: 'Platforms',
       currencyLabel: 'Pronova — utility currency',
       novaLabel: 'Nova Digital Finance',
-      ctaMarker: 'Begin investing',
+
+      ctaMarker: 'Begin ownership',
       ctaLead: 'Start owning ',
       ctaAccent: 'today.',
-      ctaSubtitle: 'Join thousands of investors who trust Capimax for their investment needs.',
+      ctaSubtitle: 'Explore the platforms and the assets you can own — or talk to our team.',
+      ctaPrimary: 'Explore Platforms',
+      ctaSecondary: 'Contact us',
     },
     ar: {
-      pageEyebrow: 'للمستثمرين · الملكية الجزئية',
+      pageEyebrow: 'الملكية الجزئية · مدعومة بـ SPV',
       pageTitle: 'امتلك حصة من ',
       pageAccent: 'أصول حقيقية.',
-      pageSubtitle: 'اكتشف الفرص الاستثمارية عبر محفظتنا المتنوعة من الشركات والقطاعات.',
-      startInvesting: 'ابدأ الاستثمار',
-      contactAdvisor: 'اتصل بمستشار',
-      learnMore: 'تعلم المزيد',
+      pageSubtitle: 'تجعل كابي ماكس العقارات الحقيقية قابلة للتملّك في حصص جزئية شفافة وقابلة للتحقق — عبر نموذجين، كلٌّ مدعوم بشركات SPV مستقلة.',
+      explorePlatforms: 'استكشف المنصات',
+      talkToTeam: 'تحدّث إلى الفريق',
       explore: 'استكشف',
       visit: 'زيارة',
-      performance: 'أبرز الأداء',
-      perfLead: 'أرقام تبني ',
-      perfAccent: 'الثقة.',
-      investmentOptions: 'خيارات الاستثمار',
-      optionsLead: 'اختر كيف ',
-      optionsAccent: 'تتملّك.',
-      optionsSubtitle: 'اختر من مجموعتنا المتنوعة من الفرص الاستثمارية.',
-      fractionalOwnership: 'الملكية الجزئية',
-      fractionalDesc: 'امتلك أجزاء من الأصول عالية القيمة بما في ذلك العقارات والمعادن الثمينة والأصول الرقمية.',
-      realEstate: 'الاستثمار العقاري',
-      realEstateDesc: 'استثمر في مشاريع التطوير السكنية والتجارية والضيافة.',
-      preciousMetals: 'المعادن الثمينة',
-      preciousMetalsDesc: 'نوع مع الذهب والفضة والمعادن الثمينة الأخرى من خلال منصتنا الآمنة.',
-      digitalAssets: 'الأصول الرقمية',
-      digitalAssetsDesc: 'الوصول إلى فرص الاستثمار في العملات المشفرة والأصول الرقمية.',
-      diversification: 'التنويع',
-      diversificationDesc: 'انشر المخاطر عبر قطاعات وفئات أصول متعددة.',
-      transparency: 'الشفافية الكاملة',
-      transparencyDesc: 'تقارير في الوقت الفعلي ورؤية كاملة لاستثماراتك.',
-      security: 'أمان على مستوى البنوك',
-      securityDesc: 'تدابير التأمين والأمان الشاملة تحمي استثماراتك.',
-      globalReach: 'الفرص العالمية',
-      globalReachDesc: 'الوصول إلى الأسواق الدولية وفرص الاستثمار.',
-      whyInvest: 'لماذا تستثمر مع كابيماكس؟',
-      whyLead: 'مزايا ',
-      whyAccent: 'التملّك.',
-      whySubtitle: 'مزايا الاستثمار مع مجموعة كابيماكس.',
-      minInvestment: 'الحد الأدنى للاستثمار',
-      expectedReturn: 'العائد المتوقع',
-      riskLevel: 'مستوى المخاطر',
-      low: 'منخفض',
-      medium: 'متوسط',
-      high: 'عالي',
-      investors: 'مستثمر نشط',
-      aum: 'الأصول تحت الإدارة',
-      avgReturn: 'متوسط العائد السنوي',
-      satisfaction: 'رضا المستثمرين',
-      howItWorks: 'كيف يعمل',
-      howLead: 'من التسجيل إلى ',
-      howAccent: 'العوائد.',
-      howSubtitle: 'خطوات بسيطة لبدء رحلتك الاستثمارية.',
-      step1: 'إنشاء حساب',
-      step1Desc: 'سجل وأكمل عملية التحقق البسيطة.',
-      step2: 'اختر الاستثمارات',
-      step2Desc: 'تصفح واختر من فرص الاستثمار المنسقة لدينا.',
-      step3: 'استثمر وراقب',
-      step3Desc: 'قم بالاستثمار وتتبع الأداء في الوقت الفعلي.',
-      step4: 'احصل على العوائد',
-      step4Desc: 'احصل على عوائد منتظمة وأعد الاستثمار أو اسحب حسب الحاجة.',
+
+      conceptMarker: 'المفهوم',
+      conceptLead: 'ما هي الملكية ',
+      conceptAccent: 'الجزئية.',
+      conceptBody: 'تقسم الملكية الجزئية العقار عالي القيمة إلى حصص ميسورة وقابلة للتحويل. بدلاً من شراء الأصل كاملاً، تمتلك حصة موثّقة منه — بسجلات واضحة وتقارير دورية ومسار للتخارج. وتجعل التكنولوجيا دورة الحياة كاملة متاحة وشفافة وعالمية.',
+      pillar1: 'متاح', pillar1Desc: 'عقارات عالية القيمة، تُمتلك في حصص ميسورة.',
+      pillar2: 'قابل للتحويل', pillar2Desc: 'يمكن تحويل الحصص أو التخارج منها عبر المنصات.',
+      pillar3: 'موثّق', pillar3Desc: 'كل حصة مدعومة بملكية موثّقة وقابلة للتحقق.',
+      pillar4: 'عالمي', pillar4Desc: 'التملّك عبر الحدود من خلال منصات مرخّصة ومنظّمة.',
+
+      modelsMarker: 'نموذجان',
+      modelsLead: 'طريقتان ',
+      modelsAccent: 'للتملّك.',
+      modelsSubtitle: 'تقدّم المجموعة الملكية الجزئية عبر نموذجين متكاملين.',
+      model1Title: 'النموذج الرقمي التقليدي',
+      model1Platform: 'عبر منصة كابي ماكس بروب شير',
+      model1Desc: 'ملكية منظّمة غير قائمة على البلوكشين لعقارات مختارة بعناية — بإدارة مركزية وملكية واضحة وتقارير أداء دورية.',
+      model1Points: ['ملكية منظّمة', 'إدارة مركزية', 'تقارير دورية', 'استقرار طويل الأجل'],
+      model2Title: 'نموذج الترميز',
+      model2Platform: 'عبر كابي ماكس RT والأصول الرقمية',
+      model2Desc: 'عقارات مرمّزة إلى حصص رقمية قابلة للتحويل على البلوكشين عبر هياكل SPV قانونية — بسجلات شفافة وتخارج منظّم عبر السوق الثانوي أو مزوّدي السيولة.',
+      model2Points: ['مؤمّن بالبلوكشين', 'هياكل SPV مستقلة', 'حصص قابلة للتحويل', 'تخارج عبر السوق الثانوي'],
+
+      partiesMarker: 'منظومة واحدة',
+      partiesLead: 'نموذج يربط ',
+      partiesAccent: 'الجميع.',
+      partiesSubtitle: 'تجمع كابي ماكس كل أطراف العقار في منظومة واحدة مترابطة — وتحدّد كيف يعملون معًا.',
+      party1: 'المطوّر العقاري', party1Desc: 'يُدخل المشاريع والمخزون إلى المنظومة.',
+      party2: 'مالك العقار', party2Desc: 'يُطلق السيولة من أصول حقيقية مملوكة.',
+      party3: 'المستثمر', party3Desc: 'يمتلك حصصًا جزئية موثّقة.',
+      party4: 'الوسيط العقاري', party4Desc: 'يربط العرض بالطلب عبر السوق.',
+      party5: 'مزوّد السيولة', party5Desc: 'يتيح التخارج وسيولة السوق الثانوي.',
+
+      protectMarker: 'محمي وقابل للتحقق',
+      protectLead: 'كل أصل ',
+      protectAccent: 'موثّق ومحسوب.',
+      protectSubtitle: 'الملكية بقوة الهيكل الذي خلفها. وهيكلنا مبني ليكون قابلاً للتحقق على كل مستوى.',
+      protect1: 'SPV مستقلة', protect1Desc: 'كل مشروع في شركة SPV مستقلة قابلة للتحقق.',
+      protect2: 'التحقق والتوثيق', protect2Desc: 'مستندات الملكية والأصول موثّقة ومتحقَّق منها عالميًا.',
+      protect3: 'تقييم مستقل', protect3Desc: 'تُقيَّم الأصول عبر شركاء تقييم مستقلين.',
+      protect4: 'التأمين', protect4Desc: 'الأصول والعمليات مغطّاة بتأمين متخصص (HCC، AssurX).',
+      protect5: 'سجلات قابلة للتحقق', protect5Desc: 'كل أصل رقمي مرتبط بأصل حقيقي موثّق.',
+      protect6: 'الرقابة والامتثال', protect6Desc: 'حفظ المستندات والتحقق والامتثال عبر مجموعة CIM المالية.',
+
       ecosystem: 'منظومة كابي ماكس',
-      ecoLead: 'شبكة ',
-      ecoAccent: 'متكاملة.',
-      ecosystemSubtitle: 'شبكة متكاملة من منصات الاستثمار، وعملة خدمية، والتمويل الرقمي.',
-      platformsLabel: 'منصات الاستثمار',
+      ecoLead: 'المنصات التي خلف ',
+      ecoAccent: 'التملّك.',
+      ecosystemSubtitle: 'منصات مرخّصة، وعملة خدمية، وتمويل رقمي — البنية التي تجعل التملّك ممكنًا.',
+      platformsLabel: 'المنصات',
       currencyLabel: 'Pronova — عملة خدمية',
       novaLabel: 'نوفا للتمويل الرقمي',
-      ctaMarker: 'ابدأ الاستثمار',
+
+      ctaMarker: 'ابدأ التملّك',
       ctaLead: 'ابدأ التملّك ',
       ctaAccent: 'اليوم.',
-      ctaSubtitle: 'انضم إلى آلاف المستثمرين الذين يثقون بكابيماكس لاحتياجاتهم الاستثمارية.',
+      ctaSubtitle: 'استكشف المنصات والأصول التي يمكنك تملّكها — أو تحدّث إلى فريقنا.',
+      ctaPrimary: 'استكشف المنصات',
+      ctaSecondary: 'تواصل معنا',
     },
   }
 
   const t = translations[language]
 
-  const investmentOptions = [
-    {
-      id: 'fractional-ownership',
-      title: t.fractionalOwnership,
-      description: t.fractionalDesc,
-      minInvestment: '$100',
-      expectedReturn: '8-15%',
-      riskLevel: t.medium,
-      features: ['Real Estate Fractions', 'Precious Metals', 'Digital Assets', 'Global Markets'],
-    },
-    {
-      id: 'real-estate',
-      title: t.realEstate,
-      description: t.realEstateDesc,
-      minInvestment: '$500',
-      expectedReturn: '10-18%',
-      riskLevel: t.medium,
-      features: ['Residential Projects', 'Commercial Properties', 'Hotel Development', 'REIT Options'],
-    },
-    {
-      id: 'precious-metals',
-      title: t.preciousMetals,
-      description: t.preciousMetalsDesc,
-      minInvestment: '$50',
-      expectedReturn: '5-12%',
-      riskLevel: t.low,
-      features: ['Gold Investment', 'Silver Trading', 'Secure Storage', 'Market Analysis'],
-    },
-    {
-      id: 'digital-assets',
-      title: t.digitalAssets,
-      description: t.digitalAssetsDesc,
-      minInvestment: '$25',
-      expectedReturn: '15-35%',
-      riskLevel: t.high,
-      features: ['Cryptocurrency', 'Digital Wallets', 'Blockchain Assets', 'DeFi Opportunities'],
-    },
+  const conceptPillars = [
+    { title: t.pillar1, description: t.pillar1Desc },
+    { title: t.pillar2, description: t.pillar2Desc },
+    { title: t.pillar3, description: t.pillar3Desc },
+    { title: t.pillar4, description: t.pillar4Desc },
   ]
 
-  const whyInvestFeatures = [
-    { title: t.diversification, description: t.diversificationDesc },
-    { title: t.transparency, description: t.transparencyDesc },
-    { title: t.security, description: t.securityDesc },
-    { title: t.globalReach, description: t.globalReachDesc },
+  const models = [
+    { title: t.model1Title, platform: t.model1Platform, description: t.model1Desc, points: t.model1Points },
+    { title: t.model2Title, platform: t.model2Platform, description: t.model2Desc, points: t.model2Points },
   ]
 
-  const performanceStats = [
-    { value: '10,000+', label: t.investors },
-    { value: '$500M+', label: t.aum },
-    { value: '12.5%', label: t.avgReturn },
-    { value: '98%', label: t.satisfaction },
+  const parties = [
+    { title: t.party1, description: t.party1Desc },
+    { title: t.party2, description: t.party2Desc },
+    { title: t.party3, description: t.party3Desc },
+    { title: t.party4, description: t.party4Desc },
+    { title: t.party5, description: t.party5Desc },
   ]
 
-  const howItWorksSteps = [
-    { step: '01', title: t.step1, description: t.step1Desc },
-    { step: '02', title: t.step2, description: t.step2Desc },
-    { step: '03', title: t.step3, description: t.step3Desc },
-    { step: '04', title: t.step4, description: t.step4Desc },
+  const protections = [
+    { title: t.protect1, description: t.protect1Desc },
+    { title: t.protect2, description: t.protect2Desc },
+    { title: t.protect3, description: t.protect3Desc },
+    { title: t.protect4, description: t.protect4Desc },
+    { title: t.protect5, description: t.protect5Desc },
+    { title: t.protect6, description: t.protect6Desc },
   ]
 
   return (
@@ -220,118 +183,107 @@ const Investors = ({ language }) => {
         subtitle={t.pageSubtitle}
       >
         <div className="mt-9 flex flex-col sm:flex-row gap-3">
-          <Link to="/contact" className={`group ${BTN.sand}`}>
-            {t.startInvesting}
+          <Link to="/platforms" className={`group ${BTN.sand}`}>
+            {t.explorePlatforms}
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
-          <Link to="/contact" className={BTN.ghostLight}>{t.contactAdvisor}</Link>
+          <Link to="/contact" className={BTN.ghostLight}>{t.talkToTeam}</Link>
         </div>
       </PageHero>
 
-      {/* ============================================ PERFORMANCE HIGHLIGHTS */}
+      {/* ================================================= THE CONCEPT */}
       <Band tone="paper">
         <Reveal>
-          <Marker num="01" label={t.performance} />
-          <Heading lead={t.perfLead} accent={t.perfAccent} />
+          <Marker num="01" label={t.conceptMarker} />
+          <div className="grid lg:grid-cols-2 gap-8 items-end">
+            <Heading lead={t.conceptLead} accent={t.conceptAccent} />
+            <p className="text-lg text-ink/70 leading-relaxed lg:pb-2">{t.conceptBody}</p>
+          </div>
         </Reveal>
 
         <div className="mt-14 border-t border-l border-[color:var(--line-dark)] grid sm:grid-cols-2 lg:grid-cols-4">
-          {performanceStats.map((stat, i) => (
+          {conceptPillars.map((p, i) => (
             <Reveal key={i} delay={(i % 4) * 0.05}>
               <div className="group p-8 border-b border-r border-[color:var(--line-dark)] hover:bg-[rgba(47,173,111,0.06)] transition-colors h-full">
-                <div className="font-display font-medium text-ink" style={{ fontSize: 'clamp(2.4rem,4vw,3.4rem)', lineHeight: 1 }}>{stat.value}</div>
-                <div className="mono-label text-ink/50 mt-4" style={{ fontSize: '0.62rem' }}>{stat.label}</div>
+                <span className="font-display italic text-3xl text-primary">0{i + 1}</span>
+                <h3 className="mt-4 font-display text-xl font-medium">{p.title}</h3>
+                <p className="mt-2 text-sm text-ink/65 leading-relaxed">{p.description}</p>
               </div>
             </Reveal>
           ))}
         </div>
       </Band>
 
-      {/* =============================================== INVESTMENT OPTIONS */}
+      {/* ================================================= TWO MODELS */}
       <Band tone="light">
         <Reveal>
-          <Marker num="02" label={t.investmentOptions} />
+          <Marker num="02" label={t.modelsMarker} />
           <div className="grid lg:grid-cols-2 gap-8 items-end">
-            <Heading lead={t.optionsLead} accent={t.optionsAccent} />
-            <p className="text-lg text-ink/70 leading-relaxed lg:pb-2">{t.optionsSubtitle}</p>
+            <Heading lead={t.modelsLead} accent={t.modelsAccent} />
+            <p className="text-lg text-ink/70 leading-relaxed lg:pb-2">{t.modelsSubtitle}</p>
           </div>
         </Reveal>
 
-        <div className="mt-14 border-t border-l border-[color:var(--line-dark)] grid sm:grid-cols-2 lg:grid-cols-4">
-          {investmentOptions.map((option, i) => (
-            <Reveal key={option.id} delay={(i % 4) * 0.05}>
-              <div className="group relative flex flex-col h-full p-8 border-b border-r border-[color:var(--line-dark)] hover:bg-[rgba(47,173,111,0.06)] transition-colors">
+        <div className="mt-14 border-t border-l border-[color:var(--line-dark)] grid md:grid-cols-2">
+          {models.map((m, i) => (
+            <Reveal key={i} delay={i * 0.08}>
+              <div className="group relative flex flex-col h-full p-9 border-b border-r border-[color:var(--line-dark)] hover:bg-[rgba(47,173,111,0.05)] transition-colors">
                 <span className="absolute top-0 left-0 h-px w-0 bg-primary group-hover:w-full transition-all duration-500" style={{ transitionTimingFunction: 'var(--ease-out)' }} />
                 <span className="font-display italic text-3xl text-primary">0{i + 1}</span>
-                <h3 className="mt-4 font-display text-xl font-medium leading-snug">{option.title}</h3>
-                <p className="mt-3 text-sm text-ink/65 leading-relaxed">{option.description}</p>
-
-                <div className="mt-6 space-y-2.5 text-sm">
-                  <div className="flex justify-between py-2 border-b border-[color:var(--line-mid)]">
-                    <span className="text-ink/55">{t.minInvestment}</span>
-                    <span className="font-medium text-ink">{option.minInvestment}</span>
-                  </div>
-                  <div className="flex justify-between py-2 border-b border-[color:var(--line-mid)]">
-                    <span className="text-ink/55">{t.expectedReturn}</span>
-                    <span className="font-medium text-primary">{option.expectedReturn}</span>
-                  </div>
-                  <div className="flex justify-between py-2 border-b border-[color:var(--line-mid)]">
-                    <span className="text-ink/55">{t.riskLevel}</span>
-                    <span className="font-medium text-ink">{option.riskLevel}</span>
-                  </div>
+                <h3 className="mt-4 font-display text-2xl font-medium leading-snug">{m.title}</h3>
+                <p className="mono-label text-primary mt-2" style={{ fontSize: '0.62rem' }}>{m.platform}</p>
+                <p className="mt-4 text-ink/70 leading-relaxed">{m.description}</p>
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {m.points.map((point, idx) => (
+                    <span key={idx} className="text-[0.72rem] px-2.5 py-1 border border-[color:var(--line-dark)] text-ink/70">{point}</span>
+                  ))}
                 </div>
-
-                <Link to="/companies" className="mt-6 pt-4 text-sm text-primary inline-flex items-center gap-1 hover:gap-2 transition-all">
-                  {t.learnMore} <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
               </div>
             </Reveal>
           ))}
         </div>
       </Band>
 
-      {/* ===================================================== WHY INVEST */}
+      {/* ================================================= THE PARTIES */}
       <Band tone="dark">
         <Reveal>
-          <Marker num="03" label={t.whyInvest} light />
+          <Marker num="03" label={t.partiesMarker} light />
           <div className="grid lg:grid-cols-2 gap-8 items-end">
-            <Heading lead={t.whyLead} accent={t.whyAccent} light />
-            <p className="text-lg text-sand/70 leading-relaxed lg:pb-2">{t.whySubtitle}</p>
+            <Heading lead={t.partiesLead} accent={t.partiesAccent} light />
+            <p className="text-lg text-sand/70 leading-relaxed lg:pb-2">{t.partiesSubtitle}</p>
           </div>
         </Reveal>
 
-        <div className="mt-14 border-t border-l border-[color:var(--line-sand)] grid sm:grid-cols-2 lg:grid-cols-4">
-          {whyInvestFeatures.map((feature, i) => (
-            <Reveal key={i} delay={(i % 4) * 0.05}>
-              <div className="group relative p-8 border-b border-r border-[color:var(--line-sand)] hover:bg-[rgba(47,173,111,0.05)] transition-colors h-full">
-                <span className="absolute top-0 left-0 h-px w-0 bg-primary group-hover:w-full transition-all duration-500" style={{ transitionTimingFunction: 'var(--ease-out)' }} />
-                <span className="font-display italic text-3xl text-primary">0{i + 1}</span>
-                <h3 className="mt-4 font-display text-xl font-medium">{feature.title}</h3>
-                <p className="mt-2 text-sm text-sand/65 leading-relaxed">{feature.description}</p>
+        <div className="mt-14 border-t border-l border-[color:var(--line-sand)] grid sm:grid-cols-2 lg:grid-cols-5">
+          {parties.map((party, i) => (
+            <Reveal key={i} delay={(i % 5) * 0.05}>
+              <div className="group p-7 border-b border-r border-[color:var(--line-sand)] hover:bg-[rgba(47,173,111,0.05)] transition-colors h-full">
+                <span className="font-display italic text-2xl text-primary">0{i + 1}</span>
+                <h3 className="mt-4 font-display text-lg font-medium leading-snug">{party.title}</h3>
+                <p className="mt-2 text-sm text-sand/60 leading-relaxed">{party.description}</p>
               </div>
             </Reveal>
           ))}
         </div>
       </Band>
 
-      {/* ===================================================== HOW IT WORKS */}
+      {/* =========================================== PROTECTED & VERIFIABLE */}
       <Band tone="paper">
         <Reveal>
-          <Marker num="04" label={t.howItWorks} />
+          <Marker num="04" label={t.protectMarker} />
           <div className="grid lg:grid-cols-2 gap-8 items-end">
-            <Heading lead={t.howLead} accent={t.howAccent} />
-            <p className="text-lg text-ink/70 leading-relaxed lg:pb-2">{t.howSubtitle}</p>
+            <Heading lead={t.protectLead} accent={t.protectAccent} />
+            <p className="text-lg text-ink/70 leading-relaxed lg:pb-2">{t.protectSubtitle}</p>
           </div>
         </Reveal>
 
-        <div className="mt-14 border-t border-[color:var(--line-dark)]">
-          {howItWorksSteps.map((step, i) => (
-            <Reveal key={i}>
-              <div className="group grid grid-cols-[60px_1fr] md:grid-cols-[100px_280px_1fr_48px] gap-6 items-center py-9 border-b border-[color:var(--line-dark)] hover:px-4 transition-all duration-500" style={{ transitionTimingFunction: 'var(--ease-out)' }}>
-                <span className="font-display italic text-3xl text-primary">{step.step}.</span>
-                <h3 className="font-display text-2xl md:text-3xl font-medium">{step.title}</h3>
-                <p className="text-ink/65 leading-relaxed col-span-2 md:col-span-1">{step.description}</p>
-                <ArrowRight className="hidden md:block w-5 h-5 text-ink/30 group-hover:text-primary group-hover:translate-x-2 transition-all justify-self-end" />
+        <div className="mt-14 border-t border-l border-[color:var(--line-dark)] grid sm:grid-cols-2 lg:grid-cols-3">
+          {protections.map((item, i) => (
+            <Reveal key={i} delay={(i % 3) * 0.05}>
+              <div className="group p-8 border-b border-r border-[color:var(--line-dark)] hover:bg-[rgba(47,173,111,0.06)] transition-colors h-full">
+                <span className="font-display italic text-2xl text-primary">0{i + 1}</span>
+                <h3 className="mt-4 font-display text-lg font-medium leading-snug">{item.title}</h3>
+                <p className="mt-2 text-sm text-ink/65 leading-relaxed">{item.description}</p>
               </div>
             </Reveal>
           ))}
@@ -408,11 +360,11 @@ const Investors = ({ language }) => {
           <Heading lead={t.ctaLead} accent={t.ctaAccent} light size="clamp(2.6rem,7vw,6rem)" />
           <p className="mt-7 text-lg text-sand/70 leading-relaxed">{t.ctaSubtitle}</p>
           <div className="mt-10 flex flex-col sm:flex-row gap-3">
-            <Link to="/contact" className={`group ${BTN.green}`}>
-              {t.startInvesting}
+            <Link to="/platforms" className={`group ${BTN.green}`}>
+              {t.ctaPrimary}
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
-            <Link to="/contact" className={BTN.ghostLight}>{t.contactAdvisor}</Link>
+            <Link to="/contact" className={BTN.ghostLight}>{t.ctaSecondary}</Link>
           </div>
         </Reveal>
       </Band>

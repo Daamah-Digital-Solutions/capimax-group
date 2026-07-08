@@ -1,243 +1,138 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, ArrowUpRight, TrendingUp } from 'lucide-react'
+import { ArrowRight, ArrowUpRight } from 'lucide-react'
 import { PageHero, Band, Marker, Reveal, BTN } from '@/components/editorial'
 
+// Capimax Asset platform page (route /companies/capimax-investment).
+// Replaces the retired "Capimax Invest" per the V2 spec.
 const CapimaxInvestment = ({ language = 'en' }) => {
   const translations = {
     en: {
-      heroEyebrow: 'Investment Excellence',
+      heroEyebrow: 'Platform · Capimax Asset',
       heroTitle: 'Capimax ',
-      heroAccent: 'Investment.',
-      heroSubtitle: 'Leading global investment platform offering fractional ownership, real estate, precious metals, digital assets, and fintech solutions.',
-      overview: 'Company Overview',
-      services: 'Our Services',
-      locations: 'Global Locations',
-      keyFeatures: 'Key Features',
-      investment: 'Investment Opportunities',
-      contact: 'Contact Information',
-      getStarted: 'Start Your Investment Journey',
+      heroAccent: 'Asset.',
+      heroSubtitle: 'Structured access to real, asset-backed opportunities — each linked to a documented property and an independent SPV, within one compliant framework.',
+      explorePlatforms: 'Explore Platforms',
+      contact: 'Contact',
 
-      overviewTitle: 'Global investment ',
-      overviewTitleAccent: 'excellence.',
-      overviewDescription: 'Capimax Investment represents the core investment arm of the Capimax Group, operating across three continents with specialized expertise in real estate, digital assets, and precious metals. We provide innovative investment solutions that combine traditional security with cutting-edge digital innovation.',
+      overviewMarker: 'Platform overview',
+      overviewTitle: 'Real assets, ',
+      overviewTitleAccent: 'structured access.',
+      overviewDescription: 'Capimax Asset is the group’s platform for structured access to real, asset-backed opportunities. Every opportunity is tied to a documented, real-world property and an independent SPV — within one regulated, auditable operational framework.',
+      assetBacked: 'Every asset documented & SPV-backed',
 
-      servicesTitle: 'Investment ',
-      servicesTitleAccent: 'services.',
-      servicesBody: 'Comprehensive investment solutions designed to meet diverse financial goals and risk profiles.',
-      realEstate: 'Real Estate Investment',
-      realEstateDesc: 'Global residential and commercial real estate investment opportunities',
-      fractionalInvestment: 'Fractional Investment',
-      fractionalDesc: 'Access premium investments with fractional ownership opportunities',
-      digitalAssets: 'Digital Assets',
-      digitalAssetsDesc: 'Blockchain-backed asset management and tokenization services',
-      preciousMetals: 'Precious Metals',
-      preciousMetalsDesc: 'Secure investment in gold, silver, and rare metals with certificates',
+      howMarker: 'How it works',
+      howTitle: 'From asset ',
+      howTitleAccent: 'to access.',
+      howBody: 'Ownership is only as strong as the structure behind it. Capimax Asset is built to be verified at every step.',
+      how1: 'Documented assets', how1Desc: 'Every asset is linked to documented, verifiable ownership.',
+      how2: 'Independent SPV', how2Desc: 'Each asset sits in its own independent, verifiable SPV.',
+      how3: 'Two ownership models', how3Desc: 'Digital ownership via Capimax PropShare, or tokenized via Capimax RT.',
+      how4: 'Compliant framework', how4Desc: 'One regulated, auditable operational framework.',
 
-      featuresTitle: 'Why choose ',
-      featuresTitleAccent: 'Capimax Investment.',
-      featuresBody: 'Built on pillars of trust, innovation, and excellence to deliver superior investment experiences.',
-      transparency: 'Transparency',
-      transparencyDesc: 'Every investment is backed by verifiable data and detailed reports',
-      security: 'Security',
-      securityDesc: 'Bank-level security with comprehensive insurance coverage',
-      innovation: 'Innovation',
-      innovationDesc: 'Cutting-edge technology including blockchain and tokenization',
-      globalReach: 'Global Reach',
-      globalReachDesc: 'Operating across UK, USA, UAE with expanding presence worldwide',
+      accessMarker: 'What you can access',
+      accessTitle: 'Access across ',
+      accessTitleAccent: 'the ecosystem.',
+      accessBody: 'A curated set of real, asset-backed opportunities across the group’s real-estate ecosystem.',
+      access1: 'Real Estate Portfolios', access1Desc: 'Fractional access to documented real estate across the USA and UK.', access1Status: 'Available',
+      access2: 'Tokenized Real Estate', access2Desc: 'Blockchain-secured, SPV-backed shares via Capimax RT.', access2Status: 'Available',
+      access3: 'Digital Assets', access3Desc: 'Asset-backed digital assets connected to Nova Digital Finance.', access3Status: 'Coming soon',
 
-      locationsTitle: 'Global ',
-      locationsTitleAccent: 'operations.',
-      locationsBody: 'Operating across three continents with specialized expertise in key financial markets.',
-      uaeOffice: 'UAE Operations',
-      uaeAddress: 'Dubai, UAE - Real estate and financial investment in the Middle East',
-      ukOffice: 'UK Operations',
-      ukAddress: 'London, UK - European real estate and commercial investments',
-      usaOffice: 'USA Operations',
-      usaAddress: 'New York, USA - Investment in promising American markets',
-      verifyLicense: 'Verify License',
-      license: 'License',
+      whyMarker: 'Why Capimax Asset',
+      whyTitle: 'Built for ',
+      whyTitleAccent: 'verifiable ownership.',
+      whyBody: 'Every layer is designed to be transparent, verifiable, and protected.',
+      why1: 'Verifiable', why1Desc: 'Every asset backed by documents you can verify.',
+      why2: 'Asset-backed', why2Desc: 'Each digital asset linked to a documented real asset.',
+      why3: 'Insured', why3Desc: 'Assets and operations insured via HCC and AssurX.',
+      why4: 'Global', why4Desc: 'Licensed platforms operating across the USA and UK.',
 
-      currentOpportunities: 'Current investment ',
-      currentOpportunitiesAccent: 'opportunities.',
-      opportunitiesBody: 'Discover carefully vetted investment opportunities with attractive returns and professional management.',
-      realEstateOpp: 'Real Estate Portfolio',
-      realEstateOppDesc: 'Diversified real estate investment opportunities across global markets',
-      commercialOpp: 'Commercial Properties',
-      commercialOppDesc: 'Investment in modern commercial centers and offices in strategic locations',
-      digitalOpp: 'Digital Asset Funds',
-      digitalOppDesc: 'Digital asset funds with blockchain-backed investments',
-      viewDetails: 'View Details',
-      investNow: 'Invest Now',
-      minInvestment: 'Min Investment',
-      expectedReturn: 'Expected Return',
-      active: 'Active',
-      comingSoon: 'Coming Soon',
+      relatedMarker: 'Related',
+      exploreOwnership: 'Fractional Ownership',
+      exploreDocuments: 'Verify Documents',
+      explorePlatformsLink: 'All Platforms',
 
       ctaMarker: 'Begin a conversation',
-      ctaTitle: 'Ready to start your ',
-      ctaTitleAccent: 'investment journey?',
-      ctaBody: 'Join thousands of investors who trust Capimax Investment for their financial growth and wealth building needs.',
-      startToday: 'Start Investing Today',
-      scheduleConsult: 'Schedule Consultation',
-
-      overviewMarker: 'Company overview',
-      servicesMarker: 'Our services',
-      locationsMarker: 'Global locations',
-      featuresMarker: 'Key features',
-      opportunitiesMarker: 'Investment opportunities',
-      operationsActive: 'Global Operations Active',
-
-      activeInvestors: 'Active Investors',
-      countries: 'Countries',
-      totalAssets: 'Assets Under Management',
-      avgReturns: 'Average Annual Returns',
+      ctaTitle: 'Own a share of ',
+      ctaTitleAccent: 'real estate.',
+      ctaBody: 'Explore the platforms and the assets you can own — or talk to our team.',
+      startToday: 'Explore Platforms',
+      scheduleConsult: 'Contact us',
     },
     ar: {
-      heroEyebrow: 'التميز الاستثماري',
-      heroTitle: 'كابيماكس ',
-      heroAccent: 'للاستثمارات.',
-      heroSubtitle: 'منصة استثمارية عالمية رائدة تقدم الملكية الجزئية والعقارات والمعادن الثمينة والأصول الرقمية وحلول التكنولوجيا المالية.',
-      overview: 'نظرة عامة على الشركة',
-      services: 'خدماتنا',
-      locations: 'المواقع العالمية',
-      keyFeatures: 'الميزات الرئيسية',
-      investment: 'الفرص الاستثمارية',
-      contact: 'معلومات الاتصال',
-      getStarted: 'ابدأ رحلة الاستثمار',
+      heroEyebrow: 'منصة · كابي ماكس أسِت',
+      heroTitle: 'كابي ماكس ',
+      heroAccent: 'أسِت.',
+      heroSubtitle: 'وصول منظّم إلى فرص حقيقية مدعومة بالأصول — كلٌّ مرتبط بعقار موثّق وشركة SPV مستقلة، ضمن إطار متوافق واحد.',
+      explorePlatforms: 'استكشف المنصات',
+      contact: 'تواصل',
 
-      overviewTitle: 'التميز الاستثماري ',
-      overviewTitleAccent: 'العالمي.',
-      overviewDescription: 'تمثل كابيماكس للاستثمارات الذراع الاستثماري الأساسي لمجموعة كابيماكس، وتعمل عبر ثلاث قارات مع خبرة متخصصة في العقارات والأصول الرقمية والمعادن الثمينة. نقدم حلول استثمارية مبتكرة تجمع بين الأمان التقليدي والابتكار الرقمي المتطور.',
+      overviewMarker: 'نظرة عامة على المنصة',
+      overviewTitle: 'أصول حقيقية، ',
+      overviewTitleAccent: 'وصول منظّم.',
+      overviewDescription: 'كابي ماكس أسِت هي منصة المجموعة للوصول المنظّم إلى فرص حقيقية مدعومة بالأصول. كل فرصة مرتبطة بعقار حقيقي موثّق وشركة SPV مستقلة — ضمن إطار تشغيلي منظّم وقابل للتدقيق.',
+      assetBacked: 'كل أصل موثّق ومدعوم بشركة SPV',
 
-      servicesTitle: 'الخدمات ',
-      servicesTitleAccent: 'الاستثمارية.',
-      servicesBody: 'حلول استثمارية شاملة مصممة لتلبية أهداف مالية متنوعة وملفات مخاطر مختلفة.',
-      realEstate: 'الاستثمار العقاري',
-      realEstateDesc: 'فرص استثمارية عقارية سكنية وتجارية عالمية',
-      fractionalInvestment: 'الاستثمار الجزئي',
-      fractionalDesc: 'الوصول إلى الاستثمارات المتميزة مع فرص الملكية الجزئية',
-      digitalAssets: 'الأصول الرقمية',
-      digitalAssetsDesc: 'إدارة الأصول المدعومة بالبلوك تشين وخدمات الترميز',
-      preciousMetals: 'المعادن الثمينة',
-      preciousMetalsDesc: 'استثمار آمن في الذهب والفضة والمعادن النادرة مع الشهادات',
+      howMarker: 'كيف يعمل',
+      howTitle: 'من الأصل ',
+      howTitleAccent: 'إلى الوصول.',
+      howBody: 'الملكية بقوة الهيكل الذي خلفها. وكابي ماكس أسِت مبنية لتكون قابلة للتحقق في كل خطوة.',
+      how1: 'أصول موثّقة', how1Desc: 'كل أصل مرتبط بملكية موثّقة وقابلة للتحقق.',
+      how2: 'SPV مستقلة', how2Desc: 'كل أصل في شركة SPV مستقلة قابلة للتحقق.',
+      how3: 'نموذجا تملّك', how3Desc: 'ملكية رقمية عبر بروب شير، أو ترميز عبر كابي ماكس RT.',
+      how4: 'إطار متوافق', how4Desc: 'إطار تشغيلي منظّم وقابل للتدقيق.',
 
-      featuresTitle: 'لماذا تختار ',
-      featuresTitleAccent: 'كابيماكس للاستثمارات.',
-      featuresBody: 'مبنية على ركائز الثقة والابتكار والتميز لتقديم تجارب استثمارية متفوقة.',
-      transparency: 'الشفافية',
-      transparencyDesc: 'كل استثمار مدعوم ببيانات قابلة للتحقق وتقارير مفصلة',
-      security: 'الأمان',
-      securityDesc: 'أمان على مستوى البنوك مع تغطية تأمينية شاملة',
-      innovation: 'الابتكار',
-      innovationDesc: 'تكنولوجيا متطورة تشمل البلوك تشين والترميز',
-      globalReach: 'الوصول العالمي',
-      globalReachDesc: 'نعمل في المملكة المتحدة والولايات المتحدة والإمارات مع التوسع عالمياً',
+      accessMarker: 'ما يمكنك الوصول إليه',
+      accessTitle: 'وصول عبر ',
+      accessTitleAccent: 'المنظومة.',
+      accessBody: 'مجموعة مختارة من الفرص الحقيقية المدعومة بالأصول عبر منظومة المجموعة العقارية.',
+      access1: 'محافظ عقارية', access1Desc: 'وصول جزئي إلى عقارات موثّقة عبر الولايات المتحدة والمملكة المتحدة.', access1Status: 'متاح',
+      access2: 'عقارات مرمّزة', access2Desc: 'حصص مؤمّنة بالبلوكشين ومدعومة بـ SPV عبر كابي ماكس RT.', access2Status: 'متاح',
+      access3: 'أصول رقمية', access3Desc: 'أصول رقمية مدعومة بأصول ومرتبطة بنوفا للتمويل الرقمي.', access3Status: 'قريبًا',
 
-      locationsTitle: 'العمليات ',
-      locationsTitleAccent: 'العالمية.',
-      locationsBody: 'نعمل عبر ثلاث قارات مع خبرة متخصصة في الأسواق المالية الرئيسية.',
-      uaeOffice: 'العمليات في الإمارات',
-      uaeAddress: 'دبي، الإمارات - الاستثمار العقاري والمالي في الشرق الأوسط',
-      ukOffice: 'العمليات في المملكة المتحدة',
-      ukAddress: 'لندن، المملكة المتحدة - الاستثمارات العقارية والتجارية الأوروبية',
-      usaOffice: 'العمليات في الولايات المتحدة',
-      usaAddress: 'نيويورك، الولايات المتحدة - الاستثمار في الأسواق الأمريكية الواعدة',
-      verifyLicense: 'التحقق من الترخيص',
-      license: 'ترخيص',
+      whyMarker: 'لماذا كابي ماكس أسِت',
+      whyTitle: 'مبنية لأجل ',
+      whyTitleAccent: 'ملكية قابلة للتحقق.',
+      whyBody: 'كل طبقة مصمّمة لتكون شفافة وقابلة للتحقق ومحميّة.',
+      why1: 'قابل للتحقق', why1Desc: 'كل أصل مدعوم بمستندات يمكنك التحقق منها.',
+      why2: 'مدعوم بأصول', why2Desc: 'كل أصل رقمي مرتبط بأصل حقيقي موثّق.',
+      why3: 'مؤمّن', why3Desc: 'الأصول والعمليات مؤمّنة عبر HCC وAssurX.',
+      why4: 'عالمي', why4Desc: 'منصات مرخّصة تعمل عبر الولايات المتحدة والمملكة المتحدة.',
 
-      currentOpportunities: 'الفرص الاستثمارية ',
-      currentOpportunitiesAccent: 'الحالية.',
-      opportunitiesBody: 'اكتشف فرصاً استثمارية مدروسة بعناية بعوائد جذابة وإدارة احترافية.',
-      realEstateOpp: 'محفظة العقارات',
-      realEstateOppDesc: 'فرص استثمارية عقارية متنوعة عبر الأسواق العالمية',
-      commercialOpp: 'العقارات التجارية',
-      commercialOppDesc: 'الاستثمار في المراكز التجارية والمكاتب الحديثة في مواقع استراتيجية',
-      digitalOpp: 'صناديق الأصول الرقمية',
-      digitalOppDesc: 'صناديق أصول رقمية باستثمارات مدعومة بالبلوك تشين',
-      viewDetails: 'عرض التفاصيل',
-      investNow: 'استثمر الآن',
-      minInvestment: 'الحد الأدنى للاستثمار',
-      expectedReturn: 'العائد المتوقع',
-      active: 'نشط',
-      comingSoon: 'قريباً',
+      relatedMarker: 'روابط ذات صلة',
+      exploreOwnership: 'الملكية الجزئية',
+      exploreDocuments: 'تحقّق من المستندات',
+      explorePlatformsLink: 'كل المنصات',
 
       ctaMarker: 'ابدأ محادثة',
-      ctaTitle: 'هل أنت مستعد لبدء ',
-      ctaTitleAccent: 'رحلة الاستثمار؟',
-      ctaBody: 'انضم إلى آلاف المستثمرين الذين يثقون بكابيماكس للاستثمارات لنمو ثرواتهم المالية.',
-      startToday: 'ابدأ الاستثمار اليوم',
-      scheduleConsult: 'حجز استشارة',
-
-      overviewMarker: 'نظرة عامة على الشركة',
-      servicesMarker: 'خدماتنا',
-      locationsMarker: 'المواقع العالمية',
-      featuresMarker: 'الميزات الرئيسية',
-      opportunitiesMarker: 'الفرص الاستثمارية',
-      operationsActive: 'العمليات العالمية نشطة',
-
-      activeInvestors: 'مستثمر نشط',
-      countries: 'دولة',
-      totalAssets: 'الأصول المدارة',
-      avgReturns: 'متوسط العوائد السنوية',
+      ctaTitle: 'تملّك حصة من ',
+      ctaTitleAccent: 'العقارات.',
+      ctaBody: 'استكشف المنصات والأصول التي يمكنك تملّكها — أو تحدّث إلى فريقنا.',
+      startToday: 'استكشف المنصات',
+      scheduleConsult: 'تواصل معنا',
     },
   }
 
   const t = translations[language]
 
-  const companyData = {
-    locations: [
-      { region: t.uaeOffice, description: t.uaeAddress, license: 'CN-5639305' },
-      { region: t.ukOffice, description: t.ukAddress, license: '16099034' },
-      { region: t.usaOffice, description: t.usaAddress, license: '2024-001559635' },
-    ],
-    services: [
-      { title: t.realEstate, description: t.realEstateDesc },
-      { title: t.fractionalInvestment, description: t.fractionalDesc },
-      { title: t.digitalAssets, description: t.digitalAssetsDesc },
-      { title: t.preciousMetals, description: t.preciousMetalsDesc },
-    ],
-    keyFeatures: [
-      { title: t.transparency, description: t.transparencyDesc },
-      { title: t.security, description: t.securityDesc },
-      { title: t.innovation, description: t.innovationDesc },
-      { title: t.globalReach, description: t.globalReachDesc },
-    ],
-    stats: [
-      { number: '1,000+', label: t.activeInvestors },
-      { number: '15+', label: t.countries },
-      { number: '$250M+', label: t.totalAssets },
-      { number: '18.5%', label: t.avgReturns },
-    ],
-    opportunities: [
-      {
-        title: t.realEstateOpp,
-        description: t.realEstateOppDesc,
-        status: t.active,
-        isActive: true,
-        minInvestment: '$1,000',
-        expectedReturn: '12-15%',
-        category: 'Real Estate',
-      },
-      {
-        title: t.commercialOpp,
-        description: t.commercialOppDesc,
-        status: t.active,
-        isActive: true,
-        minInvestment: '$1,000',
-        expectedReturn: '15-18%',
-        category: 'Commercial',
-      },
-      {
-        title: t.digitalOpp,
-        description: t.digitalOppDesc,
-        status: t.comingSoon,
-        isActive: false,
-        minInvestment: '$500',
-        expectedReturn: '20-25%',
-        category: 'Digital',
-      },
-    ],
-  }
+  const howItWorks = [
+    { title: t.how1, description: t.how1Desc },
+    { title: t.how2, description: t.how2Desc },
+    { title: t.how3, description: t.how3Desc },
+    { title: t.how4, description: t.how4Desc },
+  ]
+
+  const access = [
+    { title: t.access1, description: t.access1Desc, status: t.access1Status, isActive: true },
+    { title: t.access2, description: t.access2Desc, status: t.access2Status, isActive: true },
+    { title: t.access3, description: t.access3Desc, status: t.access3Status, isActive: false },
+  ]
+
+  const whyFeatures = [
+    { title: t.why1, description: t.why1Desc },
+    { title: t.why2, description: t.why2Desc },
+    { title: t.why3, description: t.why3Desc },
+    { title: t.why4, description: t.why4Desc },
+  ]
 
   return (
     <div className="bg-cream text-ink">
@@ -248,27 +143,13 @@ const CapimaxInvestment = ({ language = 'en' }) => {
         subtitle={t.heroSubtitle}
       >
         <div className="mt-10 flex flex-col sm:flex-row gap-3">
-          <Link to="/investors" className={`group ${BTN.sand}`}>
-            {t.getStarted}
+          <Link to="/platforms" className={`group ${BTN.sand}`}>
+            {t.explorePlatforms}
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
           <Link to="/contact" className={BTN.ghostLight}>{t.contact}</Link>
         </div>
       </PageHero>
-
-      {/* =========================================================== STATS */}
-      <Band tone="dark">
-        <div className="grid grid-cols-2 lg:grid-cols-4 border-t border-l border-[color:var(--line-sand)]">
-          {companyData.stats.map((stat, i) => (
-            <Reveal key={i} delay={(i % 4) * 0.05}>
-              <div className="p-8 border-b border-r border-[color:var(--line-sand)] h-full">
-                <div className="font-display font-medium text-sand" style={{ fontSize: 'clamp(2.2rem,4vw,3.4rem)', lineHeight: 1 }}>{stat.number}</div>
-                <div className="mono-label text-sand/50 mt-3" style={{ fontSize: '0.6rem' }}>{stat.label}</div>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </Band>
 
       {/* ======================================================== OVERVIEW */}
       <Band tone="light">
@@ -283,83 +164,78 @@ const CapimaxInvestment = ({ language = 'en' }) => {
             <p className="text-xl leading-[1.55] text-ink/85">{t.overviewDescription}</p>
             <div className="mt-8 inline-flex items-center gap-3 border border-[color:var(--line-dark)] px-5 py-3">
               <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-              <span className="mono-label text-ink/60" style={{ fontSize: '0.62rem' }}>{t.operationsActive}</span>
+              <span className="mono-label text-ink/60" style={{ fontSize: '0.62rem' }}>{t.assetBacked}</span>
             </div>
           </Reveal>
         </div>
       </Band>
 
-      {/* ======================================================== SERVICES */}
+      {/* ======================================================== HOW IT WORKS */}
       <Band tone="paper">
         <Reveal className="grid lg:grid-cols-2 gap-10 items-end">
           <div>
-            <Marker num="02" label={t.servicesMarker} />
+            <Marker num="02" label={t.howMarker} />
             <h2 className="font-display font-medium leading-[1.02]" style={{ fontSize: 'clamp(2.2rem,4.5vw,4rem)', letterSpacing: '-0.025em' }}>
-              {t.servicesTitle}<span className="accent-em">{t.servicesTitleAccent}</span>
+              {t.howTitle}<span className="accent-em">{t.howTitleAccent}</span>
             </h2>
           </div>
-          <p className="text-lg text-ink/70 leading-relaxed lg:pb-2">{t.servicesBody}</p>
+          <p className="text-lg text-ink/70 leading-relaxed lg:pb-2">{t.howBody}</p>
         </Reveal>
 
         <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-4 border-t border-l border-[color:var(--line-dark)]">
-          {companyData.services.map((service, i) => (
+          {howItWorks.map((item, i) => (
             <Reveal key={i} delay={(i % 4) * 0.05}>
               <div className="group flex flex-col h-full p-7 border-b border-r border-[color:var(--line-dark)] hover:bg-[rgba(47,173,111,0.05)] transition-colors">
                 <span className="font-display italic text-2xl text-primary leading-none">{String(i + 1).padStart(2, '0')}</span>
-                <h3 className="mt-4 font-display text-lg font-medium leading-snug group-hover:text-primary transition-colors">{service.title}</h3>
-                <p className="mt-3 text-sm text-ink/65 leading-relaxed flex-1">{service.description}</p>
+                <h3 className="mt-4 font-display text-lg font-medium leading-snug group-hover:text-primary transition-colors">{item.title}</h3>
+                <p className="mt-3 text-sm text-ink/65 leading-relaxed flex-1">{item.description}</p>
               </div>
             </Reveal>
           ))}
         </div>
       </Band>
 
-      {/* ================================================ GLOBAL LOCATIONS */}
+      {/* ===================================================== WHAT YOU ACCESS */}
       <Band tone="dark">
         <Reveal className="grid lg:grid-cols-2 gap-10 items-end">
           <div>
-            <Marker num="03" label={t.locationsMarker} light />
+            <Marker num="03" label={t.accessMarker} light />
             <h2 className="font-display font-medium leading-[1.02] text-sand" style={{ fontSize: 'clamp(2.2rem,4.5vw,4rem)', letterSpacing: '-0.025em' }}>
-              {t.locationsTitle}<span className="accent-em">{t.locationsTitleAccent}</span>
+              {t.accessTitle}<span className="accent-em">{t.accessTitleAccent}</span>
             </h2>
           </div>
-          <p className="text-lg text-sand/70 leading-relaxed lg:pb-2">{t.locationsBody}</p>
+          <p className="text-lg text-sand/70 leading-relaxed lg:pb-2">{t.accessBody}</p>
         </Reveal>
 
         <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-3 border-t border-l border-[color:var(--line-sand)]">
-          {companyData.locations.map((location, i) => (
+          {access.map((item, i) => (
             <Reveal key={i} delay={(i % 3) * 0.05}>
               <div className="group flex flex-col h-full p-8 border-b border-r border-[color:var(--line-sand)] hover:bg-[rgba(47,173,111,0.05)] transition-colors">
-                <span className="font-display italic text-2xl text-primary leading-none">{String(i + 1).padStart(2, '0')}</span>
-                <h3 className="mt-4 font-display text-xl font-medium leading-snug text-sand group-hover:text-primary transition-colors">{location.region}</h3>
-                <p className="mt-3 text-sm text-sand/60 leading-relaxed flex-1">{location.description}</p>
-                <div className="mt-6 pt-5 border-t border-[color:var(--line-sand)]">
-                  <div className="mono-label text-sand/45" style={{ fontSize: '0.58rem' }}>{t.license}</div>
-                  <div className="font-display text-base mt-1 text-sand">{location.license}</div>
-                  <Link to="/documents" className="mt-4 inline-flex items-center gap-1 text-sm text-primary hover:gap-2 transition-all">
-                    {t.verifyLicense} <ArrowUpRight className="w-3.5 h-3.5" />
-                  </Link>
-                </div>
+                <span className={`self-start text-[0.65rem] px-2.5 py-1 border ${item.isActive ? 'border-primary text-primary' : 'border-[color:var(--line-sand)] text-sand/45'}`}>
+                  {item.status}
+                </span>
+                <h3 className="mt-5 font-display text-xl font-medium leading-snug text-sand group-hover:text-primary transition-colors">{item.title}</h3>
+                <p className="mt-3 text-sm text-sand/60 leading-relaxed flex-1">{item.description}</p>
               </div>
             </Reveal>
           ))}
         </div>
       </Band>
 
-      {/* ===================================================== KEY FEATURES */}
+      {/* ================================================ WHY CAPIMAX ASSET */}
       <Band tone="light">
         <Reveal className="grid lg:grid-cols-2 gap-10 items-end">
           <div>
-            <Marker num="04" label={t.featuresMarker} />
+            <Marker num="04" label={t.whyMarker} />
             <h2 className="font-display font-medium leading-[1.02]" style={{ fontSize: 'clamp(2.2rem,4.5vw,4rem)', letterSpacing: '-0.025em' }}>
-              {t.featuresTitle}<span className="accent-em">{t.featuresTitleAccent}</span>
+              {t.whyTitle}<span className="accent-em">{t.whyTitleAccent}</span>
             </h2>
           </div>
-          <p className="text-lg text-ink/70 leading-relaxed lg:pb-2">{t.featuresBody}</p>
+          <p className="text-lg text-ink/70 leading-relaxed lg:pb-2">{t.whyBody}</p>
         </Reveal>
 
         <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-4 border-t border-l border-[color:var(--line-dark)]">
-          {companyData.keyFeatures.map((feature, i) => (
+          {whyFeatures.map((feature, i) => (
             <Reveal key={i} delay={(i % 4) * 0.05}>
               <div className="group flex flex-col h-full p-7 border-b border-r border-[color:var(--line-dark)] hover:bg-[rgba(47,173,111,0.05)] transition-colors relative">
                 <span className="absolute top-0 left-0 h-px w-0 bg-primary group-hover:w-full transition-all duration-500" style={{ transitionTimingFunction: 'var(--ease-out)' }} />
@@ -372,54 +248,25 @@ const CapimaxInvestment = ({ language = 'en' }) => {
         </div>
       </Band>
 
-      {/* ============================================ INVESTMENT OPPORTUNITIES */}
+      {/* ========================================================== RELATED */}
       <Band tone="paper">
-        <Reveal className="grid lg:grid-cols-2 gap-10 items-end">
-          <div>
-            <Marker num="05" label={t.opportunitiesMarker} />
-            <h2 className="font-display font-medium leading-[1.02]" style={{ fontSize: 'clamp(2.2rem,4.5vw,4rem)', letterSpacing: '-0.025em' }}>
-              {t.currentOpportunities}<span className="accent-em">{t.currentOpportunitiesAccent}</span>
-            </h2>
-          </div>
-          <p className="text-lg text-ink/70 leading-relaxed lg:pb-2">{t.opportunitiesBody}</p>
+        <Reveal>
+          <Marker num="05" label={t.relatedMarker} />
         </Reveal>
-
-        <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-3 border-t border-l border-[color:var(--line-dark)]">
-          {companyData.opportunities.map((opportunity, i) => (
-            <Reveal key={i} delay={(i % 3) * 0.05}>
-              <div className="group flex flex-col h-full p-8 border-b border-r border-[color:var(--line-dark)] hover:bg-[rgba(47,173,111,0.05)] transition-colors">
-                <div className="flex items-center justify-between gap-3">
-                  <span className={`text-[0.65rem] px-2.5 py-1 border ${opportunity.isActive ? 'border-primary text-primary' : 'border-[color:var(--line-dark)] text-ink/45'}`}>
-                    {opportunity.status}
-                  </span>
-                  <span className="mono-label text-ink/40" style={{ fontSize: '0.58rem' }}>{opportunity.category}</span>
-                </div>
-                <h3 className="mt-5 font-display text-xl font-medium leading-snug group-hover:text-primary transition-colors">{opportunity.title}</h3>
-                <p className="mt-3 text-sm text-ink/65 leading-relaxed flex-1">{opportunity.description}</p>
-
-                <div className="mt-6 pt-5 border-t border-[color:var(--line-dark)] grid grid-cols-2 gap-4">
-                  <div>
-                    <div className="mono-label text-ink/45" style={{ fontSize: '0.55rem' }}>{t.minInvestment}</div>
-                    <div className="font-display text-base mt-1">{opportunity.minInvestment}</div>
-                  </div>
-                  <div>
-                    <div className="mono-label text-ink/45" style={{ fontSize: '0.55rem' }}>{t.expectedReturn}</div>
-                    <div className="font-display text-base mt-1 text-primary flex items-center gap-1">
-                      <TrendingUp className="w-3.5 h-3.5" />{opportunity.expectedReturn}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-6 flex flex-wrap gap-4 text-sm">
-                  <Link to="/investors" className="inline-flex items-center gap-1 text-ink/70 hover:text-primary hover:gap-2 transition-all">
-                    {t.viewDetails} <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
-                  <Link to="/investors" className="inline-flex items-center gap-1 text-primary hover:gap-2 transition-all">
-                    {t.investNow} <ArrowUpRight className="w-3.5 h-3.5" />
-                  </Link>
-                </div>
-              </div>
-            </Reveal>
+        <div className="mt-8 grid sm:grid-cols-3 border-t border-l border-[color:var(--line-dark)]">
+          {[
+            { to: '/investors', label: t.exploreOwnership },
+            { to: '/documents', label: t.exploreDocuments },
+            { to: '/platforms', label: t.explorePlatformsLink },
+          ].map((link, i) => (
+            <Link
+              key={i}
+              to={link.to}
+              className="group flex items-center justify-between gap-4 p-8 border-b border-r border-[color:var(--line-dark)] hover:bg-[rgba(47,173,111,0.05)] transition-colors"
+            >
+              <span className="font-display text-lg font-medium group-hover:text-primary transition-colors">{link.label}</span>
+              <ArrowUpRight className="w-5 h-5 text-ink/30 group-hover:text-primary group-hover:translate-x-1 transition-all" />
+            </Link>
           ))}
         </div>
       </Band>
@@ -434,7 +281,7 @@ const CapimaxInvestment = ({ language = 'en' }) => {
           </h2>
           <p className="mt-7 text-lg text-sand/70 leading-relaxed">{t.ctaBody}</p>
           <div className="mt-10 flex flex-col sm:flex-row gap-3">
-            <Link to="/investors" className={`group ${BTN.sand}`}>
+            <Link to="/platforms" className={`group ${BTN.sand}`}>
               {t.startToday}
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>

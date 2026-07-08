@@ -15,18 +15,17 @@ const Companies = ({ language }) => {
 
   const translations = {
     en: {
-      heroEyebrow: 'The Group · UK · USA · UAE',
+      heroEyebrow: 'The Group · USA · UK · Global',
       heroTitle: 'Specialized companies, ',
       heroAccent: 'one umbrella.',
       heroSubtitle:
-        'A portfolio of regulated entities, each with a defined role in the Capimax ecosystem — across investment, finance, and technology.',
+        'A portfolio of regulated entities, each with a defined role in the Capimax ecosystem — across real estate technology, tokenization, and fractional ownership.',
       searchPlaceholder: 'Search companies, sectors…',
       allCountries: 'All',
       uk: 'UK',
       usa: 'USA',
-      uae: 'UAE',
       companiesMarker: 'The Companies',
-      companiesTitle: 'Thirteen entities, ',
+      companiesTitle: 'A focused group, ',
       companiesAccent: 'one mandate.',
       noResults: 'No companies match your search.',
       clearFilters: 'Clear filters',
@@ -46,18 +45,17 @@ const Companies = ({ language }) => {
       results: 'companies',
     },
     ar: {
-      heroEyebrow: 'المجموعة · المملكة المتحدة · الولايات المتحدة · الإمارات',
+      heroEyebrow: 'المجموعة · الولايات المتحدة · المملكة المتحدة · عالميًا',
       heroTitle: 'شركات متخصصة، ',
       heroAccent: 'مظلة واحدة.',
       heroSubtitle:
-        'محفظة من الكيانات المرخّصة، لكل منها دور محدّد في منظومة كابي ماكس — عبر الاستثمار والمال والتقنية.',
+        'محفظة من الكيانات المرخّصة، لكل منها دور محدّد في منظومة كابي ماكس — عبر تكنولوجيا العقارات، والترميز، والملكية الجزئية.',
       searchPlaceholder: 'ابحث في الشركات والقطاعات…',
       allCountries: 'الكل',
       uk: 'المملكة المتحدة',
       usa: 'الولايات المتحدة',
-      uae: 'الإمارات',
       companiesMarker: 'الشركات',
-      companiesTitle: 'ثلاثة عشر كيانًا، ',
+      companiesTitle: 'مجموعة مركّزة، ',
       companiesAccent: 'مهمة واحدة.',
       noResults: 'لا توجد شركات تطابق بحثك.',
       clearFilters: 'مسح التصفية',
@@ -82,27 +80,27 @@ const Companies = ({ language }) => {
 
   const partnerships = [
     {
-      id: 'tdh-developments',
-      en: { name: 'TDH Developments', sector: 'Real Estate Development', description: 'Strategic partnership in real estate development for new projects.' },
-      ar: { name: 'تي دي إتش للتطوير', sector: 'التطوير العقاري', description: 'شراكة استراتيجية في التطوير العقاري للمشاريع الجديدة.' },
+      id: 'elite-gate',
+      en: { name: 'Elite Gate', sector: 'Real Estate & Commercial', description: 'Real estate and commercial partner within the ecosystem.' },
+      ar: { name: 'إيليت جيت', sector: 'العقارات والتجاري', description: 'شريك عقاري وتجاري داخل المنظومة.' },
       icon: Building2,
     },
     {
-      id: 'elitegate-properties',
-      en: { name: 'EliteGate Properties', sector: 'Real Estate', description: 'Marketing partnership in hotel properties and sustainable development.' },
-      ar: { name: 'إيليت جيت العقارية', sector: 'العقارات', description: 'شراكة تسويقية في العقارات الفندقية والتطوير المستدام.' },
+      id: 'prim-inn',
+      en: { name: 'Prim Inn', sector: 'Real Estate & Hospitality', description: 'Real estate and hospitality partner within the ecosystem.' },
+      ar: { name: 'بريم إن', sector: 'العقارات والضيافة', description: 'شريك عقاري وضيافة داخل المنظومة.' },
       icon: Building2,
     },
     {
-      id: 'profit-max-investment',
-      en: { name: 'Profit Max Investment', sector: 'Investment Management', description: 'Administrative partnership in global investment management.' },
-      ar: { name: 'بروفيت ماكس للاستثمار', sector: 'إدارة الاستثمار', description: 'شراكة إدارية في إدارة الاستثمارات العالمية.' },
+      id: 'nova-asset-management',
+      en: { name: 'Nova Asset Management', sector: 'Asset Management', description: 'Real estate asset management partner within the ecosystem.' },
+      ar: { name: 'نوفا لإدارة الأصول', sector: 'إدارة الأصول', description: 'شريك إدارة الأصول العقارية داخل المنظومة.' },
       icon: TrendingUp,
     },
     {
-      id: 'assurax-insurance',
-      en: { name: 'Assurax Insurance', sector: 'Insurance', description: 'Integrated insurance and risk assessment services.' },
-      ar: { name: 'أشوراكس للتأمين', sector: 'التأمين', description: 'خدمات تأمين وتقييم مخاطر متكاملة.' },
+      id: 'cim-financial-group',
+      en: { name: 'CIM Financial Group', sector: 'Verification & Oversight', description: 'Evaluation, verification, document custody, and compliance.' },
+      ar: { name: 'مجموعة سي آي إم المالية', sector: 'التحقق والرقابة', description: 'التقييم والتحقق وحفظ المستندات والامتثال.' },
       icon: Shield,
     },
   ]
@@ -129,9 +127,8 @@ const Companies = ({ language }) => {
 
   const countryOptions = [
     { value: 'all', label: t.allCountries },
-    { value: 'UK', label: t.uk },
     { value: 'USA', label: t.usa },
-    { value: 'UAE', label: t.uae },
+    { value: 'UK', label: t.uk },
   ]
 
   return (

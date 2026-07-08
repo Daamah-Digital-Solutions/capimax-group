@@ -4,11 +4,10 @@ import {
   Search,
   ArrowRight,
   Clock,
-  User,
-  TrendingUp,
+  Rocket,
+  Newspaper,
   Building2,
   Globe,
-  Award,
   X,
   Star,
   FileText,
@@ -22,181 +21,163 @@ const News = ({ language }) => {
   const translations = {
     en: {
       pageTitle: 'News & ',
-      pageTitleAccent: 'updates.',
+      pageTitleAccent: 'media.',
       pageEyebrow: 'News & Media',
-      pageSubtitle: 'Stay informed with the latest news, announcements, and developments from Capimax Group.',
-      searchPlaceholder: 'Search news...',
+      pageSubtitle: 'Press coverage, announcements, and platform milestones from Capimax Group Holding and its licensed companies and platforms across the USA and UK.',
+      searchPlaceholder: 'Search news & media...',
       allCategories: 'All Categories',
       company: 'Company News',
-      investment: 'Investment Updates',
+      launches: 'Platform Launches',
+      media: 'Media Coverage',
       partnership: 'Partnerships',
-      awards: 'Awards & Recognition',
       readMore: 'Read More',
-      readTime: 'min read',
-      publishedBy: 'Published by',
       category: 'Category',
-      noResults: 'No news articles found matching your search criteria.',
+      noResults: 'No items found matching your search criteria.',
       clearFilters: 'Clear Filters',
       latestNews: 'Latest ',
-      latestNewsAccent: 'news.',
+      latestNewsAccent: 'items.',
       featuredNews: 'Featured ',
-      featuredNewsAccent: 'news.',
-      featuredMarker: 'Featured news',
-      latestMarker: 'Latest news',
+      featuredNewsAccent: 'coverage.',
+      featuredMarker: 'Featured coverage',
+      latestMarker: 'Latest items',
       filterMarker: 'Browse the archive',
-      featuredBody: "Highlighted stories and major announcements from Capimax Group's expanding global operations.",
-      latestBody: 'Stay updated with the latest developments, partnerships, and achievements from across our global operations.',
+      featuredBody: 'Highlighted press coverage and major announcements from across the Capimax Group ecosystem. Real coverage is being added as it is confirmed with the client.',
+      latestBody: 'Company news, platform launches, and media mentions from across the group. This archive is a placeholder until confirmed press items are supplied.',
       newsletterMarker: 'Stay informed',
       newsletterTitle: 'Stay ',
       newsletterAccent: 'informed.',
-      newsletterDesc: 'Subscribe to our newsletter for the latest updates on investments, partnerships, and company developments delivered directly to your inbox.',
+      newsletterDesc: 'Subscribe for the latest news, platform launches, and media coverage from Capimax Group and its platforms, delivered directly to your inbox.',
       subscribe: 'Subscribe',
-      articles: 'Articles',
-      article: 'Article',
+      articles: 'Items',
+      article: 'Item',
       featuredLabel: 'Featured',
+      placeholderNote: 'Placeholder — confirmed press items pending from the client.',
+      sourcePending: 'Source link pending',
+      viewSource: 'View source',
     },
     ar: {
       pageTitle: 'الأخبار ',
-      pageTitleAccent: 'والتحديثات.',
+      pageTitleAccent: 'والإعلام.',
       pageEyebrow: 'الأخبار والإعلام',
-      pageSubtitle: 'ابق على اطلاع بآخر الأخبار والإعلانات والتطورات من مجموعة كابيماكس.',
-      searchPlaceholder: 'البحث في الأخبار...',
+      pageSubtitle: 'التغطية الإعلامية والإعلانات ومحطات المنصات من مجموعة كابيماكس القابضة وشركاتها ومنصاتها المرخّصة في الولايات المتحدة والمملكة المتحدة.',
+      searchPlaceholder: 'البحث في الأخبار والإعلام...',
       allCategories: 'جميع الفئات',
       company: 'أخبار الشركة',
-      investment: 'تحديثات الاستثمار',
+      launches: 'إطلاق المنصات',
+      media: 'التغطية الإعلامية',
       partnership: 'الشراكات',
-      awards: 'الجوائز والتقدير',
       readMore: 'اقرأ المزيد',
-      readTime: 'دقيقة قراءة',
-      publishedBy: 'نشر بواسطة',
       category: 'الفئة',
-      noResults: 'لم يتم العثور على مقالات إخبارية تطابق معايير البحث الخاصة بك.',
+      noResults: 'لم يتم العثور على عناصر تطابق معايير البحث الخاصة بك.',
       clearFilters: 'مسح المرشحات',
       latestNews: 'آخر ',
-      latestNewsAccent: 'الأخبار.',
-      featuredNews: 'الأخبار ',
+      latestNewsAccent: 'العناصر.',
+      featuredNews: 'التغطية ',
       featuredNewsAccent: 'المميزة.',
-      featuredMarker: 'الأخبار المميزة',
-      latestMarker: 'آخر الأخبار',
+      featuredMarker: 'التغطية المميزة',
+      latestMarker: 'آخر العناصر',
       filterMarker: 'تصفح الأرشيف',
-      featuredBody: 'قصص بارزة وإعلانات رئيسية من عمليات مجموعة كابيماكس العالمية المتنامية.',
-      latestBody: 'ابق على اطلاع بآخر التطورات والشراكات والإنجازات عبر عملياتنا العالمية.',
+      featuredBody: 'تغطية إعلامية بارزة وإعلانات رئيسية من منظومة مجموعة كابيماكس. تُضاف التغطية الفعلية عند تأكيدها مع العميل.',
+      latestBody: 'أخبار الشركة وإطلاق المنصات والتغطيات الإعلامية عبر المجموعة. هذا الأرشيف مبدئي إلى حين توفير عناصر التغطية المؤكّدة.',
       newsletterMarker: 'ابق على اطلاع',
       newsletterTitle: 'ابق على ',
       newsletterAccent: 'اطلاع.',
-      newsletterDesc: 'اشترك في نشرتنا الإخبارية لتصلك آخر التحديثات حول الاستثمارات والشراكات وتطورات الشركة مباشرة إلى بريدك.',
+      newsletterDesc: 'اشترك لتصلك آخر الأخبار وإطلاق المنصات والتغطية الإعلامية من مجموعة كابيماكس ومنصاتها مباشرة إلى بريدك.',
       subscribe: 'اشترك',
-      articles: 'مقالات',
-      article: 'مقال',
+      articles: 'عناصر',
+      article: 'عنصر',
       featuredLabel: 'مميز',
+      placeholderNote: 'عنصر مبدئي — بانتظار عناصر التغطية المؤكّدة من العميل.',
+      sourcePending: 'رابط المصدر قيد الإعداد',
+      viewSource: 'عرض المصدر',
     }
   }
 
   const t = translations[language]
 
+  // NOTE: Placeholder press/media items. Real coverage (title, outlet, date,
+  // source link) is pending from the client. Each item is structured so a
+  // confirmed press mention can drop straight in: set `title`, `outlet`,
+  // `sourceUrl`, `publishDate`, and flip `placeholder` to false.
+  const placeholderExcerpt =
+    'Placeholder entry reserved for confirmed press coverage. Once the client supplies the outlet, headline, and source link, this item will link directly to the original article.'
   const newsArticles = [
     {
-      id: 'global-expansion-2024',
-      title: 'Capimax Group Announces Strategic Expansion into Asian and African Markets',
-      excerpt: 'The company reveals ambitious plans to extend operations across emerging markets, targeting significant growth in digital asset management and real estate investment.',
-      content: 'Capimax Group today announced its strategic expansion into key Asian and African markets, marking a significant milestone in the company\'s global growth strategy...',
+      id: 'placeholder-featured-coverage',
+      title: '[Press coverage — source pending]',
+      excerpt: placeholderExcerpt,
+      category: 'media',
+      author: t.placeholderNote,
+      outlet: 'Outlet pending',
+      sourceUrl: null,
+      publishDate: '2026-01-01',
+      featured: true,
+      tags: ['Placeholder', 'Media Coverage'],
+      image: '/api/placeholder/600/300'
+    },
+    {
+      id: 'placeholder-platform-launch',
+      title: '[Platform launch announcement — pending]',
+      excerpt: placeholderExcerpt,
+      category: 'launches',
+      author: t.placeholderNote,
+      outlet: 'Outlet pending',
+      sourceUrl: null,
+      publishDate: '2026-01-01',
+      featured: true,
+      tags: ['Placeholder', 'Platform Launches'],
+      image: '/api/placeholder/600/300'
+    },
+    {
+      id: 'placeholder-company-news',
+      title: '[Company news — pending]',
+      excerpt: placeholderExcerpt,
       category: 'company',
-      author: 'Capimax Group',
-      publishDate: '2024-12-01',
-      readTime: 5,
-      featured: true,
-      tags: ['Expansion', 'Global Markets', 'Strategy'],
+      author: t.placeholderNote,
+      outlet: 'Outlet pending',
+      sourceUrl: null,
+      publishDate: '2026-01-01',
+      featured: false,
+      tags: ['Placeholder', 'Company News'],
       image: '/api/placeholder/600/300'
     },
     {
-      id: 'tokenization-platform-launch',
-      title: 'Revolutionary Asset Tokenization Platform Goes Live',
-      excerpt: 'Capimax launches cutting-edge blockchain platform enabling fractional ownership of real estate, precious metals, and digital assets.',
-      content: 'The new tokenization platform represents a breakthrough in democratizing investment access, allowing investors to own fractions of high-value assets...',
-      category: 'investment',
-      author: 'CIM Financial Group',
-      publishDate: '2024-11-28',
-      readTime: 4,
-      featured: true,
-      tags: ['Blockchain', 'Tokenization', 'Digital Assets'],
+      id: 'placeholder-media-mention',
+      title: '[Media mention — source pending]',
+      excerpt: placeholderExcerpt,
+      category: 'media',
+      author: t.placeholderNote,
+      outlet: 'Outlet pending',
+      sourceUrl: null,
+      publishDate: '2026-01-01',
+      featured: false,
+      tags: ['Placeholder', 'Media Coverage'],
       image: '/api/placeholder/600/300'
     },
     {
-      id: 'insurance-partnership',
-      title: 'Strategic Partnership with Leading Insurance Provider Enhances Security',
-      excerpt: 'New partnership with HCC International provides comprehensive coverage and enhanced security measures for all investment platforms.',
-      content: 'This strategic alliance strengthens our commitment to investor protection and platform security, providing bank-level insurance coverage...',
+      id: 'placeholder-partnership',
+      title: '[Partnership announcement — pending]',
+      excerpt: placeholderExcerpt,
       category: 'partnership',
-      author: 'Capimax Group',
-      publishDate: '2024-11-25',
-      readTime: 3,
+      author: t.placeholderNote,
+      outlet: 'Outlet pending',
+      sourceUrl: null,
+      publishDate: '2026-01-01',
       featured: false,
-      tags: ['Insurance', 'Security', 'Partnership'],
+      tags: ['Placeholder', 'Partnerships'],
       image: '/api/placeholder/600/300'
     },
     {
-      id: 'fractional-investment-award',
-      title: 'Capimax Receives Fractional Investment Excellence Award',
-      excerpt: 'Recognition for innovative approach to fractional ownership and democratizing investment opportunities.',
-      content: 'The award recognizes Capimax\'s pioneering work in making high-value investments accessible to a broader range of investors...',
-      category: 'awards',
-      author: 'Awards Committee',
-      publishDate: '2024-11-20',
-      readTime: 2,
+      id: 'placeholder-platform-milestone',
+      title: '[Platform milestone — pending]',
+      excerpt: placeholderExcerpt,
+      category: 'launches',
+      author: t.placeholderNote,
+      outlet: 'Outlet pending',
+      sourceUrl: null,
+      publishDate: '2026-01-01',
       featured: false,
-      tags: ['Awards', 'Recognition', 'Innovation'],
-      image: '/api/placeholder/600/300'
-    },
-    {
-      id: 'uk-subsidiaries-incorporation',
-      title: 'Capimax Group Incorporates Multiple UK Subsidiaries',
-      excerpt: 'Strategic incorporation of specialized companies across investment management, fintech, and precious metals sectors.',
-      content: 'The incorporation of multiple UK subsidiaries demonstrates our commitment to regulatory compliance and specialized service delivery...',
-      category: 'company',
-      author: 'Legal Department',
-      publishDate: '2024-11-15',
-      readTime: 4,
-      featured: false,
-      tags: ['Incorporation', 'UK', 'Subsidiaries'],
-      image: '/api/placeholder/600/300'
-    },
-    {
-      id: 'blockchain-excellence-certification',
-      title: 'Nova Digital Finance Achieves Blockchain Excellence Certification',
-      excerpt: 'Technical partner receives prestigious certification for blockchain finance solutions and digital wallet security.',
-      content: 'This certification validates our technical capabilities and commitment to maintaining the highest standards in blockchain technology...',
-      category: 'awards',
-      author: 'Nova Digital Finance',
-      publishDate: '2024-11-10',
-      readTime: 3,
-      featured: false,
-      tags: ['Blockchain', 'Certification', 'Technology'],
-      image: '/api/placeholder/600/300'
-    },
-    {
-      id: 'uae-operations-launch',
-      title: 'Capimax Launches Operations in United Arab Emirates',
-      excerpt: 'New UAE subsidiary focuses on agricultural, real estate, and technology investments in the Middle East region.',
-      content: 'The launch of CAPI MAX INVESTMENTS - L.L.C in Abu Dhabi marks our entry into the dynamic Middle Eastern market...',
-      category: 'company',
-      author: 'UAE Operations Team',
-      publishDate: '2024-11-05',
-      readTime: 4,
-      featured: false,
-      tags: ['UAE', 'Middle East', 'Operations'],
-      image: '/api/placeholder/600/300'
-    },
-    {
-      id: 'platform-security-certification',
-      title: 'Capimax Platform Receives Certified Security Seal',
-      excerpt: 'Comprehensive security audit results in prestigious platform security certification from Assurax Insurance.',
-      content: 'The security certification covers all aspects of our platform infrastructure, data protection, and investor asset security...',
-      category: 'awards',
-      author: 'Security Team',
-      publishDate: '2024-10-30',
-      readTime: 3,
-      featured: false,
-      tags: ['Security', 'Certification', 'Platform'],
+      tags: ['Placeholder', 'Platform Launches'],
       image: '/api/placeholder/600/300'
     }
   ]
@@ -204,9 +185,9 @@ const News = ({ language }) => {
   const categories = [
     { value: 'all', label: t.allCategories },
     { value: 'company', label: t.company },
-    { value: 'investment', label: t.investment },
-    { value: 'partnership', label: t.partnership },
-    { value: 'awards', label: t.awards }
+    { value: 'launches', label: t.launches },
+    { value: 'media', label: t.media },
+    { value: 'partnership', label: t.partnership }
   ]
 
   const filteredArticles = newsArticles.filter(article => {
@@ -225,9 +206,9 @@ const News = ({ language }) => {
   const getCategoryIcon = (category) => {
     switch (category) {
       case 'company': return Building2
-      case 'investment': return TrendingUp
+      case 'launches': return Rocket
+      case 'media': return Newspaper
       case 'partnership': return Globe
-      case 'awards': return Award
       default: return Building2
     }
   }
@@ -332,8 +313,7 @@ const News = ({ language }) => {
 
                     <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-ink/55">
                       <span className="inline-flex items-center gap-1.5"><Calendar className="w-3.5 h-3.5 text-primary" />{new Date(article.publishDate).toLocaleDateString()}</span>
-                      <span className="inline-flex items-center gap-1.5"><Clock className="w-3.5 h-3.5 text-primary" />{article.readTime} {t.readTime}</span>
-                      <span className="inline-flex items-center gap-1.5"><User className="w-3.5 h-3.5 text-primary" />{article.author}</span>
+                      <span className="inline-flex items-center gap-1.5"><Newspaper className="w-3.5 h-3.5 text-primary" />{article.outlet}</span>
                     </div>
 
                     <div className="mt-5 flex flex-wrap gap-2">
@@ -342,10 +322,17 @@ const News = ({ language }) => {
                       ))}
                     </div>
 
-                    <button className="group/btn mt-7 inline-flex items-center gap-2 text-sm font-medium text-primary self-start">
-                      {t.readMore}
-                      <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                    </button>
+                    {article.sourceUrl ? (
+                      <a href={article.sourceUrl} target="_blank" rel="noopener noreferrer" className="group/btn mt-7 inline-flex items-center gap-2 text-sm font-medium text-primary self-start">
+                        {t.viewSource}
+                        <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                      </a>
+                    ) : (
+                      <span className="mt-7 inline-flex items-center gap-2 text-sm font-medium text-ink/40 self-start">
+                        <Clock className="w-3.5 h-3.5" />
+                        {t.sourcePending}
+                      </span>
+                    )}
                   </article>
                 </Reveal>
               )
@@ -383,7 +370,7 @@ const News = ({ language }) => {
 
                     <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-sand/55">
                       <span className="inline-flex items-center gap-1.5"><Calendar className="w-3 h-3 text-primary" />{new Date(article.publishDate).toLocaleDateString()}</span>
-                      <span className="inline-flex items-center gap-1.5"><Clock className="w-3 h-3 text-primary" />{article.readTime} {t.readTime}</span>
+                      <span className="inline-flex items-center gap-1.5"><Newspaper className="w-3 h-3 text-primary" />{article.outlet}</span>
                     </div>
 
                     <div className="mt-4 flex flex-wrap gap-2">
@@ -392,10 +379,17 @@ const News = ({ language }) => {
                       ))}
                     </div>
 
-                    <button className="group/btn mt-6 inline-flex items-center gap-2 text-sm font-medium text-primary self-start">
-                      {t.readMore}
-                      <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                    </button>
+                    {article.sourceUrl ? (
+                      <a href={article.sourceUrl} target="_blank" rel="noopener noreferrer" className="group/btn mt-6 inline-flex items-center gap-2 text-sm font-medium text-primary self-start">
+                        {t.viewSource}
+                        <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                      </a>
+                    ) : (
+                      <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-sand/40 self-start">
+                        <Clock className="w-3 h-3" />
+                        {t.sourcePending}
+                      </span>
+                    )}
                   </article>
                 </Reveal>
               )
