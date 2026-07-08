@@ -43,7 +43,7 @@ const CapimaxInvestment = ({ language = 'en' }) => {
       whyBody: 'Every layer is designed to be transparent, verifiable, and protected.',
       why1: 'Verifiable', why1Desc: 'Every asset backed by documents you can verify.',
       why2: 'Asset-backed', why2Desc: 'Each digital asset linked to a documented real asset.',
-      why3: 'Insured', why3Desc: 'Assets and operations insured via HCC and AssurX.',
+      why3: 'Insured', why3Desc: 'Assets and operations insured via HCC and Assurax.',
       why4: 'Global', why4Desc: 'Licensed platforms operating across the USA and UK.',
 
       relatedMarker: 'Related',
@@ -95,7 +95,7 @@ const CapimaxInvestment = ({ language = 'en' }) => {
       whyBody: 'كل طبقة مصمّمة لتكون شفافة وقابلة للتحقق ومحميّة.',
       why1: 'قابل للتحقق', why1Desc: 'كل أصل مدعوم بمستندات يمكنك التحقق منها.',
       why2: 'مدعوم بأصول', why2Desc: 'كل أصل رقمي مرتبط بأصل حقيقي موثّق.',
-      why3: 'مؤمّن', why3Desc: 'الأصول والعمليات مؤمّنة عبر HCC وAssurX.',
+      why3: 'مؤمّن', why3Desc: 'الأصول والعمليات مؤمّنة عبر HCC وAssurax.',
       why4: 'عالمي', why4Desc: 'منصات مرخّصة تعمل عبر الولايات المتحدة والمملكة المتحدة.',
 
       relatedMarker: 'روابط ذات صلة',

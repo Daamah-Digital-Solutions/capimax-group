@@ -54,7 +54,7 @@ const Investors = ({ language }) => {
       protect1: 'Independent SPV', protect1Desc: 'Every project sits in its own independent, verifiable SPV.',
       protect2: 'Verification & documentation', protect2Desc: 'Ownership and asset documents are verified and documented globally.',
       protect3: 'Independent valuation', protect3Desc: 'Assets are valued through independent valuation partners.',
-      protect4: 'Insurance', protect4Desc: 'Assets and operations are covered by specialized insurance (HCC, AssurX).',
+      protect4: 'Insurance', protect4Desc: 'Assets and operations are covered by specialized insurance (HCC, Assurax).',
       protect5: 'Verifiable records', protect5Desc: 'Every digital asset is linked to a documented, real-world asset.',
       protect6: 'Oversight & compliance', protect6Desc: 'Document custody, verification, and compliance via CIM Financial Group.',
 
@@ -122,7 +122,7 @@ const Investors = ({ language }) => {
       protect1: 'SPV مستقلة', protect1Desc: 'كل مشروع في شركة SPV مستقلة قابلة للتحقق.',
       protect2: 'التحقق والتوثيق', protect2Desc: 'مستندات الملكية والأصول موثّقة ومتحقَّق منها عالميًا.',
       protect3: 'تقييم مستقل', protect3Desc: 'تُقيَّم الأصول عبر شركاء تقييم مستقلين.',
-      protect4: 'التأمين', protect4Desc: 'الأصول والعمليات مغطّاة بتأمين متخصص (HCC، AssurX).',
+      protect4: 'التأمين', protect4Desc: 'الأصول والعمليات مغطّاة بتأمين متخصص (HCC، Assurax).',
       protect5: 'سجلات قابلة للتحقق', protect5Desc: 'كل أصل رقمي مرتبط بأصل حقيقي موثّق.',
       protect6: 'الرقابة والامتثال', protect6Desc: 'حفظ المستندات والتحقق والامتثال عبر مجموعة CIM المالية.',
 

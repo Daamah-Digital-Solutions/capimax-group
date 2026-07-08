@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight, ArrowUpRight, Building2, Hotel, LineChart, ShieldCheck, Shield, BadgeCheck } from 'lucide-react'
 import { PageHero, Band, Marker, Reveal, BTN } from '@/components/editorial'
+import { getPartnerLogo } from '@/data/logos'
 
 const Partners = ({ language }) => {
   const translations = {
@@ -169,7 +170,7 @@ const Partners = ({ language }) => {
     },
     {
       id: 'assurx-insurance',
-      name: 'AssurX Insurance',
+      name: 'Assurax Insurance',
       category: 'insurance',
       icon: ShieldCheck,
       role: language === 'ar'
@@ -287,15 +288,21 @@ const Partners = ({ language }) => {
                   {members.map((partner, i) => {
                     const hasSite = partner.website && partner.website !== '#'
                     const Logo = partner.icon
+                    const logo = getPartnerLogo(partner.id, 'dark')
                     return (
                       <Reveal key={partner.id} delay={(i % 3) * 0.05}>
                         <div className="group flex flex-col h-full p-8 border-b border-r border-[color:var(--line-sand)] hover:bg-[rgba(47,173,111,0.05)] transition-colors relative">
                           <span className="absolute top-0 left-0 h-px w-0 bg-primary group-hover:w-full transition-all duration-500" style={{ transitionTimingFunction: 'var(--ease-out)' }} />
                           <div className="flex items-center justify-between gap-3">
-                            {/* Logo placeholder — client logos pending */}
-                            <span className="flex items-center justify-center w-12 h-12 border border-[color:var(--line-sand)] text-primary">
-                              <Logo className="w-6 h-6" strokeWidth={1.5} />
-                            </span>
+                            {logo ? (
+                              <span className="inline-flex items-center justify-center h-20 px-5 border border-[color:var(--line-sand)]">
+                                <img src={logo} alt={partner.name} className="h-14 w-auto max-w-[220px] object-contain" />
+                              </span>
+                            ) : (
+                              <span className="flex items-center justify-center w-12 h-12 border border-[color:var(--line-sand)] text-primary">
+                                <Logo className="w-6 h-6" strokeWidth={1.5} />
+                              </span>
+                            )}
                             <span className="mono-label text-sand/35 shrink-0 text-end" style={{ fontSize: '0.58rem' }}>{cat.label}</span>
                           </div>
                           <h3 className="mt-5 font-display text-xl font-medium leading-snug text-sand group-hover:text-primary transition-colors">{partner.name}</h3>

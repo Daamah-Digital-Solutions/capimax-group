@@ -3,6 +3,8 @@ import { motion } from 'framer-motion'
 import { ArrowRight, ArrowUpRight } from 'lucide-react'
 import { companyRegistry, companyIds } from '@/data/companies'
 import { companyContent, platformContent, currencyContent, novaContent } from '@/data/content'
+import { getCompanyLogo } from '@/data/logos'
+import { useTheme } from '@/hooks/use-theme.jsx'
 
 const IMAGES = {
   hero: 'https://images.unsplash.com/photo-1494891848038-7bd202a2afeb?auto=format&fit=crop&w=1600&q=80',
@@ -18,8 +20,8 @@ const BTN_GHOST_LIGHT = 'inline-flex items-center justify-center gap-2 px-7 py-4
 const companyName = (id, language) =>
   companyContent[id]?.[language]?.name || companyRegistry[id]?.legalName || id
 
-// All group companies drive the wordmark marquee (dedicated logos pending from client).
-const marqueeCompanies = companyIds
+// Companies that have a real logo asset drive the marquee.
+const logoCompanies = companyIds.filter((id) => getCompanyLogo(id, 'dark'))
 
 const Reveal = ({ children, delay = 0, className }) => (
   <motion.div
@@ -42,6 +44,8 @@ const Marker = ({ num, label, light }) => (
 
 const Home = ({ language }) => {
   const isAr = language === 'ar'
+  const { isDark } = useTheme()
+  const marqueeBg = isDark ? 'dark' : 'light'
   const c = {
     en: {
       heroEyebrow: 'Real estate technology · Tokenization · Fractional ownership',
@@ -121,7 +125,7 @@ const Home = ({ language }) => {
         ['Professional smart contracts', 'Audited, professional smart contracts govern tokenized assets.'],
         ['Security reviews & audits', 'Multi-level technical audits and verification.'],
         ['Independent valuation', 'Assets valued by independent valuation partners.'],
-        ['Specialized insurance', 'Assets and operations insured via HCC and AssurX.'],
+        ['Specialized insurance', 'Assets and operations insured via HCC and Assurax.'],
         ['Legal & regulatory registration', 'Digital assets registered within a clear legal framework.'],
       ],
 
@@ -238,7 +242,7 @@ const Home = ({ language }) => {
         ['عقود ذكية احترافية', 'عقود ذكية احترافية ومدقّقة تحكم الأصول المرمّزة.'],
         ['مراجعات أمنية وتدقيق', 'تدقيق تقني وتحقق متعدد المستويات.'],
         ['تقييم مستقل', 'تُقيَّم الأصول عبر شركاء تقييم مستقلين.'],
-        ['تأمين متخصص', 'الأصول والعمليات مؤمّنة عبر HCC وAssurX.'],
+        ['تأمين متخصص', 'الأصول والعمليات مؤمّنة عبر HCC وAssurax.'],
         ['تسجيل قانوني وتنظيمي', 'الأصول الرقمية مسجّلة ضمن إطار قانوني واضح.'],
       ],
 
@@ -279,8 +283,12 @@ const Home = ({ language }) => {
     },
   }[language]
 
-  // Placeholder press slots for the News & Media ticker (client to supply real logos + links).
-  const pressSlots = ['01', '02', '03', '04', '05', '06', '07', '08']
+  // Official media partners featured on the News & Media page.
+  const mediaOutlets = [
+    { name: 'Global Business Journal', url: 'https://www.gbjournal.world/' },
+    { name: 'Econix Global', url: 'https://econixglobal.com/' },
+    { name: 'Domynex Global', url: 'https://domynexglobal.com/' },
+  ]
 
   return (
     <div className="bg-cream text-ink">
@@ -342,23 +350,21 @@ const Home = ({ language }) => {
       </section>
 
       {/* ================================================= COMPANY MARQUEE */}
-      <section className="relative bg-white dark:bg-[#08201d] border-b border-[color:var(--line-mid)] py-14 overflow-hidden">
-        <div className="space-y-8">
+      <section className="relative bg-white dark:bg-[#08201d] border-b border-[color:var(--line-mid)] py-16 overflow-hidden">
+        <div className="space-y-12">
           <div className="flex">
-            <div className="marquee-track flex items-center gap-16 pr-16 w-max shrink-0">
-              {[...marqueeCompanies, ...marqueeCompanies].map((id, i) => (
-                <span key={`a-${i}`} className="font-display text-2xl lg:text-3xl text-ink/60 dark:text-sand/60 whitespace-nowrap shrink-0">
-                  {companyName(id, language)}
-                </span>
+            <div className="marquee-track flex items-center gap-28 pr-28 w-max shrink-0">
+              {[...logoCompanies, ...logoCompanies].map((id, i) => (
+                <img key={`a-${i}`} src={getCompanyLogo(id, marqueeBg)} alt={companyName(id, language)}
+                  className="h-16 lg:h-20 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity duration-300 shrink-0" />
               ))}
             </div>
           </div>
           <div className="flex">
-            <div className="marquee-track flex items-center gap-16 pr-16 w-max shrink-0" style={{ animationDirection: 'reverse' }}>
-              {[...[...marqueeCompanies].reverse(), ...[...marqueeCompanies].reverse()].map((id, i) => (
-                <span key={`b-${i}`} className="font-display text-2xl lg:text-3xl text-ink/40 dark:text-sand/40 whitespace-nowrap shrink-0">
-                  {companyName(id, language)}
-                </span>
+            <div className="marquee-track flex items-center gap-28 pr-28 w-max shrink-0" style={{ animationDirection: 'reverse' }}>
+              {[...[...logoCompanies].reverse(), ...[...logoCompanies].reverse()].map((id, i) => (
+                <img key={`b-${i}`} src={getCompanyLogo(id, marqueeBg)} alt={companyName(id, language)}
+                  className="h-16 lg:h-20 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity duration-300 shrink-0" />
               ))}
             </div>
           </div>
@@ -449,6 +455,7 @@ const Home = ({ language }) => {
             {companyIds.map((id, i) => {
               const meta = companyRegistry[id]
               const Icon = meta.icon
+              const logo = getCompanyLogo(id, 'dark')
               const name = companyName(id, language)
               return (
                 <Reveal key={id} delay={(i % 3) * 0.05}>
@@ -458,11 +465,17 @@ const Home = ({ language }) => {
                   >
                     <span className="absolute top-0 left-0 h-px w-0 bg-primary group-hover:w-full transition-all duration-500" style={{ transitionTimingFunction: 'var(--ease-out)' }} />
                     <div className="flex items-start justify-between gap-3">
-                      <Icon className="w-9 h-9 text-primary" />
+                      <div className="h-12 flex items-center">
+                        {logo ? (
+                          <img src={logo} alt={name} className="h-11 w-auto max-w-[210px] object-contain object-left" />
+                        ) : (
+                          <Icon className="w-9 h-9 text-primary" />
+                        )}
+                      </div>
                       <span className="mono-label text-sand/35 shrink-0" style={{ fontSize: '0.6rem' }}>/ {String(i + 1).padStart(2, '0')}</span>
                     </div>
-                    <h3 className="mt-6 font-display text-xl font-medium leading-snug group-hover:text-primary transition-colors">{name}</h3>
-                    <p className="text-sm text-sand/55 mt-2">{meta.sector}</p>
+                    <h3 className={`mt-6 font-display text-xl font-medium leading-snug group-hover:text-primary transition-colors ${logo ? 'sr-only' : ''}`}>{name}</h3>
+                    <p className={`text-sm text-sand/55 ${logo ? 'mt-3' : 'mt-2'}`}>{meta.sector}</p>
                   </Link>
                 </Reveal>
               )
@@ -697,11 +710,12 @@ const Home = ({ language }) => {
         </div>
 
         <div className="mt-12 flex">
-          <div className="marquee-track flex items-center gap-6 pr-6 w-max shrink-0">
-            {[...pressSlots, ...pressSlots].map((slot, i) => (
-              <div key={i} className="flex items-center justify-center h-16 w-40 border border-[color:var(--line-mid)] text-ink/30 dark:text-sand/30 shrink-0">
-                <span className="mono-label" style={{ fontSize: '0.58rem' }}>{c.newsPending}</span>
-              </div>
+          <div className="marquee-track flex items-center gap-16 pr-16 w-max shrink-0">
+            {[...mediaOutlets, ...mediaOutlets, ...mediaOutlets].map((o, i) => (
+              <a key={i} href={o.url} target="_blank" rel="noopener noreferrer"
+                className="font-display text-2xl lg:text-3xl text-ink/45 hover:text-primary dark:text-sand/45 whitespace-nowrap shrink-0 transition-colors">
+                {o.name}
+              </a>
             ))}
           </div>
         </div>
