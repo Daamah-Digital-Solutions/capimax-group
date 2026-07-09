@@ -1,0 +1,13 @@
+[build]
+  command = "pnpm build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# SPA fallback — let React Router handle client-side routes
+# so a hard refresh / deep link (e.g. /companies) doesn't 404.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
