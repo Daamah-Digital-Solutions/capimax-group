@@ -19,8 +19,8 @@ const Footer = ({ language }) => {
       nav: [['Home', '/'], ['About', '/about'], ['Companies', '/companies'], ['Platforms', '/platforms'], ['Ownership', '/investors'], ['Contact', '/contact']],
       explore: [['Sectors', '/sectors'], ['Documents', '/documents'], ['Team', '/team'], ['Brochure', '/brochure'], ['News', '/news'], ['Partners', '/partners']],
       offices: [
-        { region: 'United States', address: 'United States — address pending', phone: 'USA — phone pending' },
-        { region: 'United Kingdom', address: 'United Kingdom — address pending', phone: 'UK — phone pending' },
+        { region: 'United States', address: 'Delaware, United States', phone: '+1 205-360-0594', phoneHref: 'tel:+12053600594' },
+        { region: 'United Kingdom', address: '128 City Road, London, EC1V 2NX, United Kingdom', phone: '+44 7577 370309', phoneHref: 'tel:+447577370309' },
       ],
       rights: '© 2026 Capimax Group · All rights reserved.',
       privacy: 'Privacy Policy',
@@ -38,8 +38,8 @@ const Footer = ({ language }) => {
       nav: [['الرئيسية', '/'], ['من نحن', '/about'], ['الشركات', '/companies'], ['المنصات', '/platforms'], ['التملّك', '/investors'], ['تواصل', '/contact']],
       explore: [['القطاعات', '/sectors'], ['المستندات', '/documents'], ['الفريق', '/team'], ['البروشور', '/brochure'], ['الأخبار', '/news'], ['الشركاء', '/partners']],
       offices: [
-        { region: 'الولايات المتحدة', address: 'الولايات المتحدة — العنوان قيد الإضافة', phone: 'الولايات المتحدة — الهاتف قيد الإضافة' },
-        { region: 'المملكة المتحدة', address: 'المملكة المتحدة — العنوان قيد الإضافة', phone: 'المملكة المتحدة — الهاتف قيد الإضافة' },
+        { region: 'الولايات المتحدة', address: 'ديلاوير، الولايات المتحدة', phone: '+1 205-360-0594', phoneHref: 'tel:+12053600594' },
+        { region: 'المملكة المتحدة', address: '128 سيتي رود، لندن، EC1V 2NX، المملكة المتحدة', phone: '+44 7577 370309', phoneHref: 'tel:+447577370309' },
       ],
       rights: '© 2026 مجموعة كابي ماكس · جميع الحقوق محفوظة.',
       privacy: 'سياسة الخصوصية',
@@ -139,7 +139,7 @@ const Footer = ({ language }) => {
               <div key={office.region}>
                 <p className="mono-label text-sand/80 text-xs mb-1">{office.region}</p>
                 <p className="text-sand/55 text-sm leading-relaxed">{office.address}</p>
-                <p className="text-sand/55 text-sm leading-relaxed">{office.phone}</p>
+                <a href={office.phoneHref} dir="ltr" className={`block text-sand/55 hover:text-sand text-sm leading-relaxed transition-colors ${isAr ? 'text-right' : ''}`}>{office.phone}</a>
               </div>
             ))}
           </div>

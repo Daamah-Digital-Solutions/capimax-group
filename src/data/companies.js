@@ -22,7 +22,7 @@ import {
 } from 'lucide-react'
 
 const GROUP_CONTACT = {
-  phone: null, // USA/UK numbers pending from client
+  phone: '+44 7577 370309',
   email: 'info@capimaxgroup.com',
   website: 'https://capimaxgroup.com',
 }

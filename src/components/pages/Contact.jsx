@@ -127,19 +127,16 @@ const Contact = ({ language }) => {
 
   const t = translations[language]
 
-  // NOTE: Office address & phone are placeholders pending final client data.
-  const addressTBD = isAr ? 'العنوان — يُحدَّد لاحقًا' : 'Address — to be confirmed'
-  const phoneTBD = isAr ? 'الهاتف — يُحدَّد لاحقًا' : 'Phone — to be confirmed'
-
   const offices = [
     {
       id: 'usa',
-      city: isAr ? 'الولايات المتحدة' : 'United States',
-      country: isAr ? 'ديلاوير' : 'Delaware',
+      city: isAr ? 'ديلاوير' : 'Delaware',
+      country: isAr ? 'الولايات المتحدة' : 'United States',
       flag: '🇺🇸',
       type: t.headquarters,
-      address: addressTBD,
-      phone: phoneTBD,
+      address: isAr ? 'ديلاوير، الولايات المتحدة' : 'Delaware, United States',
+      phone: '+1 205-360-0594',
+      phoneHref: '+12053600594',
       email: 'usa@capimaxgroup.com',
       hours: {
         weekdays: '9:00 AM - 6:00 PM EST',
@@ -148,12 +145,13 @@ const Contact = ({ language }) => {
     },
     {
       id: 'uk',
-      city: isAr ? 'المملكة المتحدة' : 'United Kingdom',
-      country: isAr ? 'لندن' : 'London',
+      city: isAr ? 'لندن' : 'London',
+      country: isAr ? 'المملكة المتحدة' : 'United Kingdom',
       flag: '🇬🇧',
       type: t.operations,
-      address: addressTBD,
-      phone: phoneTBD,
+      address: isAr ? '128 سيتي رود، لندن، EC1V 2NX' : '128 City Road, London, EC1V 2NX',
+      phone: '+44 7577 370309',
+      phoneHref: '+447577370309',
       email: 'uk@capimaxgroup.com',
       hours: {
         weekdays: '9:00 AM - 6:00 PM GMT',
@@ -314,7 +312,6 @@ const Contact = ({ language }) => {
                   <h3 className="font-display text-lg font-medium text-ink">{t.emergencyContact}</h3>
                 </div>
                 <p className="mt-3 text-sm text-ink/60 leading-relaxed">{t.emergencyDesc}</p>
-                <span className="mt-3 inline-block text-ink/50 italic text-sm">{phoneTBD}</span>
               </div>
 
               <a href="mailto:info@capimaxgroup.com" className="group flex items-center gap-4 p-7 border-b border-r border-[color:var(--line-dark)] hover:bg-[rgba(47,173,111,0.05)] transition-colors">
@@ -325,11 +322,14 @@ const Contact = ({ language }) => {
                 </span>
               </a>
 
-              <div className="flex items-center gap-4 p-7 border-b border-r border-[color:var(--line-dark)]">
-                <Phone className="w-5 h-5 text-primary" />
+              <div className="flex items-start gap-4 p-7 border-b border-r border-[color:var(--line-dark)]">
+                <Phone className="w-5 h-5 text-primary mt-0.5" />
                 <span>
                   <span className="mono-label text-ink/45 block" style={{ fontSize: '0.6rem' }}>{t.phoneLabel}</span>
-                  <span className="text-ink/50 italic">{phoneTBD}</span>
+                  <span dir="ltr" className={`flex flex-col ${isAr ? 'items-end' : 'items-start'}`}>
+                    <a href="tel:+12053600594" className="text-ink/80 hover:text-primary transition-colors">🇺🇸 +1 205-360-0594</a>
+                    <a href="tel:+447577370309" className="text-ink/80 hover:text-primary transition-colors">🇬🇧 +44 7577 370309</a>
+                  </span>
                 </span>
               </div>
 
