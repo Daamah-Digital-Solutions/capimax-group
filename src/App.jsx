@@ -5,6 +5,7 @@ import { ThemeProvider } from './hooks/use-theme.jsx'
 // Components
 import Header from './components/Header'
 import Footer from './components/Footer'
+import ChatWidget from './components/ChatWidget'
 import Home from './components/pages/Home'
 import About from './components/pages/About'
 import Companies from './components/pages/Companies'
@@ -97,6 +98,7 @@ function AppContent() {
           </Routes>
         </main>
         <Footer language={language} />
+        <ChatWidget language={language} />
       </div>
     </Router>
   )
