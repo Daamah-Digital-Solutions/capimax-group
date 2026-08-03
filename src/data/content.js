@@ -16,7 +16,7 @@ export const PLATFORM_URLS = {
   rt: 'https://capimaxrt.tech',
   brx: 'https://www.capimaxbrx.com',
   propShare: 'https://capimaxpropshare.com',
-  asset: null, // pending
+  asset: 'https://panel.capimaxinvestment.com',
 }
 
 // ---------------------------------------------------------------------------
@@ -254,7 +254,7 @@ export const platformContent = [
   {
     id: 'asset',
     externalUrl: PLATFORM_URLS.asset,
-    screenshot: null, // no public site yet — pending
+    screenshot: '/platforms/asset.jpg',
     en: {
       name: 'Capimax Asset',
       short: 'Structured investor access to real, asset-backed, tokenized opportunities.',
