@@ -65,6 +65,7 @@ const Sectors = ({ language }) => {
         ? ['منصات عقارية تقنية', 'أنظمة متعددة الأطراف', 'الانضمام الرقمي', 'البيانات والتقارير']
         : ['PropTech Platforms', 'Multi-party Systems', 'Digital Onboarding', 'Data & Reporting'],
       companies: ['Capimax Real Estate Technologies', 'Capimax Technologies UK'],
+      platform: { label: 'View BRX', path: '/platforms/brx' },
     },
     {
       id: 'fractional-ownership',
@@ -76,6 +77,7 @@ const Sectors = ({ language }) => {
         ? ['حصص جزئية', 'حد أدنى منخفض', 'ملكية واضحة', 'تحويلات ثانوية']
         : ['Fractional Shares', 'Low Minimums', 'Clear Ownership', 'Secondary Transfers'],
       companies: ['Capimax Fractional Ownership', 'Capimax PropShare'],
+      platform: { label: 'View PropShare', path: '/platforms/propshare' },
     },
     {
       id: 'asset-tokenization',
@@ -86,7 +88,8 @@ const Sectors = ({ language }) => {
       features: language === 'ar'
         ? ['ترميز العقارات', 'هياكل SPV مستقلة', 'عقود ذكية', 'أسواق ثانوية']
         : ['Real Estate Tokenization', 'Independent SPVs', 'Smart Contracts', 'Secondary Markets'],
-      companies: ['Capimax Digital Assets', 'Capimax RT'],
+      companies: ['Capimax RT', 'Capimax Asset Structure'],
+      platform: { label: 'View RT', path: '/platforms/rt' },
     },
     {
       id: 'blockchain-solutions',
@@ -97,7 +100,8 @@ const Sectors = ({ language }) => {
       features: language === 'ar'
         ? ['بنية تحتية للبلوكشين', 'عقود ذكية', 'تدقيق أمني', 'سجلات قابلة للتحقق']
         : ['Blockchain Infrastructure', 'Smart Contracts', 'Security Audits', 'Verifiable Records'],
-      companies: ['Capimax Technologies UK', 'Capimax Digital Assets'],
+      companies: ['Capimax Technologies UK', 'Capimax RT'],
+      platform: { label: 'View RT', path: '/platforms/rt' },
     },
     {
       id: 'virtual-assets',
@@ -108,7 +112,8 @@ const Sectors = ({ language }) => {
       features: language === 'ar'
         ? ['إدارة الأصول الرقمية', 'فائدة مدعومة بالأصول', 'التسوية الرقمية', 'الامتثال']
         : ['Digital Asset Management', 'Asset-backed Utility', 'Digital Settlement', 'Compliance'],
-      companies: ['Capimax Digital Assets', 'Nova Digital Finance'],
+      companies: ['Nova Digital Finance', 'Capimax RT'],
+      platform: { label: 'View Nova', path: '/nova' },
     },
     {
       id: 'digital-property-infrastructure',
@@ -120,6 +125,7 @@ const Sectors = ({ language }) => {
         ? ['هياكل SPV', 'سجلات الملكية', 'التقييم والتحقق', 'التأمين']
         : ['SPV Structures', 'Ownership Records', 'Valuation & Verification', 'Insurance'],
       companies: ['Capimax Asset Structure', 'Capimax Real Estate Technologies'],
+      platform: { label: 'View Asset', path: '/platforms/asset' },
     },
     {
       id: 'real-estate-marketplaces',
@@ -130,13 +136,14 @@ const Sectors = ({ language }) => {
       features: language === 'ar'
         ? ['سوق متعدد الأطراف', 'الاكتشاف والإدراج', 'التملّك والتبادل', 'السيولة']
         : ['Multi-party Marketplace', 'Discovery & Listing', 'Ownership & Exchange', 'Liquidity'],
-      companies: ['Capimax BRX', 'Capimax Real Estate'],
+      companies: ['Capimax BRX', 'Capimax Property Holding'],
+      platform: { label: 'View BRX', path: '/platforms/brx' },
     },
   ]
 
   const stats = [
     { number: '7', label: language === 'ar' ? 'قطاعات محورية' : 'Focus Sectors' },
-    { number: '8', label: language === 'ar' ? 'شركات المجموعة' : 'Group Companies' },
+    { number: '6', label: language === 'ar' ? 'شركات المجموعة' : 'Group Companies' },
     { number: '5', label: language === 'ar' ? 'منصات' : 'Platforms' },
     { number: 'USA · UK', label: language === 'ar' ? 'الولايات القضائية' : 'Jurisdictions' },
   ]
@@ -191,9 +198,14 @@ const Sectors = ({ language }) => {
                   </div>
                 </div>
 
-                <Link to="/companies" className="mt-6 inline-flex items-center gap-1 text-sm text-primary hover:gap-2 transition-all">
-                  {t.viewCompanies} <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
+                <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2">
+                  <Link to={sector.platform.path} className="inline-flex items-center gap-1 text-sm text-primary font-medium hover:gap-2 transition-all">
+                    {language === 'ar' ? sector.platform.label.replace('View', 'عرض') : sector.platform.label} <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                  <Link to="/companies" className="inline-flex items-center gap-1 text-sm text-ink/50 hover:text-ink transition-colors">
+                    {t.viewCompanies}
+                  </Link>
+                </div>
               </div>
             </Reveal>
           ))}

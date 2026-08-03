@@ -3,6 +3,10 @@
 //             "light" = light logo (use on DARK backgrounds).
 // getCompanyLogo(id, onBackground): 'dark' background -> returns the light asset,
 // 'light' background -> returns the dark asset. Missing id -> null (caller falls back to a lucide icon).
+//
+// Partner logos are rendered on a light/white plate in the UI, so single-variant
+// logos (and JPG logos served from /public/partners) reuse one asset for both keys.
+// A value may be an imported SVG (bundled) or a "/public"-relative string path.
 
 // ---- Company logos (client-provided, dark + light variants) ----
 import groupHoldingDark from '@/assets/logos/group-holding-dark.svg'
@@ -11,17 +15,14 @@ import reTechDark from '@/assets/logos/real-estate-technologies-dark.svg'
 import reTechLight from '@/assets/logos/real-estate-technologies-light.svg'
 import assetStructureDark from '@/assets/logos/asset-structure-dark.svg'
 import assetStructureLight from '@/assets/logos/asset-structure-light.svg'
-import digitalAssetsDark from '@/assets/logos/digital-assets-dark.svg'
-import digitalAssetsLight from '@/assets/logos/digital-assets-light.svg'
 import fractionalDark from '@/assets/logos/fractional-ownership-dark.svg'
 import fractionalLight from '@/assets/logos/fractional-ownership-light.svg'
 import realEstateDark from '@/assets/logos/real-estate-dark.svg'
 import realEstateLight from '@/assets/logos/real-estate-light.svg'
 import technologiesDark from '@/assets/logos/technologies-dark.svg'
 import technologiesLight from '@/assets/logos/technologies-light.svg'
-import novaDfLogo from '@/assets/logos/nova-digital-finance.svg'
 
-// ---- Partner logos ----
+// ---- Partner logos (SVG) ----
 import eliteGateLogo from '@/assets/logos/partners/elite-gate.svg'
 import primInnDark from '@/assets/logos/partners/prim-inn-dark.svg'
 import primInnLight from '@/assets/logos/partners/prim-inn-light.svg'
@@ -38,22 +39,29 @@ const LOGOS = {
   'capimax-group-holding': { dark: groupHoldingDark, light: groupHoldingLight },
   'real-estate-technologies': { dark: reTechDark, light: reTechLight },
   'asset-structure': { dark: assetStructureDark, light: assetStructureLight },
-  'digital-assets': { dark: digitalAssetsDark, light: digitalAssetsLight },
   'fractional-ownership': { dark: fractionalDark, light: fractionalLight },
-  'real-estate-uk': { dark: realEstateDark, light: realEstateLight },
+  'property-holding-uk': { dark: realEstateDark, light: realEstateLight },
   'technologies-uk': { dark: technologiesDark, light: technologiesLight },
-  'nova-digital-finance': { dark: novaDfLogo, light: novaDfLogo },
 }
 
-// Partner logos keyed by the ids used in Partners.jsx. Single-variant logos reuse
-// the same asset for both backgrounds (rendered on a light plate in the UI).
+// Partner logos keyed by the ids used in Partners.jsx.
+// JPG logos served from /public/partners are stored as string paths.
 const PARTNER_LOGOS = {
+  // Real Estate
   'elite-gate': { dark: eliteGateLogo, light: eliteGateLogo },
   'prim-inn': { dark: primInnDark, light: primInnLight },
   'nova-asset-management': { dark: novaAmLogo, light: novaAmLogo },
+  // Financial
+  'cim-global-financial': { dark: '/partners/cim-global-financial.jpg', light: '/partners/cim-global-financial.jpg' },
+  'cim-finance-group': { dark: cimLogo, light: cimLogo },
+  // Insurance
   'hcc': { dark: hccLogo, light: hccLogo },
-  'assurx-insurance': { dark: assuraxLogo, light: assuraxLogo },
-  'cim-financial-group': { dark: cimLogo, light: cimLogo },
+  'assurax': { dark: assuraxLogo, light: assuraxLogo },
+  // Smart Contract & Blockchain Security
+  'proof-anchor': { dark: '/partners/proof-anchor.jpg', light: '/partners/proof-anchor.jpg' },
+  // Legal
+  'lexcrest': { dark: '/partners/lexcrest.jpg', light: '/partners/lexcrest.jpg' },
+  // covertech, solidproof, nova-facility-management, crown-fm: no logo asset yet -> icon fallback
 }
 
 export const groupIcon = { light: iconLight, dark: iconDark }

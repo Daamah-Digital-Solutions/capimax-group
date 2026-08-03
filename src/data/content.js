@@ -20,6 +20,16 @@ export const PLATFORM_URLS = {
 }
 
 // ---------------------------------------------------------------------------
+// CapiMax Ecosystem — the main digital gateway that unifies all of the group's
+// platforms, partnerships, services, news, and updates.
+// ---------------------------------------------------------------------------
+export const ECOSYSTEM = {
+  primaryUrl: 'https://www.capimax.io',
+  altUrl: 'https://www.capimax.us',
+  screenshot: '/platforms/ecosystem.jpg',
+}
+
+// ---------------------------------------------------------------------------
 // Companies — keyed by the ids in companies.js / Companies.jsx / CompanyDetail.jsx
 // ---------------------------------------------------------------------------
 export const companyContent = {
@@ -123,23 +133,23 @@ export const companyContent = {
       services: ['الملكية الجزئية', 'إدارة الملكية', 'انضمام المستثمرين', 'التحويلات الثانوية'],
     },
   },
-  'real-estate-uk': {
+  'property-holding-uk': {
     en: {
-      name: 'Capimax Real Estate',
-      tagline: 'Sourcing and structuring UK real estate',
+      name: 'Capimax Property Holding',
+      tagline: 'Holding and structuring UK real estate',
       description:
-        'Capimax Real Estate sources and prepares real estate opportunities in the United Kingdom, bringing verified assets into the group’s ownership and tokenization pipeline.',
+        'Capimax Property Holding sources, holds, and prepares real estate in the United Kingdom, bringing verified property into the group’s ownership and tokenization pipeline.',
       role:
-        'It connects on-the-ground real estate expertise with the group’s digital platforms and SPV structures.',
+        'It connects on-the-ground real estate expertise with the group’s digital platforms and SPV structures — the property anchor of the UK operation.',
       services: ['Real Estate Sourcing', 'Asset Onboarding', 'Property Structuring', 'Market Operations'],
     },
     ar: {
-      name: 'كابي ماكس العقارية',
-      tagline: 'توفير وهيكلة العقارات في المملكة المتحدة',
+      name: 'كابي ماكس القابضة العقارية',
+      tagline: 'تملّك وهيكلة العقارات في المملكة المتحدة',
       description:
-        'توفّر كابي ماكس العقارية وتجهّز الفرص العقارية في المملكة المتحدة، وتُدخل أصولًا موثّقة إلى مسار التملّك والترميز في المجموعة.',
+        'توفّر كابي ماكس القابضة العقارية وتتملّك وتجهّز العقارات في المملكة المتحدة، وتُدخل أصولًا موثّقة إلى مسار التملّك والترميز في المجموعة.',
       role:
-        'تربط الخبرة العقارية الميدانية بمنصات المجموعة الرقمية وهياكل الـSPV.',
+        'تربط الخبرة العقارية الميدانية بمنصات المجموعة الرقمية وهياكل الـSPV — الركيزة العقارية لعمليات المملكة المتحدة.',
       services: ['توفير العقارات', 'إدخال الأصول', 'هيكلة العقارات', 'العمليات السوقية'],
     },
   },
@@ -193,65 +203,69 @@ export const platformContent = [
   {
     id: 'brx',
     externalUrl: PLATFORM_URLS.brx,
+    screenshot: '/platforms/brx.jpg',
     en: {
       name: 'Capimax BRX',
-      short: 'The multi-party real estate exchange.',
+      short: 'A blockchain-based real-estate exchange for tokenized, fractional ownership.',
       description:
-        'Capimax BRX is the flagship platform that brings developers, owners, investors, brokers, and liquidity providers into one connected marketplace — a new generation of global real estate technology that unifies discovery, ownership, and exchange.',
+        'Capimax BRX is a global platform for tokenizing real-estate assets on the blockchain. It enables fractional property investment and connects developers, property owners, investors, brokers, and liquidity providers in one connected marketplace — with multiple mechanisms for investing, trading, and exit across primary and secondary markets.',
     },
     ar: {
       name: 'كابي ماكس BRX',
-      short: 'منصة التبادل العقاري متعددة الأطراف.',
+      short: 'منصة تبادل عقاري قائمة على البلوكشين للملكية الجزئية المرمّزة.',
       description:
-        'كابي ماكس BRX هي المنصة الرئيسية التي تجمع المطوّرين والملاك والمستثمرين والوسطاء ومزوّدي السيولة في سوق واحد مترابط — جيل جديد من التكنولوجيا العقارية العالمية يوحّد الاكتشاف والتملّك والتبادل.',
+        'كابي ماكس BRX منصة عالمية لترميز الأصول العقارية باستخدام تقنية البلوكشين، تتيح الاستثمار الجزئي في العقارات، وتربط بين المطوّرين ومالكي العقارات والمستثمرين والوسطاء ومزوّدي السيولة في سوق واحد مترابط — مع آليات متعددة للاستثمار والتداول والتخارج عبر السوقين الأولي والثانوي.',
     },
   },
   {
     id: 'rt',
     externalUrl: PLATFORM_URLS.rt,
+    screenshot: '/platforms/rt.jpg',
     en: {
       name: 'Capimax RT',
-      short: 'Tokenize real estate via legally structured SPVs.',
+      short: 'Real-estate tokenization backed by legally structured, independent SPVs.',
       description:
-        'Capimax RT is the group’s real estate tokenization platform. It converts real estate assets into transferable digital shares through legally structured SPVs, with transparent reporting and controlled exit via secondary markets or liquidity providers — secured on the blockchain.',
+        'Capimax RT is the group’s dedicated real-estate tokenization platform. It converts real-world properties into transferable digital shares through legally structured, independent SPVs — with transparent reporting, blockchain-secured ownership records, and controlled exit via secondary markets or liquidity providers.',
     },
     ar: {
       name: 'كابي ماكس RT',
-      short: 'ترميز العقارات عبر هياكل SPV قانونية.',
+      short: 'ترميز العقارات مدعومًا بهياكل SPV قانونية مستقلة.',
       description:
-        'كابي ماكس RT هي منصة المجموعة لترميز العقارات. تحوّل الأصول العقارية إلى حصص رقمية قابلة للتحويل عبر هياكل SPV قانونية، مع تقارير شفافة وتخارج منظّم عبر السوق الثانوي أو مزوّدي السيولة — ومؤمّنة على البلوكشين.',
+        'كابي ماكس RT منصة المجموعة المتخصصة لترميز العقارات. تحوّل العقارات الحقيقية إلى حصص رقمية قابلة للتحويل عبر هياكل SPV قانونية مستقلة — مع تقارير شفافة وسجلات ملكية مؤمّنة على البلوكشين وتخارج منظّم عبر السوق الثانوي أو مزوّدي السيولة.',
     },
   },
   {
     id: 'propshare',
     externalUrl: PLATFORM_URLS.propShare,
+    screenshot: '/platforms/propshare.jpg',
     en: {
       name: 'Capimax PropShare',
-      short: 'Digital fractional real estate (non-blockchain).',
+      short: 'Digital fractional real-estate ownership — structured and managed, without blockchain.',
       description:
-        'Capimax PropShare is the group’s digital fractional real estate platform that operates without blockchain. It lets investors participate in carefully selected properties through structured ownership, centralized management, and periodic performance reporting — focused on stability and long-term value.',
+        'Capimax PropShare is the group’s digital fractional real-estate platform, operating without blockchain. Investors participate in carefully selected properties through structured ownership, centralized management, and periodic performance reporting — with an integrated secondary market for exit. Built for stability and long-term value.',
     },
     ar: {
       name: 'كابي ماكس بروب شير',
-      short: 'استثمار عقاري جزئي رقمي (بدون بلوكشين).',
+      short: 'ملكية عقارية جزئية رقمية — منظّمة ومُدارة، بدون بلوكشين.',
       description:
-        'منصة المجموعة للملكية العقارية الجزئية الرقمية (غير قائمة على البلوكشين)، تتيح المشاركة في عقارات مختارة عبر نموذج ملكية واضح، تقارير دورية، وإدارة مركزية. تركّز على الاستقرار والقيمة طويلة الأجل.',
+        'كابي ماكس بروب شير منصة المجموعة للملكية العقارية الجزئية الرقمية، تعمل بدون بلوكشين. يشارك المستثمرون في عقارات مختارة بعناية عبر ملكية منظّمة وإدارة مركزية وتقارير أداء دورية — مع سوق ثانوي متكامل للتخارج. مبنية على الاستقرار والقيمة طويلة الأجل.',
     },
   },
   {
     id: 'asset',
     externalUrl: PLATFORM_URLS.asset,
+    screenshot: null, // no public site yet — pending
     en: {
       name: 'Capimax Asset',
-      short: 'Structured access to real, tokenized assets.',
+      short: 'Structured investor access to real, asset-backed, tokenized opportunities.',
       description:
-        'Capimax Asset gives investors structured access to the group’s real, asset-backed opportunities — each linked to a documented property and an independent SPV, within one compliant operational framework.',
+        'Capimax Asset gives investors structured access to the group’s real, asset-backed opportunities — each linked to a documented property and an independent SPV, within one compliant operational framework that unifies onboarding, ownership, and reporting.',
     },
     ar: {
       name: 'كابي ماكس أسِت',
-      short: 'وصول منظّم إلى أصول حقيقية ومرمّزة.',
+      short: 'وصول منظّم للمستثمرين إلى فرص حقيقية مدعومة بالأصول ومرمّزة.',
       description:
-        'تمنح كابي ماكس أسِت المستثمرين وصولًا منظّمًا إلى فرص المجموعة الحقيقية المدعومة بالأصول — كل منها مرتبط بعقار موثّق وشركة SPV مستقلة، ضمن إطار تشغيلي متوافق.',
+        'تمنح كابي ماكس أسِت المستثمرين وصولًا منظّمًا إلى فرص المجموعة الحقيقية المدعومة بالأصول — كل منها مرتبط بعقار موثّق وشركة SPV مستقلة، ضمن إطار تشغيلي متوافق يوحّد الانضمام والملكية والتقارير.',
     },
   },
 ]

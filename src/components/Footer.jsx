@@ -17,7 +17,7 @@ const Footer = ({ language }) => {
       exploreTitle: 'Explore',
       contactTitle: 'Get in touch',
       nav: [['Home', '/'], ['About', '/about'], ['Companies', '/companies'], ['Platforms', '/platforms'], ['Ownership', '/investors'], ['Contact', '/contact']],
-      explore: [['Sectors', '/sectors'], ['Documents', '/documents'], ['Team', '/team'], ['Brochure', '/brochure'], ['News', '/news'], ['Partners', '/partners']],
+      explore: [['Ecosystem', '/ecosystem'], ['Sectors', '/sectors'], ['Documents', '/documents'], ['Team', '/team'], ['News', '/news'], ['Partners', '/partners']],
       offices: [
         { region: 'United States', address: 'Delaware, United States', phone: '+1 205-360-0594', phoneHref: 'tel:+12053600594' },
         { region: 'United Kingdom', address: '128 City Road, London, EC1V 2NX, United Kingdom', phone: '+44 7577 370309', phoneHref: 'tel:+447577370309' },
@@ -36,7 +36,7 @@ const Footer = ({ language }) => {
       exploreTitle: 'استكشف',
       contactTitle: 'تواصل',
       nav: [['الرئيسية', '/'], ['من نحن', '/about'], ['الشركات', '/companies'], ['المنصات', '/platforms'], ['التملّك', '/investors'], ['تواصل', '/contact']],
-      explore: [['القطاعات', '/sectors'], ['المستندات', '/documents'], ['الفريق', '/team'], ['البروشور', '/brochure'], ['الأخبار', '/news'], ['الشركاء', '/partners']],
+      explore: [['المنظومة', '/ecosystem'], ['القطاعات', '/sectors'], ['المستندات', '/documents'], ['الفريق', '/team'], ['الأخبار', '/news'], ['الشركاء', '/partners']],
       offices: [
         { region: 'الولايات المتحدة', address: 'ديلاوير، الولايات المتحدة', phone: '+1 205-360-0594', phoneHref: 'tel:+12053600594' },
         { region: 'المملكة المتحدة', address: '128 سيتي رود، لندن، EC1V 2NX، المملكة المتحدة', phone: '+44 7577 370309', phoneHref: 'tel:+447577370309' },

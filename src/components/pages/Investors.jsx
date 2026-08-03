@@ -1,6 +1,6 @@
-import { ArrowRight, ArrowUpRight } from 'lucide-react'
+import { ArrowRight, ArrowUpRight, Globe } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { platformContent, currencyContent, novaContent } from '@/data/content'
+import { platformContent, currencyContent, novaContent, ECOSYSTEM } from '@/data/content'
 import { PageHero, Band, Marker, Heading, Reveal, BTN } from '@/components/editorial'
 
 const Investors = ({ language }) => {
@@ -33,7 +33,7 @@ const Investors = ({ language }) => {
       model1Desc: 'Structured, non-blockchain ownership of carefully selected properties — with centralized management, clear ownership, and periodic performance reporting.',
       model1Points: ['Structured ownership', 'Centralized management', 'Periodic reporting', 'Long-term stability'],
       model2Title: 'Tokenization model',
-      model2Platform: 'via Capimax RT & Digital Assets',
+      model2Platform: 'via Capimax RT',
       model2Desc: 'Real estate tokenized into transferable digital shares on the blockchain through legally structured SPVs — with transparent records and controlled exit via secondary markets or liquidity providers.',
       model2Points: ['Blockchain-secured', 'Independent SPVs', 'Transferable shares', 'Secondary-market exit'],
 
@@ -101,7 +101,7 @@ const Investors = ({ language }) => {
       model1Desc: 'ملكية منظّمة غير قائمة على البلوكشين لعقارات مختارة بعناية — بإدارة مركزية وملكية واضحة وتقارير أداء دورية.',
       model1Points: ['ملكية منظّمة', 'إدارة مركزية', 'تقارير دورية', 'استقرار طويل الأجل'],
       model2Title: 'نموذج الترميز',
-      model2Platform: 'عبر كابي ماكس RT والأصول الرقمية',
+      model2Platform: 'عبر كابي ماكس RT',
       model2Desc: 'عقارات مرمّزة إلى حصص رقمية قابلة للتحويل على البلوكشين عبر هياكل SPV قانونية — بسجلات شفافة وتخارج منظّم عبر السوق الثانوي أو مزوّدي السيولة.',
       model2Points: ['مؤمّن بالبلوكشين', 'هياكل SPV مستقلة', 'حصص قابلة للتحويل', 'تخارج عبر السوق الثانوي'],
 
@@ -190,6 +190,38 @@ const Investors = ({ language }) => {
           <Link to="/contact" className={BTN.ghostLight}>{t.talkToTeam}</Link>
         </div>
       </PageHero>
+
+      {/* ============================================= CAPIMAX ECOSYSTEM */}
+      <Band tone="darker" className="relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[36rem] h-[36rem]" style={{ background: 'radial-gradient(circle, rgba(47,173,111,0.10), transparent 60%)' }} />
+        <div className="relative grid lg:grid-cols-[1.3fr_1fr] gap-10 items-center">
+          <Reveal>
+            <Marker num="00" label={language === 'ar' ? 'منظومة كابي ماكس' : 'CapiMax Ecosystem'} light />
+            <h2 className="font-display font-medium leading-[1.04] text-sand" style={{ fontSize: 'clamp(1.9rem,4vw,3.2rem)', letterSpacing: '-0.02em' }}>
+              {language === 'ar' ? 'جزء من ' : 'Part of one '}<span className="accent-em">{language === 'ar' ? 'منظومة واحدة مترابطة.' : 'connected ecosystem.'}</span>
+            </h2>
+            <p className="mt-6 text-lg text-sand/70 leading-relaxed max-w-2xl">
+              {language === 'ar'
+                ? 'منظومة كابي ماكس هي البوابة الرقمية الرئيسية التي تجمع جميع منصّات المجموعة وشراكاتها وخدماتها وأخبارها وتحديثاتها في مكان واحد متكامل.'
+                : 'CapiMax Ecosystem is the main digital gateway that brings together all of the group\'s platforms, partnerships, services, news, and updates in one integrated place.'}
+            </p>
+            <Link to="/ecosystem" className="mt-7 inline-flex items-center gap-1.5 text-primary font-medium hover:gap-2.5 transition-all">
+              {language === 'ar' ? 'استكشف المنظومة' : 'Explore the ecosystem'} <ArrowRight className="w-4 h-4" />
+            </Link>
+          </Reveal>
+          <Reveal delay={0.05} className="space-y-3">
+            {[{ url: ECOSYSTEM.primaryUrl, label: 'capimax.io' }, { url: ECOSYSTEM.altUrl, label: 'capimax.us' }].map((portal) => (
+              <a key={portal.label} href={portal.url} target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between gap-4 p-5 border border-[color:var(--line-sand)] hover:bg-[rgba(47,173,111,0.06)] transition-colors">
+                <div className="flex items-center gap-3">
+                  <Globe className="w-5 h-5 text-primary" strokeWidth={1.5} />
+                  <span className="font-display text-lg text-sand">{portal.label}</span>
+                </div>
+                <ArrowUpRight className="w-5 h-5 text-sand/50 group-hover:text-primary group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all" />
+              </a>
+            ))}
+          </Reveal>
+        </div>
+      </Band>
 
       {/* ================================================= THE CONCEPT */}
       <Band tone="paper">

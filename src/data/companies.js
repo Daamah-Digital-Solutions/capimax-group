@@ -1,25 +1,28 @@
 // Factual company registry for the Capimax Group.
-// V2 identity (client "Final Client Edits/V2"): Capimax Group Holding is a
+// V2 identity (client "Final Client Edits"): Capimax Group Holding is a
 // Delaware-registered holding company owning specialized companies and platforms
 // in the USA & UK, focused on real estate technology, fractional ownership,
 // asset tokenization, blockchain, and digital real-estate solutions — globally.
 //
-// Pairs with companyContent in content.js (bilingual marketing copy).
+// This registry lists ONLY the companies wholly owned by Capimax Group (the
+// subsidiaries shown on the Companies page). Partners and platforms live elsewhere
+// (Partners.jsx / content.js). Pairs with companyContent in content.js.
 // Keyed by the same ids used in routes (/company/:id) and Companies.jsx.
 //
-// NOTE: companyNumber / incorporated are set to null where the client has not yet
-// supplied official USA/Delaware & Wyoming registration details. Components hide
-// empty fields. Fill these in when the client provides the registration data.
+// NOTE: companyNumber / incorporated are null where the client has not yet supplied
+// official Delaware / Wyoming / UK registration numbers. `address` is null where the
+// official registered address is still pending. Components hide empty fields.
 import {
   Landmark,
   Building2,
-  Building,
   Layers,
-  Coins,
-  PieChart,
   Cpu,
-  Banknote,
+  Building,
+  PieChart,
 } from 'lucide-react'
+
+// The group's UK registered office (shared by the UK-registered entities).
+const UK_OFFICE = '128 City Road, London, EC1V 2NX, United Kingdom'
 
 const GROUP_CONTACT = {
   phone: '+44 7577 370309',
@@ -30,13 +33,14 @@ const GROUP_CONTACT = {
 export const companyRegistry = {
   'capimax-group-holding': {
     id: 'capimax-group-holding',
-    legalName: 'Capimax Group Holding',
+    legalName: 'CapiMax Group Holding LLC',
     sector: 'Holding Company',
     icon: Landmark,
     color: 'bg-primary',
     companyNumber: null,
     incorporated: null,
     location: 'Delaware, United States',
+    address: null, // official Delaware registered address pending
     country: 'USA',
     countryFlag: '🇺🇸',
     parentCompany: null,
@@ -46,115 +50,88 @@ export const companyRegistry = {
   },
   'real-estate-technologies': {
     id: 'real-estate-technologies',
-    legalName: 'Capimax Real Estate Technologies LLC',
+    legalName: 'CapiMax Real Estate Technologies LLC',
     sector: 'Real Estate Technology',
     icon: Building2,
     color: 'bg-primary',
     companyNumber: null,
     incorporated: null,
-    location: 'United States',
+    location: 'Delaware, United States',
+    address: null, // official Delaware registered address pending
     country: 'USA',
     countryFlag: '🇺🇸',
-    parentCompany: 'Capimax Group Holding',
+    parentCompany: 'CapiMax Group Holding LLC',
     activities: ['Real Estate Technology', 'Digital Property Infrastructure', 'Real Estate Marketplaces', 'Multi-party Platforms'],
     ...GROUP_CONTACT,
     email: 'retech@capimaxgroup.com',
   },
   'asset-structure': {
     id: 'asset-structure',
-    legalName: 'Capimax Asset Structure LLC',
+    legalName: 'CapiMax Asset Structure LLC',
     sector: 'Asset Structuring & SPVs',
     icon: Layers,
     color: 'bg-info',
     companyNumber: null,
     incorporated: null,
-    location: 'United States',
+    location: 'Wyoming, United States',
+    address: null, // official Wyoming registered address pending
     country: 'USA',
     countryFlag: '🇺🇸',
-    parentCompany: 'Capimax Group Holding',
+    parentCompany: 'CapiMax Group Holding LLC',
     activities: ['SPV Structuring', 'Asset-Backed Frameworks', 'Ownership Records', 'Legal Structuring'],
     ...GROUP_CONTACT,
     email: 'structure@capimaxgroup.com',
   },
-  'digital-assets': {
-    id: 'digital-assets',
-    legalName: 'Capimax Digital Assets LLC',
-    sector: 'Digital Assets & Tokenization',
-    icon: Coins,
-    color: 'bg-warning',
-    companyNumber: null,
-    incorporated: null,
-    location: 'Wyoming, United States',
-    country: 'USA',
-    countryFlag: '🇺🇸',
-    parentCompany: 'Capimax Group Holding',
-    activities: ['Asset Tokenization', 'Digital Asset Management', 'Blockchain Registration', 'Smart-Contract Assets'],
-    ...GROUP_CONTACT,
-    email: 'digital@capimaxgroup.com',
-  },
-  'fractional-ownership': {
-    id: 'fractional-ownership',
-    legalName: 'Capimax Fractional Ownership LLC',
-    sector: 'Fractional Ownership',
-    icon: PieChart,
-    color: 'bg-primary',
-    companyNumber: null,
-    incorporated: null,
-    location: 'United States',
-    country: 'USA',
-    countryFlag: '🇺🇸',
-    parentCompany: 'Capimax Group Holding',
-    activities: ['Fractional Ownership', 'Ownership Management', 'Investor Onboarding', 'Secondary Transfers'],
-    ...GROUP_CONTACT,
-    email: 'ownership@capimaxgroup.com',
-  },
-  'real-estate-uk': {
-    id: 'real-estate-uk',
-    legalName: 'Capimax Real Estate Limited',
-    sector: 'Real Estate',
-    icon: Building,
-    color: 'bg-success',
-    companyNumber: null,
-    incorporated: null,
-    location: 'London, United Kingdom',
-    country: 'UK',
-    countryFlag: '🇬🇧',
-    parentCompany: 'Capimax Group Holding',
-    activities: ['Real Estate Sourcing', 'Asset Onboarding', 'Property Structuring', 'Market Operations'],
-    ...GROUP_CONTACT,
-    email: 'realestate@capimaxgroup.com',
-  },
   'technologies-uk': {
     id: 'technologies-uk',
-    legalName: 'Capimax Technologies Limited',
+    legalName: 'CapiMax Technologies Ltd',
     sector: 'Technology & Blockchain',
     icon: Cpu,
     color: 'bg-primary',
     companyNumber: null,
     incorporated: null,
-    location: 'London, United Kingdom',
+    location: 'United Kingdom',
+    address: UK_OFFICE,
     country: 'UK',
     countryFlag: '🇬🇧',
-    parentCompany: 'Capimax Group Holding',
+    parentCompany: 'CapiMax Group Holding LLC',
     activities: ['Blockchain Infrastructure', 'Smart Contracts', 'Tokenization Systems', 'Security & Audit'],
     ...GROUP_CONTACT,
     email: 'tech@capimaxgroup.com',
   },
-  'nova-digital-finance': {
-    id: 'nova-digital-finance',
-    legalName: 'Nova Digital Finance',
-    sector: 'Digital Finance',
-    icon: Banknote,
-    color: 'bg-info',
+  'property-holding-uk': {
+    id: 'property-holding-uk',
+    legalName: 'CapiMax Property Holding Ltd',
+    sector: 'Real Estate',
+    icon: Building,
+    color: 'bg-success',
     companyNumber: null,
     incorporated: null,
-    location: 'United States & United Kingdom',
-    country: 'USA',
-    countryFlag: '🇺🇸🇬🇧',
-    parentCompany: 'Capimax Group Holding',
-    activities: ['Digital Financing', 'Liquidity Provision', 'Financial Intermediation', 'Digital Banking'],
+    location: 'United Kingdom',
+    address: UK_OFFICE,
+    country: 'UK',
+    countryFlag: '🇬🇧',
+    parentCompany: 'CapiMax Group Holding LLC',
+    activities: ['Real Estate Sourcing', 'Asset Onboarding', 'Property Structuring', 'Market Operations'],
     ...GROUP_CONTACT,
-    email: 'nova@capimaxgroup.com',
+    email: 'property@capimaxgroup.com',
+  },
+  'fractional-ownership': {
+    id: 'fractional-ownership',
+    legalName: 'CapiMax Fractional Ownership LLC',
+    sector: 'Fractional Ownership',
+    icon: PieChart,
+    color: 'bg-primary',
+    companyNumber: null,
+    incorporated: null,
+    location: 'Wyoming, United States',
+    address: null, // official Wyoming registered address pending
+    country: 'USA',
+    countryFlag: '🇺🇸',
+    parentCompany: 'CapiMax Group Holding LLC',
+    activities: ['Fractional Ownership', 'Ownership Management', 'Investor Onboarding', 'Secondary Transfers'],
+    ...GROUP_CONTACT,
+    email: 'ownership@capimaxgroup.com',
   },
 }
 

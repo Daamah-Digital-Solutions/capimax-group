@@ -35,12 +35,12 @@ const Header = ({ language }) => {
 
   const t = {
     en: {
-      home: 'Home', about: 'About', companies: 'Companies', platforms: 'Platforms',
+      home: 'Home', about: 'About', companies: 'Companies', ecosystem: 'Ecosystem', platforms: 'Platforms',
       sectors: 'Sectors', ownership: 'Ownership', contact: 'Contact',
       cta: 'Start a conversation', tagline: 'Holding Group',
     },
     ar: {
-      home: 'الرئيسية', about: 'من نحن', companies: 'الشركات', platforms: 'المنصات',
+      home: 'الرئيسية', about: 'من نحن', companies: 'الشركات', ecosystem: 'المنظومة', platforms: 'المنصات',
       sectors: 'القطاعات', ownership: 'التملّك', contact: 'تواصل',
       cta: 'ابدأ محادثة', tagline: 'مجموعة قابضة',
     },
@@ -50,6 +50,7 @@ const Header = ({ language }) => {
     { name: t.home, path: '/' },
     { name: t.about, path: '/about' },
     { name: t.companies, path: '/companies' },
+    { name: t.ecosystem, path: '/ecosystem' },
     { name: t.platforms, path: '/platforms' },
     { name: t.sectors, path: '/sectors' },
     { name: t.ownership, path: '/investors' },

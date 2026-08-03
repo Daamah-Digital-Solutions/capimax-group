@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Search, X, Building2, TrendingUp, Shield } from 'lucide-react'
+import { ArrowRight, Search, X, MapPin } from 'lucide-react'
 import { companyRegistry, companyIds } from '@/data/companies'
 import { companyContent } from '@/data/content'
 import { getCompanyLogo } from '@/data/logos'
@@ -19,7 +19,7 @@ const Companies = ({ language }) => {
       heroTitle: 'Specialized companies, ',
       heroAccent: 'one umbrella.',
       heroSubtitle:
-        'A portfolio of regulated entities, each with a defined role in the Capimax ecosystem — across real estate technology, tokenization, and fractional ownership.',
+        'The companies wholly owned by Capimax Group — each a regulated entity with a defined role across real estate technology, tokenization, and fractional ownership, and its own country of registration.',
       searchPlaceholder: 'Search companies, sectors…',
       allCountries: 'All',
       uk: 'UK',
@@ -30,26 +30,21 @@ const Companies = ({ language }) => {
       noResults: 'No companies match your search.',
       clearFilters: 'Clear filters',
       filterBy: 'Filter',
-      partnersMarker: 'Strategic Partnerships',
-      partnersTitle: 'Partners who extend ',
-      partnersAccent: 'our reach.',
-      partnersBody:
-        'Strategic collaborations that enhance our offering and expand our footprint across markets.',
-      learnMore: 'Learn more',
+      registeredIn: 'Registered in',
+      registeredOffice: 'Registered office',
       ctaMarker: 'Begin a conversation',
       ctaTitle: 'Ready to partner ',
       ctaAccent: 'with us?',
       ctaBody: 'Explore the group, our platforms, and the assets you can own.',
       contactCta: 'Contact us',
       investorsCta: 'For Investors',
-      results: 'companies',
     },
     ar: {
       heroEyebrow: 'المجموعة · الولايات المتحدة · المملكة المتحدة · عالميًا',
       heroTitle: 'شركات متخصصة، ',
       heroAccent: 'مظلة واحدة.',
       heroSubtitle:
-        'محفظة من الكيانات المرخّصة، لكل منها دور محدّد في منظومة كابي ماكس — عبر تكنولوجيا العقارات، والترميز، والملكية الجزئية.',
+        'الشركات المملوكة بالكامل لمجموعة كابي ماكس — كل منها كيان مرخّص له دور محدّد عبر تكنولوجيا العقارات والترميز والملكية الجزئية، ولكلٍّ دولة تسجيله.',
       searchPlaceholder: 'ابحث في الشركات والقطاعات…',
       allCountries: 'الكل',
       uk: 'المملكة المتحدة',
@@ -60,52 +55,20 @@ const Companies = ({ language }) => {
       noResults: 'لا توجد شركات تطابق بحثك.',
       clearFilters: 'مسح التصفية',
       filterBy: 'تصفية',
-      partnersMarker: 'الشراكات الاستراتيجية',
-      partnersTitle: 'شركاء يوسّعون ',
-      partnersAccent: 'حضورنا.',
-      partnersBody:
-        'تعاونات استراتيجية تعزّز خدماتنا وتوسّع حضورنا عبر الأسواق.',
-      learnMore: 'اعرف المزيد',
+      registeredIn: 'مسجّلة في',
+      registeredOffice: 'المقر المسجّل',
       ctaMarker: 'ابدأ محادثة',
       ctaTitle: 'هل أنت مستعد للشراكة ',
       ctaAccent: 'معنا؟',
       ctaBody: 'استكشف المجموعة ومنصّاتنا والأصول التي يمكنك تملّكها.',
       contactCta: 'تواصل معنا',
       investorsCta: 'للمستثمرين',
-      results: 'شركة',
     },
   }
 
   const t = translations[language]
 
-  const partnerships = [
-    {
-      id: 'elite-gate',
-      en: { name: 'Elite Gate', sector: 'Real Estate & Commercial', description: 'Real estate and commercial partner within the ecosystem.' },
-      ar: { name: 'إيليت جيت', sector: 'العقارات والتجاري', description: 'شريك عقاري وتجاري داخل المنظومة.' },
-      icon: Building2,
-    },
-    {
-      id: 'prim-inn',
-      en: { name: 'Prim Inn', sector: 'Real Estate & Hospitality', description: 'Real estate and hospitality partner within the ecosystem.' },
-      ar: { name: 'بريم إن', sector: 'العقارات والضيافة', description: 'شريك عقاري وضيافة داخل المنظومة.' },
-      icon: Building2,
-    },
-    {
-      id: 'nova-asset-management',
-      en: { name: 'Nova Asset Management', sector: 'Asset Management', description: 'Real estate asset management partner within the ecosystem.' },
-      ar: { name: 'نوفا لإدارة الأصول', sector: 'إدارة الأصول', description: 'شريك إدارة الأصول العقارية داخل المنظومة.' },
-      icon: TrendingUp,
-    },
-    {
-      id: 'cim-financial-group',
-      en: { name: 'CIM Financial Group', sector: 'Verification & Oversight', description: 'Evaluation, verification, document custody, and compliance.' },
-      ar: { name: 'مجموعة سي آي إم المالية', sector: 'التحقق والرقابة', description: 'التقييم والتحقق وحفظ المستندات والامتثال.' },
-      icon: Shield,
-    },
-  ]
-
-  // Filter the canonical company registry.
+  // Filter the canonical company registry (wholly-owned subsidiaries only).
   const filteredIds = companyIds.filter((id) => {
     const meta = companyRegistry[id]
     const name = companyName(id, language)
@@ -194,7 +157,7 @@ const Companies = ({ language }) => {
                 <Reveal key={id} delay={(i % 3) * 0.05}>
                   <Link
                     to={`/company/${id}`}
-                    className="group block p-8 border-b border-r border-[color:var(--line-sand)] hover:bg-[rgba(47,173,111,0.05)] transition-colors h-full relative"
+                    className="group flex flex-col h-full p-8 border-b border-r border-[color:var(--line-sand)] hover:bg-[rgba(47,173,111,0.05)] transition-colors relative"
                   >
                     <span className="absolute top-0 left-0 h-px w-0 bg-primary group-hover:w-full transition-all duration-500" style={{ transitionTimingFunction: 'var(--ease-out)' }} />
                     <div className="flex items-start justify-between gap-3">
@@ -208,9 +171,26 @@ const Companies = ({ language }) => {
                       <span className="mono-label text-sand/35 shrink-0" style={{ fontSize: '0.6rem' }}>/ {String(i + 1).padStart(2, '0')}</span>
                     </div>
                     <h3 className={`mt-6 font-display text-xl font-medium leading-snug group-hover:text-primary transition-colors ${logo ? 'sr-only' : ''}`}>{name}</h3>
-                    <p className={`text-sm text-sand/55 ${logo ? 'mt-3' : 'mt-2'}`}>{meta.sector}</p>
+                    {/* Legal name (always visible for clarity, even when a logo shows) */}
+                    <p className="text-sm text-sand/80 font-medium leading-snug">{meta.legalName}</p>
+                    <p className="text-sm text-sand/55 mt-1.5">{meta.sector}</p>
+
+                    {/* Registration jurisdiction + official address */}
+                    <div className="mt-auto pt-5">
+                      <div className="mono-label text-sand/40 mb-1.5" style={{ fontSize: '0.56rem' }}>{t.registeredIn}</div>
+                      <p className="text-sm text-sand/75 flex items-center gap-1.5">
+                        <span>{meta.countryFlag}</span> {meta.location}
+                      </p>
+                      {meta.address && (
+                        <p className="mt-2 text-xs text-sand/45 leading-relaxed flex items-start gap-1.5">
+                          <MapPin className="w-3 h-3 mt-0.5 shrink-0 text-primary/70" />
+                          <span>{meta.address}</span>
+                        </p>
+                      )}
+                    </div>
+
                     <div className="mt-5 inline-flex items-center gap-1 text-sm text-primary opacity-0 group-hover:opacity-100 group-hover:gap-2 transition-all">
-                      {meta.countryFlag} <ArrowRight className="w-3.5 h-3.5" />
+                      <ArrowRight className="w-3.5 h-3.5" />
                     </div>
                   </Link>
                 </Reveal>
@@ -232,46 +212,11 @@ const Companies = ({ language }) => {
         )}
       </Band>
 
-      {/* ==================================================== PARTNERSHIPS */}
-      <Band tone="light">
-        <Reveal className="grid lg:grid-cols-2 gap-10 items-end">
-          <div>
-            <Marker num="02" label={t.partnersMarker} />
-            <Heading lead={t.partnersTitle} accent={t.partnersAccent} />
-          </div>
-          <p className="text-lg text-ink/70 leading-relaxed lg:pb-2">{t.partnersBody}</p>
-        </Reveal>
-
-        <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-4 border-t border-l border-[color:var(--line-dark)]">
-          {partnerships.map((partner, i) => {
-            const p = partner[language]
-            const Icon = partner.icon
-            return (
-              <Reveal key={partner.id} delay={(i % 4) * 0.05}>
-                <Link
-                  to="/partners"
-                  className="group flex flex-col h-full p-8 border-b border-r border-[color:var(--line-dark)] hover:bg-[rgba(47,173,111,0.04)] transition-colors relative"
-                >
-                  <span className="absolute top-0 left-0 h-px w-0 bg-primary group-hover:w-full transition-all duration-500" style={{ transitionTimingFunction: 'var(--ease-out)' }} />
-                  <Icon className="w-9 h-9 text-primary" />
-                  <h3 className="mt-5 font-display text-lg font-medium leading-snug group-hover:text-primary transition-colors">{p.name}</h3>
-                  <p className="mono-label text-ink/45 mt-2" style={{ fontSize: '0.6rem' }}>{p.sector}</p>
-                  <p className="mt-3 text-sm text-ink/65 leading-relaxed flex-1">{p.description}</p>
-                  <span className="mt-5 inline-flex items-center gap-1 text-sm text-primary group-hover:gap-2 transition-all">
-                    {t.learnMore} <ArrowRight className="w-3.5 h-3.5" />
-                  </span>
-                </Link>
-              </Reveal>
-            )
-          })}
-        </div>
-      </Band>
-
       {/* ============================================================= CTA */}
       <Band tone="pitch" className="relative overflow-hidden">
         <div className="absolute bottom-0 left-1/3 w-[40rem] h-[40rem]" style={{ background: 'radial-gradient(circle, rgba(47,173,111,0.09), transparent 60%)' }} />
         <Reveal className="relative max-w-3xl">
-          <Marker num="03" label={t.ctaMarker} light />
+          <Marker num="02" label={t.ctaMarker} light />
           <Heading lead={t.ctaTitle} accent={t.ctaAccent} light size="clamp(2.4rem,5.5vw,4.5rem)" />
           <p className="mt-7 text-lg text-sand/70 leading-relaxed">{t.ctaBody}</p>
           <div className="mt-10 flex flex-col sm:flex-row gap-3">

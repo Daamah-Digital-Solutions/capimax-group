@@ -569,27 +569,41 @@ const Home = ({ language }) => {
             </div>
           </Reveal>
 
-          <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-4 border-t border-l border-[color:var(--line-sand)]">
+          <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {platformContent.map((p, i) => (
               <Reveal key={p.id} delay={(i % 4) * 0.05}>
-                <div className="group flex flex-col h-full p-7 border-b border-r border-[color:var(--line-sand)] hover:bg-[rgba(47,173,111,0.05)] transition-colors">
-                  <span className="mono-label text-sand/35" style={{ fontSize: '0.6rem' }}>/ 0{i + 1}</span>
-                  <h4 className="mt-4 font-display text-lg font-medium leading-snug">{p[language].name}</h4>
-                  <p className="mt-2 text-sm text-sand/60 leading-relaxed flex-1">{p[language].short}</p>
-                  <div className="mt-5 flex items-center gap-4 text-sm">
-                    <Link to={`/platforms/${p.id}`} className="text-primary inline-flex items-center gap-1 hover:gap-2 transition-all">
-                      {c.learnMore} <ArrowRight className="w-3.5 h-3.5" />
-                    </Link>
-                    {p.externalUrl && (
-                      <a href={p.externalUrl} target="_blank" rel="noopener noreferrer" className="text-sand/50 hover:text-sand inline-flex items-center gap-1">
-                        {c.visit} <ArrowUpRight className="w-3.5 h-3.5" />
-                      </a>
+                <div className="group flex flex-col h-full bg-forest-darker border border-[color:var(--line-sand)] hover:border-primary/40 transition-all duration-300 overflow-hidden">
+                  {/* Real platform screenshot */}
+                  <div className="relative aspect-[16/10] overflow-hidden border-b border-[color:var(--line-sand)]">
+                    {p.screenshot ? (
+                      <img src={p.screenshot} alt={`${p[language].name} platform`} loading="lazy" className="w-full h-full object-cover object-top group-hover:scale-[1.04] transition-transform duration-700" />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center" style={{ background: 'radial-gradient(circle at 50% 35%, rgba(47,173,111,0.20), #071d1b)' }}>
+                        <span className="font-display text-sand/85 text-xl">{p[language].name}</span>
+                      </div>
                     )}
+                    <span className="absolute top-2.5 left-2.5 mono-label bg-forest-pitch/85 text-sand px-2 py-0.5" style={{ fontSize: '0.55rem' }}>/ 0{i + 1}</span>
+                  </div>
+                  <div className="flex flex-col flex-1 p-6">
+                    <h4 className="font-display text-lg font-medium leading-snug">{p[language].name}</h4>
+                    <p className="mt-2 text-sm text-sand/60 leading-relaxed flex-1">{p[language].short}</p>
+                    <div className="mt-5 flex items-center gap-4 text-sm">
+                      <Link to={`/platforms/${p.id}`} className="text-primary inline-flex items-center gap-1 hover:gap-2 transition-all font-medium">
+                        {c.learnMore} <ArrowRight className="w-3.5 h-3.5" />
+                      </Link>
+                      {p.externalUrl && (
+                        <a href={p.externalUrl} target="_blank" rel="noopener noreferrer" className="text-sand/50 hover:text-sand inline-flex items-center gap-1">
+                          {c.visit} <ArrowUpRight className="w-3.5 h-3.5" />
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </div>
               </Reveal>
             ))}
           </div>
+
+          <div className="mt-5"></div>
 
           <div className="grid md:grid-cols-2 border-l border-[color:var(--line-sand)]">
             <Reveal>

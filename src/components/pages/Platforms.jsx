@@ -54,25 +54,43 @@ const Platforms = ({ language }) => {
           </div>
         </Reveal>
 
-        <div className="mt-16 grid sm:grid-cols-2 border-t border-l border-[color:var(--line-dark)]">
+        <div className="mt-16 grid sm:grid-cols-2 gap-6">
           {platformContent.map((platform, index) => {
             const copy = platform[language]
             return (
               <Reveal key={platform.id} delay={(index % 2) * 0.05}>
-                <div className="group flex flex-col h-full p-8 border-b border-r border-[color:var(--line-dark)] hover:bg-[rgba(47,173,111,0.05)] transition-colors relative">
-                  <span className="absolute top-0 left-0 h-px w-0 bg-primary group-hover:w-full transition-all duration-500" style={{ transitionTimingFunction: 'var(--ease-out)' }} />
-                  <span className="mono-label text-ink/35" style={{ fontSize: '0.6rem' }}>/ 0{index + 1}</span>
-                  <h3 className="mt-5 font-display text-2xl font-medium leading-snug group-hover:text-primary transition-colors">{copy.name}</h3>
-                  <p className="mt-3 text-ink/65 leading-relaxed flex-1">{copy.short}</p>
-                  <div className="mt-7 flex items-center gap-5 text-sm">
-                    <Link to={`/platforms/${platform.id}`} className="text-primary inline-flex items-center gap-1 hover:gap-2 transition-all">
-                      {t.learnMore} <ArrowRight className="w-3.5 h-3.5" />
-                    </Link>
-                    {platform.externalUrl && (
-                      <a href={platform.externalUrl} target="_blank" rel="noopener noreferrer" className="text-ink/50 hover:text-ink inline-flex items-center gap-1">
-                        {t.visitPlatform} <ArrowUpRight className="w-3.5 h-3.5" />
-                      </a>
+                <div className="group flex flex-col h-full bg-white border border-[color:var(--line-dark)] hover:shadow-xl hover:shadow-forest/5 transition-all duration-300 overflow-hidden">
+                  {/* Real platform screenshot */}
+                  <div className="relative aspect-[16/10] overflow-hidden border-b border-[color:var(--line-dark)]">
+                    {platform.screenshot ? (
+                      <img
+                        src={platform.screenshot}
+                        alt={`${copy.name} platform`}
+                        loading="lazy"
+                        className="w-full h-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-700"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center" style={{ background: 'radial-gradient(circle at 50% 35%, rgba(47,173,111,0.18), #0a2928)' }}>
+                        <span className="font-display text-sand/85 text-2xl">{copy.name}</span>
+                      </div>
                     )}
+                    <span className="absolute top-3 left-3 mono-label bg-forest-pitch/85 text-sand px-2.5 py-1" style={{ fontSize: '0.55rem' }}>/ 0{index + 1}</span>
+                  </div>
+                  {/* Definition */}
+                  <div className="flex flex-col flex-1 p-7">
+                    <h3 className="font-display text-2xl font-medium leading-snug group-hover:text-primary transition-colors">{copy.name}</h3>
+                    <p className="mt-2 text-primary text-sm font-medium leading-relaxed">{copy.short}</p>
+                    <p className="mt-3 text-ink/65 leading-relaxed flex-1">{copy.description}</p>
+                    <div className="mt-7 flex items-center gap-5 text-sm">
+                      <Link to={`/platforms/${platform.id}`} className="text-primary inline-flex items-center gap-1 hover:gap-2 transition-all font-medium">
+                        {t.learnMore} <ArrowRight className="w-3.5 h-3.5" />
+                      </Link>
+                      {platform.externalUrl && (
+                        <a href={platform.externalUrl} target="_blank" rel="noopener noreferrer" className="text-ink/50 hover:text-ink inline-flex items-center gap-1">
+                          {t.visitPlatform} <ArrowUpRight className="w-3.5 h-3.5" />
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </div>
               </Reveal>

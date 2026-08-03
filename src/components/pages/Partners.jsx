@@ -1,47 +1,30 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, ArrowUpRight, Building2, Hotel, LineChart, ShieldCheck, Shield, BadgeCheck } from 'lucide-react'
+import { ArrowRight, ArrowUpRight, Building2, Landmark, ShieldCheck, Lock, Scale, Wrench } from 'lucide-react'
 import { PageHero, Band, Marker, Reveal, BTN } from '@/components/editorial'
 import { getPartnerLogo } from '@/data/logos'
 
 const Partners = ({ language }) => {
-  const translations = {
+  const isAr = language === 'ar'
+
+  const t = {
     en: {
       heroEyebrow: 'The Ecosystem',
       heroTitle: 'The partners who make it ',
       heroAccent: 'verifiable.',
-      heroSubtitle: 'Licensed operators, insurers, and oversight bodies who make the Capimax ecosystem verifiable and complete.',
-      partnershipTypes: 'Partnership Types',
-      realEstate: 'Real Estate & Commercial',
-      insurance: 'Insurance',
-      oversight: 'Oversight & Verification',
-      learnMore: 'Learn More',
+      heroSubtitle: 'Licensed operators, insurers, auditors, and oversight bodies — organized by role — who make the Capimax ecosystem verifiable and complete.',
+      introMarker: 'The network',
+      introTitle: 'Every partner, ',
+      introAccent: 'a defined role.',
+      introBody: 'Our partners are grouped into clear categories — real estate, finance, insurance, blockchain security, legal, and facility management — each with a defined mandate within the ecosystem.',
+      field: 'Partnership field',
       visitWebsite: 'Visit Website',
-      role: 'Role in the ecosystem',
-      responsibilities: 'Responsibilities',
-      typesMarker: 'Partnership categories',
-      typesTitle: 'Three roles, ',
-      typesTitleAccent: 'one accountable chain.',
-      typesBody: 'Every partner occupies a defined place in the chain — building the assets, insuring them, and independently verifying that what investors see is real.',
-      partnersInCategory: 'Partners',
-      partnersMarker: 'The network',
-      partnersTitle: 'Meet the partners ',
-      partnersTitleAccent: 'behind the group.',
-      partnersBody: 'Independent, licensed partners across real estate, insurance, and financial oversight — each with a clear mandate within the ecosystem.',
-      statsMarker: 'How the network holds together',
-      statsTitle: 'Structure over ',
-      statsTitleAccent: 'promises.',
-      stat1: 'Real estate & commercial partners',
-      stat1Label: 'building and operating the underlying assets',
-      stat2: 'Insurance partners',
-      stat2Label: 'covering assets and platform risk',
-      stat3: 'Independent oversight partner',
-      stat3Label: 'evaluation, verification & document custody',
-      stat4: 'USA + UK',
-      stat4Label: 'jurisdictions where our partners are licensed',
+      viewPartner: 'View Partner',
+      learnMore: 'Learn More',
+      partners: 'Partners',
       ctaMarker: 'Begin a conversation',
       ctaTitle: 'Become a ',
-      ctaTitleAccent: 'partner.',
-      ctaBody: 'Operators, insurers, and verification bodies who share our standard for transparency — let\'s talk about a role in the ecosystem.',
+      ctaAccent: 'partner.',
+      ctaBody: "Operators, insurers, auditors, and verification bodies who share our standard for transparency — let's talk about a role in the ecosystem.",
       partnershipOpps: 'Partnership Opportunities',
       contactUs: 'Contact Us',
     },
@@ -49,162 +32,174 @@ const Partners = ({ language }) => {
       heroEyebrow: 'المنظومة',
       heroTitle: 'الشركاء الذين يجعلونها ',
       heroAccent: 'قابلة للتحقق.',
-      heroSubtitle: 'شركات مرخّصة وشركات تأمين وجهات رقابية تجعل منظومة كابيماكس قابلة للتحقق ومكتملة.',
-      partnershipTypes: 'أنواع الشراكات',
-      realEstate: 'العقارات والأعمال التجارية',
-      insurance: 'التأمين',
-      oversight: 'الرقابة والتحقق',
-      learnMore: 'تعرّف أكثر',
+      heroSubtitle: 'شركات مرخّصة وشركات تأمين ومدقّقون وجهات رقابية — منظّمون حسب الدور — يجعلون منظومة كابي ماكس قابلة للتحقق ومكتملة.',
+      introMarker: 'الشبكة',
+      introTitle: 'لكل شريك ',
+      introAccent: 'دور محدّد.',
+      introBody: 'يُصنَّف شركاؤنا في فئات واضحة — العقارات، والمال، والتأمين، وأمن البلوكشين، والقانون، وإدارة المرافق — لكلٍّ منها تفويض محدّد ضمن المنظومة.',
+      field: 'مجال الشراكة',
       visitWebsite: 'زيارة الموقع',
-      role: 'الدور في المنظومة',
-      responsibilities: 'المسؤوليات',
-      typesMarker: 'فئات الشراكة',
-      typesTitle: 'ثلاثة أدوار، ',
-      typesTitleAccent: 'سلسلة مساءلة واحدة.',
-      typesBody: 'لكل شريك موقع محدّد في السلسلة — بناء الأصول، والتأمين عليها، والتحقق المستقل من أن ما يراه المستثمرون حقيقي.',
-      partnersInCategory: 'الشركاء',
-      partnersMarker: 'الشبكة',
-      partnersTitle: 'تعرّف على الشركاء ',
-      partnersTitleAccent: 'وراء المجموعة.',
-      partnersBody: 'شركاء مستقلون ومرخّصون في العقارات والتأمين والرقابة المالية — لكلٍّ منهم تفويض واضح ضمن المنظومة.',
-      statsMarker: 'كيف تترابط الشبكة',
-      statsTitle: 'بنية بدلاً من ',
-      statsTitleAccent: 'الوعود.',
-      stat1: 'شركاء العقارات والأعمال',
-      stat1Label: 'بناء وتشغيل الأصول الأساسية',
-      stat2: 'شركاء التأمين',
-      stat2Label: 'تغطية الأصول ومخاطر المنصّة',
-      stat3: 'شريك رقابي مستقل',
-      stat3Label: 'التقييم والتحقق وحفظ المستندات',
-      stat4: 'الولايات المتحدة + المملكة المتحدة',
-      stat4Label: 'الولايات القضائية التي يُرخَّص فيها شركاؤنا',
+      viewPartner: 'عرض الشريك',
+      learnMore: 'اعرف المزيد',
+      partners: 'شركاء',
       ctaMarker: 'ابدأ محادثة',
       ctaTitle: 'كن ',
-      ctaTitleAccent: 'شريكاً.',
-      ctaBody: 'المشغّلون وشركات التأمين وجهات التحقق الذين يشاركوننا معيار الشفافية — لنتحدّث عن دور ضمن المنظومة.',
+      ctaAccent: 'شريكاً.',
+      ctaBody: 'المشغّلون وشركات التأمين والمدقّقون وجهات التحقق الذين يشاركوننا معيار الشفافية — لنتحدّث عن دور ضمن المنظومة.',
       partnershipOpps: 'فرص الشراكة',
       contactUs: 'تواصل معنا',
     },
-  }
+  }[language]
 
-  const t = translations[language]
+  // Partner categories in the client's requested order.
+  const categories = [
+    { key: 'realEstate', icon: Building2, label: isAr ? 'شركاء العقارات' : 'Real Estate Partners' },
+    { key: 'financial', icon: Landmark, label: isAr ? 'الشركاء الماليون' : 'Financial Partners' },
+    { key: 'insurance', icon: ShieldCheck, label: isAr ? 'شركاء التأمين' : 'Insurance Partners' },
+    { key: 'security', icon: Lock, label: isAr ? 'أمن العقود الذكية والبلوكشين' : 'Smart Contract & Blockchain Security' },
+    { key: 'legal', icon: Scale, label: isAr ? 'الشركاء القانونيون' : 'Legal Partners' },
+    { key: 'facility', icon: Wrench, label: isAr ? 'إدارة العقارات والمرافق' : 'Property & Facility Management' },
+  ]
 
-  // Partner categories — each with a clear role in the ecosystem.
-  // Keys map partners to a category and drive the grouped card layout.
-  const categories = {
-    realEstate: {
-      label: t.realEstate,
-      icon: Building2,
-      description: language === 'ar'
-        ? 'شركاء مرخّصون يطوّرون ويشغّلون العقارات والأصول التجارية التي ترتكز عليها منتجات المجموعة.'
-        : 'Licensed partners that develop and operate the real estate and commercial assets our products are built on.',
-    },
-    insurance: {
-      label: t.insurance,
-      icon: ShieldCheck,
-      description: language === 'ar'
-        ? 'شركات تأمين تغطي الأصول الأساسية ومخاطر المنصّة الرقمية، لحماية المستثمرين والممتلكات معاً.'
-        : 'Insurers that cover the underlying assets and platform risk — protecting both investors and property.',
-    },
-    oversight: {
-      label: t.oversight,
-      icon: BadgeCheck,
-      description: language === 'ar'
-        ? 'جهة مستقلة تتولى التقييم المالي والتحقق وحفظ المستندات ومراقبة المخاطر والامتثال عبر المنظومة.'
-        : 'An independent body handling financial evaluation, verification, document custody, risk monitoring, and compliance across the ecosystem.',
-    },
-  }
-
+  // Each partner: independent card with logo, name, brief, field, and CTA.
+  // website: null => "Learn More" -> contact (official URL pending).
   const partners = [
+    // ---- Real Estate ----
     {
-      id: 'elite-gate',
-      name: 'Elite Gate',
-      category: 'realEstate',
-      icon: Building2,
-      role: language === 'ar'
-        ? 'شريك عقاري وتجاري يوفّر ويطوّر الأصول العقارية التي تُرمّز وتُتاح للملكية الجزئية عبر منصّات المجموعة.'
-        : 'Real estate & commercial partner that sources and develops the property assets tokenized and offered for fractional ownership across the group\'s platforms.',
-      responsibilities: language === 'ar'
-        ? ['توفير الأصول العقارية', 'تطوير المشاريع', 'التشغيل التجاري']
-        : ['Asset sourcing', 'Project development', 'Commercial operation'],
-      website: '#',
+      id: 'elite-gate', name: 'Elite Gate', category: 'realEstate', icon: Building2, website: null,
+      field: isAr ? 'العقارات والتجاري' : 'Real Estate & Commercial',
+      brief: isAr
+        ? 'توفّر وتطوّر الأصول العقارية والتجارية التي تُرمّز وتُتاح للملكية الجزئية عبر منصّات المجموعة.'
+        : "Sources and develops the property and commercial assets tokenized and offered for fractional ownership across the group's platforms.",
     },
     {
-      id: 'prim-inn',
-      name: 'Prim Inn',
-      category: 'realEstate',
-      icon: Hotel,
-      role: language === 'ar'
-        ? 'شريك في الضيافة والعقارات المُدِرّة للدخل، يشغّل أصولاً فندقية تدعم منتجات الملكية الجزئية المدعومة بالعقار.'
-        : 'Hospitality and income-producing real estate partner, operating hotel assets that back the group\'s property-linked fractional ownership products.',
-      responsibilities: language === 'ar'
-        ? ['العقارات الفندقية', 'أصول مُدِرّة للدخل', 'إدارة التشغيل']
-        : ['Hotel properties', 'Income-producing assets', 'Operations management'],
-      website: '#',
+      id: 'prim-inn', name: 'Prim Inn', category: 'realEstate', icon: Building2, website: null,
+      field: isAr ? 'الضيافة والعقارات المُدِرّة للدخل' : 'Hospitality & Income Real Estate',
+      brief: isAr
+        ? 'تشغّل عقارات فندقية ومُدِرّة للدخل تدعم منتجات الملكية الجزئية المرتبطة بالعقار.'
+        : "Operates hotel and income-producing real estate that backs the group's property-linked fractional ownership products.",
     },
     {
-      id: 'nova-asset-management',
-      name: 'Nova Asset Management',
-      category: 'realEstate',
-      icon: LineChart,
-      role: language === 'ar'
-        ? 'شريك في إدارة الأصول، يشرف على أداء المحافظ العقارية الأساسية ويحافظ على قيمتها طوال دورة الاستثمار.'
-        : 'Asset management partner overseeing the performance of the underlying property portfolios and preserving their value through the investment lifecycle.',
-      responsibilities: language === 'ar'
-        ? ['إدارة الأصول', 'مراقبة الأداء', 'الحفاظ على القيمة']
-        : ['Asset management', 'Performance monitoring', 'Value preservation'],
-      website: '#',
+      id: 'nova-asset-management', name: 'Nova Asset Management', category: 'realEstate', icon: Building2, website: null,
+      field: isAr ? 'إدارة الأصول' : 'Asset Management',
+      brief: isAr
+        ? 'تشرف على أداء المحافظ العقارية الأساسية وتحافظ على قيمتها طوال دورة الاستثمار.'
+        : 'Oversees the performance of the underlying property portfolios and preserves value through the investment lifecycle.',
+    },
+    // ---- Financial ----
+    {
+      id: 'cim-global-financial', name: 'CIM Global Financial', category: 'financial', icon: Landmark, website: null,
+      field: isAr ? 'التقييم المالي والتحقق' : 'Financial Evaluation & Verification',
+      brief: isAr
+        ? 'التقييم المالي المستقل والتحقق وحفظ المستندات بما يعزّز شفافية المنظومة ومساءلتها.'
+        : "Independent financial evaluation, verification, and document custody that underpins the ecosystem's transparency.",
     },
     {
-      id: 'hcc',
-      name: 'HCC',
-      category: 'insurance',
-      icon: Shield,
-      role: language === 'ar'
-        ? 'شريك تأمين يوفّر تغطية للأصول والمنصّة الرقمية، بما يشمل حماية الممتلكات والمرونة الإلكترونية للبنية التقنية.'
-        : 'Insurance partner providing asset and platform coverage — including property protection and cyber resilience for the group\'s technology.',
-      responsibilities: language === 'ar'
-        ? ['تأمين الأصول', 'حماية الممتلكات', 'المرونة الإلكترونية']
-        : ['Asset insurance', 'Property protection', 'Cyber resilience'],
-      website: '#',
+      id: 'cim-finance-group', name: 'CIM Finance Group', category: 'financial', icon: Landmark, website: null,
+      field: isAr ? 'الخدمات المالية' : 'Financial Services',
+      brief: isAr
+        ? 'شريك خدمات مالية يدعم الهيكلة والامتثال والرقابة المالية عبر المجموعة.'
+        : 'Financial services partner supporting structuring, compliance, and financial oversight across the group.',
+    },
+    // ---- Insurance ----
+    {
+      id: 'covertech', name: 'CoverTech Insurance', category: 'insurance', icon: ShieldCheck, website: null,
+      field: isAr ? 'التأمين والتغطية' : 'Insurance & Coverage',
+      brief: isAr
+        ? 'توفّر تغطية تأمينية للأصول والمنتجات الرقمية، لحماية المستثمرين والممتلكات عبر المنظومة.'
+        : 'Provides insurance coverage for assets and digital products, protecting investors and property across the ecosystem.',
     },
     {
-      id: 'assurx-insurance',
-      name: 'Assurax Insurance',
-      category: 'insurance',
-      icon: ShieldCheck,
-      role: language === 'ar'
-        ? 'شريك تأمين متخصص في تقييم المخاطر وتأمين المنتجات الرقمية، بما يحمي المستثمرين المشاركين في الملكية الجزئية والأصول المُرمّزة.'
-        : 'Insurance partner specializing in risk assessment and coverage for digital products, protecting investors participating in fractional ownership and tokenized assets.',
-      responsibilities: language === 'ar'
-        ? ['تقييم المخاطر', 'تأمين المنتجات الرقمية', 'حماية المستثمر']
-        : ['Risk assessment', 'Digital product coverage', 'Investor protection'],
-      website: '#',
+      id: 'hcc', name: 'HCC', category: 'insurance', icon: ShieldCheck, website: null,
+      field: isAr ? 'تأمين الأصول والمرونة الإلكترونية' : 'Asset & Cyber Insurance',
+      brief: isAr
+        ? 'تغطية للأصول والمنصّة تشمل حماية الممتلكات والمرونة الإلكترونية لتقنية المجموعة.'
+        : "Asset and platform coverage — including property protection and cyber resilience for the group's technology.",
     },
     {
-      id: 'cim-financial-group',
-      name: 'CIM Financial Group',
-      category: 'oversight',
-      icon: BadgeCheck,
-      role: language === 'ar'
-        ? 'الجهة الرقابية المستقلة للمنظومة، مسؤولة عن التقييم المالي والتحقق وحفظ المستندات ومراقبة المخاطر والامتثال — بما يضمن أن كل ما يُعرض على المستثمرين مُوثّق ومُتحقَّق منه.'
-        : 'The ecosystem\'s independent oversight body — responsible for financial evaluation, verification, document custody, risk monitoring, and compliance, ensuring everything presented to investors is documented and verified.',
-      responsibilities: language === 'ar'
-        ? ['التقييم المالي', 'التحقق', 'حفظ المستندات', 'مراقبة المخاطر', 'الامتثال']
-        : ['Financial evaluation', 'Verification', 'Document custody', 'Risk monitoring', 'Compliance'],
-      website: '#',
+      id: 'assurax', name: 'Assurax', category: 'insurance', icon: ShieldCheck, website: null,
+      field: isAr ? 'تأمين المنتجات الرقمية' : 'Digital Product Insurance',
+      brief: isAr
+        ? 'تقييم المخاطر وتأمين المنتجات الرقمية، لحماية المستثمرين في الملكية الجزئية والمرمّزة.'
+        : 'Risk assessment and coverage for digital products, protecting investors in fractional and tokenized ownership.',
+    },
+    // ---- Smart Contract & Blockchain Security ----
+    {
+      id: 'solidproof', name: 'SolidProof', category: 'security', icon: Lock, website: null,
+      field: isAr ? 'تدقيق العقود الذكية' : 'Smart Contract Audit',
+      brief: isAr
+        ? 'تدقيق مستقل للعقود الذكية والتحقق من أمان البلوكشين لأنظمة الترميز في المجموعة.'
+        : "Independent smart-contract auditing and blockchain security verification for the group's tokenization systems.",
+    },
+    {
+      id: 'proof-anchor', name: 'Proof Anchor', category: 'security', icon: Lock, website: null,
+      field: isAr ? 'التحقق على البلوكشين' : 'Blockchain Verification',
+      brief: isAr
+        ? 'إثبات وتثبيت سجلات الملكية على البلوكشين بما يجعل التحقق مستقلًا وغير قابل للتلاعب.'
+        : 'On-chain proof and anchoring of ownership records, making verification independent and tamper-evident.',
+    },
+    // ---- Legal ----
+    {
+      id: 'lexcrest', name: 'Lexcrest Legal', category: 'legal', icon: Scale, website: null,
+      field: isAr ? 'القانون والهيكلة' : 'Legal & Structuring',
+      brief: isAr
+        ? 'المستشار القانوني لهيكلة الـSPV وأطر الملكية والامتثال عبر الولايات المتحدة والمملكة المتحدة.'
+        : 'Legal counsel for SPV structuring, ownership frameworks, and cross-border compliance across the USA and UK.',
+    },
+    // ---- Property & Facility Management ----
+    {
+      id: 'nova-facility-management', name: 'Nova Facility Management', category: 'facility', icon: Wrench, website: null,
+      field: isAr ? 'إدارة المرافق' : 'Facility Management',
+      brief: isAr
+        ? 'تدير التشغيل اليومي والصيانة للأصول العقارية الأساسية للمجموعة.'
+        : "Manages the day-to-day operation and maintenance of the group's underlying real estate assets.",
+    },
+    {
+      id: 'crown-fm', name: 'Crown FM', category: 'facility', icon: Wrench, website: null,
+      field: isAr ? 'إدارة العقارات والمرافق' : 'Property & Facility Management',
+      brief: isAr
+        ? 'شريك إدارة العقارات والمرافق لضمان تشغيل الأصول والحفاظ على قيمتها.'
+        : 'Property and facility management partner ensuring assets remain well-operated and value-preserving.',
     },
   ]
 
-  // Order the categories for the grouped layout.
-  const categoryOrder = ['realEstate', 'insurance', 'oversight']
-
-  const stats = [
-    { number: '3', title: t.stat1, label: t.stat1Label },
-    { number: '2', title: t.stat2, label: t.stat2Label },
-    { number: '1', title: t.stat3, label: t.stat3Label },
-    { number: t.stat4, label: t.stat4Label },
-  ]
+  const PartnerCard = ({ partner }) => {
+    const logo = getPartnerLogo(partner.id, 'light') // dark-ink logo on a white plate
+    const Icon = partner.icon
+    const hasSite = partner.website && partner.website !== '#'
+    return (
+      <div className="group flex flex-col h-full bg-white border border-[color:var(--line-mid)] hover:border-primary/40 hover:shadow-xl hover:shadow-forest/5 transition-all duration-300">
+        {/* Logo plate — white so colored SVGs and JPG logos read consistently */}
+        <div className="h-28 flex items-center justify-center px-6 border-b border-[color:var(--line-soft)]">
+          {logo ? (
+            <img src={logo} alt={partner.name} className="h-12 w-auto max-w-[170px] object-contain" />
+          ) : (
+            <div className="flex flex-col items-center gap-2 text-primary/70">
+              <Icon className="w-9 h-9" strokeWidth={1.5} />
+              <span className="font-display text-sm font-medium text-ink/80">{partner.name}</span>
+            </div>
+          )}
+        </div>
+        {/* Body */}
+        <div className="flex flex-col flex-1 p-6">
+          <h3 className="font-display text-lg font-medium text-ink leading-snug">{partner.name}</h3>
+          <span className="mono-label text-primary mt-1.5" style={{ fontSize: '0.58rem' }}>{partner.field}</span>
+          <p className="mt-3 text-sm text-ink/65 leading-relaxed flex-1">{partner.brief}</p>
+          <div className="mt-5 pt-4 border-t border-[color:var(--line-soft)] flex items-center gap-5">
+            {hasSite ? (
+              <a href={partner.website} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sm text-primary font-medium hover:gap-2 transition-all">
+                {t.visitWebsite} <ArrowUpRight className="w-3.5 h-3.5" />
+              </a>
+            ) : (
+              <Link to="/contact" className="inline-flex items-center gap-1 text-sm text-primary font-medium hover:gap-2 transition-all">
+                {t.viewPartner} <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            )}
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="bg-cream text-ink">
@@ -215,153 +210,44 @@ const Partners = ({ language }) => {
         subtitle={t.heroSubtitle}
       />
 
-      {/* ================================================ PARTNERSHIP TYPES */}
+      {/* ===================================================== PARTNER NETWORK */}
       <Band tone="light">
         <Reveal className="grid lg:grid-cols-2 gap-10 items-end">
           <div>
-            <Marker num="01" label={t.typesMarker} />
+            <Marker num="01" label={t.introMarker} />
             <h2 className="font-display font-medium leading-[1.02]" style={{ fontSize: 'clamp(2.2rem,4.5vw,4rem)', letterSpacing: '-0.025em' }}>
-              {t.typesTitle}<span className="accent-em">{t.typesTitleAccent}</span>
+              {t.introTitle}<span className="accent-em">{t.introAccent}</span>
             </h2>
           </div>
-          <p className="text-lg text-ink/70 leading-relaxed lg:pb-2">{t.typesBody}</p>
+          <p className="text-lg text-ink/70 leading-relaxed lg:pb-2">{t.introBody}</p>
         </Reveal>
 
-        <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-3 border-t border-l border-[color:var(--line-dark)]">
-          {categoryOrder.map((key, i) => {
-            const cat = categories[key]
-            const Icon = cat.icon
-            const members = partners.filter((p) => p.category === key)
-            return (
-              <Reveal key={key} delay={(i % 3) * 0.05}>
-                <div className="group flex flex-col h-full p-7 border-b border-r border-[color:var(--line-dark)] hover:bg-[rgba(47,173,111,0.05)] transition-colors">
-                  <div className="flex items-center justify-between">
-                    <span className="font-display italic text-2xl text-primary leading-none">{String(i + 1).padStart(2, '0')}</span>
-                    <Icon className="w-6 h-6 text-primary/70" strokeWidth={1.5} />
-                  </div>
-                  <h3 className="mt-4 font-display text-lg font-medium leading-snug group-hover:text-primary transition-colors">{cat.label}</h3>
-                  <p className="mt-3 text-sm text-ink/65 leading-relaxed flex-1">{cat.description}</p>
-                  <div className="mt-5 pt-4 border-t border-[color:var(--line-dark)]">
-                    <div className="mono-label text-primary mb-2" style={{ fontSize: '0.58rem' }}>{members.length} {t.partnersInCategory}</div>
-                    <div className="space-y-1">
-                      {members.map((p) => (
-                        <div key={p.id} className="text-sm text-ink/70">— {p.name}</div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </Reveal>
-            )
-          })}
-        </div>
-      </Band>
-
-      {/* ================================================== STRATEGIC PARTNERS */}
-      <Band tone="dark">
-        <Reveal className="grid lg:grid-cols-2 gap-10 items-end">
-          <div>
-            <Marker num="02" label={t.partnersMarker} light />
-            <h2 className="font-display font-medium leading-[1.02] text-sand" style={{ fontSize: 'clamp(2.2rem,4.5vw,4rem)', letterSpacing: '-0.025em' }}>
-              {t.partnersTitle}<span className="accent-em">{t.partnersTitleAccent}</span>
-            </h2>
-          </div>
-          <p className="text-lg text-sand/70 leading-relaxed lg:pb-2">{t.partnersBody}</p>
-        </Reveal>
-
-        {/* Partners grouped by category */}
-        <div className="mt-16 space-y-14">
-          {categoryOrder.map((key) => {
-            const cat = categories[key]
+        {/* Grouped by category */}
+        <div className="mt-16 space-y-16">
+          {categories.map((cat, ci) => {
             const CatIcon = cat.icon
-            const members = partners.filter((p) => p.category === key)
+            const members = partners.filter((p) => p.category === cat.key)
+            if (members.length === 0) return null
             return (
-              <div key={key}>
+              <div key={cat.key}>
                 <Reveal>
-                  <div className="flex items-center gap-4 pb-3 mb-8 border-b border-[color:var(--line-sand)]">
+                  <div className="flex items-center gap-4 pb-3 mb-8 border-b border-[color:var(--line-dark)]">
+                    <span className="font-display italic text-2xl text-primary leading-none">{String(ci + 1).padStart(2, '0')}</span>
                     <CatIcon className="w-5 h-5 text-primary" strokeWidth={1.5} />
-                    <span className="mono-label text-sand/55">{cat.label}</span>
-                    <span className="mono-label text-sand/30 ms-auto" style={{ fontSize: '0.58rem' }}>{members.length} {t.partnersInCategory}</span>
+                    <span className="mono-label text-ink/60">{cat.label}</span>
+                    <span className="mono-label text-ink/35 ms-auto" style={{ fontSize: '0.58rem' }}>{members.length} {members.length === 1 ? (isAr ? 'شريك' : 'Partner') : t.partners}</span>
                   </div>
                 </Reveal>
-
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 border-t border-l border-[color:var(--line-sand)]">
-                  {members.map((partner, i) => {
-                    const hasSite = partner.website && partner.website !== '#'
-                    const Logo = partner.icon
-                    const logo = getPartnerLogo(partner.id, 'dark')
-                    return (
-                      <Reveal key={partner.id} delay={(i % 3) * 0.05}>
-                        <div className="group flex flex-col h-full p-8 border-b border-r border-[color:var(--line-sand)] hover:bg-[rgba(47,173,111,0.05)] transition-colors relative">
-                          <span className="absolute top-0 left-0 h-px w-0 bg-primary group-hover:w-full transition-all duration-500" style={{ transitionTimingFunction: 'var(--ease-out)' }} />
-                          <div className="flex items-center justify-between gap-3">
-                            {logo ? (
-                              <span className="inline-flex items-center justify-center h-20 px-5 border border-[color:var(--line-sand)]">
-                                <img src={logo} alt={partner.name} className="h-14 w-auto max-w-[220px] object-contain" />
-                              </span>
-                            ) : (
-                              <span className="flex items-center justify-center w-12 h-12 border border-[color:var(--line-sand)] text-primary">
-                                <Logo className="w-6 h-6" strokeWidth={1.5} />
-                              </span>
-                            )}
-                            <span className="mono-label text-sand/35 shrink-0 text-end" style={{ fontSize: '0.58rem' }}>{cat.label}</span>
-                          </div>
-                          <h3 className="mt-5 font-display text-xl font-medium leading-snug text-sand group-hover:text-primary transition-colors">{partner.name}</h3>
-
-                          <div className="mt-4">
-                            <div className="mono-label text-sand/45 mb-2" style={{ fontSize: '0.58rem' }}>{t.role}</div>
-                            <p className="text-sm text-sand/60 leading-relaxed flex-1">{partner.role}</p>
-                          </div>
-
-                          <div className="mt-6 pt-5 border-t border-[color:var(--line-sand)]">
-                            <div className="mono-label text-sand/45 mb-2" style={{ fontSize: '0.58rem' }}>{t.responsibilities}</div>
-                            <div className="flex flex-wrap gap-2">
-                              {partner.responsibilities.map((item, idx) => (
-                                <span key={idx} className="text-[0.7rem] px-2.5 py-1 border border-[color:var(--line-sand)] text-sand/75">
-                                  {item}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-
-                          {hasSite ? (
-                            <a href={partner.website} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex items-center gap-1 text-sm text-primary hover:gap-2 transition-all">
-                              {t.visitWebsite} <ArrowUpRight className="w-3.5 h-3.5" />
-                            </a>
-                          ) : (
-                            <Link to="/contact" className="mt-6 inline-flex items-center gap-1 text-sm text-primary hover:gap-2 transition-all">
-                              {t.learnMore} <ArrowRight className="w-3.5 h-3.5" />
-                            </Link>
-                          )}
-                        </div>
-                      </Reveal>
-                    )
-                  })}
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {members.map((partner, i) => (
+                    <Reveal key={partner.id} delay={(i % 3) * 0.05}>
+                      <PartnerCard partner={partner} />
+                    </Reveal>
+                  ))}
                 </div>
               </div>
             )
           })}
-        </div>
-      </Band>
-
-      {/* =================================================== PARTNERSHIP STATS */}
-      <Band tone="darker">
-        <Reveal>
-          <Marker num="03" label={t.statsMarker} light />
-          <h2 className="font-display font-medium leading-[1.02] text-sand max-w-3xl" style={{ fontSize: 'clamp(2.2rem,4.5vw,4rem)', letterSpacing: '-0.025em' }}>
-            {t.statsTitle}<span className="accent-em">{t.statsTitleAccent}</span>
-          </h2>
-        </Reveal>
-
-        <div className="mt-16 grid grid-cols-2 lg:grid-cols-4 border-t border-l border-[color:var(--line-sand)]">
-          {stats.map((stat, i) => (
-            <Reveal key={i} delay={(i % 4) * 0.05}>
-              <div className="p-8 border-b border-r border-[color:var(--line-sand)] h-full flex flex-col">
-                <div className="font-display font-medium text-sand" style={{ fontSize: 'clamp(1.7rem,3.4vw,3rem)', lineHeight: 1.05 }}>{stat.number}</div>
-                {stat.title && <div className="mt-3 font-display text-sm text-sand/85 leading-snug">{stat.title}</div>}
-                <div className="mono-label text-sand/50 mt-3" style={{ fontSize: '0.58rem' }}>{stat.label}</div>
-              </div>
-            </Reveal>
-          ))}
         </div>
       </Band>
 
@@ -369,9 +255,9 @@ const Partners = ({ language }) => {
       <Band tone="pitch" className="relative overflow-hidden">
         <div className="absolute bottom-0 left-1/3 w-[40rem] h-[40rem]" style={{ background: 'radial-gradient(circle, rgba(47,173,111,0.09), transparent 60%)' }} />
         <Reveal className="relative max-w-3xl">
-          <Marker num="04" label={t.ctaMarker} light />
+          <Marker num="02" label={t.ctaMarker} light />
           <h2 className="font-display font-medium leading-[0.98] text-sand" style={{ fontSize: 'clamp(2.6rem,7vw,6rem)', letterSpacing: '-0.03em' }}>
-            {t.ctaTitle}<span className="accent-em">{t.ctaTitleAccent}</span>
+            {t.ctaTitle}<span className="accent-em">{t.ctaAccent}</span>
           </h2>
           <p className="mt-7 text-lg text-sand/70 leading-relaxed">{t.ctaBody}</p>
           <div className="mt-10 flex flex-col sm:flex-row gap-3">

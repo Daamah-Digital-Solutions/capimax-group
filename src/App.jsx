@@ -9,6 +9,7 @@ import ChatWidget from './components/ChatWidget'
 import Home from './components/pages/Home'
 import About from './components/pages/About'
 import Companies from './components/pages/Companies'
+import Ecosystem from './components/pages/Ecosystem'
 import Sectors from './components/pages/Sectors'
 import Partners from './components/pages/Partners'
 import Documents from './components/pages/Documents'
@@ -82,6 +83,7 @@ function AppContent() {
             <Route path="/companies" element={<Companies language={language} />} />
             <Route path="/companies/capimax-investment" element={<CapimaxInvestment language={language} />} />
             <Route path="/company/:id" element={<CompanyDetail language={language} />} />
+            <Route path="/ecosystem" element={<Ecosystem language={language} />} />
             <Route path="/platforms" element={<Platforms language={language} />} />
             <Route path="/platforms/:id" element={<PlatformDetail language={language} />} />
             <Route path="/currency" element={<Currency language={language} />} />
